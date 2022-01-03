@@ -333,7 +333,7 @@
                     if (confirm("해당정보로 회원가입을 진행하시겠습니까?")) {
                         alert("회원가입이 완료되었습니다.")
                         $("#join_form").attr("onsubmit", "return true;");
-                        $("#join_form").attr("action", "/member/signup-success");
+                        $("#join_form").attr("action", "${pageContext.request.contextPath}/member/signUpSuccess.do");
                         $("#join_form").submit();
                     } else {
                         alert("취소되었습니다.")
@@ -365,7 +365,7 @@
                 $.ajax({
 
                     type: "post",
-                    url: "/member/memberIdChk",
+                    url: "${pageContext.request.contextPath}/member/memberIdChk.do",
                     data: data,
                     success: function (result) {
 
