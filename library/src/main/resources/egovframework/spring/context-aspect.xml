@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 	<aop:config>
-		<aop:pointcut id="serviceMethod" expression="execution(* du..impl.*Impl.*(..))" />
+		<aop:pointcut id="serviceMethod" expression="execution(* library..impl.*Impl.*(..))" />
 
 		<aop:aspect ref="exceptionTransfer">
 			<aop:after-throwing throwing="exception" pointcut-ref="serviceMethod" method="transfer" />
@@ -53,7 +53,7 @@
 		</property>
 	</bean>
 
-	<bean id="egovHandler" class="du.cmmn.EgovSampleExcepHndlr" />
-	<bean id="otherHandler" class="du.cmmn.EgovSampleOthersExcepHndlr" />	
+	<bean id="egovHandler" class="library.cmmn.EgovSampleExcepHndlr" />
+	<bean id="otherHandler" class="library.cmmn.EgovSampleOthersExcepHndlr" />	
 	
 </beans>
