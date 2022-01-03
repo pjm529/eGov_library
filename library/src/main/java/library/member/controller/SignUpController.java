@@ -19,7 +19,7 @@ import library.member.service.SignUpService;
 
 @Controller
 @RequestMapping("/member")
-public class MemberController {
+public class SignUpController {
 
 	@Autowired
 	private SignUpService signUpService;
