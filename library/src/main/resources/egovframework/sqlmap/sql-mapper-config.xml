@@ -3,6 +3,6 @@
 
 <configuration>
     <typeAliases>
-		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+		<typeAlias alias="MemberVO" type="library.member.domain.MemberVO" />
     </typeAliases>
 </configuration>
