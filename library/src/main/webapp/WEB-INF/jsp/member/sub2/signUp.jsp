@@ -418,7 +418,7 @@
                 $.ajax({
 
                     type: "post",
-                    url: "/member/mailCheck",
+                    url: "${pageContext.request.contextPath}/member/mailCheck.do",
                     data: data,
                     success: function (result) {
 

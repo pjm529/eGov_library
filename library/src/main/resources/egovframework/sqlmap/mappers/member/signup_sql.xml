@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="SignUp">
 
+	<!-- 아이디 중복 체크 -->
 	<select id="idCheck" resultType="int">
 		<![CDATA[
 			SELECT
@@ -10,6 +11,18 @@
 				member
 			where
 				user_id = #{userId}
+		]]>
+	</select>
+	
+	<!-- 메일 중복 체크 -->
+	<select id="mailCheck" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM
+				member
+			WHERE
+				user_email = #{userEmail}
 		]]>
 	</select>
 	
