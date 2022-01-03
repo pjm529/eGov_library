@@ -9,6 +9,6 @@ public class MainController {
 
 	@RequestMapping(value="/main.do", method = RequestMethod.GET)
 	public String mainPage() {
-		return "main.html";
+		return "index.jsp";
 	}
 }

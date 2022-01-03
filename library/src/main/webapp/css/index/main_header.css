@@ -1,0 +1,440 @@
+/* 전체 기준 픽셀 : 1920px */
+
+
+.hide {
+    overflow: hidden;
+    position: absolute;
+    left: -1000%;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    width: 0;
+}
+
+
+h1, div, a, ul, li, span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+}
+
+
+ul {
+    list-style: none;
+}
+
+
+select, button {
+    text-transform: none;
+}
+
+
+/* <header> */
+/* =========== 상단 nav 메뉴 각각의 요소를 하나씩 감싸는 부분 ============ */
+#header {
+    /* position: fixed; */
+    z-index: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    background: center;
+}
+
+
+#header {
+    background-image: url(/library/images/index/main.jpg);
+    background-repeat: no-repeat 0 0;
+    background-size: cover;
+
+}
+
+
+/* ----------- 상단 nav가 위치한 부분 전체를 감싸는 부분 -------------- */
+.tnb {
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 999999;
+}
+
+
+.main-section {
+    position: relative;
+    max-width: 78.75em;
+    margin: 0 auto;
+}
+
+/* ----------- 진짜 상단 nav -------------- */
+.tnb .util {
+    float: right;
+    height: 2.5em;
+    line-height: 2.5em;
+    font-style: normal;
+    /* background: wheat; */
+}
+
+
+/* ----------- 상단 nav 메뉴 각각의 요소를 하나씩 감싸는 부분-------------- */
+.tnb .util a {
+    font-size: 0.875em;
+    color:#fff;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0;
+    /* border:1px solid tomato; */
+}
+
+
+/* ----------- 상단 nav의 각각 요소를 부분 짓는 하나의 쉼표(|) 역할 -------------- */
+.text-bar {
+    height: 0.6875em;
+    width: 0.0625em;
+    margin: 0 0.625em;
+    color: #fff;
+    background: #e5e5e5;
+    /* background: red; */
+    opacity: 0.5;
+    position: relative;
+    z-index: 5;
+    display: inline-block;
+}
+
+
+/* ----------- 하단 nav가 위치한 전체 영역을 감싸는 부분 -------------- */
+.gnb {
+    height: 4.5625em;
+    margin-top: 10px;
+    /* border-top: 0.1875em #d7d7d7 solid;    
+    border-bottom: 0.1875em #d7d7d7 solid; */
+    /* background-color: #FFF;     */
+}
+
+
+/* ----------- 하단 nav가 시작하는 부분 -------------- */
+.container {
+    max-width: 78.75em;
+    height: 4.5625em;
+    margin: 0 auto;
+    /* border: 1px solid lightgreen; */
+    display: block;
+}
+
+
+/* ----------- logo -------------- */
+.logo {
+    float: left;
+    /* border: 1px dashed darkgray; */
+}
+
+
+.logo > a {
+    background-repeat: no-repeat;
+    /* background-image: url('/images/raon-white.png'); */
+    background-image: url(/library/images/index/raon-white.png);
+    background-size: cover;
+    width: 12.375em;
+    height: 4.3125em;
+    background-position: center;
+}
+
+
+a {
+    color: inherit;
+    display: block;
+    cursor: pointer;
+    /* border: 1px solid thistle; */
+}
+
+a:link {
+    text-decoration: none;
+}
+
+
+/* ----------- 하단nav에 위치한 큰 제목(자료검색, 이용안내, 열린공간. 도서관 소개, 나의 도서관) -------------- */
+.gnb-ul{
+    display: inline-block;
+    vertical-align: top;
+    height: 4.5625em;
+    width: 57.88em;
+    margin-right: 4.7%;
+    text-align: right;
+    /*background-color: lavenderblush;*/
+    transform: none;
+    list-style: outside;
+}
+
+
+.gnb-li{
+    display: inline-block;
+    height: 4.5625em;
+    vertical-align: top;
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+    /* border: 1px solid #fff; */
+}
+
+
+.gnb-li > a {
+    color: #fff;
+    font-weight: bold;
+    line-height: 54px;
+    font-size: 1.25em;
+    /* border:1px dashed tomato; */
+}
+
+
+.gnb-li > a > span.active {
+    background: white;
+    opacity: 0.6;
+    color: black;
+    border-radius: 5px;
+    /* border:2px solid darkgray; */
+}
+
+
+.gnb-li > a > span {
+    padding: 0.5625em 1.1875em;
+}
+
+
+/* ----------- 하단nav 큰제목들 간격 설정하는 영역 -------------- */
+.ltsp {
+    letter-spacing: -0.075em;
+    border: 1px dashed darkseagreen;
+}
+
+
+/* ----------- 하단nav를 내리면 나타나는 소제목들을 설정하는 영역 -------------- */
+.sub-menu {
+    position: absolute;
+    z-index: 49;
+    padding-top: 0.75em;
+    min-height: 15.625em;
+    display: none;
+    color: #fff;
+}
+
+
+.sm01 {
+    width: 10.125em;
+    margin-left: -0.625em;
+}
+
+
+.sm02 {
+    width: 10.125em;
+    margin-left: -0.625em;
+}
+
+
+.sm03 {
+    width: 10.125em;
+    margin-left: -0.625em;
+}
+
+
+.sm04 {
+    width: 10.125em;
+    margin-left: -0.625em;
+}
+
+
+.sm05 {
+    width: 10.125em;
+    margin-left: -0.625em;
+}
+
+
+.sub-menu li {
+    line-height: 1.9;
+}
+
+
+.sub-menu > a {
+    font-size: 0.875em;
+    color: #000000;
+}
+
+
+.sub-menu .sub-active {
+    color: yellow;
+    top: 100%;
+    content: '';
+    /* background: #fff; */
+}
+
+
+/* ----------- 사이트맵 설정영역  -------------- */
+.site-map {
+    float: right;
+    margin-top: 1.125em;
+}
+
+
+.site-map > a {
+    color: inherit;
+    cursor: pointer;
+}
+
+
+img, input, select {
+    border: none;
+    vertical-align: middle;
+}
+
+
+/* ----------- 메인검색창 설정영역  -------------- */
+.search-area {
+    margin-top: 108px;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    position: relative;
+    padding-top: 85px;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+
+.search-wrap {
+    position: relative;
+    max-width: 54.6875em;
+    width: 100%;
+    margin: 0 auto;
+    /*border: 1px solid yellow;*/
+}
+
+
+/* ----------- cf_ 현재 검색창은 opacity : 현재 투명도 80%로 설정 중  -------------- */
+.searchbox {
+    box-sizing: border-box;
+    padding: 15px;
+    opacity : 0.9;
+    max-width: 54.6875em;
+    width: 100%;
+    border-radius: 0.8125em;
+    position: relative;
+    background-color: rgba(244, 244, 244, 0.5);
+    /*border: 1px dashed turquoise;*/
+}
+
+
+.searchbox > .box {
+    background: #fff;
+    padding: 0.625em 0;
+    /* border: 1px solid blue;*/
+}
+
+
+.searchbox select {
+    font-size: 1.125em;
+    height: 2.5em;
+    width: 8.75em;
+    color: #363636;
+    background-repeat: no-repeat;
+    border-right: 1px solid #aaaaaa;
+    padding-left: 1.5625em;
+    background-position: 77%;
+}
+
+
+.searchbox input {
+    width: 70%;
+    height: 2.8125em;
+    box-sizing: border-box;
+    padding-left: 2.1875em;
+    background: none;
+    font-size: 1.125em;
+    font-weight: bold;
+    color: #3d3d3d;
+}
+
+
+input[type="text"] {
+    border-radius: 0px 0px;
+}
+
+
+.btn-box {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.btn-box a {
+    vertical-align: middle;
+    background-repeat: no-repeat;
+}
+
+
+.search-btn {
+    background-image: url(/library/images/index/search2.png);
+    width: 32px;
+    height: 32px;
+}
+
+
+/* 퀵메뉴영역*/
+.Quick-area{
+    width:100%;
+    height:auto;
+    /* border: 3px solid gold; */
+    margin-top: 10%;
+    margin-bottom: 2%;
+}
+
+
+.Quick-area > h2{
+    text-align: center;
+    /* border: 3px dashed red; */
+    color: white;
+}
+
+  
+.icons{
+    display: flex;
+    width:78.75em;
+    height: auto;
+    /* background: orange; */
+    margin:auto;
+}
+
+
+.icons > li {
+    flex: 1;
+    margin-top:49px;
+    margin-bottom: 49px;
+    height:auto;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    /* border: 1px solid white; */
+     /* font-weight: bold; */
+}
+
+  
+.icons > li:not(:last-child){
+    margin-right: 8%;
+}
+  
+  
+.icons .contents2 {
+    width:280px;
+    margin:auto;
+    letter-spacing: -1px;
+}
+
+
+

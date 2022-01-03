@@ -1,0 +1,56 @@
+#footer {
+    clear:both;   
+    padding: 0 0 50px;
+    z-index: 3;
+    background: #585662;
+    position: relative;
+
+}
+
+
+#footer .bottom {
+    padding: 0;
+}
+
+
+.bottom-section {
+    max-width: 78.75em;
+    width: 78.75em;
+    margin: 0 auto;
+}
+
+
+.top-info {
+    overflow: hidden;
+    padding: 15px;
+}
+
+
+.foot-info {
+    float: left;
+}
+
+
+#footer .info a {
+    vertical-align: middle;
+    display: inline-block;
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+}
+
+
+#footer .address {
+    padding: 15px 0 0;
+    color: #fdf5fd;
+}
+
+
+#footer .address em {
+    font-style: normal;
+    margin-right: 10px;
+    color: #fdf5fd;
+    line-height: 30px;
+}
+
+

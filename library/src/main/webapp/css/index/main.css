@@ -1,0 +1,918 @@
+/* ---- 공통으로 적용하는 것들 ----- */
+
+p, div, span, h1, h2, h3, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* main01에서 각 part들이 차지하고 있는 공통 영역들(main01의 공통) */
+.library-info .inner > div {
+    width: 31.3%;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =========== 메인 전체 영역 설정 ============= */
+#main {
+    height: auto;
+    width: auto;
+    /* border: 1px solid springgreen; */
+}
+
+
+
+/* =========== <main01-01> : 공지사항 part ============= */
+.library-info {
+    position: relative;
+    /* border: 1px solid steelblue; */
+}
+
+/* .library-info {
+    padding: 30px 0;
+} */
+
+
+/* ----------- inner(메인 각각의 영역을 차지하는 실질적인 부분) -------------- */
+.inner {
+    position: relative;
+    height: 21.25em;
+    max-width: 78.75em;
+    width: 78.75em;
+    margin: 0 auto;
+    /* border: 1px dashed firebrick; */
+}
+
+
+/* libray-notice : 공지사항 part */
+.libray-notice {
+    float: left;
+    padding: 9px 15px;
+    /* background-color: #CCE1FF; */
+}
+
+
+.libray-notice h3 {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #191919;
+    padding: 0.7em 0 1.1em 0.625em;
+    border-bottom: 2px solid #7b7b7b;
+}
+
+
+/* 공지사항 더보기 버튼 */
+.library-info .btn-more {
+    display: block;
+    position: absolute;
+    right: 1.25em;
+    top: 1.25em;
+    font-size: 0.75em;
+    color: #707070;
+    background: #eff0f1;
+    border-radius: 5px;
+    padding: 0.375em 0.5em;
+}
+
+
+/* ----- <공지사항 게시물> ----- */
+.library-info .notice-list {
+    margin-top: 0.75em;
+    min-height: 14em;
+}
+
+
+.library-info .notice-list li:first-child {
+    border-top: 0;
+}
+
+
+.library-info .notice-list li a {
+    display: block;
+    padding: 0.625em 0.3125em;
+    position: relative;
+}
+
+
+.library-info .notice-list li a span.tit {
+    font-size: 0.9375em;
+    line-height: 1.375em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 3.67%;
+    display: block;
+}
+
+
+.library-info .notice-list li a span.label {
+    font-size:0.75em;
+    font-weight: bold;
+    color: #fff;
+    background: #ff5400;
+    display: inline-block;
+    padding: 0.3125em 0.5em 0.25em;
+    position: relative;
+    margin-right: 15px;
+    line-height: 1;
+}
+
+
+.library-info .notice-list .w-label a span.date {
+    position: absolute;
+    right: 0.3125em;
+    top:0.9375em;
+    font-size:0.75em;
+    color: #848484;
+}
+
+
+.library-info .notice-list li {
+    border-top: 1px dashed #b5b4b4;
+}
+
+
+
+/* ----- < 휴관일 및 현재 좌석 예약상황 part > -----*/
+
+.library-info .inner .bbs-box-center {
+    border: 0;
+}
+
+/* 휴관일 / 현재 좌석 part 부분 */
+.bbs-box-center {
+    float: left;
+    margin-left: 10px;
+}
+
+
+/* ----- 휴관일 part ----- */
+.bbs-box-center .month-wrap {
+    position: relative;
+    height: auto;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+
+/* 월/일이 이동하는 슬라이드 부분(상부 색깔있는 부분) */
+.bbs-box-center .month-slide-wrap {
+    background: #32BEBE;
+    width: 100%;
+    height: 59px;
+    border-bottom: 2px solid #F4FFFF;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+.bbs-box-center .month-slide {
+    width: 220px;
+    margin: 0 auto;
+    padding-top: 11px;
+    height: 100%;
+    position: relative;
+}
+
+
+.bbs-box-center .month-control {
+    display: block;
+    width: 14px;
+    height: 26px;
+    position: absolute;
+    margin-top: -16px;
+}
+
+
+/* 마우스로 화살표 클릭 시 넘어가는 모션*/
+.month-slide > div {
+    position: relative;
+}
+
+
+.month-slide > div button {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #32BEBE;
+}
+
+
+.month-slide > div button::before {
+    font-family: 'xeicon';
+}
+
+
+.month-slide > div button.slick-prev {
+    left: -30px;   
+    font-size: 0;
+    color: transparent;
+}
+
+
+.month-slide > div button.slick-prev::before {
+    content: "\e93d";
+    font-family: 'xeicon';
+    left: 0; 
+}
+
+
+.month-slide > div button.slick-next {
+    right: -30px;
+    font-size: 0;
+    color: transparent;
+}
+
+
+.month-slide > div button.slick-next::before {
+    content: "\e940";
+    font-family: 'xeicon';
+    right: 0;
+}
+
+
+
+.month-slide-wrap #calendarYear {
+    color: #343434;
+    font-size: 22px;
+    position: absolute;
+    left: 22%;
+    transform: translateY(-50%);
+    top:50%;
+    z-index: 2;
+}
+
+
+.month-slide > span {
+    position: absolute;
+    z-index: 1;
+    left: 43.2%;
+    transform: translateY(-50%);
+    top: 50%;
+    font-size: 20px;
+}
+
+
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    user-select: none;
+    touch-action: pan-y;
+}
+
+
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.bbs-box-center .month-slide .slick-slide {
+    width: 220px;
+    height: 38px;
+    background: #fff;
+    border-radius: 33px;
+    text-align: center;
+}
+
+
+.slick-initialized .slick-slide {
+    display: block;
+}
+
+
+.slick-slide {
+    float: left;
+    min-height: 1px;
+}
+
+
+/* 휴관일 box 내에 있는 연도 / 월 */
+.bbs-box-center .month-slide span {
+    padding-top: 0;
+    display: inline-block;
+    font-weight: bold;
+}
+
+
+.bbs-box-center .month-slide span em {
+    font-size: 28px;
+    color: #343434;
+    font-weight: bold;
+    padding-left: 80px;
+    letter-spacing: -2px;
+}
+
+
+.bbs-box-center .month-slide span i {
+    font-size: 17px;
+    color: #818181;
+    font-style: normal;
+    padding-left: 5px;
+}
+
+
+
+/* 휴관일 관련 달력 넘기는 버튼(이전 / 다음) */
+.bbs-box-center .month-control.btn-prev {
+    background: url(/library/images/index/prev.png) 0 0 no-repeat;
+    left: 12px;
+    top: 30px;
+}
+
+
+.bbs-box-center .month-control.btn-next {
+    background: url(/library/images/index/next.png) 0 0 no-repeat;
+    right: 12px;
+    top: 30px;
+}
+
+
+/* 실질적인 휴관일 박스 부분 */
+.bbs-box-center .month-info {
+    padding: 4px 15px;
+    padding-top: 59px;
+    text-align: left;
+}
+
+
+.bbs-box-center .month-info .tit {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+    display: inline-block;
+    padding-right: 6px;
+    vertical-align: text-bottom;
+}
+
+
+.bbs-box-center .month-info .con {
+    font-size: 16px;
+    color: #595959;
+    margin-top: 12px;
+    letter-spacing: -1px;
+    display: inline-block;
+}
+
+
+.bbs-box-center .month-info .con span {
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border: 2px solid #ff5400;
+    background: #fff;
+    border-radius: 16px;
+    text-align: center;
+    line-height: 28px;
+}
+
+
+.bbs-box-center .month-detail {
+    padding: 10px 10px;
+    padding-bottom: 2px;
+}
+
+
+.bbs-box-center .month-detail .sinfo {
+    font-size: 12px;
+    color: #f70505;
+    text-align: left;
+    display: block;
+}
+
+
+/* ----- 자리 예약현황 ----- */
+.bbs-box-center .person_cnt {
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+
+.bbs-box-center .person_cnt > div {
+    float: left;
+    width: 33.3%;
+}
+
+
+/* 제 1열람실 */
+.bbs-box-center .person_cnt > div:nth-child(1) > h1 {
+    background: #CD5C5C;
+}
+
+
+/* 제 2열람실 */
+.bbs-box-center .person_cnt > div:nth-child(2) > h1 {
+    background: #32be32;
+}
+
+
+/* 노트북실 */
+.bbs-box-center .person_cnt > div:nth-child(3) > h1 {
+    background: skyblue;
+}
+
+
+.bbs-box-center .person_cnt > div > h1 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.bbs-box-center .person_cnt > div > div {
+    height: 25px;
+    background: #3c404b;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    padding: 4px;
+    padding-bottom: 29px;
+}
+
+
+.bbs-box-center .person_cnt > div > div > div > strong {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+
+
+/* ----- <main01-03 : main-banner> ----- */
+.library-info .inner .main-banner-box {
+    background-size: 100% 100%;
+    /* border: 1px solid red; */
+    height: 245px;
+}
+
+
+.main-banner-box {
+    float: right;
+}
+
+
+.main-banner-box .slidewrap {
+    max-width:100%;
+    height: 241px;
+    line-height:150%;
+    margin:0 auto;
+    /* border: 1px dashed dodgerblue; */
+}
+
+
+.slidewrap {
+    position: relative;
+}
+
+
+.slidewrap button {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
+.slidewrap button::before {
+    font-family: 'xeicon';
+    color:black;
+    font-size: 30px;
+}
+
+
+.slidewrap button.slick-prev {
+    left: 0;   
+    font-size: 0;
+    color: transparent;
+    left:10px;
+}
+
+
+.slidewrap button.slick-prev:before {
+    content: "\e93d";
+    font-family: 'xeicon';
+    left: 0;   
+}
+
+
+.slidewrap button.slick-next {
+    right: 0;
+    font-size: 0;
+    color: transparent;
+    right: 10px;
+}
+
+
+
+.slidewrap button.slick-next:before {
+    content: "\e940";
+    font-family: 'xeicon';
+    right: 0;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+
+/* <main04> */
+/* ========= main04 영역(신착도서 / 대출베스트 시작) 전체를 감싸고 있는 부분 =========== */
+.book-slide-wrap {
+    background: #fff;
+    /* border:3px solid #32BEBE; */
+    padding: 35px 0 35px 0;
+}
+
+
+/* Book-Box의 실질적인 작업공간 영역 */
+.slide-inner {
+    position: relative;
+    max-width: 78.75em;
+    width: 78.75em;
+    margin: 0 auto;
+    border: 1px dashed fuchsia;
+    height: auto;
+}
+
+
+.slide-inner {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    /* background-color: chartreuse; */
+}
+
+
+/* Book-Box 테두리 */
+.book-slide-wrap .slide-inner {
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+
+/* Book-List 상자 전체 영역의 색깔을 설정 */
+.book-slide-top {
+    background-color: rgba(254,254,254,0.5);
+}
+
+
+.book-tab {
+    background: #fee6d8;
+    font-size: 0;
+    text-align: left;
+    padding: 12px 0 12px 12px;}
+
+
+.book-tab li:first-child {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+
+.book-tab li {
+    display: inline-block;
+    padding-left:37px;
+    margin-left:23px;
+    position: relative;
+}
+
+
+/* book-tab에서 활성화(on)된 menu 설정*/
+.book-tab li.on a {
+    background: #744130;
+    color: #fff;
+}
+
+
+.book-tab li::before {
+    content: '';
+    display: block;
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: 0;
+    top: 12px;
+}
+
+
+/* 탭 오른쪽에 위치한 대출BEST 색 변화 */
+.book-tab li a {
+    color: #94674E;
+    padding-left: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    padding: 5px 10px;
+    transition: background .2s, color .2s;
+    border-radius: 20px;
+}
+
+
+/* bookList-Controller 관련한 설정(우선 보류) */
+/*.book-control {
+    font-size: 0;
+    position: absolute;
+    right: 20px;
+    top: 18px;
+}
+
+
+.book-control a {
+    display: inline-block;
+    margin-left: 25px;
+    vertical-align: top;
+}
+
+
+.book-control a:first-child {
+    margin-left: 0;
+}*/
+
+
+/* bookList part */
+.book-slide {
+    position: relative;
+    padding: 30px 40px;
+}
+
+
+.book-slide button {
+    position: absolute;
+    z-index: 10;
+    top:50%;
+    transform: translateY(-50%);
+    width: 71px;
+    height: 71px;
+    border-radius: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.book-slide button:before {
+    font-size: 32px;
+    color:#343434;
+}
+
+
+.book-slide .slick-prev {
+    left:0;
+    font-size: 0;
+    color:transparent;
+}
+
+
+.book-slide .slick-prev:before {
+    content: "\e93d";
+    font-family:'xeicon';
+}
+
+
+.book-slide .slick-next {
+    right:0;
+    font-size: 0;
+    color:transparent;
+}
+
+
+.book-slide .slick-next::before {
+    right:10px;
+    content: "\e940";
+    font-family:'xeicon';
+}
+
+.slick-initialized, .slick-slide {
+    display: block;
+}
+
+
+.slick-slide {
+    float: left;
+    min-height: 1px;
+}
+
+
+/* 신작에 관련된 font*/
+.book-slide .slick-slide .label.new {
+    background: #32BEBE;
+    border-radius: 50%;
+}
+
+
+
+/* 베스트 도서에 관련된 font*/
+.book-slide .slick-slide .label.best {
+    background: #ff5400;
+    border-radius: 50%;
+}
+
+
+/* 폰트 표기 관련 */
+.book-slide .slick-slide .label {
+    display: block;
+    position: absolute;
+    font-weight: bold;
+    left: 0;
+    top: 0;
+    padding: 8px 10px;
+    font-size: 12px;
+    z-index: 2;
+    color: #fff;
+}
+
+
+.book-slide .slick-slide dl {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    padding: 23px;
+    padding-top: 3px;
+}
+
+
+.book-slide-wrap .book-slide li dl dt {
+    height: calc(100% - 52px);
+    /* border: 1pSSx solid salmon; */
+}
+
+
+.book-slide .slick-slide dt a {
+    display: block;
+    background-size: cover;
+    text-align: center;
+    background-color: lightgray;
+}
+
+
+.book-slide .slick-slide dd a {
+    display: block;
+    background-size: cover;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.book-slide .slick-slide img {
+    border: none !important;
+    margin: 0 auto;
+    max-height: 100%;
+}
+
+
+/* 책제목 */
+.book-slide .slick-slide dd {
+    margin-top: 7px;
+    font-size: 14px;
+    color: #2d2d2d;
+    line-height: 22px;
+    max-height: 44px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    padding: 2px 2px;
+    box-sizing: border-box;
+}
+
+
+.book-slide .slick-slide dd a {
+     height: 40px;
+}
+
+
+.book-slide .slick-slide a {
+    display: block;
+}
+
+
+
+/* section-sub-banner(푸터 영역 부근에 넘어가는 각 기관별 링크) */
+/* ========= main05 영역 전체를 감싸고 있는 부분 =========== */
+.section-sub-banner {
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #585662;
+    /* border:1px solid red; */
+}
+
+
+/* sub-banner 영역에서 실질적으로 작업공간이 이루어지는 영역 */
+.sub-banner-wrap {
+    position: relative;
+    max-width: 78.75em;
+    width: 78.75em;
+    margin: 0 auto;
+    background: #585662;
+    /*border:5px solid wheat;*/
+}
+
+
+.sub-banner-box {
+    overflow: hidden;
+    padding-top: 20px;
+    /* border: 1px dashed yellow;  */
+}
+
+
+.sub-banner-box > .sub-banner {
+    width: 100%;
+    padding: 0;
+    /* border:1px solid sandybrown; */
+}
+
+
+.box-clone {
+    position: relative;
+    left: 6px;
+    /* border: 1px dashed yellow; */
+}
+
+.box-clone button {
+    position: absolute;
+    z-index: 10;
+    top:50%;
+    transform:translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color:transparent;
+    /* border : 2px solid darkgray; */
+    border-radius: 100%;
+}
+
+
+.box-clone button:before {
+    font-family: 'xeicon';
+    color:black;   
+    font-size:20px;
+}
+
+
+.box-clone button.slick-prev {
+    font-size: 0;
+    color:transparent;
+    left:-7px;
+}
+
+
+.box-clone button.slick-prev:before {
+    content:"\e93d"; font-family: 'xeicon';
+}
+
+
+.box-clone button.slick-next {
+    font-size: 0;
+    color:transparent;
+    right:7px;
+}
+
+
+.box-clone button.slick-next:before {
+    content:"\e940"; font-family: 'xeicon';
+}
+
+
+.sub-banner-box > .sub-banner-wrapper {
+    float: left;
+    width: 100%;
+    padding: 0;
+}
+
+
