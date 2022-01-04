@@ -16,7 +16,7 @@ import library.member.service.SearchService;
 @Controller
 @RequestMapping("/member")
 public class SearchController {
-	
+
 	@Autowired
 	private SearchService searchService;
 
@@ -70,8 +70,18 @@ public class SearchController {
 	public String searchIdResult(@RequestParam String searchId, Model model) {
 
 		model.addAttribute("searchId", searchId);
-		
+
 		return "member/sub3/searchIdResult.jsp";
+
+	}
+
+	// 비밀번호 찾기 페이지 진입
+	@GetMapping("/searchPw.do")
+	public String searchPwGET() {
+
+		System.out.println("비밀번호 찾기 페이지 진입");
+
+		return "member/sub4/searchPw.jsp";
 
 	}
 
