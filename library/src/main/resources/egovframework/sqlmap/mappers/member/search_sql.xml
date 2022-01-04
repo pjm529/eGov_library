@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Search">
+
+	<!-- 아이디 찾기 시 일치하는 정보가 존재하는지 -->
+	<select id="searchId" parameterType="MemberVO" resultType="string">
+		<![CDATA[
+			SELECT 
+				user_id
+			FROM 
+				member 
+			WHERE
+				user_name = #{userName} and user_birth = #{userBirth} and user_tel = #{userTel}
+		]]>
+		
+	</select>
+	
+	
+</mapper>

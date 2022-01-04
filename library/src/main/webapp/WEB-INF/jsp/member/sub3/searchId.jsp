@@ -59,7 +59,7 @@
                                     	이름
                                 </th>
                                 <td class="last">
-                                    <input class="name_input" autocomplete="off" name="user_name"> <br>
+                                    <input class="name_input" autocomplete="off" name="userName"> <br>
                                     <span class="name_err">이름을 2자 이상 입력해주세요.</span>
                                 </td>
                             </tr>
@@ -71,7 +71,7 @@
                                  	   생년월일
                                 </th>
                                 <td class="last">
-                                    <input type="date" class="birth_input" style="width: 169px;" name="user_birth"
+                                    <input type="date" class="birth_input" style="width: 169px;" name="userBirth"
                                         max="9999-12-31">
                                     <br>
                                     <span class="birth_err">생년월일을 입력해주세요.</span>
@@ -85,7 +85,7 @@
                                     	전화번호
                                 </th>
                                 <td class="last">
-                                    <input class="phone_input" autocomplete="off" maxlength="11" name="user_tel"> <br>
+                                    <input class="phone_input" autocomplete="off" maxlength="11" name="userTel"> <br>
                                     <span class="phone_err">전화번호를 10~11자 입력해주세요.</span>
                                 </td>
                             </tr>
@@ -157,9 +157,9 @@
                 if ( nameCheck && birthCheck && phoneCheck) {
                 	
             		let data = {
-            				user_name: name,
-            				user_birth: birth,
-            				user_tel: phone
+            				userName: name,
+            				userBirth: birth,
+            				userTel: phone
             		};
             		
             		$.ajax({
