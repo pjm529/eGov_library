@@ -2,7 +2,6 @@ package library.mylib.controller;
 
 import java.security.Principal;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +36,10 @@ public class MyPageController {
 	// 비밀번호 체크
 	@ResponseBody
 	@PostMapping("/checkPw.do")
-	public String checkPw(String userPw, HttpSession session) {
-
-		MemberVO loginMember = (MemberVO) session.getAttribute("MEMBER");
+	public String checkPw(String userPw, Principal principal) {
 
 		// 로그인 된 user_id 받아오기
-		String userId = loginMember.getUserId();
+		String userId = principal.getName();
 
 		MemberVO memberInfo = myPageService.memberInfo(userId);
 
@@ -60,19 +57,17 @@ public class MyPageController {
 
 	// 마이 페이지 진입
 	@PostMapping("/myPage.do")
-	public ModelAndView mypage(HttpSession session) {
+	public ModelAndView mypage(Principal principal) {
 
-		System.out.println("마이 페이지 진입");
 		ModelAndView mav = new ModelAndView("mylib/sub5/myPage.jsp");
 
 		// 로그인 된 user_id 받아오기
-		MemberVO loginMember = (MemberVO) session.getAttribute("MEMBER");
-		String userId = loginMember.getUserId();
+		String userId = principal.getName();
 
-		MemberVO my = myPageService.memberInfo(userId);
+		MemberVO memberInfo = myPageService.memberInfo(userId);
 
-		my.setUserRegDate(my.getUserRegDate().substring(0, 10));
-		mav.addObject("my", my);
+		memberInfo.setUserRegDate(memberInfo.getUserRegDate().substring(0, 10));
+		mav.addObject("my", memberInfo);
 
 		return mav;
 
@@ -80,19 +75,17 @@ public class MyPageController {
 
 	// 수정 페이지 진입
 	@PostMapping("/modifyPage.do")
-	public ModelAndView modifyPage(HttpSession session) {
-		System.out.println("수정 페이지 진입");
+	public ModelAndView modifyPage(Principal principal) {
 
 		ModelAndView mav = new ModelAndView("mylib/sub5/modify.jsp");
 
 		// 로그인 된 user_id 받아오기
-		MemberVO loginMember = (MemberVO) session.getAttribute("MEMBER");
-		String userId = loginMember.getUserId();
+		String userId = principal.getName();
 
-		MemberVO my = myPageService.memberInfo(userId);
+		MemberVO memberInfo = myPageService.memberInfo(userId);
 
-		my.setUserRegDate(my.getUserRegDate().substring(0, 10));
-		mav.addObject("my", my);
+		memberInfo.setUserRegDate(memberInfo.getUserRegDate().substring(0, 10));
+		mav.addObject("my", memberInfo);
 
 		return mav;
 
@@ -100,13 +93,10 @@ public class MyPageController {
 
 	// 정보 수정
 	@PostMapping("/modify.do")
-	public String modifyPOST(HttpSession session, @ModelAttribute MemberVO member) {
-
-		System.out.println("수정post 진입");
+	public String modifyPOST(Principal principal, @ModelAttribute MemberVO member) {
 
 		// 로그인 된 user_id 받아오기
-		MemberVO loginMember = (MemberVO) session.getAttribute("MEMBER");
-		String userId = loginMember.getUserId();
+		String userId = principal.getName();
 
 		member.setUserId(userId);
 
@@ -123,19 +113,18 @@ public class MyPageController {
 
 	@ResponseBody
 	@PostMapping("/modifyPw.do")
-	public String modifyPw(String presentPw, String userPw, HttpSession session) {
+	public String modifyPw(String presentPw, String userPw, Principal principal, HttpSession session) {
 
 		MemberVO modifyMember = new MemberVO();
 
 		// 로그인 된 user_id 받아오기
-		MemberVO loginMember = (MemberVO) session.getAttribute("MEMBER");
-		String userId = loginMember.getUserId();
+		String userId = principal.getName();
 
 		// 회원 정보 받아오기
-		MemberVO my = myPageService.memberInfo(userId);
+		MemberVO memberInfo = myPageService.memberInfo(userId);
 
 		// db에 있는 회원 비밀번호
-		String db_pw = my.getUserPw();
+		String db_pw = memberInfo.getUserPw();
 
 		// 입력한 현재 비밀번호과 db에 있는 비밀번호가 같으면 탈퇴 수행
 		if (pwencoder.matches(presentPw, db_pw)) {
@@ -182,13 +171,13 @@ public class MyPageController {
 		String userId = principal.getName();
 
 		// 회원 정보 받아오기
-		MemberVO my = myPageService.memberInfo(userId);
+		MemberVO memberInfo = myPageService.memberInfo(userId);
 
 		// 대출 중 도서 수
-		int count = my.getUserBookCount();
+		int count = memberInfo.getUserBookCount();
 
 		// db에 있는 회원 비밀번호
-		String db_pw = my.getUserPw();
+		String db_pw = memberInfo.getUserPw();
 
 		// 미반납 도서가 있을 시
 		if (count > 0) {
@@ -201,7 +190,7 @@ public class MyPageController {
 			if (pwencoder.matches(userPw, db_pw)) {
 
 				// 회원 탈퇴
-				myPageService.secessionMember(my);
+				myPageService.secessionMember(memberInfo);
 
 				// 세션 초기화
 				session.invalidate();
