@@ -1,5 +1,8 @@
 package library.mylib.controller;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,6 +170,51 @@ public class MyPageController {
 		System.out.println("탈퇴 페이지 진입");
 
 		return "mylib/sub5/secession.jsp";
+
+	}
+
+	// 탈퇴 가능 여부 체크
+	@ResponseBody
+	@PostMapping("/secession")
+	public String secessionPOST(String userPw, Principal principal, HttpSession session) {
+
+		// 로그인 된 user_id 받아오기
+		String userId = principal.getName();
+
+		// 회원 정보 받아오기
+		MemberVO my = myPageService.memberInfo(userId);
+
+		// 대출 중 도서 수
+		int count = my.getUserBookCount();
+
+		// db에 있는 회원 비밀번호
+		String db_pw = my.getUserPw();
+
+		// 미반납 도서가 있을 시
+		if (count > 0) {
+
+			return "book";
+
+		} else {
+
+			// 입력한 비밀번호과 db에 있는 비밀번호가 같으면 탈퇴 수행
+			if (pwencoder.matches(userPw, db_pw)) {
+
+				// 회원 탈퇴
+				myPageService.secessionMember(my);
+
+				// 세션 초기화
+				session.invalidate();
+
+				return "success";
+
+			} else {
+
+				return "fail";
+
+			}
+
+		}
 
 	}
 

@@ -28,4 +28,14 @@ public class MyPageServiceImpl implements MyPageService {
 		myPageDAO.modifyPw(member);
 	}
 
+	@Override
+	public void secessionMember(MemberVO member) {
+		
+		// 회원탈퇴
+		myPageDAO.secessionMember(member.getUserId());
+		
+		// 탈퇴회원 테이블 추가
+		myPageDAO.insertSecession(member);
+	}
+
 }

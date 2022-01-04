@@ -9,4 +9,8 @@ public interface MyPageDAO {
 	public void modifyMember(MemberVO member); 
 
 	public void modifyPw(MemberVO member);
+	
+	public void secessionMember(String userId);
+	
+	public void insertSecession(MemberVO member);
 }

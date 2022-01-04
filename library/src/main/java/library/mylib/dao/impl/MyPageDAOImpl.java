@@ -24,4 +24,14 @@ public class MyPageDAOImpl extends EgovAbstractMapper implements MyPageDAO {
 		update("MyPage.modifyPw", member);
 	}
 
+	@Override
+	public void secessionMember(String userId) {
+		delete("MyPage.secessionMember", userId);
+	}
+
+	@Override
+	public void insertSecession(MemberVO member) {
+		insert("MyPage.insertSecession", member);
+	}
+
 }

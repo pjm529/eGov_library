@@ -58,4 +58,24 @@
  				user_id = #{userId}
 		]]>
 	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="secessionMember" parameterType="string">
+		<![CDATA[
+			DELETE
+			FROM
+				member
+			WHERE
+				user_id = #{userId}
+		 ]]>
+	</delete>
+	
+	<!-- 탈퇴회원 테이블에 입력 -->
+	<insert id="insertSecession" parameterType="MemberVO">
+		<![CDATA[
+			INSERT INTO 
+				secession_member 
+			VALUES(#{userId}, #{userEmail});
+		]]>
+	</insert>
 </mapper>
