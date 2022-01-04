@@ -7,7 +7,44 @@
                   http://www.springframework.org/schema/beans 
                   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	  <!-- 접근 거부 Bean -->
+      <bean id="customAccessDenied" class="library.security.CustomAccessDeniedHandler"></bean> 
+
+      <!-- 로그인 성공 Bean -->
+      <bean id="customLoginSuccess" class="library.security.CustomLoginSuccessHandler"></bean> 
+      
+      <!-- Service Bean -->
+      <bean id="customUserDetailService" class="library.security.CustomUserDetailService"></bean>
+      
       <!-- 비밀번호 암호화 Bean -->
       <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean> 
       
+      <s:http>
+         <s:csrf disabled="true"/>
+         <!-- 접근 권한 설정 -->
+         
+         <s:intercept-url pattern="/*" access="permitAll"/>
+
+         
+         <!-- custom 로그인 폼 -->
+         <s:form-login login-page="/member/login.do" authentication-success-handler-ref="customLoginSuccess"/>
+         
+         <!-- <s:access-denied-handler error-page="/accessError"/> -->
+         <s:access-denied-handler ref="customAccessDenied"/> <!-- 접근 거부시 Bean 참조 -->
+
+         <s:logout logout-url="/customLogout" invalidate-session="true"/> <!-- 로그아웃 url -->
+         
+      </s:http>
+      
+      <s:authentication-manager>
+      
+         <!-- customUserDetailService Bean 사용하여 로그인  -->
+         <s:authentication-provider user-service-ref="customUserDetailService">
+             
+            <!-- bcryptPasswrodEncoder Bean 참조 -->
+            <s:password-encoder ref="bcryptPasswordEncoder"/> 
+         
+         </s:authentication-provider>
+         
+      </s:authentication-manager>
 </beans>

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,20 +31,27 @@
             <div class="tnb">
                 <div class="main-section">
                     <div class="util">
-                    	<c:if test="${MEMBER == null }">
-                    		<a href="${pageContext.request.contextPath}/member/login.do">로그인</a><span class="text-bar"></span>
-                        	<a href="${pageContext.request.contextPath}/member/signUpCheck.do">회원가입</a>
-                    	</c:if>
-                    	
-                    	<c:if test="${MEMBER != null }">
-                    		<span style="color: #fff; font-weight: bold; font-size: 0.875em;">
-                    			<c:out value="${MEMBER.userName }" />님
-							</span>
-							<span class="text-bar"></span>
-						    <span><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></span>
-						    <span class="text-bar"></span>
-						    <span><a href="${pageContext.request.contextPath}/mylib/myPage.do">정보수정</a></span>
-                    	</c:if>
+                    	<sec:authorize access="isAnonymous()">
+                        <a href="${pageContext.request.contextPath}/member/login.do">로그인</a><span class="text-bar"></span>
+                        <a href="${pageContext.request.contextPath}/member/signupCheck.do">회원가입</a>
+                        </sec:authorize>
+                        
+                        <!-- 로그인 시 -->
+						<sec:authorize access="isAuthenticated()">
+						<span style="color: #fff; font-weight: bold; font-size: 0.875em;"> 
+							<sec:authentication property="principal.member.userName" />님 
+						</span>
+						<span class="text-bar"></span>
+					    <span><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></span>
+					    <span class="text-bar"></span>
+					    <span><a href="${pageContext.request.contextPath}/mylib/myPage.do">정보수정</a></span>
+					    
+					    <!-- 관리자 권한을 가지고 있을 경우 -->
+					    <sec:authorize access="hasRole('ROLE_ADMIN')">
+					    <span class="text-bar"></span>
+					    <span><a href="${pageContext.request.contextPath}/admin/memberList.do">관리자메뉴</a></span>
+					    </sec:authorize>
+						</sec:authorize>
                     </div>
                 </div>
             </div>

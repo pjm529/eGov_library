@@ -1,5 +1,7 @@
 package library.member.domain;
 
+import java.util.List;
+
 public class MemberVO {
 
 	// 회원 id
@@ -43,6 +45,9 @@ public class MemberVO {
 
 	// 회원 권한 여부
 	private boolean enabled;
+
+	// 회원 권한 리스트
+	private List<MemberAuthVO> authList;
 
 	public String getUserId() {
 		return userId;
@@ -154,6 +159,14 @@ public class MemberVO {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public List<MemberAuthVO> getAuthList() {
+		return authList;
+	}
+
+	public void setAuthList(List<MemberAuthVO> authList) {
+		this.authList = authList;
 	}
 
 }
