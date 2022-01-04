@@ -70,7 +70,7 @@
                </li>
                
                <li class="submenu4">
-                   <a href="${pageContext.request.contextPath}/mylib/modifyPw.do">비밀번호변경</a>
+                   <a href="${pageContext.request.contextPath}/mylib/modifyPwPage.do">비밀번호변경</a> 
                </li>
 
                <li class="submenu5">
