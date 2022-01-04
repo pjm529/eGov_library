@@ -12,22 +12,27 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Autowired
 	private MyPageDAO myPageDAO;
-	
+
+	// 회원 정보 조회
 	@Override
 	public MemberVO memberInfo(String userId) {
 		return myPageDAO.memberInfo(userId);
 	}
 
+	// 회원 정보 수정
 	@Override
 	public void modifyMember(MemberVO member) {
 		myPageDAO.modifyMember(member);
 	}
 
+	// 회원 PW 수정
 	@Override
 	public void modifyPw(MemberVO member) {
 		myPageDAO.modifyPw(member);
 	}
 
+	
+	// 회원탈퇴
 	@Override
 	public void secessionMember(MemberVO member) {
 		

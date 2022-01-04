@@ -9,6 +9,7 @@ import library.member.domain.MemberVO;
 @Repository
 public class LoginDAOImpl extends EgovAbstractMapper implements LoginDAO {
 
+	// 로그인
 	@Override
 	public MemberVO login(String userId) {
 		return selectOne("Login.login", userId);

@@ -12,17 +12,21 @@ public class SearchServiceImpl implements SearchService {
 
 	@Autowired
 	private SearchDAO searchDAO;
-	
+
+	// ID 찾기
 	@Override
 	public String searchId(MemberVO member) {
 		return searchDAO.searchId(member);
 	}
 
+	
+	// PW 찾기
 	@Override
 	public int searchPw(MemberVO member) {
 		return searchDAO.searchPw(member);
 	}
 
+	// PW 초기화
 	@Override
 	public void resetPw(MemberVO member) {
 		searchDAO.resetPw(member);

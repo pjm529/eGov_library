@@ -18,6 +18,7 @@ public class LoginController {
 
 	}
 
+	// 로그아웃
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session) {
 

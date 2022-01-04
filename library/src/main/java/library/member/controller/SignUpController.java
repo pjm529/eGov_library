@@ -81,9 +81,11 @@ public class SignUpController {
 		}
 	}
 
+	// 회원가입 성공
 	@PostMapping("/signUpSuccess.do")
 	public String signUpSuccess(@ModelAttribute MemberVO member) {
 		
+		// 비밀번호 암호화
 		String encodePw = pwencoder.encode(member.getUserPw());
 		member.setUserPw(encodePw);
 
