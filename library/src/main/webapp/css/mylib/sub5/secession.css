@@ -1,0 +1,302 @@
+body{
+    margin: 0;
+}
+a, a:link{
+    text-decoration: none !important;
+}
+a{
+    color: #000;
+}
+div, li, ul{
+    margin: 0;
+    padding: 0;
+    line-height: 150%;
+    word-break: keep-all;
+    font-size: 15px;
+    font-weight: normal;
+    color: #464646;
+}
+ul{
+    text-decoration: none;
+    list-style: none;
+    padding: 0px;
+}
+
+/* 전체 container */
+.container{
+    margin: 0 auto;
+    width: 1900px;
+    height: auto;
+}
+
+.sub_title{
+    width: 1900px;
+    height: 140px;
+    margin: 0 auto;
+    background-image: url(/library/images/common/sub-visual.gif);
+    text-align: center;
+}
+
+.doc-info{
+    width: 1260px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 0 0 270px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.doc-title{
+    position: relative;
+    padding-top: 38px;
+}
+
+.doc-title h3{
+    text-align: center;
+    font-size: 27px;
+    color: #222;
+    font-weight: bold;
+    margin: 0;
+}
+
+.doc-title ul{
+    margin: 0 auto;
+    padding: 0px;
+    padding-top: 5px;
+}
+
+.doc-title li{
+    display: inline-block;
+}
+
+.doc-title ul li{
+    font-size: 17px;
+    padding-left: 25px;
+    margin-left: 0px;
+    background-image: url(/library/images/common/sub_con4.png);
+    background-position-x: 8px;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
+
+.doc-title ul li a{
+    color: #777777;
+    font-size: 15px;
+}
+
+.section{
+    width: 1260px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section::after {content: "";display: block; clear: both;}
+
+.lnb {
+    width:280px;
+    float:left;
+}
+
+.lnb h2{
+    width: 220px !important;
+    display: block;
+    background: url(/library/images/common/lnb-bg-new.gif)repeat-y 1px;
+    height: 140px;
+    margin-top: -140px;
+    margin-bottom: 0px;
+}
+
+.lnb h2 b{
+    display: block;
+    color: #fff;
+    font-size: 24px;
+    line-height: 140px;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.subMenu li{
+    width: 220px;
+}
+
+.subMenu li a{
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+    display: block;
+    background: #fff;
+    color: #020202;
+    border : 1px solid #dddddd;
+    padding: 17px 40px 17px 20px;
+    position: relative;
+}
+
+/* 사이드 바 hover */
+.subMenu li a:hover{
+    background-color: #464f56;
+    color: #fff;
+    position: relative;
+}
+
+.lnb ul li.active > a {
+    background-color: #464f56;
+    color: #fff;
+    position: relative;
+}
+
+/* 본문 부분 */
+.content{
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-bottom: 100px;
+    width: 971px;
+    margin-left: 280px;
+}
+
+.doc{
+    min-height:450px;
+}
+
+/* 게시판 전체 wrapper */
+.wrapper-bbs {
+    padding: 10px 0 20px;
+    font-size: 13px;
+    background: #fff;
+}
+
+
+
+
+/* 회원 가입 영역 */
+
+#join_form{
+    margin: 0 auto;
+}
+
+table{
+    border-top: none;
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: inherit;
+    word-break: break-all;
+    
+}
+
+table tbody th, table tbody td{
+    padding: 6px 15px;
+}
+
+th{
+    background: #f8f8f8;
+}
+
+th, td{
+    border: 1px solid #e5e8eb;
+    vertical-align: middle;
+}
+
+.first{
+    width: 20%; 
+    text-align: left;
+    font-weight: normal;
+    border-left: none;
+}
+
+.last{
+    border-right: none;
+}
+
+input{
+    height: 31px !important;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #fafafa;
+    line-height: 27px;
+    height: 27px;
+    padding: 0 5px;
+    vertical-align: middle;
+}
+
+input:focus{
+    outline: none;
+}
+
+
+
+/* 버튼속성 */
+.btn {
+    width: 60px;
+    height: 35px;
+    background-color: #266ac4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+.btn:focus, .btn:active{
+    border: none; box-shadow: none;
+}
+
+.btn:hover{
+    background-color: #215aa3;
+}
+
+.member_modify_wrap {
+	float: right;
+}
+
+.member_delete_wrap {
+	margin-right: 10px;
+	float: right;
+}
+
+
+.lnb > ul > li > ul > li.active > a{
+    background-image: url(/library/images/mylib/sub5/lnb-bg-depth2-on.png);
+    color: #464f56;
+    font-weight: bold;
+    background-color: #fafafa;
+    border-bottom: none;
+    border-top: none;
+}
+
+.lnb > ul > li > ul > li > a {
+    padding: 5px 20px 5px 30px;
+    background: url(/library/images/mylib/sub5/lnb-bg-depth2-off.png) no-repeat 15px 10px;
+    font-size: 15px;
+    border-bottom: none;
+    border-top: none;
+    background-color: #fafafa;
+}
+
+.lnb > ul > li > ul > li > a:hover{
+    color: #464f56;
+    font-weight: bold;
+    background-color: #fafafa;
+}
+
+.lnb > ul > li.active > ul {
+    display: block;
+}
+
+.lnb > ul > li > ul {
+    display: none;
+}
+#btn{
+    float:right;
+}
+.warn_txt{
+    border: 1px solid #e1e1e1;
+    background-color: #fafafa;
+    padding: 2%;
+    border-radius: 5px;
+    overflow: hidden;
+}

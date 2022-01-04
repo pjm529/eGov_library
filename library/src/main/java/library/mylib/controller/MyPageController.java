@@ -111,13 +111,13 @@ public class MyPageController {
 
 		return "redirect:/mylib/myPage.do";
 	}
-	
+
 	// 비밀번호 변경 페이지
 	@GetMapping("/modifyPwPage.do")
 	public String modifyPwPage() {
 		return "mylib/sub5/modifyPw.jsp";
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/modifyPw.do")
 	public String modifyPw(String presentPw, String userPw, HttpSession session) {
@@ -143,7 +143,7 @@ public class MyPageController {
 			// 설정
 			modifyMember.setUserId(userId);
 			modifyMember.setUserPw(encodePw);
-			
+
 			// 비밀번호 변경
 			myPageService.modifyPw(modifyMember);
 
@@ -160,5 +160,14 @@ public class MyPageController {
 
 	}
 
+	// 탈퇴 페이지 진입
+	@GetMapping("/secessionPage.do")
+	public String secessionPage() {
+
+		System.out.println("탈퇴 페이지 진입");
+
+		return "mylib/sub5/secession.jsp";
+
+	}
 
 }
