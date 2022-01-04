@@ -13,6 +13,14 @@
 </head>
 <body>
 
+ 	<!-- 로그인 실패 -->
+    <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+        <script>
+            alert("ID 및 PW 오류입니다");
+        </script>
+        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
+    </c:if>
+
     <div class="header">
     </div>
 
