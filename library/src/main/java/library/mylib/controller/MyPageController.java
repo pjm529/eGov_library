@@ -117,6 +117,48 @@ public class MyPageController {
 	public String modifyPwPage() {
 		return "mylib/sub5/modifyPw.jsp";
 	}
+	
+	@ResponseBody
+	@PostMapping("/modifyPw.do")
+	public String modifyPw(String presentPw, String userPw, HttpSession session) {
+
+		MemberVO modifyMember = new MemberVO();
+
+		// 로그인 된 user_id 받아오기
+		MemberVO loginMember = (MemberVO) session.getAttribute("MEMBER");
+		String userId = loginMember.getUserId();
+
+		// 회원 정보 받아오기
+		MemberVO my = myPageService.memberInfo(userId);
+
+		// db에 있는 회원 비밀번호
+		String db_pw = my.getUserPw();
+
+		// 입력한 현재 비밀번호과 db에 있는 비밀번호가 같으면 탈퇴 수행
+		if (pwencoder.matches(presentPw, db_pw)) {
+
+			// 비밀번호 암호화
+			String encodePw = pwencoder.encode(userPw);
+
+			// 설정
+			modifyMember.setUserId(userId);
+			modifyMember.setUserPw(encodePw);
+			
+			// 비밀번호 변경
+			myPageService.modifyPw(modifyMember);
+
+			// 세션 초기화
+			session.invalidate();
+
+			return "success";
+
+		} else {
+
+			return "fail";
+
+		}
+
+	}
 
 
 }

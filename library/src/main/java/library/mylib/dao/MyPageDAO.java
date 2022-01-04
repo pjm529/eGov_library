@@ -8,4 +8,5 @@ public interface MyPageDAO {
 	
 	public void modifyMember(MemberVO member); 
 
+	public void modifyPw(MemberVO member);
 }

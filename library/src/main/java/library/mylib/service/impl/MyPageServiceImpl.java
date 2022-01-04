@@ -23,4 +23,9 @@ public class MyPageServiceImpl implements MyPageService {
 		myPageDAO.modifyMember(member);
 	}
 
+	@Override
+	public void modifyPw(MemberVO member) {
+		myPageDAO.modifyPw(member);
+	}
+
 }

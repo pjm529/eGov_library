@@ -8,4 +8,5 @@ public interface MyPageService {
 
 	public void modifyMember(MemberVO member); 
 
+	public void modifyPw(MemberVO member);
 }

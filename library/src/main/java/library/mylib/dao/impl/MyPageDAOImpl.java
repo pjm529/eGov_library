@@ -19,4 +19,9 @@ public class MyPageDAOImpl extends EgovAbstractMapper implements MyPageDAO {
 		update("MyPage.modifyMember", member);
 	}
 
+	@Override
+	public void modifyPw(MemberVO member) {
+		update("MyPage.modifyPw", member);
+	}
+
 }
