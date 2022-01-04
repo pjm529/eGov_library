@@ -74,7 +74,7 @@
                </li>
 
                <li class="submenu5">
-                   <a href="${pageContext.request.contextPath}/mylib/secession.do">회원탈퇴</a>
+                   <a href="${pageContext.request.contextPath}/mylib/secessionPage.do">회원탈퇴</a>
                </li>
            </ul>
         </li>
