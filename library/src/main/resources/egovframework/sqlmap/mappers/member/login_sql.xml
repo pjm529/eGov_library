@@ -22,10 +22,11 @@
 	<!-- 로그인  -->
 	<select id="login" parameterType="string" resultMap="memberMap">
 		<![CDATA[
-			select m.user_id, user_pw, user_name, enabled, auth, user_book_count, user_email, user_overdue_date 
-		  from member as m left outer join member_auth as ma 
-		    on m.user_id = ma.user_id
-		 where m.user_id = #{userId} 
+			SELECT
+				m.user_id, user_pw, user_name, enabled, auth, user_book_count, user_email, user_overdue_date 
+		  	FROM
+		  		member as m left outer join member_auth as ma ON m.user_id = ma.user_id
+		 	WHERE m.user_id = #{userId} 
 		]]>
 	</select>
 
