@@ -17,22 +17,24 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
 
+		String path=request.getContextPath();
+
 		List<String> roleName = new ArrayList<String>();
 		auth.getAuthorities().forEach(i -> {
 			roleName.add(i.getAuthority());
 		});
 
 		if (roleName.contains("ROLE_ADMIN")) {
-			response.sendRedirect("/admin/member-list");
+			response.sendRedirect(path+"/admin/memberList.do");
 			return;
 		}
 		
 		if (roleName.contains("ROLE_MEMBER")) {
-			response.sendRedirect("/");
+			response.sendRedirect(path + "/");
 			return;
 		}
 		
-		response.sendRedirect("/");
+		response.sendRedirect(path + "/");
 	} 
 
 }
