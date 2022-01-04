@@ -111,5 +111,12 @@ public class MyPageController {
 
 		return "redirect:/mylib/myPage.do";
 	}
+	
+	// 비밀번호 변경 페이지
+	@GetMapping("/modifyPwPage.do")
+	public String modifyPwPage() {
+		return "mylib/sub5/modifyPw.jsp";
+	}
+
 
 }
