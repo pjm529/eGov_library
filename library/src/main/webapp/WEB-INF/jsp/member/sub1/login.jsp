@@ -61,11 +61,11 @@
                                 </div>
 
                                 <div class="loginForm">
-                                    <form action="/login" method="post">
-                                        <input class="id_input" type="text" name="username" placeholder="아이디"
+                                    <form action="${pageContext.request.contextPath}/member/login.do" method="post">
+                                        <input class="id_input" type="text" name="userId" placeholder="아이디"
                                             autocomplete="off">
                                         <p style="font-size: 5px;"></p>
-                                        <input class="pw_input" type="password" name="password" placeholder="비밀번호"
+                                        <input class="pw_input" type="password" name="userPw" placeholder="비밀번호"
                                             autocomplete="off">
                                         <button class="login_btn">로그인</button>
                                     </form>
