@@ -6,4 +6,6 @@ public interface MyPageService {
 	
 	public MemberVO memberInfo(String userId);
 
+	public void modifyMember(MemberVO member); 
+
 }

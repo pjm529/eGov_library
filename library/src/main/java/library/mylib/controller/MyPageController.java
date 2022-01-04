@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -92,6 +93,23 @@ public class MyPageController {
 
 		return mav;
 
+	}
+
+	// 정보 수정
+	@PostMapping("/modify.do")
+	public String modifyPOST(HttpSession session, @ModelAttribute MemberVO member) {
+
+		System.out.println("수정post 진입");
+
+		// 로그인 된 user_id 받아오기
+		MemberVO loginMember = (MemberVO) session.getAttribute("MEMBER");
+		String userId = loginMember.getUserId();
+
+		member.setUserId(userId);
+
+		myPageService.modifyMember(member);
+
+		return "redirect:/mylib/myPage.do";
 	}
 
 }

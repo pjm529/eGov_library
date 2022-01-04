@@ -12,9 +12,15 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Autowired
 	private MyPageDAO myPageDAO;
+	
 	@Override
 	public MemberVO memberInfo(String userId) {
 		return myPageDAO.memberInfo(userId);
+	}
+
+	@Override
+	public void modifyMember(MemberVO member) {
+		myPageDAO.modifyMember(member);
 	}
 
 }

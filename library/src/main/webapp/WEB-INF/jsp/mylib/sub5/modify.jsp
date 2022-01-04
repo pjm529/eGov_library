@@ -239,10 +239,10 @@
 
                 // 최종 유효성 검사 (모든 check 값들이 true일 경우)
                 if (nameCheck && birthCheck && phoneCheck && addressCheck && overdueCheck) {
-                    if (cofirm("회원 정보를 수정하시겠습니까?")) {
+                    if (confirm("회원 정보를 수정하시겠습니까?")) {
                         alert("회원 정보가 수정되었습니다.");
                         $("#modify_form").attr("onsubmit", "return true;");
-                        $("#modify_form").attr("action", "/mylib/modify");
+                        $("#modify_form").attr("action", "${pageContext.request.contextPath}/mylib/modify.do"); 
                         $("#modify_form").submit();
                     } else {
                         alert("취소 되었습니다.");
