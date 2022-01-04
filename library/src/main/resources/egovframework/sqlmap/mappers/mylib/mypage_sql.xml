@@ -74,7 +74,7 @@
 	<insert id="insertSecession" parameterType="MemberVO">
 		<![CDATA[
 			INSERT INTO 
-				secession_member 
+				secession_member (user_id, user_email)
 			VALUES(#{userId}, #{userEmail});
 		]]>
 	</insert>
