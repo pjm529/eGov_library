@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="header">
+    	<jsp:include page="../../layout/header.jsp"></jsp:include>
     </div>
 
     <div class="container">
