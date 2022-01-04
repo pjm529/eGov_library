@@ -18,4 +18,14 @@ public class SearchServiceImpl implements SearchService {
 		return searchDAO.searchId(member);
 	}
 
+	@Override
+	public int searchPw(MemberVO member) {
+		return searchDAO.searchPw(member);
+	}
+
+	@Override
+	public void resetPw(MemberVO member) {
+		searchDAO.resetPw(member);
+	}
+
 }

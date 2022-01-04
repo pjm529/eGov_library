@@ -14,4 +14,14 @@ public class SearchDAOImpl extends EgovAbstractMapper implements SearchDAO {
 		return selectOne("Search.searchId", member);
 	}
 
+	@Override
+	public int searchPw(MemberVO member) {
+		return selectOne("Search.searchPw", member);
+	}
+
+	@Override
+	public void resetPw(MemberVO member) {
+		update("Search.resetPw", member);
+	}
+
 }

@@ -15,5 +15,36 @@
 		
 	</select>
 	
+	<!-- 비밀번호 찾기 시 일치하는 정보가 존재하는지 -->
+	<select id="searchPw" parameterType="MemberVO" resultType="int">
+		<![CDATA[
+			SELECT 
+				count(*)
+			FROM 
+				member 
+			WHERE
+				user_id = #{userId} and 
+				user_name = #{userName} and 
+				user_birth = #{userBirth} and 
+				user_tel = #{userTel} and 
+				user_email = #{userEmail}
+		 ]]>
+	</select>
+	
+	<!-- 비밀번호 찾기 성공 후 초기화 -->
+	<update id="resetPw" parameterType="MemberVO">
+		<![CDATA[
+			UPDATE member 
+			SET 
+				user_pw = #{userPw}
+			WHERE 
+				user_id = #{userId} and 
+				user_name = #{userName} 
+				and user_birth = #{userBirth} and 
+				user_tel = #{userTel} and 
+				user_email = #{userEmail}
+		 ]]>
+	</update>
+	
 	
 </mapper>

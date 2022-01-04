@@ -210,7 +210,7 @@
                 	
             		let data = {
             				userId: id,
-            				userNme: name,
+            				userName: name,
             				userBirth: birth,
             				userTel: phone,
             				userEmail: mail
