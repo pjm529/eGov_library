@@ -44,19 +44,19 @@ public class SignUpController {
 	// 아이디 중복검사
 	@ResponseBody
 	@PostMapping("/memberIdChk.do")
-	public String memberIdChk(String memberId) throws Exception {
+	public String memberIdChk(String userId) throws Exception {
 
 		System.out.println("memberIdChk() 진입");
 
-		int result = signUpService.idCheck(memberId);
+		String id = signUpService.idCheck(userId);
 
-		if (result != 0) {
+		System.out.println(id);
 
-			return "fail";
-
+		if (id == null) {
+			return "success";
 		} else {
 
-			return "success";
+			return "fail";
 
 		}
 	}
@@ -64,28 +64,24 @@ public class SignUpController {
 	// 메일 중복검사
 	@ResponseBody
 	@PostMapping("/mailCheck.do")
-	public String mailCheckPOST(String email) throws Exception {
+	public String mailCheckPOST(String userEmail) throws Exception {
 
 		System.out.println("mailcheckPost 진입");
 
-		int result = signUpService.mailCheck(email);
+		String email = signUpService.mailCheck(userEmail);
 
-		if (result != 0) {
-
-			return "fail";
-
+		if (email == null) {
+			return sendCode(userEmail);
 		} else {
-
-			return sendCode(email);
-
+			return "fail";
 		}
 	}
-	
+
 	@PostMapping("/signUpSuccess.do")
-	public String signUpSuccess (@ModelAttribute MemberVO member) {
-		
+	public String signUpSuccess(@ModelAttribute MemberVO member) {
+
 		signUpService.signUp(member);
-		
+
 		return "redirect:/";
 	}
 

@@ -351,13 +351,13 @@
         // 아이디 중복 검사
         $(".id_input").on("propertychange change keyup paste input", function () {
 
-            let memberId = $(".id_input").val();  // .id_input에 입력되는 값
+            let userId = $(".id_input").val();  // .id_input에 입력되는 값
 
             let data = {	// '컨트롤에 넘길 데이터 이름' : '데이터 (.id_input 값)'
-                memberId: memberId
+                userId: userId
             };
 
-            if (memberId.length > 5 && memberId.length < 13) { // 아이디가 6 ~ 12글자일 때 중복 아이디 검사
+            if (userId.length > 5 && userId.length < 13) { // 아이디가 6 ~ 12글자일 때 중복 아이디 검사
 
                 $(".id_err_2").css("display", "none");  // 충족시 6~12자 에러 안뜸
                 idCheck = true;
@@ -402,16 +402,16 @@
         // 인증 이메일 전송
         $(".email_btn").click(function () {
 
-            let email = $(".mail_input").val(); // 입력한 이메일
+            let userEmail = $(".mail_input").val(); // 입력한 이메일
             let checkBox = $(".mailck_input"); //인증번호 입력란
 
             // 이메일 형식 유효성 검사
-            if (mailFormCheck(email)) {
+            if (mailFormCheck(userEmail)) {
             	
             	// 유효성 통과 시 유효성 불통과 에러 미출력
             	$(".email_err_1").css("display", "none");
                 let data = {
-                		email: email
+                		userEmail: userEmail
                 }
                 
                 // 이메일 중복 검사

@@ -15,13 +15,13 @@ public class SignUpServiceImpl implements SignUpService {
 	
 	// 중복 아이디 체크
 	@Override
-	public int idCheck(String userId) throws Exception {
+	public String idCheck(String userId) throws Exception {
 		return signUpDAO.idCheck(userId);
 	}
 
 	// 중복 이메일 체크
 	@Override
-	public int mailCheck(String userEmail) throws Exception {
+	public String mailCheck(String userEmail) throws Exception {
 		return signUpDAO.mailCheck(userEmail);
 	}
 

@@ -20,25 +20,39 @@
 	</resultMap>
 
 	<!-- 아이디 중복 체크 -->
-	<select id="idCheck" resultType="int">
+	<select id="idCheck" parameterType="string" resultType="string">
 		<![CDATA[
-			SELECT
-				count(*)
+			SELECT 
+				user_id
 			FROM 
-				member
-			where
+				member  
+			WHERE 
+				user_id = #{userId}
+			UNION
+			SELECT 
+				user_id
+			FROM 
+				secession_member
+			WHERE 
 				user_id = #{userId}
 		]]>
 	</select>
 
 	<!-- 메일 중복 체크 -->
-	<select id="mailCheck" resultType="int">
+	<select id="mailCheck" parameterType="string" resultType="string">
 		<![CDATA[
-			SELECT
-				count(*)
-			FROM
-				member
-			WHERE
+			SELECT 
+				user_email
+			FROM 
+				member  
+			WHERE 
+				user_email = #{userEmail}
+			UNION
+			SELECT 
+				user_email
+			FROM 
+				secession_member
+			WHERE 
 				user_email = #{userEmail}
 		]]>
 	</select>
@@ -51,6 +65,4 @@
 			#{userZip}, #{userAddress}, #{userAddressDetail}, 10, 0, 0, "1", current_timestamp )
 		]]>
 	</insert>
-
-
 </mapper>
