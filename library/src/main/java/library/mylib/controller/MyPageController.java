@@ -76,7 +76,7 @@ public class MyPageController {
 	}
 
 	// 수정 페이지 진입
-	@GetMapping("/modify.do")
+	@PostMapping("/modifyPage.do")
 	public ModelAndView modifyPage(HttpSession session) {
 		System.out.println("수정 페이지 진입");
 

@@ -194,7 +194,7 @@
                     <br>
 
                     <div class="member_modify_wrap">
-                        <form action="${pageContext.request.contextPath}/mylib/modify.do" method="get">
+                        <form action="${pageContext.request.contextPath}/mylib/modifyPage.do" method="post">
                             <button class="btn">수정</button>
                         </form>
                     </div>
