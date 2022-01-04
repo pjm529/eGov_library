@@ -30,6 +30,20 @@
             <div class="tnb">
                 <div class="main-section">
                     <div class="util">
+                    	<c:if test="${MEMBER == null }">
+                    		<a href="${pageContext.request.contextPath}/member/login.do">로그인</a><span class="text-bar"></span>
+                        	<a href="${pageContext.request.contextPath}/member/signUpCheck.do">회원가입</a>
+                    	</c:if>
+                    	
+                    	<c:if test="${MEMBER != null }">
+                    		<span style="color: #fff; font-weight: bold; font-size: 0.875em;">
+                    			<c:out value="${MEMBER.userName }" />님
+							</span>
+							<span class="text-bar"></span>
+						    <span><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></span>
+						    <span class="text-bar"></span>
+						    <span><a href="#">정보수정</a></span>
+                    	</c:if>
                     </div>
                 </div>
             </div>

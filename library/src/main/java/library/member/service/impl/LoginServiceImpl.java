@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import library.member.dao.LoginDAO;
+import library.member.domain.MemberVO;
 import library.member.service.LoginService;
 
 @Service
@@ -13,7 +14,7 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDAO loginDAO;
 	
 	@Override
-	public String login(String userId) {
+	public MemberVO login(String userId) {
 		return loginDAO.login(userId);
 	}
 

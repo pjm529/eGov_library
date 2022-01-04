@@ -1,5 +1,12 @@
 package library.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,12 +21,12 @@ import library.member.service.LoginService;
 @Controller
 @RequestMapping("/member")
 public class LoginController {
-	
+
 	@Autowired
 	private LoginService loginService;
-	
+
 	@Autowired
-	private PasswordEncoder pwencoder; // 암호화 Encoder	
+	private PasswordEncoder pwencoder; // 암호화 Encoder
 
 	// 로그인 페이지 진입
 	@GetMapping("/login.do")
@@ -28,20 +35,62 @@ public class LoginController {
 		return "member/sub1/login.jsp";
 
 	}
-	
+
 	@PostMapping("/login.do")
-	public String loginPOST(@ModelAttribute MemberVO member) {
+	public String loginPOST(HttpServletRequest request, HttpServletResponse response, @ModelAttribute MemberVO member) {
 
 		System.out.println("진입");
-		
-		String pw = loginService.login(member.getUserId());
-		
-		if(pwencoder.matches(member.getUserPw(), pw)) {
-			System.out.println("로그인");
-			return "redirect:/";
+
+		MemberVO memberInfo = loginService.login(member.getUserId());
+
+		response.setContentType("text/html; charset=UTF-8");
+		String msg = "<script>alert('ID 및 PW 오류입니다.'); history.back();</script>";
+
+		if (memberInfo == null) {
+
+			try {
+
+				PrintWriter out = response.getWriter();
+				out.println(msg);
+				out.flush();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+
+		} else {
+
+			if (!pwencoder.matches(member.getUserPw(), memberInfo.getUserPw())) {
+				try {
+					PrintWriter out = response.getWriter();
+					out.println(msg);
+					out.flush();
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				return null;
+
+			} else {
+
+				HttpSession httpSession = request.getSession(true);
+				httpSession.setAttribute("MEMBER", memberInfo);
+
+				System.out.println("로그인");
+				return "redirect:/";
+
+			}
 		}
-		
-		return "redirect:/member/login.do";
-		
+	}
+
+	@GetMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("MEMBER");
+
+		return "redirect:/";
+
 	}
 }

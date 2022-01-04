@@ -1,7 +1,9 @@
 package library.member.service;
 
+import library.member.domain.MemberVO;
+
 public interface LoginService {
 	
-	public String login(String userId);
+	public MemberVO login(String userId);
 
 }

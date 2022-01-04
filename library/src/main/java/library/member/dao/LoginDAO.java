@@ -4,6 +4,6 @@ import library.member.domain.MemberVO;
 
 public interface LoginDAO {
 
-	public String login(String userId);
+	public MemberVO login(String userId);
 
 }

@@ -20,10 +20,10 @@
 	</resultMap>
 
 	<!-- 로그인  -->
-	<select id="login" parameterType="string" resultType="string">
+	<select id="login" parameterType="string" resultMap="memberMap">
 		<![CDATA[
 			SELECT 
-				user_pw
+				user_id, user_pw, user_name
 			FROM 
 				member  
 			WHERE 
