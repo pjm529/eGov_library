@@ -42,7 +42,7 @@
 							<span class="text-bar"></span>
 						    <span><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></span>
 						    <span class="text-bar"></span>
-						    <span><a href="#">정보수정</a></span>
+						    <span><a href="${pageContext.request.contextPath}/mylib/myPage.do">정보수정</a></span>
                     	</c:if>
                     </div>
                 </div>
@@ -51,70 +51,70 @@
             <div class="gnb">
                 <div class="container">
                     <h1 class="logo">
-                        <a id="logoLink" href="/" title="라온도서관 메인화면" role="button"><span
+                        <a id="logoLink" href="${pageContext.request.contextPath}" title="라온도서관 메인화면" role="button"><span
                                 class="hide">대구광역시립라온도서관</span></a>
                     </h1>
                     <ul class="gnb-ul">
                         <li class="gnb-li">
-                            <a class="Depth" href="/search/book">
+                            <a class="Depth" href="${pageContext.request.contextPath}/search/book.do">
                                 <span class="">자료검색</span>
                             </a>
                             <ul class="sub-menu sm01" style="display: none;">
                                 <li>
-                                    <a class="" href="/search/book">도서검색</a>
-                                    <a class="" href="/search/best-book">대출베스트</a>
-                                    <a class="" href="/search/recommend-book">추천도서</a>
+                                    <a class="" href="${pageContext.request.contextPath}/search/book.do">도서검색</a>
+                                    <a class="" href="${pageContext.request.contextPath}/search/bestBook.do">대출베스트</a>
+                                    <a class="" href="${pageContext.request.contextPath}/search/recommendBook.do">추천도서</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="gnb-li">
-                            <a class="Depth" href="/info/signup">
+                            <a class="Depth" href="${pageContext.request.contextPath}/info/signUp.do">
                                 <span class="">이용안내</span>
                             </a>
                             <ul class="sub-menu sm02">
                                 <li>
-                                    <a class="" href="/info/signup">회원가입 안내</a>
-                                    <a class="" href="/info/openingHours">이용시간 및 휴관일</a>
-                                    <a class="" href="/info/loanBook">도서 대출 및 반납</a>
+                                    <a class="" href="${pageContext.request.contextPath}/info/signUp.do">회원가입 안내</a>
+                                    <a class="" href="${pageContext.request.contextPath}/info/openingHours.do">이용시간 및 휴관일</a>
+                                    <a class="" href="${pageContext.request.contextPath}/info/loanBook.do">도서 대출 및 반납</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="gnb-li">
-                            <a class="Depth" href="/board/noticeList">
+                            <a class="Depth" href="${pageContext.request.contextPath}/board/noticeList.do">
                                 <span class="">열린공간</span>
                             </a>
                             <ul class="sub-menu sm03">
                                 <li>
-                                    <a class="" href="/board/noticeList">공지사항</a>
-                                    <a class="" href="/board/faq">자주묻는질문</a>
-                                    <a class="" href="/board/qnaBoardList">묻고답하기</a>
-                                    <a class="" href="/board/articleList">분실물찾기</a>
-                                    <a class="" href="/board/calendar">도서관일정</a>
+                                    <a class="" href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a>
+                                    <a class="" href="${pageContext.request.contextPath}/board/faq.do">자주묻는질문</a>
+                                    <a class="" href="${pageContext.request.contextPath}/board/qnaBoardList.do">묻고답하기</a>
+                                    <a class="" href="${pageContext.request.contextPath}/board/articleList.do">분실물찾기</a>
+                                    <a class="" href="${pageContext.request.contextPath}/board/calendar.do">도서관일정</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="gnb-li">
-                            <a class="Depth" href="/intro/greeting">
+                            <a class="Depth" href="${pageContext.request.contextPath}/intro/greeting.do">
                                 <span class="">도서관소개</span>
                             </a>
                             <ul class="sub-menu sm04">
                                 <li>
-                                    <a class="" href="/intro/greeting">인사말</a>
-                                    <a class="" href="/intro/history">연혁</a>
-                                    <a class="" href="/intro/road">찾아오시는길</a>
+                                    <a class="" href="${pageContext.request.contextPath}/intro/greeting.do">인사말</a>
+                                    <a class="" href="${pageContext.request.contextPath}/intro/history.do">연혁</a>
+                                    <a class="" href="${pageContext.request.contextPath}/intro/road.do">찾아오시는길</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="gnb-li">
-                            <a class="Depth" href="/mylib/loan-history">
+                            <a class="Depth" href="${pageContext.request.contextPath}/mylib/loanHistory.do">
                                 <span class="">나의도서관</span>
                             </a>
                             <ul class="sub-menu sm05">
                                 <li>
-                                    <a class="" href="/mylib/loan-history">도서관련</a>
-                                    <a class="" href="/mylib/hope">희망도서신청/조회</a>
-                                    <a class="" href="/mylib/reservationRoomPage">좌석예약/조회</a>
-                                    <a class="" href="/mylib/mypage">개인정보</a>
+                                    <a class="" href="${pageContext.request.contextPath}/mylib/loanHistory.do">도서관련</a>
+                                    <a class="" href="${pageContext.request.contextPath}/mylib/hope.dp">희망도서신청/조회</a>
+                                    <a class="" href="${pageContext.request.contextPath}/mylib/reservationRoomPage.do">좌석예약/조회</a>
+                                    <a class="" href="${pageContext.request.contextPath}/mylib/myPage.do">개인정보</a>
                                 </li>
                             </ul>
                         </li>
@@ -130,7 +130,7 @@
                     <div class="search-wrap">
                         <div class="searchbox">
                             <div class="box">
-                            	<form action="/search/book" method="get" id="search_form">
+                            	<form action="${pageContext.request.contextPath}/search/book.do" method="get" id="search_form">
                             		<select id="op-01" class="select-op" title="검색창 옵션" name="type">
 	                                    <option value="Title">도서명</option>
 	                                    <option value="Author">저자명</option>
@@ -154,36 +154,36 @@
                 <ul class="icons">
                     <li>
                         <div class="icon_img">
-                            <a href="/search/book"><img src="${pageContext.request.contextPath}/images/index/infornation.png">
+                            <a href="${pageContext.request.contextPath}/search/book.do"><img src="${pageContext.request.contextPath}/images/index/infornation.png">
                         </div>
                         <class="contents1_bold">자료검색</class></a>
                     <li>
                         <div class="icon_img">
-                            <a href="/mylib/hope"><img src="${pageContext.request.contextPath}/images/index/book.png">
+                            <a href="${pageContext.request.contextPath}/mylib/hope.do"><img src="${pageContext.request.contextPath}/images/index/book.png">
                         </div>
                         <class="contents1_bold">희망도서신청</class></a>
                     </li>
                     <li>
                         <div class="icon_img">
-                            <a href="/mylib/loan-history"><img src="${pageContext.request.contextPath}/images/index/my-info.png">
+                            <a href="${pageContext.request.contextPath}/mylib/loanHistory.do"><img src="${pageContext.request.contextPath}/images/index/my-info.png">
                         </div>
                         <class="contents1_bold">대출내역조회</class></a>
                     </li>
                     <li>
                         <div class="icon_img">
-                            <a href="/board/calendar"><img src="${pageContext.request.contextPath}/images/index/calendar.png">
+                            <a href="${pageContext.request.contextPath}/board/calendar.do"><img src="${pageContext.request.contextPath}/images/index/calendar.png">
                         </div>
                         <class="contents1_bold">도서관 일정</class></a>
                     </li>
                     <li>
                         <div class="icon_img">
-                            <a href="#a"><img src="${pageContext.request.contextPath}/images/index/library.png">
+                            <a href="${pageContext.request.contextPath}/info/signUp.do"><img src="${pageContext.request.contextPath}/images/index/library.png">
                         </div>
                         <class="contents1_bold">이용안내</class></a>
                     </li>
                     <li>
                         <div class="icon_img">
-                            <a href="/mylib/reservationRoomPage"><img src="${pageContext.request.contextPath}/images/index/reservation.png">
+                            <a href="${pageContext.request.contextPath}/mylib/reservationRoomPage.do"><img src="${pageContext.request.contextPath}/images/index/reservation.png">
                         </div>
                         <class="contents1_bold">자리예약하기</class></a>
                     </li>
@@ -199,12 +199,12 @@
                     <!-- main01-1 공지사항 안내	 -->
                     <div class="libray-notice">
                         <h3>공지사항</h3>
-                        <a class="btn-more" href="/board/noticeList" title="공지사항 더보기">more</a>
+                        <a class="btn-more" href="${pageContext.request.contextPath}/board/noticeList.do" title="공지사항 더보기">more</a>
                         <ul class="notice-list">
                             
                        	<c:forEach var="noticeList" items="${noticeList}" begin="0" end="4">
                        		<li class="w-label">
-                        		<a href="/board/noticeContent?notice_no=${noticeList.notice_no }">
+                        		<a href="${pageContext.request.contextPath}/board/noticeContent.do?notice_no=${noticeList.notice_no }">
 	                                 <span class="tit" style="width: 230px;">
 	                                     <span class="label">공지</span>
 	                                     ${noticeList.notice_title}
@@ -301,16 +301,17 @@
                     <div class="book-slide-top">
                         <ul class="book-tab" style="display: block;">
                             <li class="on">
-                                <a href="/search/recommend-book">추천도서</a>
+                                <a href="${pageContext.request.contextPath}/search/recommendBook.do">추천도서</a>
                             </li>
                             <li class="">
-                                <a href="/search/best-book">대출BEST</a>
+                                <a href="${pageContext.request.contextPath}/search/bestBook.do">대출BEST</a>
                             </li>
                         </ul>
                         <h1 class="hide">추천도서</h1>
                         <ul id="recomended" class="book-slide">
                             <c:forEach var="rec_list" items="${rec_list}">
-                            	<div><a href="/search/recommend-book-detail?book_isbn=${rec_list.book_isbn }&year=${year}&month=${month}">
+                            	<div>
+                            	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?book_isbn=${rec_list.book_isbn }&year=${year}&month=${month}">
                             	<img src="${rec_list.book_cover }" style="width:155px; height: 220px;"></a></div>
                             </c:forEach>            
                             
@@ -318,7 +319,8 @@
                         <h1 class="hide">대출BEST</h1>
                         <ul id="bestBook" class="book-slide" style="display: none;">
                            <c:forEach var="best_list" items="${best_list}">
-                            	<div><a href="/search/best-book-detail?book_isbn=${best_list.book_isbn }&year=${year}&month=${month}">
+                            	<div>
+                            	<a href="${pageContext.request.contextPath}/search/bestBookDetail.do?book_isbn=${best_list.book_isbn }&year=${year}&month=${month}">
                             	<img src="${best_list.book_cover }" style="width:155px; height: 220px;"></a></div>
                             </c:forEach>
                         </ul>
