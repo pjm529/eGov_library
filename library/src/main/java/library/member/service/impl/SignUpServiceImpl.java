@@ -28,6 +28,11 @@ public class SignUpServiceImpl implements SignUpService {
 	// 회원가입
 	@Override
 	public void signUp(MemberVO member) {
+		
+		// 회원 정보 입력
 		signUpDAO.signUp(member);
+		
+		// 권한 입력
+		signUpDAO.insertAuth(member.getUserId());
 	}
 }

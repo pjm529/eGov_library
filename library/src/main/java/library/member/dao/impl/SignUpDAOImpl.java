@@ -26,5 +26,11 @@ public class SignUpDAOImpl extends EgovAbstractMapper implements SignUpDAO {
 	public void signUp(MemberVO member) {
 		insert("SignUp.signUp", member);
 	}
+
+	// 권한 입력
+	@Override
+	public void insertAuth(String userId) {
+		insert("SignUp.insertAuth", userId);
+	}
 	
 }

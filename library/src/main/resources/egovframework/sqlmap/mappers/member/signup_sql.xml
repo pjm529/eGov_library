@@ -65,4 +65,13 @@
 			#{userZip}, #{userAddress}, #{userAddressDetail}, 10, 0, 0, "1", current_timestamp )
 		]]>
 	</insert>
+	
+	<!-- 권한 입력 -->
+	<insert id="insertAuth" parameterType="string">
+		<![CDATA[
+			INSERT INTO
+				member_auth 
+			VALUES (#{userId}, "ROLE_MEMBER")
+		]]>
+	</insert>
 </mapper>

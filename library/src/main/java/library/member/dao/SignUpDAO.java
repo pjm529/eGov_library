@@ -12,5 +12,8 @@ public interface SignUpDAO {
 	
 	// 회원가입
 	public void signUp(MemberVO member);
+	
+	// 권한 입력
+	public void insertAuth(String userId);
 
 }
