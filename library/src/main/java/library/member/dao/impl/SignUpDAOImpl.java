@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 import library.member.dao.SignUpDAO;
+import library.member.domain.MemberVO;
 
 @Repository
 public class SignUpDAOImpl extends EgovAbstractMapper implements SignUpDAO {
@@ -18,6 +19,12 @@ public class SignUpDAOImpl extends EgovAbstractMapper implements SignUpDAO {
 	@Override
 	public int mailCheck(String userEmail) throws Exception {
 		return selectOne("SignUp.mailCheck", userEmail);
+	}
+
+	// 회원가입
+	@Override
+	public void signUp(MemberVO member) {
+		insert("SignUp.signUp", member);
 	}
 	
 }

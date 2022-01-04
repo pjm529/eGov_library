@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import library.member.dao.SignUpDAO;
+import library.member.domain.MemberVO;
 import library.member.service.SignUpService;
 
 @Service
@@ -22,5 +23,11 @@ public class SignUpServiceImpl implements SignUpService {
 	@Override
 	public int mailCheck(String userEmail) throws Exception {
 		return signUpDAO.mailCheck(userEmail);
+	}
+
+	// 회원가입
+	@Override
+	public void signUp(MemberVO member) {
+		signUpDAO.signUp(member);
 	}
 }

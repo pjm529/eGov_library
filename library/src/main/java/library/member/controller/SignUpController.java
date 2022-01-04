@@ -11,10 +11,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import library.member.domain.MemberVO;
 import library.member.service.SignUpService;
 
 @Controller
@@ -48,9 +50,6 @@ public class SignUpController {
 
 		int result = signUpService.idCheck(memberId);
 
-		// 탈퇴 회원 중 아이디 체크
-		// int result2 = signUpService.secession_idCheck(memberId);
-
 		if (result != 0) {
 
 			return "fail";
@@ -80,6 +79,14 @@ public class SignUpController {
 			return sendCode(email);
 
 		}
+	}
+	
+	@PostMapping("/signUpSuccess.do")
+	public String signUpSuccess (@ModelAttribute MemberVO member) {
+		
+		signUpService.signUp(member);
+		
+		return "redirect:/";
 	}
 
 	// 이메일 인증코드 발송

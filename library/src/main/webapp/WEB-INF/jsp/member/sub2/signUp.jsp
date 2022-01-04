@@ -59,7 +59,7 @@
                                 	    아이디
                                 </th>
                                 <td class="last">
-                                    <input class="id_input" autocomplete="off" name="user_id" maxlength="12"> <br>
+                                    <input class="id_input" autocomplete="off" name="userId" maxlength="12"> <br>
                                     <span class="id_correct">사용 가능한 아이디입니다.</span>
                                     <span class="id_err_1">아이디가 이미 존재합니다.</span>
                                     <span class="id_err_2">아이디를 6~12자 입력해주세요.</span>
@@ -73,7 +73,7 @@
                                	     비밀번호
                                 </th>
                                 <td class="last">
-                                    <input class="pw_input" type="password" autocomplete="off" name="user_pw" maxlength="16"> <br>
+                                    <input class="pw_input" type="password" autocomplete="off" name="userPw" maxlength="16"> <br>
                                     <span class="pw_err">비밀번호를 8~16자 입력해주세요.</span>
                                 </td>
                             </tr>
@@ -99,7 +99,7 @@
                                     	이름
                                 </th>
                                 <td class="last">
-                                    <input class="name_input" autocomplete="off" name="user_name" maxlength="10"> <br>
+                                    <input class="name_input" autocomplete="off" name="userName" maxlength="10"> <br>
                                     <span class="name_err">이름을 2자 이상 입력해주세요.</span>
                                 </td>
                             </tr>
@@ -111,7 +111,7 @@
                                  	   생년월일
                                 </th>
                                 <td class="last">
-                                    <input type="date" class="birth_input" style="width: 169px;" name="user_birth"
+                                    <input type="date" class="birth_input" style="width: 169px;" name="userBirth"
                                         max="9999-12-31">
                                     <br>
                                     <span class="birth_err">생년월일을 입력해주세요.</span>
@@ -125,7 +125,7 @@
                                  	   전화번호
                                 </th>
                                 <td class="last">
-                                    <input class="phone_input" autocomplete="off" maxlength="11" name="user_tel"> <br>
+                                    <input class="phone_input" autocomplete="off" maxlength="11" name="userTel"> <br>
                                     <span class="phone_err">전화번호를 10~11자 입력해주세요.</span>
                                 </td>
                             </tr>
@@ -138,7 +138,7 @@
                                     	이메일
                                 </th>
                                 <td class="last">
-                                    <input class="mail_input" style="width: 50%;" autocomplete="off" name="user_email">
+                                    <input class="mail_input" style="width: 50%;" autocomplete="off" name="userEmail">
                                     <br>
                                     <span class="email_correct">이메일이 전송 되었습니다. 이메일을 확인해주세요.</span>
                                     <span class="email_err_1">올바르지 못한 이메일 형식입니다.</span>
@@ -165,14 +165,14 @@
                                     <div>
                                         <p>
                                             <input class="address_input_1" style="width: 80px;" title="우편번호"
-                                                readonly="readonly" autocomplete="off" name="user_zip">
+                                                readonly="readonly" autocomplete="off" name="userZip">
                                             <button class="zip_btn" onclick="execution_daum_address()">우편번호 찾기</button>
                                         </p>
                                         <p>
                                             <input class="address_input_2" style="width: 80%; margin-bottom: 5px;"
-                                                readonly="readonly" autocomplete="off" name="user_address">
+                                                readonly="readonly" autocomplete="off" name="userAddress">
                                             <input class="address_input_3" style="width: 80%; margin-bottom: 3px;"
-                                                autocomplete="off" name="user_address_detail" maxlength="30"> <br>
+                                                autocomplete="off" name="userAddressDetail" maxlength="30"> <br>
                                             <span class="address_err">주소를 입력해주세요.</span>
                                         </p>
                                     </div>
