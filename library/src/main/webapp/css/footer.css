@@ -1,0 +1,113 @@
+/* footer 영역 */
+footer { 
+    height: auto;
+    width: 1900px;
+    background: #3d4252;
+    /* border: 5px solid red; */
+}
+
+
+footer .footer_section {
+    width: 1250px; 
+    height: auto;
+    /* border: 3px solid orange; */
+    color:#fff; 
+}
+
+
+footer > div { 
+    position: relative; 
+    width:1260px; 
+    padding: 45px 0; 
+    margin: 0 auto;
+    /* border: 2px solid greenyellow; */
+}
+
+
+footer > div > a { 
+    position: absolute; 
+    right: 0; 
+    top: auto; 
+    width: 2.89%; 
+    height: auto; 
+    background: url(../images/icon.png) 
+    no-repeat -11.64% 0.6% #22a5d5; 
+    color:transparent;
+    /* border: 2px dashed green; */
+}
+
+
+footer > div .info { 
+    float: left; 
+    line-height: 100%;
+    /* border: 2px solid blueviolet; */
+}
+
+
+footer > div .info a { 
+    margin: 0 10px 0 0; 
+    font-size: 13px; 
+    color:#fff;
+    /* border: 2px solid red; */
+}
+
+
+footer > div .site_link { 
+    float: right; 
+    position: relative;
+    border: 2px solid skyblue;
+}
+
+
+footer > div .fsite_type1 { 
+    width: 134px; 
+    height: 29px; 
+    background:#272f3c; 
+    border:none; 
+    border-bottom: 1px 
+    olid #7d828a; 
+    font-size: 10px; 
+    color:#fff; 
+    text-indent: 20px; 
+    appearance:none; 
+    -webkit-appearance:none; 
+    -moz-appearance:none; 
+    border: 2px solid blueviolet;
+}
+
+
+footer > div .fsite_type1::-ms-expand { 
+    display: none;
+    border: 2px solid blueviolet;
+}
+
+
+footer > div .fsite_type1:after { 
+    content: ""; 
+    position: absolute; 
+    right: 20px; 
+    top:50%; 
+    margin-top: -3px; 
+    width: 8px; 
+    height: 6px; 
+    background: url(../images/icon.png) 
+    no-repeat -221px -5px;
+    border: 2px solid brown;
+}
+
+.text-bar, .top p {
+	color:#BCBBC0; 
+} 
+
+.team {
+	 float: right;
+}
+
+.team p{
+	margin: 0;
+	padding: 0;
+}
+
+.sections span {
+	font-weight: bold;
+}

@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 <title>라온도서관 > 회원관련 > 회원가입</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/signupCheck.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}css/header.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js" 
  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
  crossorigin="anonymous"></script>
@@ -264,6 +262,7 @@
     </div>
 
     <!-- footer -->
+    <jsp:include page="../../layout/footer.jsp"></jsp:include>
 
     <script>
 
