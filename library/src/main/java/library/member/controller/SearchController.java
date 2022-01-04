@@ -15,7 +15,7 @@ import library.member.service.SearchService;
 
 @Controller
 @RequestMapping("/member")
-public class SearchIdController {
+public class SearchController {
 	
 	@Autowired
 	private SearchService searchService;
