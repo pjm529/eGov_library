@@ -4,7 +4,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +30,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+
+	@Autowired
+	private JavaMailSender mailSender; // 이메일 전송 bean
 
 	// 회원 목록 페이지
 	@GetMapping("/memberList.do")
@@ -106,28 +115,43 @@ public class AdminController {
 				+ keyword + "&userId=" + userId;
 
 	}
-	
+
 	// 회원 탈퇴
 	@PostMapping("/memberDelete.do")
 	public String memberDelete(@ModelAttribute Criteria cri, @ModelAttribute MemberVO member) {
-		
+
 		// 회원 탈퇴
 		adminService.memberDelete(member);
-		
+
 		String keyword;
 		int amount = cri.getAmount();
 		int page = cri.getPage();
 		String type = cri.getType();
-		
+
 		try {
 			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return "redirect:/admin/memberList.do";
 		}
-		
+
 		return "redirect:/admin/memberList.do?amount=" + amount + "&page=" + page + "&type=" + type + "&keyword="
-		+ keyword;
+				+ keyword;
+
+	}
+
+	// 메일 작성 페이지
+	@GetMapping("/mail.do")
+	public ModelAndView mail(@ModelAttribute Criteria cri, @RequestParam String userId) {
+
+		ModelAndView mav = new ModelAndView("admin/sub1/mail.jsp");
+
+		// 회원 정보 조회
+		MemberVO member = adminService.memberInfo(userId);
+		mav.addObject("member", member);
+		mav.addObject("cri", cri);
+
+		return mav;
 
 	}
 
