@@ -14,11 +14,15 @@ import library.common.api.AladinApi;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
 import library.search.domain.BookVO;
+import library.search.service.BookService;
 
 @Controller
 @RequestMapping("/search")
 public class BookController {
 
+	@Autowired
+	private BookService bookService;
+	
 	@Autowired
 	private AladinApi api;
 
@@ -49,6 +53,11 @@ public class BookController {
 					// 페이징 처리위한 함수
 					ViewPage page = new ViewPage(cri, bookList.get(0).getTotal());
 					mav.addObject("page", page);
+					
+					// 검색 된 도서의 대출 중인 책의 권수를 가져옴
+					for (BookVO book : bookList) {
+						book.setCount(bookService.count(book.getBookIsbn()));
+					}
 
 				}
 			} catch (org.json.simple.parser.ParseException e) {

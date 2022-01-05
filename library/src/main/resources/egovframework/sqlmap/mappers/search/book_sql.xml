@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Book">
+
+	<!-- 대출 중인 해당 도서 수 카운트 -->
+	<select id="count" parameterType="string" resultType="int"> 
+		<![CDATA[
+			SELECT 
+				count(*)
+			FROM 
+				loan_history  
+			WHERE 
+				book_isbn = #{bookIsbn} AND return_status = false
+		]]>
+	</select>
+	
+</mapper>
