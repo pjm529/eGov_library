@@ -5,5 +5,6 @@
     <typeAliases>
 		<typeAlias alias="MemberVO" type="library.member.domain.MemberVO" />
 		<typeAlias alias="MemberAuthVO" type="library.member.domain.MemberAuthVO" />
+		<typeAlias alias="BookVO" type="library.search.domain.BookVO" />
     </typeAliases>
 </configuration>
