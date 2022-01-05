@@ -29,4 +29,14 @@
 		]]>
 	</select>
 	
+	<!-- 총 회원 수 -->
+	<select id="memberTotal" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM
+				member		
+		]]>
+	</select>
+	
 </mapper>

@@ -22,14 +22,20 @@ public class AdminController {
 	public ModelAndView memberList() {
 
 		ModelAndView mav = new ModelAndView("admin/sub1/memberList.jsp");
-		
+
+		// 멤버 목록 조회
 		List<MemberVO> memberList = adminService.memberList();
 		
+		// 가입 시간 제거
 		for(MemberVO m : memberList) {
 			m.setUserRegDate(m.getUserRegDate().substring(0, 10));
 		}
 		
 		mav.addObject("memberList", memberList);
+		
+		// 총 회원 수
+		int total = adminService.memberTotal();
+		mav.addObject("total", total);
 		
 		return mav;
 	}

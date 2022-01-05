@@ -118,7 +118,7 @@
                             <div class="inline">
                                 <form action="">
                                 	
-                                    <span style="margin-right: 10px;"> 총 회원 : <b>${total }</b> 명</span>
+                                    <span style="margin-right: 10px;"> 총 회원 : <b><c:out value="${total}"/></b> 명</span>
                                     <select name="amount">
                                     	
 	                                    <c:if test="${pageMaker.cri.amount == 10 }">

@@ -17,4 +17,10 @@ public class AdminDAOImpl extends EgovAbstractMapper implements AdminDAO {
 		return selectList("Admin.memberList");
 	}
 
+	// 총 회원수
+	@Override
+	public int memberTotal() {
+		return selectOne("Admin.memberTotal");
+	}
+
 }
