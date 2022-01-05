@@ -44,4 +44,27 @@
 				user_id = #{userId} AND book_isbn = #{bookIsbn} AND return_status = false
 		]]> 
 	</select>
+	
+	<!-- 도서 대출 -->
+	<insert id="loan" parameterType="BookVO">
+		<![CDATA[
+			INSERT INTO loan_history
+				(user_id, user_email, book_title, book_author, book_isbn, 
+					book_cover, book_pubDate, book_publisher, return_period)
+			VALUES
+				(#{userId}, #{userEmail}, #{bookTitle}, #{bookAuthor}, #{bookIsbn}, #{bookCover}, 
+				#{bookPubDate}, #{bookPublisher}, adddate(current_timestamp, 14))
+		]]> 		
+	</insert>
+	
+	<!-- 대출자 대출 중 도서 수 증가 -->
+	<update id="increaseCount">
+		<![CDATA[
+			UPDATE member
+			SET 
+				user_book_count = user_book_count + 1
+			WHERE
+				user_id = #{userId};
+		]]> 
+	</update>
 </mapper>

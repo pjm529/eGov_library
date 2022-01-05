@@ -118,7 +118,7 @@
 
                         <span>　</span>
 
-                        <form action="/search/book">
+                        <form action="/search/book.do">
                         	<input type="hidden" name="amount" value="${cri.amount }">
 							<input type="hidden" name="page" value="${cri.page }">
 							<input type="hidden" name="type" value="${cri.type }">

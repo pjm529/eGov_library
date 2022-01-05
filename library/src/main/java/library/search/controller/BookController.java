@@ -1,6 +1,9 @@
 package library.search.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -169,5 +172,63 @@ public class BookController {
 			return "fail";
 
 		}
+	}
+
+	// 책 대출
+	@PostMapping("/loan")
+	public String loan(@ModelAttribute Criteria cri, @ModelAttribute BookVO book, @RequestParam String detail,
+			Principal principal, HttpServletResponse response) {
+
+		// 로그인 된 user_id 받아오기
+		String userId = principal.getName();
+
+		// id 세팅
+		book.setUserId(userId);
+
+		System.out.println("\n======================== 대출 신청 ========================");
+		System.out.println("대출자 아이디 : " + book.getUserId());
+		System.out.println("대출 책 제목 : " + book.getBookTitle());
+		System.out.println("대출 책 ISBN : " + book.getBookIsbn());
+		System.out.println("keyword : " + cri.getKeyword());
+		System.out.println("========================================================\n");
+
+		String keyword;
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/search/book.do";
+		}
+
+		// 도서 대출 실행(대출하려는 도서의 대출 수가 2가 아닐 때)
+		if (bookService.count(book.getBookIsbn()) != 2) {
+
+			// 대출
+			bookService.loan(book);
+
+		} else {
+
+			response.setContentType("text/html; charset=UTF-8");
+
+			try {
+
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('오류로 인해 대출에 실패하였습니다.'); history.back();</script>");
+				out.flush();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		if (detail.equals("true")) {
+
+			return "redirect:/search/bestBookDetail.do?bookIsbn=" + book.getBookIsbn();
+
+		} else {
+			return "redirect:/search/bookDetail.do?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&type="
+					+ cri.getType() + "&keyword=" + keyword + "&bookIsbn=" + book.getBookIsbn();
+		}
+
 	}
 }

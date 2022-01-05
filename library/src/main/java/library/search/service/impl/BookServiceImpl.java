@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import library.search.dao.BookDAO;
+import library.search.domain.BookVO;
 import library.search.service.BookService;
 
 @Service
@@ -36,6 +37,17 @@ public class BookServiceImpl implements BookService {
 		map.put("bookIsbn", bookIsbn);
 		
 		return bookDAO.loanCheck(map);
+	}
+
+	// 도서 대출
+	@Override
+	public void loan(BookVO book) {
+
+		// 도서 대출
+		bookDAO.loan(book);
+		
+		// 대출자 대출 중 도서 수 증가
+		bookDAO.increaseCount(book.getUserId());
 	}
 
 }
