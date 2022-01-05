@@ -96,7 +96,7 @@
                         <form id="loan" onsubmit="return false;" method="post">
                         	<sec:authorize access="isAuthenticated()">
 							<input type="hidden" class="user_email" name="userEmail" 
-								value=<sec:authentication property="principal.dto.userEmail"/>>
+								value=<sec:authentication property="principal.member.userEmail"/>>
 							</sec:authorize>
 							
 							<sec:authorize access="isAnonymous()">
@@ -186,6 +186,7 @@
 		           					alert("이미 대출 중인 도서입니다.");
 		           				} else {
 		           					alert("대출이 불가능한 상태입니다.");
+		           					location.reload();
 		           				}
 		           			}
 		           		});

@@ -1,8 +1,7 @@
 package library.search.controller;
 
-import java.io.IOException;
-
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.common.api.AladinApi;
@@ -121,5 +122,52 @@ public class BookController {
 		mav.addObject("cri", cri);
 
 		return mav;
+	}
+
+	// 대출자 상태 체크
+	@ResponseBody
+	@PostMapping("/statusChk.do")
+	public String statusChk(String bookIsbn, Principal principal) throws Exception {
+
+		// 로그인 된 user_id 받아오기
+		String userId = principal.getName();
+
+		System.out.println(userId + " 상태 체크");
+
+		// 대출하려는 회원의 대출 상태를 체크
+		int result = bookService.statusCheck(userId);
+
+		// 대출 자격에 부합한 회원이면
+		if (result == 1) {
+
+			// 대출하려는 회원이 대출 중인 도서인지 체크
+			int loan_check = bookService.loanCheck(userId, bookIsbn);
+
+			// 중복되는 대출 중인 도서가 있다면
+			if (loan_check == 1) {
+
+				return "loan";
+
+			} else {
+
+				// 대출 중인 도서 상태 체크
+				int count = bookService.count(bookIsbn);
+
+				// 대출 중인 도서 수가 2권 미만일 경우
+				if (count < 2) {
+
+					return "success";
+
+				} else {
+					return "fail";
+				}
+
+			}
+
+		} else {
+
+			return "fail";
+
+		}
 	}
 }

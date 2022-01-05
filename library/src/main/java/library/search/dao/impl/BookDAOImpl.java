@@ -1,5 +1,7 @@
 package library.search.dao.impl;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
@@ -12,6 +14,16 @@ public class BookDAOImpl extends EgovAbstractMapper implements BookDAO {
 	@Override
 	public int count(String bookIsbn) {
 		return selectOne("Book.count", bookIsbn);
+	}
+
+	@Override
+	public int statusCheck(String userId) {
+		return selectOne("Book.statusCheck", userId);
+	}
+
+	@Override
+	public int loanCheck(HashMap<String, Object> map) {
+		return selectOne("Book.loanCheck", map);
 	}
 
 }

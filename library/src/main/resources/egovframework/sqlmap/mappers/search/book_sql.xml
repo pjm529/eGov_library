@@ -14,4 +14,34 @@
 		]]>
 	</select>
 	
+	<!-- 대출자 상태 체크 -->
+	<select id="statusCheck" parameterType="string" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM 
+				member 
+			WHERE
+				user_id = #{userId} AND 
+				user_overdue_date = 0 AND 
+				user_book_count < (SELECT 
+								   		user_able_loan 
+								   FROM
+								   		member 
+								   WHERE
+								   		user_id = #{userId})
+		 ]]>
+	</select>
+	
+	<!-- 회원이 대출 중인 도서인지 체크 -->
+	<select id="loanCheck" parameterType="hashMap" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM
+				loan_history
+			WHERE 
+				user_id = #{userId} AND book_isbn = #{bookIsbn} AND return_status = false
+		]]> 
+	</select>
 </mapper>
