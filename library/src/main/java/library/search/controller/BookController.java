@@ -85,11 +85,12 @@ public class BookController {
 
 		ModelAndView mav = new ModelAndView("search/sub1/bookDetail.jsp");
 		response.setContentType("text/html; charset=UTF-8");
+		try {
 
-		// isbn이 null이 아닐 때
-		if (bookIsbn != null && !bookIsbn.equals("")) {
+			PrintWriter out = response.getWriter();
 
-			try {
+			// isbn이 null이 아닐 때
+			if (bookIsbn != null && !bookIsbn.equals("")) {
 
 				BookVO book = api.search_detail(bookIsbn);
 
@@ -105,35 +106,16 @@ public class BookController {
 					mav.addObject("count", count);
 
 				} else {
-
-					try {
-
-						PrintWriter out = response.getWriter();
-						out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
-						out.flush();
-
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-
+					out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
+					out.flush();
 				}
 
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-
-		} else {
-
-			try {
-
-				PrintWriter out = response.getWriter();
+			} else {
 				out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
 				out.flush();
-
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
-
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		mav.addObject("cri", cri);
