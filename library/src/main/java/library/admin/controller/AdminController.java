@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.admin.service.AdminService;
+import library.common.page.Criteria;
+import library.common.page.ViewPage;
 import library.member.domain.MemberVO;
 
 @Controller
@@ -19,12 +22,12 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@GetMapping("/memberList.do")
-	public ModelAndView memberList() {
+	public ModelAndView memberList(@ModelAttribute Criteria cri) {
 
 		ModelAndView mav = new ModelAndView("admin/sub1/memberList.jsp");
 
 		// 멤버 목록 조회
-		List<MemberVO> memberList = adminService.memberList();
+		List<MemberVO> memberList = adminService.memberList(cri);
 		
 		// 가입 시간 제거
 		for(MemberVO m : memberList) {
@@ -34,8 +37,12 @@ public class AdminController {
 		mav.addObject("memberList", memberList);
 		
 		// 총 회원 수
-		int total = adminService.memberTotal();
+		int total = adminService.memberTotal(cri);
 		mav.addObject("total", total);
+		
+		// 페이징 정보
+		ViewPage page = new ViewPage(cri, total);
+		mav.addObject("page", page);
 		
 		return mav;
 	}

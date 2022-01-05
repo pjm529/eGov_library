@@ -23,9 +23,14 @@
 			SELECT 
 				*
 			FROM 
-				member 
+				member
+		]]>
+			<include refid="criteria" />			
+		<![CDATA[ 
 			ORDER BY 
-				user_reg_date 
+				user_reg_date
+			LIMIT
+				#{skip}, #{amount} 
 		]]>
 	</select>
 	
@@ -35,8 +40,36 @@
 			SELECT
 				count(*)
 			FROM
-				member		
+				member
 		]]>
+			<include refid="criteria" />			
 	</select>
 	
+	<sql id="criteria">
+        <if test="type != null">
+		  	<if test="keyword != null">
+		  	
+		  		<if test="type == 'userId'">
+		  			where user_id like concat('%', #{keyword}, '%')
+		  		</if>
+		  		
+		  		<if test="type == 'userName'">
+		  			where user_name like concat('%', #{keyword}, '%')
+		  		</if>
+		  		
+		  		<if test="type == 'userTel'">
+		  			where user_tel like concat('%', #{keyword}, '%')
+		  		</if>
+		  		
+		  		<if test="type == 'userEmail'">
+		  			where user_email like concat('%', #{keyword}, '%')
+		  		</if>
+		  		
+		  		<if test="type == 'userRegDate'">
+		  			where user_reg_date like concat('%', #{keyword}, '%')
+		  		</if>
+		  		
+			</if>
+		</if>
+    </sql>
 </mapper>

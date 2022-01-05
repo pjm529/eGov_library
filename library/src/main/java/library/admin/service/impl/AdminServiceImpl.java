@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import library.admin.dao.AdminDAO;
 import library.admin.service.AdminService;
+import library.common.page.Criteria;
 import library.member.domain.MemberVO;
 
 @Service
@@ -17,14 +18,14 @@ public class AdminServiceImpl implements AdminService {
 	
 	// 회원 목록 조회
 	@Override
-	public List<MemberVO> memberList() {
-		return adminDAO.memberList();
+	public List<MemberVO> memberList(Criteria cri) {
+		return adminDAO.memberList(cri);
 	}
 
 	// 총 회원 수
 	@Override
-	public int memberTotal() {
-		return adminDAO.memberTotal();
+	public int memberTotal(Criteria cri) {
+		return adminDAO.memberTotal(cri);
 	}
 
 }

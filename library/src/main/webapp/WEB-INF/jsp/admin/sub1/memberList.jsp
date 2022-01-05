@@ -53,11 +53,11 @@
                             <!--검색-->
                             <div class="search">
                                 <form action="" onsubmit="return false;">
-                              		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+                              		<input type="hidden" name="amount" value="${page.cri.amount }">
                               		<input type="hidden" name="page" value="1">
                                     <select name="type">
                                     
-                                    	<c:if test="${empty pageMaker.cri.type}">
+                                    	<c:if test="${empty page.cri.type}">
                                     	<option value="userId" selected="selected">아이디</option>
                                         <option value="userName">이름</option>
                                         <option value="userTel">전화번호</option>
@@ -66,7 +66,7 @@
                                     	</c:if>
                                     	
                                     
-                                    	<c:if test="${pageMaker.cri.type == 'userId'}">
+                                    	<c:if test="${page.cri.type == 'userId'}">
                                     	<option value="userId" selected="selected">아이디</option>
                                         <option value="userName">이름</option>
                                         <option value="userTel">전화번호</option>
@@ -74,7 +74,7 @@
                                         <option value="userRegDate">회원가입일</option>
                                     	</c:if>
                                     	
-                                    	<c:if test="${pageMaker.cri.type == 'userName' }">
+                                    	<c:if test="${page.cri.type == 'userName' }">
                                     	<option value="userId">아이디</option>
                                         <option value="userName" selected="selected">이름</option>
                                         <option value="userTel">전화번호</option>
@@ -82,7 +82,7 @@
                                         <option value="userRegDate">회원가입일</option>
                                     	</c:if>
                                     	
-                                    	<c:if test="${pageMaker.cri.type == 'userTel' }">
+                                    	<c:if test="${page.cri.type == 'userTel' }">
                                     	<option value="userId">아이디</option>
                                         <option value="userName">이름</option>
                                         <option value="userTel" selected="selected">전화번호</option>
@@ -90,7 +90,7 @@
                                         <option value="userRegDate">회원가입일</option>
                                     	</c:if>
                                     	
-                                    	<c:if test="${pageMaker.cri.type == 'userEmail' }">
+                                    	<c:if test="${page.cri.type == 'userEmail' }">
                                     	<option value="userId">아이디</option>
                                         <option value="userName">이름</option>
                                         <option value="userTel">전화번호</option>
@@ -98,7 +98,7 @@
                                         <option value="userRegDate">회원가입일</option>
                                     	</c:if>
                                     	
-                                    	<c:if test="${pageMaker.cri.type == 'userRegDate' }">
+                                    	<c:if test="${page.cri.type == 'userRegDate' }">
                                     	<option value="userId">아이디</option>
                                         <option value="userName">이름</option>
                                         <option value="userTel">전화번호</option>
@@ -107,7 +107,7 @@
                                     	</c:if>
                                         
                                     </select>
-                                    <input type="text" name="keyword" value="${pageMaker.cri.keyword }"
+                                    <input type="text" name="keyword" value="${page.cri.keyword }"
                                     	autocomplete="off">
                                     <button id="search_btn" class="btn">검색</button>
                                     
@@ -121,28 +121,28 @@
                                     <span style="margin-right: 10px;"> 총 회원 : <b><c:out value="${total}"/></b> 명</span>
                                     <select name="amount">
                                     	
-	                                    <c:if test="${pageMaker.cri.amount == 10 }">
+	                                    <c:if test="${page.cri.amount == 10 }">
 	                                    <option value="10" selected="selected">10명씩 보기</option>
 	                                    <option value="20">20명씩 보기</option>
 	                                    <option value="30">30명씩 보기</option>
 	                                    <option value="40">40명씩 보기</option>
 	                                    </c:if>
 	                                    
-	                                    <c:if test="${pageMaker.cri.amount == 20 }">
+	                                    <c:if test="${page.cri.amount == 20 }">
 	                                    <option value="10">10명씩 보기</option>
 	                                    <option value="20" selected="selected">20명씩 보기</option>
 	                                    <option value="30">30명씩 보기</option>
 	                                    <option value="40">40명씩 보기</option>
 	                                    </c:if>
 	                                    
-	                                    <c:if test="${pageMaker.cri.amount == 30 }">
+	                                    <c:if test="${page.cri.amount == 30 }">
 	                                    <option value="10">10명씩 보기</option>
 	                                    <option value="20">20명씩 보기</option>
 	                                    <option value="30" selected="selected">30명씩 보기</option>
 	                                    <option value="40">40명씩 보기</option>
 	                                    </c:if>
 	                                    
-	                                    <c:if test="${pageMaker.cri.amount == 40 }">
+	                                    <c:if test="${page.cri.amount == 40 }">
 	                                    <option value="10">10명씩 보기</option>
 	                                    <option value="20">20명씩 보기</option>
 	                                    <option value="30">30명씩 보기</option>
@@ -151,8 +151,8 @@
                                         
                                     </select>
                                     <input type="hidden" name="page" value="1">
-                                    <input type="hidden" name="type" value="${pageMaker.cri.type }">
-									<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+                                    <input type="hidden" name="type" value="${page.cri.type }">
+									<input type="hidden" name="keyword" value="${page.cri.keyword }">
                                     <button id="list_btn" class="btn">이동</button>
                                 </form>
 
@@ -195,10 +195,10 @@
 											<td>${memberList.userRegDate }</td>
 											<td>
 												<form action="${pageContext.request.contextPath}/admin/memberView.do" method="get">
-													<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-													<input type="hidden" name="page" value="${pageMaker.cri.page }">
-													<input type="hidden" name="type" value="${pageMaker.cri.type }">
-													<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+													<input type="hidden" name="amount" value="${page.cri.amount }">
+													<input type="hidden" name="page" value="${page.cri.page }">
+													<input type="hidden" name="type" value="${page.cri.type }">
+													<input type="hidden" name="keyword" value="${page.cri.keyword }">
 													<input type="hidden" name="userId" value="${memberList.userId }">
 													<button class="btn2">정보</button>
 												</form>
@@ -214,16 +214,16 @@
                                 
                                 <div class="pageInfo" style="">
 	
-									<c:if test="${pageMaker.prev }">
-										<a class="not" href="${pageMaker.startPage - 1}">이전</a>
+									<c:if test="${page.prev }">
+										<a class="not" href="${page.startPage - 1}">이전</a>
 									</c:if>
 									
-									<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-										<a class="${pageMaker.cri.page == num ? "current":"not" }" href="${num }"><span>${num }</span></a>
+									<c:forEach var="num" begin="${page.startPage }" end="${page.endPage }">
+										<a class="${page.cri.page == num ? "current":"not" }" href="${num }"><span>${num }</span></a>
 									</c:forEach>
 									
-									<c:if test="${pageMaker.next }">
-										<a class="not" href="${pageMaker.endPage + 1}">다음</a>
+									<c:if test="${page.next }">
+										<a class="not" href="${page.endPage + 1}">다음</a>
 									</c:if>
 								</div>
                             </div>
@@ -243,10 +243,10 @@
     </div>
     
     <form method="get" class="moveForm"> 
-		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-		<input type="hidden" name="page" value="${pageMaker.cri.page }">
-		<input type="hidden" name="type" value="${pageMaker.cri.type }">
-		<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+		<input type="hidden" name="amount" value="${page.cri.amount }">
+		<input type="hidden" name="page" value="${page.cri.page }">
+		<input type="hidden" name="type" value="${page.cri.type }">
+		<input type="hidden" name="keyword" value="${page.cri.keyword }">
 	</form>
     
     <!-- footer -->
