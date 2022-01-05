@@ -26,7 +26,7 @@
                         <!-- 홈 btn img -->
                         <li class="" style="background-image: none;">
                             <a href="${pageContext.request.contextPath}">
-                                <img src="${pageContext.request.contextPath}/imgaes/common/navi_home_icon.gif">
+                                <img src="${pageContext.request.contextPath}/images/common/navi_home_icon.gif">
                             </a>
                         </li>
                         <li>
