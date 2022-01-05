@@ -1,11 +1,14 @@
 package library.admin.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -76,8 +79,32 @@ public class AdminController {
 		mav.addObject("member", member);
 
 		mav.addObject("cri", cri);
-		
+
 		return mav;
+	}
+
+	// 회원 정보 수정
+	@PostMapping("/memberModify.do")
+	public String memberModify(@ModelAttribute Criteria cri, @ModelAttribute MemberVO member) {
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+		String userId = member.getUserId();
+
+		adminService.memberModify(member);
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "redirect:/admin/memberList.do";
+		}
+
+		return "redirect:/admin/memberInfo.do?amount=" + amount + "&page=" + page + "&type=" + type + "&keyword="
+				+ keyword + "&userId=" + userId;
+
 	}
 
 }

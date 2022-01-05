@@ -34,4 +34,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.memberInfo(userId);
 	}
 
+	// 회원 정보 수정
+	@Override
+	public void memberModify(MemberVO member) {
+		adminDAO.memberModify(member);
+	}
+
 }

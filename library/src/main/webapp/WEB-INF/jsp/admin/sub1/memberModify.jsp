@@ -301,7 +301,7 @@
                     if (confirm("회원 정보를 수정하시겠습니까?")) {
                         alert("수정이 완료되었습니다.");
                         $("#modify_form").attr("onsubmit", "return true;");
-                        $("#modify_form").attr("action", "/admin/member-modify");
+                        $("#modify_form").attr("action", "${pageContext.request.contextPath}/admin/memberModify.do");
                         $("#modify_form").submit();
                     } else {
                         alert("취소 되었습니다.");

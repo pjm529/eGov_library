@@ -15,4 +15,7 @@ public interface AdminService {
 
 	// 회원 정보 조회
 	public MemberVO memberInfo(String userId);
+
+	// 회원 정보 수정
+	public void memberModify(MemberVO member);
 }
