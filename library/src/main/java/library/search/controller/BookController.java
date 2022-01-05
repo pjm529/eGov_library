@@ -42,7 +42,7 @@ public class BookController {
 		List<BookVO> bookList = new ArrayList<BookVO>();
 
 		// 검색어와 검색타입이 Null이 아닐 때 실행
-		if (cri.getKeyword() != null && cri.getType() != null && cri.getKeyword() != "") {
+		if (cri.getKeyword() != null && cri.getType() != null && !cri.getKeyword().equals("")) {
 
 			System.out.println("옵션 : " + cri.getType() + ", 검색 키 : " + cri.getKeyword() + ", 페이지 : " + cri.getPage());
 
@@ -87,7 +87,7 @@ public class BookController {
 		response.setContentType("text/html; charset=UTF-8");
 
 		// isbn이 null이 아닐 때
-		if (bookIsbn != null && bookIsbn != "") {
+		if (bookIsbn != null && !bookIsbn.equals("")) {
 
 			try {
 
