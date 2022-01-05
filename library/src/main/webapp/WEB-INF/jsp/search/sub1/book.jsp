@@ -169,7 +169,7 @@
 													<input type="hidden" name="page" value="${page.cri.page }">
 													<input type="hidden" name="type" value="${page.cri.type }">
 													<input type="hidden" name="keyword" value="${page.cri.keyword }">
-													<input type="hidden" name="book_isbn" value="${list.bookIsbn }">
+													<input type="hidden" name="bookIsbn" value="${list.bookIsbn }">
 													<button class="btn2">도서 정보</button>
 												</form>
                                             </td>

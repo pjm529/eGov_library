@@ -1,13 +1,20 @@
 package library.search.controller;
 
+import java.io.IOException;
+
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.common.api.AladinApi;
@@ -22,7 +29,7 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
-	
+
 	@Autowired
 	private AladinApi api;
 
@@ -53,20 +60,83 @@ public class BookController {
 					// 페이징 처리위한 함수
 					ViewPage page = new ViewPage(cri, bookList.get(0).getTotal());
 					mav.addObject("page", page);
-					
+
 					// 검색 된 도서의 대출 중인 책의 권수를 가져옴
 					for (BookVO book : bookList) {
 						book.setCount(bookService.count(book.getBookIsbn()));
 					}
 
 				}
-			} catch (org.json.simple.parser.ParseException e) {
+			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		mav.addObject("cri", cri);
 		mav.addObject("list", bookList);
+
+		return mav;
+	}
+
+	// 도서 상세페이지
+	@GetMapping("/bookDetail.do")
+	public ModelAndView bookDetail(@ModelAttribute Criteria cri, @RequestParam String bookIsbn,
+			HttpServletResponse response) {
+
+		ModelAndView mav = new ModelAndView("search/sub1/bookDetail.jsp");
+		response.setContentType("text/html; charset=UTF-8");
+
+		// isbn이 null이 아닐 때
+		if (bookIsbn != null && bookIsbn != "") {
+
+			try {
+
+				BookVO book = api.search_detail(bookIsbn);
+
+				if (book.getBookTitle() != null) {
+
+					System.out.println("선택 책 제목 : " + book.getBookTitle());
+					mav.addObject("book", book);
+
+					// 대출 중인 도서의 수를 가져옴
+					int count = bookService.count(bookIsbn);
+					count = 2 - count;
+
+					mav.addObject("count", count);
+
+				} else {
+
+					try {
+
+						PrintWriter out = response.getWriter();
+						out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
+						out.flush();
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+				}
+
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+		} else {
+
+			try {
+
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
+				out.flush();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		mav.addObject("cri", cri);
 
 		return mav;
 	}
