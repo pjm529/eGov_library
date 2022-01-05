@@ -77,7 +77,6 @@
                                     </select>
                                     <input type="text" style="height: 34px;"name="keyword" 
                                     	value="${cri.keyword }" autocomplete="off">
-									<input id="page" type="hidden" name="page" value="1">
 									
                                     <button id="search_btn" class="btn">검색</button>
                                 </form>
