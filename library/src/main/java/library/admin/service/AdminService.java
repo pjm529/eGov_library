@@ -18,4 +18,7 @@ public interface AdminService {
 
 	// 회원 정보 수정
 	public void memberModify(MemberVO member);
+
+	// 회원 탈퇴
+	public void memberDelete(MemberVO member);
 }

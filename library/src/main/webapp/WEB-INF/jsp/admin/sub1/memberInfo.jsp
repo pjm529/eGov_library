@@ -218,7 +218,7 @@
                     </div>
                     
                     <div class="member_delete_wrap">
-                    	<form action="${pageContext.request.contextPath}/admin/memberDelete.do" method="get" onsubmit="return false;">
+                    	<form action="${pageContext.request.contextPath}/admin/memberDelete.do" method="post" onsubmit="return false;">
                     		<input type="hidden" name="amount" value="${cri.amount }">
 							<input type="hidden" name="page" value="${cri.page }">
 							<input type="hidden" name="type" value="${cri.type }">

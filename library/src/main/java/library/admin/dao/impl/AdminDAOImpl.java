@@ -36,4 +36,16 @@ public class AdminDAOImpl extends EgovAbstractMapper implements AdminDAO {
 		update("Admin.memberModify", member);
 	}
 
+	// 회원 탈퇴
+	@Override
+	public void memberDelete(String userId) {
+		delete("Admin.memberDelete", userId);
+	}
+
+	// 탈퇴 회원 입력
+	@Override
+	public void insertSecession(MemberVO member) {
+		insert("Admin.insertSecession", member);
+	}
+
 }

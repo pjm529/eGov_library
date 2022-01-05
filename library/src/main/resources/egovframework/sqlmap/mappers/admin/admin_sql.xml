@@ -57,6 +57,7 @@
 		]]>
 	</select>
 	
+	<!-- 회원 정보 수정 -->
 	<update id="memberModify" parameterType="MemberVO">
 		<![CDATA[
 			UPDATE member
@@ -73,6 +74,26 @@
  				user_id = #{userId}
 		]]>
 	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="memberDelete" parameterType="string">
+		<![CDATA[
+			DELETE
+			FROM
+				member
+			WHERE
+				user_id = #{userId}
+		 ]]>
+	</delete>
+	
+	<!-- 탈퇴회원 테이블에 입력 -->
+	<insert id="insertSecession" parameterType="MemberVO">
+		<![CDATA[
+			INSERT INTO 
+				secession_member (user_id, user_email)
+			VALUES(#{userId}, #{userEmail});
+		]]>
+	</insert>
 	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">

@@ -106,5 +106,29 @@ public class AdminController {
 				+ keyword + "&userId=" + userId;
 
 	}
+	
+	// 회원 탈퇴
+	@PostMapping("/memberDelete.do")
+	public String memberDelete(@ModelAttribute Criteria cri, @ModelAttribute MemberVO member) {
+		
+		// 회원 탈퇴
+		adminService.memberDelete(member);
+		
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+		
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "redirect:/admin/memberList.do";
+		}
+		
+		return "redirect:/admin/memberList.do?amount=" + amount + "&page=" + page + "&type=" + type + "&keyword="
+		+ keyword;
+
+	}
 
 }

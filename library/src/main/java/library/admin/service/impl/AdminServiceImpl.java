@@ -40,4 +40,16 @@ public class AdminServiceImpl implements AdminService {
 		adminDAO.memberModify(member);
 	}
 
+	// 회원 탈퇴
+	@Override
+	public void memberDelete(MemberVO member) {
+		
+		// 회원 탈퇴
+		adminDAO.memberDelete(member.getUserId());
+		
+		// 탈퇴 회원 입력
+		adminDAO.insertSecession(member);
+		
+	}
+
 }

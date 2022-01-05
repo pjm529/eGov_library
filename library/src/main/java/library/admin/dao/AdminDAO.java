@@ -18,4 +18,10 @@ public interface AdminDAO {
 	
 	// 회원 정보 수정
 	public void memberModify(MemberVO member);
+	
+	// 회원 탈퇴
+	public void memberDelete(String userId);
+	
+	// 탈퇴 회원 입력
+	public void insertSecession(MemberVO member);
 }
