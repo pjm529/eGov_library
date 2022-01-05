@@ -173,7 +173,7 @@
 									
 									<c:if test="${member.userOverdueDate != 0 }">
 									<input class="overdue_input" autocomplete="off" name="userOverdueDate"
-                                    value="${member.user_overdue_date }일" readonly> <br>
+                                    value="${member.userOverdueDate }일" readonly> <br>
 									</c:if>
                                     
                                 </td>
