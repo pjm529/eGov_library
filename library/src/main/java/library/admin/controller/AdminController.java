@@ -21,7 +21,8 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	
+
+	// 회원 목록 페이지
 	@GetMapping("/memberList.do")
 	public ModelAndView memberList(@ModelAttribute Criteria cri) {
 
@@ -29,35 +30,51 @@ public class AdminController {
 
 		// 멤버 목록 조회
 		List<MemberVO> memberList = adminService.memberList(cri);
-		
+
 		// 가입 시간 제거
-		for(MemberVO m : memberList) {
+		for (MemberVO m : memberList) {
 			m.setUserRegDate(m.getUserRegDate().substring(0, 10));
 		}
-		
+
 		mav.addObject("memberList", memberList);
-		
+
 		// 총 회원 수
 		int total = adminService.memberTotal(cri);
 		mav.addObject("total", total);
-		
+
 		// 페이징 정보
 		ViewPage page = new ViewPage(cri, total);
 		mav.addObject("page", page);
-		
+
 		return mav;
 	}
-	
+
+	// 회원 정보 페이지
 	@GetMapping("/memberInfo.do")
 	public ModelAndView memberInfo(@ModelAttribute Criteria cri, @RequestParam String userId) {
-		
+
 		ModelAndView mav = new ModelAndView("admin/sub1/memberInfo.jsp");
-		
+
 		// 회원 정보 조회
 		MemberVO member = adminService.memberInfo(userId);
 		member.setUserRegDate(member.getUserRegDate().substring(0, 10));
 		mav.addObject("member", member);
-		
+
+		mav.addObject("cri", cri);
+
+		return mav;
+	}
+
+	// 회원 수정 페이지
+	@GetMapping("/memberModifyPage.do")
+	public ModelAndView memberModifyPage(@ModelAttribute Criteria cri, @RequestParam String userId) {
+		ModelAndView mav = new ModelAndView("admin/sub1/memberModify.jsp");
+
+		// 회원 정보 조회
+		MemberVO member = adminService.memberInfo(userId);
+		member.setUserRegDate(member.getUserRegDate().substring(0, 10));
+		mav.addObject("member", member);
+
 		mav.addObject("cri", cri);
 		
 		return mav;
