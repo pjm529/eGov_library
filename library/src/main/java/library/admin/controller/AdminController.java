@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.admin.service.AdminService;
@@ -43,6 +44,21 @@ public class AdminController {
 		// 페이징 정보
 		ViewPage page = new ViewPage(cri, total);
 		mav.addObject("page", page);
+		
+		return mav;
+	}
+	
+	@GetMapping("/memberInfo.do")
+	public ModelAndView memberInfo(@ModelAttribute Criteria cri, @RequestParam String userId) {
+		
+		ModelAndView mav = new ModelAndView("admin/sub1/memberInfo.jsp");
+		
+		// 회원 정보 조회
+		MemberVO member = adminService.memberInfo(userId);
+		member.setUserRegDate(member.getUserRegDate().substring(0, 10));
+		mav.addObject("member", member);
+		
+		mav.addObject("cri", cri);
 		
 		return mav;
 	}

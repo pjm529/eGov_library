@@ -194,7 +194,7 @@
 											
 											<td>${memberList.userRegDate }</td>
 											<td>
-												<form action="${pageContext.request.contextPath}/admin/memberView.do" method="get">
+												<form action="${pageContext.request.contextPath}/admin/memberInfo.do" method="get">
 													<input type="hidden" name="amount" value="${page.cri.amount }">
 													<input type="hidden" name="page" value="${page.cri.page }">
 													<input type="hidden" name="type" value="${page.cri.type }">

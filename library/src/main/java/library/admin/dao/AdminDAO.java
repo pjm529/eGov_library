@@ -12,4 +12,7 @@ public interface AdminDAO {
 	
 	// 총 회원 수
 	public int memberTotal(Criteria cri);
+	
+	// 회원 정보 조회
+	public MemberVO memberInfo(String userId);
 }

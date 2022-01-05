@@ -28,4 +28,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.memberTotal(cri);
 	}
 
+	// 회원 정보 조회
+	@Override
+	public MemberVO memberInfo(String userId) {
+		return adminDAO.memberInfo(userId);
+	}
+
 }
