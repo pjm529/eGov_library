@@ -58,7 +58,7 @@
                                  	   아이디
                                 </th>
                                 <td class="last">
-                                    <input class="id_input" autocomplete="off" 
+                                    <input class="id_input" autocomplete="off" name="userId" 
                                     value="${member.userId }" readonly> <br>
                                 </td>
                             </tr>
@@ -109,10 +109,15 @@
                         </table>
 						<br>
 						<button id="send_btn" class="btn" style="float:right;">발송</button>
+						
+						<input type="hidden" name="amount" value="${cri.amount }">
+						<input type="hidden" name="page" value="${cri.page }">
+						<input type="hidden" name="type" value="${cri.type }">
+						<input type="hidden" name="keyword" value="${cri.keyword }">
                     </form>
                     
                     <div class="member_list_wrap">
-                    	<form action="/admin/member-list" method="get">
+                    	<form action="${pageContext.request.contextPath}/admin/memberList.do" method="get">
                     		<input type="hidden" name="amount" value="${cri.amount }">
 							<input type="hidden" name="page" value="${cri.page }">
 							<input type="hidden" name="type" value="${cri.type }">

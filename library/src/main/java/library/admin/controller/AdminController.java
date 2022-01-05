@@ -145,13 +145,71 @@ public class AdminController {
 	public ModelAndView mail(@ModelAttribute Criteria cri, @RequestParam String userId) {
 
 		ModelAndView mav = new ModelAndView("admin/sub1/mail.jsp");
-
+		
 		// 회원 정보 조회
 		MemberVO member = adminService.memberInfo(userId);
 		mav.addObject("member", member);
 		mav.addObject("cri", cri);
-
+		
 		return mav;
+
+	}
+
+	// 메일 전송
+	@PostMapping("/mailSend.do")
+	public String mailSend(@ModelAttribute Criteria cri, @ModelAttribute MemberVO member,
+			@RequestParam String mailTitle, @RequestParam String mailContent) {
+
+		sendMail(member.getUserEmail(), mailTitle, mailContent);
+		
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+		String userId = member.getUserId();
+
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "redirect:/admin/memberList.do";
+		}
+
+		return "redirect:/admin/memberInfo.do?amount=" + amount + "&page=" + page + "&type=" + type + "&keyword="
+				+ keyword + "&userId=" + userId;
+
+	}
+
+	// 메일 전송 함수
+	public void sendMail(String email, String mailTitle, String mailContent) {
+
+		String from = "library.raon@gmail.com";
+		String to = email;
+		String title = mailTitle;
+		String content = mailContent;
+
+		// 메일 발송
+		final MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				final MimeMessageHelper mailHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+
+				mailHelper.setFrom(new InternetAddress(from, "라온도서관", "UTF-8"));
+				mailHelper.setTo(to);
+				mailHelper.setSubject(title);
+				mailHelper.setText(content, true);
+
+			}
+		};
+
+		try {
+			mailSender.send(preparator);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
