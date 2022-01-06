@@ -338,14 +338,14 @@ p, div, span, h1, h2, h3, ul, li {
 
 /* 휴관일 관련 달력 넘기는 버튼(이전 / 다음) */
 .bbs-box-center .month-control.btn-prev {
-    background: url(/library/images/index/prev.png) 0 0 no-repeat;
+    background: url(../../images/index/prev.png) 0 0 no-repeat;
     left: 12px;
     top: 30px;
 }
 
 
 .bbs-box-center .month-control.btn-next {
-    background: url(/library/images/index/next.png) 0 0 no-repeat;
+    background: url(../../images/index/next.png) 0 0 no-repeat;
     right: 12px;
     top: 30px;
 }

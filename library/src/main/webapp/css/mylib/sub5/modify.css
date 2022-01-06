@@ -33,7 +33,7 @@ ul{
     width: 1900px;
     height: 140px;
     margin: 0 auto;
-    background-image: url(/library/images/common/sub-visual.gif);
+    background-image: url(../../../images/common/sub-visual.gif);
     text-align: center;
 }
 
@@ -73,7 +73,7 @@ ul{
     font-size: 17px;
     padding-left: 25px;
     margin-left: 0px;
-    background-image: url(/library/images/common/sub_con4.png);
+    background-image: url(../../../images/common/sub_con4.png);
     background-position-x: 8px;
     background-position-y: center;
     background-repeat: no-repeat;
@@ -101,7 +101,7 @@ ul{
 .lnb h2{
     width: 220px !important;
     display: block;
-    background: url(/library/images/common/lnb-bg-new.gif)repeat-y 1px;
+    background: url(../../../images/common/lnb-bg-new.gif)repeat-y 1px;
     height: 140px;
     margin-top: -140px;
     margin-bottom: 0px;
@@ -291,7 +291,7 @@ input:focus{
 
 
 .lnb > ul > li > ul > li.active > a{
-    background-image: url(/library/images/mylib/sub5/lnb-bg-depth2-on.png);
+    background-image: url(../../../images/mylib/sub5/lnb-bg-depth2-on.png);
     color: #464f56;
     font-weight: bold;
     background-color: #fafafa;
@@ -301,7 +301,7 @@ input:focus{
 
 .lnb > ul > li > ul > li > a {
     padding: 5px 20px 5px 30px;
-    background: url(/library/images/mylib/sub5/lnb-bg-depth2-off.png) no-repeat 15px 10px;
+    background: url(../../../images/mylib/sub5/lnb-bg-depth2-off.png) no-repeat 15px 10px;
     font-size: 15px;
     border-bottom: none;
     border-top: none;

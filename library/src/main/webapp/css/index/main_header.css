@@ -48,7 +48,7 @@ select, button {
 
 
 #header {
-    background-image: url(/library/images/index/main.jpg);
+    background-image: url(../../images/index/main.jpg);
     background-repeat: no-repeat 0 0;
     background-size: cover;
 
@@ -139,7 +139,7 @@ select, button {
 .logo > a {
     background-repeat: no-repeat;
     /* background-image: url('/images/raon-white.png'); */
-    background-image: url(/library/images/index/raon-white.png);
+    background-image: url(../../images/index/raon-white.png);
     background-size: cover;
     width: 12.375em;
     height: 4.3125em;
@@ -380,7 +380,7 @@ input[type="text"] {
 
 
 .search-btn {
-    background-image: url(/library/images/index/search2.png);
+    background-image: url(../../images/index/search2.png);
     width: 32px;
     height: 32px;
 }
