@@ -239,7 +239,7 @@ public class BookController {
 	public ModelAndView bestBook(@ModelAttribute Criteria cri, @ModelAttribute DateVO date) {
 
 		System.out.println("bestBook 진입");
-		
+
 		ModelAndView mav = new ModelAndView("search/sub2/bestBook.jsp");
 
 		// year이 null 이면 현재 날짜 기준 year
@@ -251,7 +251,7 @@ public class BookController {
 		if (date.getMonth() == null) {
 			date.setMonth(DateUtil.date("month"));
 		}
-		
+
 		List<BookVO> list = bookService.bookRank(date);
 
 		for (BookVO book : list) {
@@ -261,16 +261,62 @@ public class BookController {
 
 		mav.addObject("list", list);
 		mav.addObject("date", date);
-		
+
 		return mav;
 	}
 
 	// 대출베스트 책 상세내용
 	@GetMapping("/bestBookDetail.do")
-	public String bestBookDetail(@ModelAttribute DateVO date, @RequestParam String bookIsbn) {
+	public ModelAndView bestBookDetail(@ModelAttribute DateVO date, @RequestParam String bookIsbn,
+			HttpServletResponse response) {
 
-		return "search/sub2/bestBookDetail.jsp";
+		ModelAndView mav = new ModelAndView("search/sub2/bestBookDetail.jsp");
+
+		response.setContentType("text/html; charset=UTF-8");
+
+		try {
+
+			PrintWriter out = response.getWriter();
+
+			// isbn이 null이 아닐 때
+			if (bookIsbn != null && !bookIsbn.equals("")) {
+
+				BookVO book = api.search_detail(bookIsbn);
+
+				if (book.getBookTitle() != null) {
+
+					System.out.println("선택 책 제목 : " + book.getBookTitle());
+
+					// 현재 대출 중인 도서 수
+					book.setCount(bookService.count(bookIsbn));
+
+					mav.addObject("book", book);
+
+					// year이 null 이면 현재 날짜 기준 year
+					if (date.getYear() == null) {
+						date.setYear(DateUtil.date("year"));
+					}
+
+					// month가 null 이면 현재 날짜 기준 month
+					if (date.getMonth() == null) {
+						date.setMonth(DateUtil.date("month"));
+					}
+
+					mav.addObject("date", date);
+
+				} else {
+					out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
+					out.flush();
+				}
+
+			} else {
+				out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
+				out.flush();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
 	}
-	
 
 }

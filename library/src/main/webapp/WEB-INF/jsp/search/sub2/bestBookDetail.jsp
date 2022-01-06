@@ -122,8 +122,8 @@
                         </form>
 						<span>　</span> 
                         <form action="${pageContext.request.contextPath}/search/bestBook.do">
-							<input type="hidden" name="year" value="${year }">
-							<input type="hidden" name="month" value="${month }">
+							<input type="hidden" name="year" value="${date.year }">
+							<input type="hidden" name="month" value="${date.month }">
                             <button class="btn3" style="display: flex; justify-content: center; align-items: center;">
                                 <img src="${pageContext.request.contextPath}/images/search/book_icon.png" style="width: 30px;">　목록
                             </button>
