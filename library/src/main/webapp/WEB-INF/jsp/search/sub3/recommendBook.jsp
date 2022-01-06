@@ -89,7 +89,7 @@
                                 <c:forEach var="list" items="${list}">
                                     <div class="row">
                                         <div class="thumb">
-                                        	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?bookIsbn=${list.bookIsbn}&year=${date.year}&month=${date.month}&page=${page.cri.page}&recNo=${list.recNo}"">
+                                        	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?year=${date.year}&month=${date.month}&page=${page.cri.page}&recNo=${list.recNo}"">
                                             <img src="${list.bookCover}" style="width: 118px;" title="${list.bookTitle}">
                                             </a>
                                         </div>
@@ -97,7 +97,7 @@
                                         <div class="book_info">
                                             <ul>
                                                 <li>
-                                                	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?bookIsbn=${list.bookIsbn}&year=${date.year}&month=${date.month}&page=${page.cri.page}&recNo=${list.recNo}">
+                                                	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?&year=${date.year}&month=${date.month}&page=${page.cri.page}&recNo=${list.recNo}">
                                                     <h3 class="hide" title="${list.bookTitle}">${list.bookTitle} </h3>
                                                     </a>
                                                 <li>

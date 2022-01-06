@@ -19,4 +19,7 @@ public interface RecommendDAO {
 	
 	// 추천 도서 삭제
 	public void deleteBook(int recNo);
+	
+	// 추천 도서 ISBN 조회
+	public String selectIsbn(int recNo);
 }

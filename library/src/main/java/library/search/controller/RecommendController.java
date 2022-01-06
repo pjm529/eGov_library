@@ -78,7 +78,7 @@ public class RecommendController {
 	// 도서 상세페이지
 	@GetMapping("/recommendBookDetail.do")
 	public ModelAndView recommned_book_detail(@ModelAttribute Criteria cri, @ModelAttribute DateVO date,
-			@RequestParam String bookIsbn, @RequestParam String recNo, HttpServletResponse response) {
+			@RequestParam String recNo, HttpServletResponse response) {
 
 		ModelAndView mav = new ModelAndView("search/sub3/recommendBookDetail.jsp");
 
@@ -88,9 +88,12 @@ public class RecommendController {
 
 			PrintWriter out = response.getWriter();
 
-			// isbn이 null이 아닐 때
-			if (bookIsbn != null && !bookIsbn.equals("")) {
+			if (recNo != null && !recNo.equals("")) {
 
+				// isbn 조회
+				String bookIsbn = recommendService.selectIsbn(Integer.parseInt(recNo));
+
+				// 상세 도서 조회
 				BookVO book = aladinApi.search_detail(bookIsbn);
 
 				if (book.getBookTitle() != null) {
@@ -111,7 +114,9 @@ public class RecommendController {
 				out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
 				out.flush();
 			}
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 		}
 

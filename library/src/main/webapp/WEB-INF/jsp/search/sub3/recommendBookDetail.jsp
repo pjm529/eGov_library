@@ -112,6 +112,7 @@
 							<input type="hidden" class="userEmail" name="userEmail">
 							</sec:authorize>
 							
+							<input type="hidden" name="recNo" value="${recNo }">
 							<input type="hidden" name="bookTitle" value="${book.bookTitle }">
 							<input type="hidden" name="bookAuthor" value="${book.bookAuthor }">
 							<input type="hidden" class="bookIsbn" name="bookIsbn" value="${book.bookIsbn }">

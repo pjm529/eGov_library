@@ -48,4 +48,10 @@ public class RecommendServiceImpl implements RecommendService {
 		recommendDAO.deleteBook(recNo);
 	}
 
+	// 추천 도서 ISBN 조회
+	@Override
+	public String selectIsbn(int recNo) {
+		return recommendDAO.selectIsbn(recNo);
+	}
+
 }

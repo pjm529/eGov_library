@@ -36,4 +36,10 @@ public class RecommendDAOImpl extends EgovAbstractMapper implements RecommendDAO
 		delete("Recommend.deleteBook", recNo);
 	}
 
+	// 추천 도서 ISBN 조회
+	@Override
+	public String selectIsbn(int recNo) {
+		return selectOne("Recommend.selectIsbn", recNo);
+	}
+
 }

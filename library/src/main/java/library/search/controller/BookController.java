@@ -230,8 +230,8 @@ public class BookController {
 
 		} else if (detail.equals("rec")) {
 
-			return "redirect:/search/recommendBookDetail.do?bookIsbn=" + book.getBookIsbn() + "&year=" + date.getYear()
-					+ "&month=" + date.getMonth() + "&page=" + cri.getPage();
+			return "redirect:/search/recommendBookDetail.do?year=" + date.getYear()
+					+ "&month=" + date.getMonth() + "&page=" + cri.getPage() + "&recNo=" + book.getRecNo();
 
 		} else {
 			return "redirect:/search/bookDetail.do?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&type="

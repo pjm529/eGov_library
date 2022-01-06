@@ -60,4 +60,15 @@
 	 	 ]]> 
 	</delete>
 	
+	<select id="selectIsbn" parameterType="int" resultType="string">
+		<![CDATA[
+			SELECT
+				book_isbn
+			FROM
+				recommend_book
+			WHERE
+				rec_no = #{recNo}
+		]]>
+	</select>
+	
 </mapper>
