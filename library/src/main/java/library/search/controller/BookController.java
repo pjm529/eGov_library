@@ -103,13 +103,11 @@ public class BookController {
 				if (book.getBookTitle() != null) {
 
 					System.out.println("선택 책 제목 : " + book.getBookTitle());
-					mav.addObject("book", book);
 
 					// 대출 중인 도서의 수를 가져옴
-					int count = bookService.count(bookIsbn);
-					count = 2 - count;
+					book.setCount(bookService.count(bookIsbn));
 
-					mav.addObject("count", count);
+					mav.addObject("book", book);
 
 				} else {
 					out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");

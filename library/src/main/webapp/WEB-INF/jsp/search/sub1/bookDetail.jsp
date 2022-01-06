@@ -113,12 +113,12 @@
 							<input type="hidden" name="page" value="${cri.page }">
 							<input type="hidden" name="type" value="${cri.type }">
 							<input type="hidden" name="keyword" value="${cri.keyword }">
-                            <button id="loan_btn" class=" btn2">대출 (${count }  / 2)</button>
+                            <button id="loan_btn" class=" btn2">대출 (<c:out value="${2 - book.count}"/>  / 2)</button>
                         </form>
 
                         <span>　</span>
 
-                        <form action="/search/book.do">
+                        <form action="${pageContext.request.contextPath}/search/book.do">
                         	<input type="hidden" name="amount" value="${cri.amount }">
 							<input type="hidden" name="page" value="${cri.page }">
 							<input type="hidden" name="type" value="${cri.type }">
