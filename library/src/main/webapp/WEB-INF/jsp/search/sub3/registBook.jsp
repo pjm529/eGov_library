@@ -39,6 +39,7 @@
                                 </form>
                             </div>
 
+							<c:if test="${not empty list }">
                             <!-- 테이블 -->
                             <div class="table-wrap">
                                 <table>
@@ -84,7 +85,23 @@
                                     </tbody>
                                 </table>
                             </div>
-
+                            </c:if>
+                            <c:if test="${empty list}">
+                        
+	                        	<c:if test="${empty cri.keyword}">
+		                        	<br><br>
+		                        	<div>
+		                        		<h3 style="width:250px;">자료를 검색해주세요.</h3>
+		                        	</div>
+	                        	</c:if>
+	                        	
+	                        	<c:if test="${not empty cri.keyword}">
+	                        		<br><br>
+	                        		<div>
+										<h3 style="width:250px;">찾으시는 자료가 없습니다.</h3>
+									</div>
+								</c:if>
+	                        </c:if>
                         </div>
                         <br>
                         <div class="pageInfo" style="text-align: center">
