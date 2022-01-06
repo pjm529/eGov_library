@@ -4,6 +4,7 @@
 
 	<resultMap id="bookMap" type="BookVO">
 		<result column="totalCount"	 			property="totalCount" />
+		<result column="book_title" 			property="bookTitle" />
 		<result column="book_isbn" 				property="bookIsbn" />
 		<result column="book_cover"	 			property="bookCover" />
 		<result column="book_pubDate" 			property="bookPubDate" />
