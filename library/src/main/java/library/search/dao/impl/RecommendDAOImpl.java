@@ -24,4 +24,10 @@ public class RecommendDAOImpl extends EgovAbstractMapper implements RecommendDAO
 		return selectOne("Recommend.getTotal", date);
 	}
 
+	// 추천 도서 등록
+	@Override
+	public void registBook(BookVO book) {
+		insert("Recommend.registBook", book);
+	}
+
 }

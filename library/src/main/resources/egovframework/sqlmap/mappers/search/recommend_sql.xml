@@ -38,4 +38,15 @@
 		 ]]>
 	</select>
 	
+	<!-- 추천 도서 등록 -->
+	<insert id="registBook" parameterType="BookVO">
+		<![CDATA[
+			INSERT INTO
+				recommend_book  
+			VALUES 
+			(null, #{userId}, #{bookTitle}, #{bookAuthor}, #{bookIsbn}, #{bookCover},
+			#{bookPubDate}, #{bookPublisher}, null);
+		]]>
+	</insert>
+	
 </mapper>

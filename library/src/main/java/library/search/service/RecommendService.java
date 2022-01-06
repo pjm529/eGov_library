@@ -14,4 +14,7 @@ public interface RecommendService {
 	// 추천 도서 권수
 	public int getTotal(DateVO date);
 
+	// 추천 도서 등록
+	public void registBook(BookVO book);
+
 }

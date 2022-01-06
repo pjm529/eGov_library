@@ -35,5 +35,11 @@ public class RecommendServiceImpl implements RecommendService {
 	public int getTotal(DateVO date) {
 		return recommendDAO.getTotal(date);
 	}
+	
+	// 추천 도서 등록
+	@Override
+	public void registBook(BookVO book) {
+		recommendDAO.registBook(book);
+	}
 
 }

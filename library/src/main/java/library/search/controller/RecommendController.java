@@ -1,6 +1,7 @@
 package library.search.controller;
 
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -127,7 +129,7 @@ public class RecommendController {
 		System.out.println("/registBook 진입");
 
 		ModelAndView mav = new ModelAndView("search/sub3/registBook.jsp");
-		
+
 		// BookVO 리스트 선언
 		List<BookVO> bookList = new ArrayList<BookVO>();
 
@@ -161,5 +163,21 @@ public class RecommendController {
 		mav.addObject("list", bookList);
 
 		return mav;
+	}
+
+	// 추천도서 등록
+	@PostMapping("/regist.do")
+	public String regist(@ModelAttribute BookVO book, Principal principal) {
+		System.out.println("regist 진입");
+
+		// 로그인 된 user_id 받아오기
+		String userId = principal.getName();
+
+		book.setUserId(userId);
+		
+		// 추천도서 등록
+		recommendService.registBook(book);
+		
+		return "redirect:/search/registBook.do";
 	}
 }
