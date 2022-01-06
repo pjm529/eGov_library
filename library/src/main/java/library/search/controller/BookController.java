@@ -176,8 +176,8 @@ public class BookController {
 
 	// 책 대출
 	@PostMapping("/loan")
-	public String loan(@ModelAttribute Criteria cri, @ModelAttribute BookVO book, @RequestParam String detail,
-			Principal principal, HttpServletResponse response) {
+	public String loan(@ModelAttribute Criteria cri, @ModelAttribute BookVO book, @ModelAttribute DateVO date,
+			@RequestParam String detail, Principal principal, HttpServletResponse response) {
 
 		// 로그인 된 user_id 받아오기
 		String userId = principal.getName();
@@ -224,6 +224,11 @@ public class BookController {
 		if (detail.equals("true")) {
 
 			return "redirect:/search/bestBookDetail.do?bookIsbn=" + book.getBookIsbn();
+
+		} else if (detail.equals("rec")) {
+
+			return "redirect:/search/recommendBookDetail.do?bookIsbn=" + book.getBookIsbn() + "&year=" + date.getYear()
+					+ "&month=" + date.getMonth() + "&page=" + cri.getPage();
 
 		} else {
 			return "redirect:/search/bookDetail.do?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&type="
