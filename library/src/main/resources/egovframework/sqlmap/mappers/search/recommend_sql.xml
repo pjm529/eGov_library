@@ -3,6 +3,7 @@
 <mapper namespace="Recommend">
 
 	<resultMap id="recommendBookMap" type="BookVO">
+		<id column="rec_no" 					property="recNo" />
 		<result column="book_title"				property="bookTitle" />
 		<result column="book_author" 			property="bookAuthor" />
 		<result column="book_isbn" 				property="bookIsbn" />
@@ -15,7 +16,7 @@
 	<select id="recommendList" parameterType="hashMap" resultMap="recommendBookMap">
 		<![CDATA[
 			SELECT
-				book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher
+				rec_no, book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher
 			FROM
 				recommend_book 
 			WHERE

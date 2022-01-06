@@ -56,6 +56,9 @@ public class BookVO {
 	// 연체일
 	private int overdueDate;
 
+	// 추천 도서 번호
+	private int recNo;
+
 	public int getTotal() {
 		return total;
 	}
@@ -80,12 +83,12 @@ public class BookVO {
 		this.totalCount = totalCount;
 	}
 
-	public int getLoan_no() {
+	public int getLoanNo() {
 		return loanNo;
 	}
 
-	public void setLoan_no(int loan_no) {
-		this.loanNo = loan_no;
+	public void setLoanNo(int loanNo) {
+		this.loanNo = loanNo;
 	}
 
 	public String getUserId() {
@@ -198,6 +201,14 @@ public class BookVO {
 
 	public void setOverdueDate(int overdueDate) {
 		this.overdueDate = overdueDate;
+	}
+
+	public int getRecNo() {
+		return recNo;
+	}
+
+	public void setRecNo(int recNo) {
+		this.recNo = recNo;
 	}
 
 }

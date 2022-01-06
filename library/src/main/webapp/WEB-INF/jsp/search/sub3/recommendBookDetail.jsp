@@ -80,7 +80,7 @@
                                                 </p>
                                                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                                                 <form action="${pageContext.request.contextPath}/search/deleteRec.do" method="post" onsubmit="return false;">
-                                                	<input type="hidden" name="bookIsbn" value="${book.bookIsbn }">
+                                                	<input type="hidden" name="recNo" value="${recNo}">
 	                                                <input type="hidden" name="year" value="${date.year}">
 	                        						<input type="hidden" name="month" value="${date.month}">
 						                        	<input type="submit" class="btn" value="삭제" style="float: right;">

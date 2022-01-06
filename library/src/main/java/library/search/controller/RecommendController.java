@@ -74,7 +74,7 @@ public class RecommendController {
 	// 도서 상세페이지
 	@GetMapping("/recommendBookDetail.do")
 	public ModelAndView recommned_book_detail(@ModelAttribute Criteria cri, @ModelAttribute DateVO date,
-			@RequestParam String bookIsbn, HttpServletResponse response) {
+			@RequestParam String bookIsbn, @RequestParam String recNo, HttpServletResponse response) {
 
 		ModelAndView mav = new ModelAndView("search/sub3/recommendBookDetail.jsp");
 
@@ -111,6 +111,7 @@ public class RecommendController {
 			e.printStackTrace();
 		}
 
+		mav.addObject("recNo", recNo);
 		mav.addObject("cri", cri);
 		mav.addObject("date", date);
 
