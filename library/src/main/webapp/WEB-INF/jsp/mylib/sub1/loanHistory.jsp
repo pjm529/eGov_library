@@ -60,11 +60,11 @@
                                 	
                                		<b>시작일</b>
                                		<input type="date" class="startDate" name="startDate" 
-                               			value="${startDate }" max="9999-12-31">
+                               			value="${date.startDate }" max="9999-12-31">
                                			
                                		<b>종료일</b>
                                		<input type="date" class="endDate" name="endDate" 
-                               			value="${endDate }" max="9999-12-31">
+                               			value="${date.endDate }" max="9999-12-31">
                                 	
                                     <button id="search_btn" class="btn">검색</button>
                                 </form>
@@ -108,7 +108,7 @@
                                         
                                     </select>
                                     <input type="hidden" name="page" value="1">
-                                    <input type="hidden" name="startDate" value="${startDate }">
+                                    <input type="hidden" name="startDate" value="${date.startDate }">
 									<input type="hidden" name="endDate" value="${endDate }">
                                     <button id="list_btn" class="btn">이동</button>
                                 </form>
@@ -188,8 +188,8 @@
     <form method="get" class="moveForm"> 
 		<input type="hidden" name="amount" value="${page.cri.amount }">
 		<input type="hidden" name="page" value="${page.cri.page }">
-		<input type="hidden" name="startDate" value="${startDate }">
-		<input type="hidden" name="endDate" value="${endDate }">
+		<input type="hidden" name="startDate" value="${date.startDate }">
+		<input type="hidden" name="endDate" value="${date.endDate }">
 		
 	</form>
     

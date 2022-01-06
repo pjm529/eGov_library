@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MyLoan">
+
+	<resultMap id="bookMap" type="BookVO">
+		<id column="loan_no" 			property="loanNo" />
+		<result column="user_id" 		property="userId" />
+		<result column="user_email" 	property="userEmail" />
+		<result column="book_title" 	property="bookTitle" />
+		<result column="book_author" 	property="bookAuthor" />
+		<result column="book_isbn" 		property="bookIsbn" />
+		<result column="book_cover"	 	property="bookCover" />
+		<result column="book_pubDate" 	property="bookPubDate" />
+		<result column="book_publisher" property="bookPublisher" />
+		<result column="loan_date" 		property="loanDate" />
+		<result column="return_date" 	property="returnDate" />
+		<result column="return_period" 	property="returnPeriod" />
+	</resultMap>
+
+	<!-- 대출 내역 조회 --> 
+	<select id="loanHistory" parameterType="hashMap" resultMap="bookMap">
+		<![CDATA[
+			SELECT
+				* 
+			FROM
+				loan_history
+			WHERE
+				user_id = #{userId} 
+				AND loan_date BETWEEN CONCAT(#{date.startDate}, ' 00:00:00.0') 
+				AND CONCAT(#{date.endDate}, ' 23:59:59.0')
+			ORDER BY loan_date DESC
+			LIMIT #{cri.skip}, #{cri.amount}
+		]]>
+	</select>
+	
+	<!-- 총 대출 수 -->
+	<select id="historyTotal" parameterType="hashMap" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM
+				loan_history 
+			WHERE
+				user_id = #{userId} 
+				AND loan_date BETWEEN CONCAT(#{date.startDate}, ' 00:00:00.0') 
+				AND CONCAT(#{date.endDate}, ' 23:59:59.0')
+		]]>
+	</select>
+		
+</mapper>
