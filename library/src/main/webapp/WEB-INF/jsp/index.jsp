@@ -286,8 +286,8 @@
                     <div class="main-banner-box">
                         <div class="slidewrap">
                         	<c:forEach var="banner_list" items="${banner_list}">
-                              	<div><img src="${banner_list.path }"
-                                    style="width: 100%;"></div>
+                              	<div style="display:flex; justify-content: center; align-items: center;"><img src="${banner_list.path }"
+                                    style="height: 240px;"></div>
                             </c:forEach>
                         </div>
                     </div>
