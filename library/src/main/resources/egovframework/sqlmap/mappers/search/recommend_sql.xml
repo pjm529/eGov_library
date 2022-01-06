@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Recommend">
+
+	<resultMap id="recommendBookMap" type="BookVO">
+		<result column="book_title"				property="bookTitle" />
+		<result column="book_author" 			property="bookAuthor" />
+		<result column="book_isbn" 				property="bookIsbn" />
+		<result column="book_cover"	 			property="bookCover" />
+		<result column="book_pubDate" 			property="bookPubDate" />
+		<result column="book_publisher" 		property="bookPublisher" />
+	</resultMap>
+	
+	<!-- 추천 도서 리스트 -->
+	<select id="recommendList" parameterType="hashMap" resultMap="recommendBookMap">
+		<![CDATA[
+			SELECT
+				book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher
+			FROM
+				recommend_book 
+			WHERE
+				recommend_date between concat(#{date.year}, '-', #{date.month}, '-01') AND concat(#{date.year}, '-', #{date.month}, '-31' )
+			ORDER BY rec_no DESC
+		 	LIMIT #{cri.skip}, #{cri.amount}
+		 ]]>
+	</select>
+	
+	<!-- 추천 도서 권수 -->
+	<select id="getTotal" parameterType="DateVO" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+		  	FROM 
+		  		recommend_book
+		 	WHERE
+		 		recommend_date between concat(#{year}, '-', #{month}, '-01') AND concat(#{year}, '-', #{month}, '-31' )
+		 ]]>
+	</select>
+	
+</mapper>

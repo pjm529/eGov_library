@@ -1,0 +1,17 @@
+package library.search.service;
+
+import java.util.List;
+
+import library.common.domain.DateVO;
+import library.common.page.Criteria;
+import library.search.domain.BookVO;
+
+public interface RecommendService {
+
+	// 추천 도서 리스트
+	public List<BookVO> recommedList(Criteria cri, DateVO date);
+
+	// 추천 도서 권수
+	public int getTotal(DateVO date);
+
+}

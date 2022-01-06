@@ -1,0 +1,16 @@
+package library.search.dao;
+
+import java.util.HashMap;
+import java.util.List;
+
+import library.common.domain.DateVO;
+import library.search.domain.BookVO;
+
+public interface RecommendDAO {
+	
+	// 추천 도서 리스트
+	public List<BookVO> recommedList(HashMap<String, Object> map);
+	
+	// 추천 도서 권수
+	public int getTotal(DateVO date);
+}

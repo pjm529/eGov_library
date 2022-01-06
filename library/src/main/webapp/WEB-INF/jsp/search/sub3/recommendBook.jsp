@@ -90,7 +90,7 @@
                                     <div class="row">
                                         <div class="thumb">
                                         	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?bookIsbn=${list.bookIsbn }&year=${date.year}&month=${date.month}&page=${page.cri.page}">
-                                            <img src="${list.bookcover }" style="width: 118px;" title="${list.booktitle }">
+                                            <img src="${list.bookCover }" style="width: 118px;" title="${list.bookTitle }">
                                             </a>
                                         </div>
 
@@ -144,8 +144,8 @@
     </div>
 
     <form method="get" class="moveForm">
-        <input type="hidden" name="year" value="${year }">
-        <input type="hidden" name="month" value="${month }">
+        <input type="hidden" name="year" value="${date.year }">
+        <input type="hidden" name="month" value="${date.month }">
         <input type="hidden" name="page" value="${page.cri.page }">
     </form>
 
