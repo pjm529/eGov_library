@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>라온도서관 > 자료검색 > 도서검색</title>
+	<title>라온도서관 > 자료검색 > 대출베스트</title>
 </head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/search/book.css">
 <script
@@ -106,7 +106,7 @@
                                             	</c:if>
                                             </td>
                                             <td>
-                                            	<form action="/search/bestBookDetail.do" method="get">
+                                            	<form action="${pageContext.request.contextPath}/search/bestBookDetail.do" method="get">
 													<input type="hidden" name="bookIsbn" value="${list.bookIsbn }">
 													<input type="hidden" name="year" value="${date.year }">
 													<input type="hidden" name="month" value="${date.month }"> 

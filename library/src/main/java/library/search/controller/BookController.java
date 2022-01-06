@@ -265,4 +265,12 @@ public class BookController {
 		return mav;
 	}
 
+	// 대출베스트 책 상세내용
+	@GetMapping("/bestBookDetail.do")
+	public String bestBookDetail(@ModelAttribute DateVO date, @RequestParam String bookIsbn) {
+
+		return "search/sub2/bestBookDetail.jsp";
+	}
+	
+
 }
