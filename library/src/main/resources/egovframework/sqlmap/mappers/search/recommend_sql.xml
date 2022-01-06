@@ -49,4 +49,15 @@
 		]]>
 	</insert>
 	
+	<!-- 추천 도서 삭제 -->
+	<delete id="deleteBook" parameterType="int">
+		<![CDATA[
+			DELETE
+			FROM 
+				recommend_book
+			WHERE 
+				rec_no = #{recNo}
+	 	 ]]> 
+	</delete>
+	
 </mapper>

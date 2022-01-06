@@ -17,7 +17,7 @@ public class RecommendServiceImpl implements RecommendService {
 
 	@Autowired
 	private RecommendDAO recommendDAO;
-	
+
 	// 추천 도서 리스트
 	@Override
 	public List<BookVO> recommedList(Criteria cri, DateVO date) {
@@ -26,7 +26,7 @@ public class RecommendServiceImpl implements RecommendService {
 
 		map.put("cri", cri);
 		map.put("date", date);
-		
+
 		return recommendDAO.recommedList(map);
 	}
 
@@ -35,11 +35,17 @@ public class RecommendServiceImpl implements RecommendService {
 	public int getTotal(DateVO date) {
 		return recommendDAO.getTotal(date);
 	}
-	
+
 	// 추천 도서 등록
 	@Override
 	public void registBook(BookVO book) {
 		recommendDAO.registBook(book);
+	}
+
+	// 추천 도서 삭제
+	@Override
+	public void deleteBook(int recNo) {
+		recommendDAO.deleteBook(recNo);
 	}
 
 }

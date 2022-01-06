@@ -30,4 +30,10 @@ public class RecommendDAOImpl extends EgovAbstractMapper implements RecommendDAO
 		insert("Recommend.registBook", book);
 	}
 
+	// 추천 도서 삭제
+	@Override
+	public void deleteBook(int recNo) {
+		delete("Recommend.deleteBook", recNo);
+	}
+
 }

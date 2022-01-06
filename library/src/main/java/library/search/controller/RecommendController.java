@@ -174,10 +174,20 @@ public class RecommendController {
 		String userId = principal.getName();
 
 		book.setUserId(userId);
-		
+
 		// 추천도서 등록
 		recommendService.registBook(book);
-		
+
 		return "redirect:/search/registBook.do";
+	}
+
+	// 추천도서 삭제
+	@PostMapping("/deleteBook.do")
+	public String deleteBook(@ModelAttribute DateVO date, @RequestParam int recNo, @RequestParam String page) {
+
+		recommendService.deleteBook(recNo);
+
+		return "redirect:/search/recommendBook.do?year=" + date.getYear() + "&month=" + date.getMonth() + "&page="
+				+ page;
 	}
 }

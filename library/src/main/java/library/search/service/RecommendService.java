@@ -17,4 +17,7 @@ public interface RecommendService {
 	// 추천 도서 등록
 	public void registBook(BookVO book);
 
+	// 추천 도서 삭제
+	public void deleteBook(int recNo);
+
 }
