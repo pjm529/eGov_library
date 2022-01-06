@@ -15,6 +15,7 @@
 		<result column="loan_date" 		property="loanDate" />
 		<result column="return_date" 	property="returnDate" />
 		<result column="return_period" 	property="returnPeriod" />
+		<result column="overdue_date" 	property="overdueDate" />
 	</resultMap>
 
 	<!-- 대출 내역 조회 --> 
@@ -46,5 +47,56 @@
 				AND CONCAT(#{date.endDate}, ' 23:59:59.0')
 		]]>
 	</select>
-		
+	
+	<!-- 대출 중 도서 내역출력, (도서정보, 연체 일)-->
+	<select id="loanList" parameterType="string" resultMap="bookMap">
+		<![CDATA[
+			SELECT
+				*, DATEDIFF(return_period, current_timestamp) as 'overdue_date'
+		  	FROM
+		  		loan_history 
+		  	WHERE
+		  		user_id = #{userId} and return_status = false
+		  	ORDER BY
+		  		loan_date DESC
+		]]>
+	</select>
+	
+	<!-- 대출 중 도서 건 수 -->
+	<select id="loanTotal" parameterType="string" resultType="int">
+		<![CDATA[
+			SELECT
+				user_book_count 
+			FROM 
+				member 
+			WHERE
+				user_id = #{userId}
+		]]>
+	</select>
+	
+	<!-- 연체 도서 수 -->
+	<select id="overdueCount" parameterType="string" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*) 
+			FROM 
+				loan_history 
+			WHERE 
+				DATEDIFF(return_period, current_timestamp) < 0 
+				AND return_status = false 
+				AND user_id = #{userId}
+		]]>
+	</select>
+	
+	<!-- 대출 정지일 -->
+	<select id="myOverdueDate" parameterType="string" resultType="int">
+		<![CDATA[
+			SELECT 
+				user_overdue_date
+			FROM 
+				member
+			WHERE 
+				user_id = #{userId}
+		]]>
+	</select>
 </mapper>
