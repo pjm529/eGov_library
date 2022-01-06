@@ -1,0 +1,277 @@
+.roomicon {
+    position: relative;
+    margin-bottom: 20px;
+    background: #f5f5f5;
+    border: 3px solid #f5f5f5;
+    overflow: hidden;
+}
+
+
+.roomicon .inner.icowrap {
+    position: relative;
+    padding: 40px 40px 40px 220px;
+}
+
+
+.roomicon .inner {
+    position: relative;
+    z-index: 1;
+    margin: 3px;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.roomicon .inner strong {
+    display: block;
+    margin: 0;
+        margin-bottom: 0px;
+    margin-bottom: 5px;
+    color: #121212;
+    font-size: 28px;
+    line-height: 160%;
+    font-weight: 600;
+}
+
+
+.roomicon
+.inner.icowrap .ico {
+    position: absolute;
+    left: 10px;
+    top: -23px;
+    display: inline-block;
+    width: 170px;
+    min-height: 170px;
+    background:url(https://library.daegu.go.kr/resources/common/img/room_ico.gif)
+}
+
+
+.roomicon .inner strong {
+    display: block;
+    margin: 0;
+    margin-bottom: 0px;
+    margin-bottom: 5px;
+    color: #121212;
+    font-size: 28px;
+    line-height: 160%;
+    font-weight: 600;
+}
+
+
+.roomicon .inner p {
+    line-height: 160%;
+}
+
+
+.basic_btn {
+    margin-top: 20px;
+}
+
+
+.basic_btn a {
+    display: inline-block;
+    padding: 0 50px 0 0;
+    background-color: #212136;
+    position: relative;
+}
+
+
+.basic_btn a::after {
+    content: "";
+    display: block;
+    width: 50px;
+    vertical-align: middle;
+    background: url("https://library.daegu.go.kr/data/menuResources/h46/99/1602670309102.gif") no-repeat;
+        background-position-x: 0%;
+        background-position-y: 0%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+.basic_btn a {
+    display: inline-block;
+    padding: 0 50px 0 0;
+    background: #213266;
+    position: relative;
+}
+
+
+
+/* 회원가입절차 */
+.doc-body h3 {
+    padding-left: 30px;
+    margin: 80px 0 20px 0;
+    background: url('https://library.daegu.go.kr/resources/common/img/h3.gif') no-repeat 0 7px;
+    font-size: 23px;
+    font-weight: 600;
+    color: #222;
+    line-height: 1.4;
+    letter-spacing: -0.05em;
+}
+
+
+.step_box01 {
+    position: relative;
+    margin-top: 15px;
+}
+
+
+.step_box01 .mode {
+    display: block;
+}
+
+
+.step_box01 ul li.step01, 
+.step_box01 ul li.step02, 
+.step_box01 ul li.step03 {
+    width: 220px;
+    height: 220px;
+}
+
+
+.step_box01 ul li {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.step_box01 ul li.step01 div {
+    background: url('https://library.daegu.go.kr/resources/common/img/sub_join_bg01.png') no-repeat;
+}
+
+
+.step_box01 ul li.step01 div, .step_box01 ul li.step02 div, .step_box01 ul li.step03 div {
+    position: relative;
+    margin: 0 auto;
+    width: 220px;
+    height: 220px;
+}
+
+
+.step_box01 ul li h4 {
+    font-size: 19px;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0;
+    background: none;
+    padding-left: 0;
+    padding-top: 20px;
+}
+
+
+.doc-body h4 {
+    padding: 0 0 0 19px;
+    margin: 5px 0 10px;
+}
+
+
+.step_box01 ul li h5 {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    letter-spacing: -0.75px;
+    line-height: 25px;
+    background: none;
+    padding-top: 30px;
+}
+
+
+.step_box01 ul li p {
+    font-size: 15px;
+    color: #333;
+    letter-spacing: -0.75px;
+    line-height: 23px;
+    padding-top: 10px;
+}
+
+
+.step_box01 ul li.arr {
+    position: relative;
+    width: 144px;
+}
+
+
+.step_box01 ul li {
+    display: inline-block;
+    text-align: center;
+}
+
+
+.step_box01 ul li.arr div {
+    position: relative;
+    top: -45px;
+    opacity: 0.5;
+    width: 62px;
+    margin: 0 auto;
+}
+
+
+.step_box01 ul li.step02 div {
+    background: url('https://library.daegu.go.kr/resources/common/img/sub_join_bg02.png')no-repeat;
+}
+
+
+.step_box01 ul li.step03 div {
+    background: url('https://library.daegu.go.kr/resources/common/img/sub_join_bg03.png')no-repeat;
+}
+
+
+
+/* 구비서류 */
+.auto-scroll {
+    overflow-x: hidden;
+    overflow: auto;
+}
+
+
+table {
+    width: 100%;
+    border-top: 1px solid #dee1e7;
+    border-bottom: 2px solid #ccc;
+}
+
+
+table, th, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: inherit;
+    word-break: break-all;
+}
+
+
+table th, table td {
+    border: 1px solid #e5e8eb;
+    border-top-color: rgb(229, 232, 235);
+    border-top-width: 1px;
+    border-right-color: rgb(229, 232, 235);
+    border-bottom-color: rgb(229, 232, 235);
+    border-left-color: rgb(229, 232, 235);
+    border-left-width: 1px;
+    vertical-align: middle;
+}
+
+
+.doc-body table caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -999px;
+}
+
+
+.doc-body ul.con > li {
+    font-size: 16px;
+    letter-spacing: -0.3px;
+    background: url('https://phlib.pohang.go.kr/resources/common/img/doc-arr2-navy.gif') no-repeat 4px 9px;
+    padding: 3px 0 3px 23px;
+}
