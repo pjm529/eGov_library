@@ -175,7 +175,7 @@ public class BookController {
 	}
 
 	// 책 대출
-	@PostMapping("/loan")
+	@PostMapping("/loan.do")
 	public String loan(@ModelAttribute Criteria cri, @ModelAttribute BookVO book, @ModelAttribute DateVO date,
 			@RequestParam String detail, Principal principal, HttpServletResponse response) {
 
@@ -192,12 +192,14 @@ public class BookController {
 		System.out.println("keyword : " + cri.getKeyword());
 		System.out.println("========================================================\n");
 
-		String keyword;
+		String keyword = "";
 
-		try {
-			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			return "redirect:/search/book.do";
+		if (cri.getKeyword() != null) {
+			try {
+				keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				return "redirect:/search/book.do";
+			}
 		}
 
 		// 도서 대출 실행(대출하려는 도서의 대출 수가 2가 아닐 때)
@@ -223,7 +225,8 @@ public class BookController {
 
 		if (detail.equals("true")) {
 
-			return "redirect:/search/bestBookDetail.do?bookIsbn=" + book.getBookIsbn();
+			return "redirect:/search/bestBookDetail.do?bookIsbn=" + book.getBookIsbn() + "&year=" + date.getYear()
+					+ "&month=" + date.getMonth();
 
 		} else if (detail.equals("rec")) {
 

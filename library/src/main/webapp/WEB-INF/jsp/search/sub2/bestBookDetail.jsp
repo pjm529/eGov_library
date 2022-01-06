@@ -118,6 +118,8 @@
 							<input type="hidden" name="bookCover" value="${book.bookCover }">
 							<input type="hidden" name="bookPubDate" value="${book.bookPubDate }">
 							<input type="hidden" name="bookPublisher" value="${book.bookPublisher }">
+							<input type="hidden" name="year" value="${date.year}">
+                        	<input type="hidden" name="month" value="${date.month}">
                             <button id="loan_btn" class=" btn2">대출 (<c:out value="${2 - book.count}"/> / 2)</button>
                         </form>
 						<span>　</span> 
