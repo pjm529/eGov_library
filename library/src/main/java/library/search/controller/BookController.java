@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.common.api.AladinApi;
+import library.common.domain.DateVO;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
+import library.common.util.DateUtil;
 import library.search.domain.BookVO;
 import library.search.service.BookService;
 
@@ -231,4 +233,29 @@ public class BookController {
 		}
 
 	}
+
+	// 대출베스트 출력
+	@GetMapping("/bestBook.do")
+	public ModelAndView bestBook(@ModelAttribute Criteria cri, @ModelAttribute DateVO date) {
+
+		System.out.println("bestBook 진입");
+		
+		ModelAndView mav = new ModelAndView("search/sub2/bestBook.jsp");
+
+		// year이 null 이면 현재 날짜 기준 year
+		if (date.getYear() == null) {
+			date.setYear(DateUtil.date("year"));
+		}
+
+		// month가 null 이면 현재 날짜 기준 month
+		if (date.getMonth() == null) {
+			date.setMonth(DateUtil.date("month"));
+		}
+
+		// 년
+		mav.addObject("date", date);
+		
+		return mav;
+	}
+
 }
