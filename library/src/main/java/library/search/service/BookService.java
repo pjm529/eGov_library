@@ -1,5 +1,8 @@
 package library.search.service;
 
+import java.util.List;
+
+import library.common.domain.DateVO;
 import library.search.domain.BookVO;
 
 public interface BookService {
@@ -15,4 +18,8 @@ public interface BookService {
 	
 	// 도서 대출
 	public void loan(BookVO book);
+
+	// 대출 순위
+	public List<BookVO> bookRank(DateVO date);
+
 }

@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Book">
 
+	<resultMap id="bookMap" type="BookVO">
+		<result column="totalCount"	 			property="totalCount" />
+		<result column="bookIsbn" 				property="bookIsbn" />
+		<result column="book_cover"	 			property="bookCover" />
+		<result column="book_pubDate" 			property="bookPubDate" />
+		<result column="book_publisher" 		property="bookPublisher" />
+		<result column="book_author" 			property="bookAuthor" />
+	</resultMap>
+
 	<!-- 대출 중인 해당 도서 수 카운트 -->
 	<select id="count" parameterType="string" resultType="int"> 
 		<![CDATA[
@@ -67,4 +76,21 @@
 				user_id = #{userId};
 		]]> 
 	</update>
+	
+	<!-- 대출 베스트 출력 -->
+	<select id="bookRank" parameterType="DateVO" resultMap="bookMap">
+		<![CDATA[
+			SELECT
+				count(*) AS 'totalCount', book_title, book_isbn, book_cover
+						, book_pubDate, book_publisher, book_author
+			FROM 
+				loan_history 
+			WHERE
+				loan_date between concat(#{year}, '-', #{month}, '-01') AND concat(#{year}, '-', #{month}, '-31' )
+				AND return_status = true 
+			GROUP BY book_isbn 
+			ORDER BY totalCount DESC 
+			LIMIT 10;
+		]]> 
+	</select>
 </mapper>

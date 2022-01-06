@@ -1,10 +1,12 @@
 package library.search.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import library.common.domain.DateVO;
 import library.search.dao.BookDAO;
 import library.search.domain.BookVO;
 import library.search.service.BookService;
@@ -48,6 +50,11 @@ public class BookServiceImpl implements BookService {
 		
 		// 대출자 대출 중 도서 수 증가
 		bookDAO.increaseCount(book.getUserId());
+	}
+
+	@Override
+	public List<BookVO> bookRank(DateVO date) {
+		return bookDAO.bookRank(date);
 	}
 
 }

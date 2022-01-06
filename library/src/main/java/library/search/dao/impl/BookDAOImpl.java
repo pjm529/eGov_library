@@ -1,10 +1,12 @@
 package library.search.dao.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
+import library.common.domain.DateVO;
 import library.search.dao.BookDAO;
 import library.search.domain.BookVO;
 
@@ -22,7 +24,7 @@ public class BookDAOImpl extends EgovAbstractMapper implements BookDAO {
 	public int statusCheck(String userId) {
 		return selectOne("Book.statusCheck", userId);
 	}
-	
+
 	// 회원이 대출 중인 도서인지 체크
 	@Override
 	public int loanCheck(HashMap<String, Object> map) {
@@ -39,6 +41,12 @@ public class BookDAOImpl extends EgovAbstractMapper implements BookDAO {
 	@Override
 	public void increaseCount(String userId) {
 		update("Book.increaseCount", userId);
+	}
+
+	// 대출 순위
+	@Override
+	public List<BookVO> bookRank(DateVO date) {
+		return selectList("Book.bookRank", date);
 	}
 
 }

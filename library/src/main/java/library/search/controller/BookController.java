@@ -251,8 +251,15 @@ public class BookController {
 		if (date.getMonth() == null) {
 			date.setMonth(DateUtil.date("month"));
 		}
+		
+		List<BookVO> list = bookService.bookRank(date);
 
-		// 년
+		for (BookVO book : list) {
+			// 도서 대출 수 count
+			book.setCount(bookService.count(book.getBookIsbn()));
+		}
+
+		mav.addObject("list", list);
 		mav.addObject("date", date);
 		
 		return mav;

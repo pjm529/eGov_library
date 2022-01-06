@@ -1,7 +1,9 @@
 package library.search.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
+import library.common.domain.DateVO;
 import library.search.domain.BookVO;
 
 public interface BookDAO {
@@ -20,5 +22,8 @@ public interface BookDAO {
 	
 	// 대출자 대출 중 도서 수 증가
 	public void increaseCount(String userId);
+	
+	// 대출 순위
+	public List<BookVO> bookRank(DateVO date);
 	
 }
