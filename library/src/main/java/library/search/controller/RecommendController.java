@@ -1,10 +1,12 @@
 package library.search.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -114,6 +116,49 @@ public class RecommendController {
 		mav.addObject("recNo", recNo);
 		mav.addObject("cri", cri);
 		mav.addObject("date", date);
+
+		return mav;
+	}
+
+	// 추천 도서 팝업
+	@GetMapping("/registBook.do")
+	public ModelAndView registBook(@ModelAttribute Criteria cri) {
+
+		System.out.println("/registBook 진입");
+
+		ModelAndView mav = new ModelAndView("search/sub3/registBook.jsp");
+		
+		// BookVO 리스트 선언
+		List<BookVO> bookList = new ArrayList<BookVO>();
+
+		// 검색어와 검색타입이 Null이 아닐 때 실행
+		if (cri.getKeyword() != null && cri.getType() != null && !cri.getKeyword().equals("")) {
+
+			System.out.println("옵션 : " + cri.getType() + ", 검색 키 : " + cri.getKeyword() + ", 페이지 : " + cri.getPage());
+
+			try {
+
+				// api를 통해 검색어를 입력해 책 정보를 받아옴
+				bookList = aladinApi.search(cri.getKeyword(), cri.getType(), cri.getPage(), cri.getAmount());
+
+				// 검색 된 내용이 null이 아닐 때 수행
+				if (!bookList.isEmpty()) {
+
+					// 검색된 자료의 total을 가져옴
+					mav.addObject("total", bookList.get(0).getTotal());
+
+					// 페이징 처리위한 함수
+					ViewPage page = new ViewPage(cri, bookList.get(0).getTotal());
+					mav.addObject("page", page);
+
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+
+		mav.addObject("cri", cri);
+		mav.addObject("list", bookList);
 
 		return mav;
 	}
