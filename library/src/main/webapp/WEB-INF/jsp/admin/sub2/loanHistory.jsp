@@ -34,10 +34,10 @@
                             <a href="${pageContext.request.contextPath}/admin/memberList.do">관리자</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/loanHistory.do">도서관련</a>
+                            <a href="${pageContext.request.contextPath}/admin/list.do">도서관련</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/loanHistory.do">대출내역</a>
+                            <a href="${pageContext.request.contextPath}/admin/list.do">대출내역</a>
                         </li>
                     </ul>
                 </div>
@@ -150,7 +150,7 @@
                             </div>
 
                             <!-- 테이블 -->
-                            <c:if test="${not empty loanHistory }">
+                            <c:if test="${not empty loanHistoryList }">
                             <div class="table-wrap">
                                 <table>
                                     <thead>
@@ -165,20 +165,20 @@
                                     </thead>
                                     <tbody>
 
-                                        <c:forEach var="loanHistory" items="${loanHistory}">
+                                        <c:forEach var="list" items="${loanHistoryList}">
                                             <tr>
-                                                <td>${loanHistory.userId }</td>
-                                                <td>${loanHistory.bookTitle }</td>
-                                                <td>${loanHistory.bookIsbn}</td>
-                                                <td>${loanHistory.loanDate }</td>
-                                                <c:if test="${empty loanHistory.returnDate }">
+                                                <td>${list.userId }</td>
+                                                <td>${list.bookTitle }</td>
+                                                <td>${list.bookIsbn}</td>
+                                                <td>${list.loanDate }</td>
+                                                <c:if test="${empty list.returnDate }">
 												<td><span style="color:red; font-weight: bold">미반납</span></td>
 												</c:if>
 												
-												<c:if test="${not empty loanHistory.returnDate }">
-												<td>${loanHistory.returnDate }</td>
+												<c:if test="${not empty list.returnDate }">
+												<td>${list.returnDate }</td>
 												</c:if>
-                                                <td>${loanHistory.returnPeriod }</td>
+                                                <td>${list.returnPeriod }</td>
                                             </tr>
                                         </c:forEach>
 
@@ -206,7 +206,7 @@
                             </c:if>
 
                         </div>
-                        <c:if test="${empty loanHistory }">
+                        <c:if test="${empty loanHistoryList }">
                         <br>
                         <h2>조회 된 도서가 없습니다.</h2>
                         </c:if>
