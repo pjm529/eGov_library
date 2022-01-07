@@ -77,11 +77,9 @@
 		$.ajax({ 
 			type:"post", 
 			url:"${pageContext.request.contextPath}/board/calendarList.do", 
-			contentType: "application/json",
 			dataType:"json",
 			success: function(data) {
-				console.log("1");
-				cbkRes(data);
+				cbkRes(data.calendarVOList);
 			}
 		});
 	
