@@ -89,16 +89,13 @@ public class LoanController {
 	// 도서 반납
 	@PostMapping("/returnBook.do")
 	public String returnBook(@ModelAttribute BookVO book, @ModelAttribute Criteria cri) {
-		
-		System.out.println(book.getLoanNo()+", "+book.getUserId());
+
 		// 도서 반납 처리
 		loanService.returnBook(book.getLoanNo());
 
-		System.out.println("반납완료");
 		// 연체 도서인지 확인
 		int date = loanService.searchOverdue(book.getLoanNo());
 
-		System.out.println("연체일 : "+date);
 		// 연체도서 일 경우
 		if (date < 0) {
 			date *= -1;
@@ -122,6 +119,14 @@ public class LoanController {
 
 		return "redirect:/admin/loanList.do?amount=" + amount + "&page=" + page + "&type=" + type + "&keyword="
 				+ keyword;
+
+	}
+
+	// 연체 중 리스트 출력
+	@GetMapping("/overdueList.do")
+	public String overdueList() {
+
+		return "admin/sub2/overdueList.jsp";
 
 	}
 }
