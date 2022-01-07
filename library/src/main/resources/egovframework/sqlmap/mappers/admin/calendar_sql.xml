@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Calendar">
+
+	<resultMap id="calendarMap" type="CalendarVO">
+		<id column="cal_no" 				property="calNo" />
+		<result column="groupId" 			property="groupId" />
+		<result column="user_id"	 		property="userId" />
+		<result column="title" 				property="title" />
+		<result column="start" 				property="start" />
+		<result column="end" 				property="end" />
+		<result column="allDay" 			property="allDay" />
+		<result column="textColor"			property="textColor" />
+		<result column="backgroundColor" 	property="backgroundColor" />
+		<result column="borderColor" 		property="borderColor" />
+		<result column="reg_date" 			property="regDate" />
+	</resultMap> 
+
+	<!-- 일정 모두 출력 -->
+	<select id="calendarList" resultMap="calendarMap">
+		<![CDATA[
+			SELECT 
+				* 
+			FROM
+				calendar
+		]]>
+	</select>
+</mapper>
