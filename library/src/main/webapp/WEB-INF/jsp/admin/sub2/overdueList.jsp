@@ -76,7 +76,7 @@
                                         </thead>
                                         <tbody>
 
-                                            <c:forEach var="overdueList" items="${overdueList}">
+                                            <c:forEach var="list" items="${overdueList}">
                                                 <tr>
                                                     <td><input type="checkbox" name="userEmail" class="chk"
                                                             value="${list.userEmail}"></td>

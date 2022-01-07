@@ -124,9 +124,23 @@ public class LoanController {
 
 	// 연체 중 리스트 출력
 	@GetMapping("/overdueList.do")
-	public String overdueList() {
+	public ModelAndView overdueList() {
 
-		return "admin/sub2/overdueList.jsp";
+		ModelAndView mav = new ModelAndView("admin/sub2/overdueList.jsp");
+		
+		List<BookVO> overdueList = loanService.overdueList();
 
+		for (BookVO book : overdueList) {
+
+			book.setLoanDate(book.getLoanDate().substring(0, 10));
+			book.setReturnPeriod(book.getReturnPeriod().substring(0, 10));
+		}
+
+		mav.addObject("overdueList", overdueList);
+
+		int total = loanService.overdueTotal();
+		mav.addObject("total", total);
+
+		return mav;
 	}
 }

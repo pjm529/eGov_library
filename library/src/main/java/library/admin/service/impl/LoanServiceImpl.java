@@ -65,4 +65,16 @@ public class LoanServiceImpl implements LoanService {
 		loanDAO.modifyMemberInfo(map);
 	}
 
+	// 연체 리스트 조회
+	@Override
+	public List<BookVO> overdueList() {
+		return loanDAO.overdueList();
+	}
+
+	// 연체 도서 건 수
+	@Override
+	public int overdueTotal() {
+		return loanDAO.overdueTotal();
+	}
+
 }

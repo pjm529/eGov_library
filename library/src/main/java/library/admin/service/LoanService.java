@@ -27,4 +27,10 @@ public interface LoanService {
 
 	// 반납 후 회원 정보 수정
 	public void modifyMemberInfo(String userId, int date);
+
+	// 연체 리스트 조회
+	public List<BookVO> overdueList();
+
+	// 연체 도서 건 수
+	public int overdueTotal();
 }

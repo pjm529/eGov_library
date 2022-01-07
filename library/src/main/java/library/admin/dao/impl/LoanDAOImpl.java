@@ -55,4 +55,16 @@ public class LoanDAOImpl extends EgovAbstractMapper implements LoanDAO {
 		update("Loan.modifyMemberInfo", map);
 	}
 
+	// 연체 리스트 조회
+	@Override
+	public List<BookVO> overdueList() {
+		return selectList("Loan.overdueList");
+	}
+
+	// 연체 건 수
+	@Override
+	public int overdueTotal() {
+		return selectOne("Loan.overdueTotal");
+	}
+
 }
