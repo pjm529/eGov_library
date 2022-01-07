@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.admin.service.LoanService;
+import library.common.domain.DateVO;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
+import library.common.util.DateUtil;
+import library.member.domain.MemberVO;
 import library.search.domain.BookVO;
 
 @Controller
@@ -227,6 +230,37 @@ public class LoanController {
 		}
 
 		return "redirect:/admin/overdueList.do";
+
+	}
+
+	// 멤버 리스트 출력 (get)
+	@GetMapping("/rankMember.do")
+	public ModelAndView member_list(@ModelAttribute Criteria cri, @ModelAttribute DateVO date) {
+
+		ModelAndView mav = new ModelAndView("admin/sub2/rankMember.jsp");
+		
+		// year이 null 이면 현재 날짜 기준 year
+		if (date.getYear() == null) {
+			date.setYear(DateUtil.date("year"));
+		}
+
+		// month가 null 이면 현재 날짜 기준 month
+		if (date.getMonth() == null) {
+			date.setMonth(DateUtil.date("month"));
+		}
+
+		// 날짜
+		mav.addObject("date", date);
+
+		List<MemberVO> rankList = loanService.rankList(date);
+
+		for (MemberVO m : rankList) {
+			m.setUserRegDate(m.getUserRegDate().substring(0, 10));
+		}
+
+		mav.addObject("rankList", rankList);
+
+		return mav;
 
 	}
 }

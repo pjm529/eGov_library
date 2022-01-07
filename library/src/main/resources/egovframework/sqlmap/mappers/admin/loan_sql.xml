@@ -16,6 +16,16 @@
 		<result column="return_date" 	property="returnDate" />
 		<result column="return_period" 	property="returnPeriod" />
 	</resultMap>
+	
+	<resultMap id="memberMap" type="MemberVO">
+		<id column="user_id" 			property="userId" />
+		<result column="user_name" 		property="userName" />
+		<result column="user_tel" 		property="userTel" />
+		<result column="user_email" 	property="userEmail" />
+		<result column="user_birth"		property="userBirth" />
+		<result column="user_reg_date" 	property="userRegDate" />
+		<result column="count" 			property="count" />
+	</resultMap>
 
 	<!-- 대출 내역 조회 --> 
 	<select id="loanHistory" parameterType="Criteria" resultMap="bookMap">
@@ -135,6 +145,23 @@
 			WHERE
 				DATEDIFF(return_period, current_timestamp) < 0 
 				AND return_status = false
+		]]>
+	</select>
+	
+	<select id="rankList" parameterType="DateVO" resultMap="memberMap">
+		<![CDATA[
+			SELECT
+				m.user_id, m.user_name, m.user_tel, m.user_email, m.user_birth, m.user_reg_date, count(*) AS count
+			FROM 
+				loan_history lh LEFT JOIN member m ON lh.user_id = m.user_id 
+			WHERE
+				loan_date BETWEEN CONCAT(#{year}, '-', #{month}, '-01') AND CONCAT(#{year}, '-', #{month}, '-31' )
+				AND lh.return_status = true 
+			 GROUP BY 
+			 	user_id
+			 ORDER BY 
+			 	count DESC
+	 		 LIMIT 0, 10
 		]]>
 	</select>
 	

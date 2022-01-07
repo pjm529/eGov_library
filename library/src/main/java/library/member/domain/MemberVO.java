@@ -49,6 +49,9 @@ public class MemberVO {
 	// 회원 권한 리스트
 	private List<MemberAuthVO> authList;
 
+	// 회원 대출 총 도서수를 위한 count
+	private int count;
+
 	public String getUserId() {
 		return userId;
 	}
@@ -167,6 +170,14 @@ public class MemberVO {
 
 	public void setAuthList(List<MemberAuthVO> authList) {
 		this.authList = authList;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }

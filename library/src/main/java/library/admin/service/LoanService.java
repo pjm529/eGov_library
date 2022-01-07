@@ -2,7 +2,9 @@ package library.admin.service;
 
 import java.util.List;
 
+import library.common.domain.DateVO;
 import library.common.page.Criteria;
+import library.member.domain.MemberVO;
 import library.search.domain.BookVO;
 
 public interface LoanService {
@@ -33,4 +35,7 @@ public interface LoanService {
 
 	// 연체 도서 건 수
 	public int overdueTotal();
+
+	// 회원 대출 순위
+	public List<MemberVO> rankList(DateVO date);
 }

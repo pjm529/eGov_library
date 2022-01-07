@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import library.admin.dao.LoanDAO;
 import library.admin.service.LoanService;
+import library.common.domain.DateVO;
 import library.common.page.Criteria;
+import library.member.domain.MemberVO;
 import library.search.domain.BookVO;
 
 @Service
@@ -75,6 +77,11 @@ public class LoanServiceImpl implements LoanService {
 	@Override
 	public int overdueTotal() {
 		return loanDAO.overdueTotal();
+	}
+
+	@Override
+	public List<MemberVO> rankList(DateVO date) {
+		return loanDAO.rankList(date);
 	}
 
 }

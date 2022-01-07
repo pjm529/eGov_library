@@ -3,7 +3,9 @@ package library.admin.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import library.common.domain.DateVO;
 import library.common.page.Criteria;
+import library.member.domain.MemberVO;
 import library.search.domain.BookVO;
 
 public interface LoanDAO {
@@ -34,4 +36,7 @@ public interface LoanDAO {
 	
 	// 연체 도서 건 수
 	public int overdueTotal();
+	
+	// 회원 대출 순위
+	public List<MemberVO> rankList(DateVO date);
 }

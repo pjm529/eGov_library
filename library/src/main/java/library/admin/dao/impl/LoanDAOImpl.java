@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 import library.admin.dao.LoanDAO;
+import library.common.domain.DateVO;
 import library.common.page.Criteria;
+import library.member.domain.MemberVO;
 import library.search.domain.BookVO;
 
 @Repository
@@ -65,6 +67,12 @@ public class LoanDAOImpl extends EgovAbstractMapper implements LoanDAO {
 	@Override
 	public int overdueTotal() {
 		return selectOne("Loan.overdueTotal");
+	}
+
+	// 회원 대출 순위
+	@Override
+	public List<MemberVO> rankList(DateVO date) {
+		return selectList("Loan.rankList", date);
 	}
 
 }
