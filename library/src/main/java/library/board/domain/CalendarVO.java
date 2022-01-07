@@ -20,7 +20,7 @@ public class CalendarVO {
 	private String end;
 
 	// 하루종일
-	private boolean allday;
+	private boolean allDay;
 
 	// 글자 색상
 	private String textColor;
@@ -82,12 +82,12 @@ public class CalendarVO {
 		this.end = end;
 	}
 
-	public boolean isAllday() {
-		return allday;
+	public boolean isAllDay() {
+		return allDay;
 	}
 
-	public void setAllday(boolean allday) {
-		this.allday = allday;
+	public void setAllDay(boolean allDay) {
+		this.allDay = allDay;
 	}
 
 	public String getTextColor() {
