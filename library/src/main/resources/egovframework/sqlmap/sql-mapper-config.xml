@@ -7,5 +7,6 @@
 		<typeAlias alias="MemberAuthVO" type="library.member.domain.MemberAuthVO" />
 		<typeAlias alias="BookVO" type="library.search.domain.BookVO" />
 		<typeAlias alias="DateVO" type="library.common.domain.DateVO" />
+		<typeAlias alias="Criteria" type="library.common.page.Criteria" />
     </typeAliases>
 </configuration>
