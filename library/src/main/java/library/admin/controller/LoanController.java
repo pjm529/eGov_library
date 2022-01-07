@@ -17,15 +17,16 @@ import library.search.domain.BookVO;
 @Controller
 @RequestMapping("/admin")
 public class LoanController {
-	
+
 	@Autowired
 	private LoanService loanService;
 
+	// 총 대출 내역
 	@GetMapping("/loanHistory.do")
 	public ModelAndView loanHistory(@ModelAttribute Criteria cri) {
 
 		ModelAndView mav = new ModelAndView("admin/sub2/loanHistory.jsp");
-		
+
 		List<BookVO> loanHistoryList = loanService.loanHistoryList(cri);
 
 		for (BookVO book : loanHistoryList) {
@@ -46,7 +47,16 @@ public class LoanController {
 
 		ViewPage vp = new ViewPage(cri, total);
 		mav.addObject("page", vp);
-		
+
 		return mav;
+	}
+
+	// 대출 중 리스트 출력 
+	@GetMapping("/loanList.do")
+	public String loan_list(@ModelAttribute Criteria cri) {
+
+
+		return "admin/sub2/loanList.jsp";
+
 	}
 }
