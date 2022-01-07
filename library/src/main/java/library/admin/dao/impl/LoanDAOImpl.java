@@ -24,4 +24,16 @@ public class LoanDAOImpl extends EgovAbstractMapper implements LoanDAO {
 		return selectOne("Loan.historyTotal", cri);
 	}
 
+	// 대출 중 리스트
+	@Override
+	public List<BookVO> loanList(Criteria cri) {
+		return selectList("Loan.loanList", cri);
+	}
+
+	// 대출 중 도서 건수
+	@Override
+	public int loanTotal(Criteria cri) {
+		return selectOne("Loan.loanTotal", cri);
+	}
+
 }

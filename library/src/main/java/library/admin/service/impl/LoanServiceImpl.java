@@ -28,4 +28,17 @@ public class LoanServiceImpl implements LoanService {
 		return loanDAO.historyTotal(cri);
 	}
 
+	// 대출 중 내역 조회
+	@Override
+	public List<BookVO> loanList(Criteria cri) {
+		return loanDAO.loanList(cri);
+	}
+
+	// 대출 중 도서 건 수
+	@Override
+	public int loanTotal(Criteria cri) {
+		// TODO Auto-generated method stub
+		return loanDAO.loanTotal(cri);
+	}
+
 }

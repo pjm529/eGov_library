@@ -24,6 +24,7 @@
 				user_id, book_title, book_isbn, loan_date, return_date, return_period 
 		  	FROM 
 		  		loan_history
+		  	WHERE 1=1 
 		]]>
 		  	<include refid="criteria"></include>
 		<![CDATA[
@@ -39,6 +40,35 @@
 				count(*) 
 		  	FROM 
 		  		loan_history
+		  	WHERE 1=1 
+		]]>
+			<include refid="criteria"></include>
+	</select>
+	
+	<!-- 대출 중 내역 조회 --> 
+	<select id="loanList" parameterType="Criteria" resultMap="bookMap">
+		<![CDATA[
+			SELECT
+				user_id, book_title, book_isbn, loan_date, return_date, return_period 
+		  	FROM 
+		  		loan_history
+		  	WHERE return_status = false 
+		]]>
+		  	<include refid="criteria"></include>
+		<![CDATA[
+		  	ORDER BY loan_date DESC
+		  	LIMIT #{skip}, #{amount}
+		]]>		  	
+	</select>
+	
+	<!-- 대출 중 도서 수 -->
+	<select id="loanTotal" parameterType="Criteria" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*) 
+		  	FROM 
+		  		loan_history
+		  	WHERE return_status = false 
 		]]>
 			<include refid="criteria"></include>
 	</select>
@@ -47,19 +77,19 @@
         <if test="type != null">
 		  	<if test="keyword != null">
 		  		<if test="type == 'userId'">
-		  			WHERE user_id LIKE CONCAT('%', #{keyword}, '%')
+		  			AND user_id LIKE CONCAT('%', #{keyword}, '%')
 		  		</if>
 		  		
 		  		<if test="type == 'bookTitle'">
-		  			WHERE boo_title LIKE CONCAT('%', #{keyword}, '%')
+		  			AND book_title LIKE CONCAT('%', #{keyword}, '%')
 		  		</if>
 		  		
 		  		<if test="type == 'bookIsbn'">
-		  			WHERE book_isbn LIKE CONCAT('%', #{keyword}, '%')
+		  			AND book_isbn LIKE CONCAT('%', #{keyword}, '%')
 		  		</if>
 		  		
 		  		<if test="type == 'loanDate'">
-		  			WHERE loan_date LIKE CONCAT('%', #{keyword}, '%')
+		  			AND loan_date LIKE CONCAT('%', #{keyword}, '%')
 		  		</if> 
 			</if>
 		</if>

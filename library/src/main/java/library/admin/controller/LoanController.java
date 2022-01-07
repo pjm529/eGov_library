@@ -51,12 +51,35 @@ public class LoanController {
 		return mav;
 	}
 
-	// 대출 중 리스트 출력 
+	// 대출 중 리스트 출력
 	@GetMapping("/loanList.do")
-	public String loan_list(@ModelAttribute Criteria cri) {
+	public ModelAndView loan_list(@ModelAttribute Criteria cri) {
 
+		ModelAndView mav = new ModelAndView("admin/sub2/loanList.jsp");
 
-		return "admin/sub2/loanList.jsp";
+		List<BookVO> loanList = loanService.loanList(cri);
+
+		for (BookVO book : loanList) {
+
+			book.setLoanDate(book.getLoanDate().substring(0, 10));
+			
+			if (book.getReturnDate() != null) {
+
+				book.setReturnDate(book.getReturnDate().substring(0, 10));
+			}
+
+			book.setReturnPeriod(book.getReturnPeriod().substring(0, 10));
+		}
+
+		mav.addObject("loanList", loanList);
+
+		int total = loanService.loanTotal(cri);
+		mav.addObject("total", total);
+
+		ViewPage vp = new ViewPage(cri, total);
+		mav.addObject("page", vp);
+
+		return mav;
 
 	}
 }
