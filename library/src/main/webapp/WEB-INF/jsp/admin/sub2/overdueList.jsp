@@ -79,12 +79,12 @@
                                             <c:forEach var="list" items="${overdueList}">
                                                 <tr>
                                                     <td><input type="checkbox" name="userEmail" class="chk"
-                                                            value="${list.userEmail}"></td>
+                                                            value="${list.userEmail},${list.returnPeriod},${list.bookTitle}"></td>
                                                     <td>${list.userId }</td>
                                                     <td>${list.bookTitle }</td>
                                                     <td>${list.bookIsbn}</td>
                                                     <td>${list.loanDate }</td>
-                                                    <td>${list.returnPeriod }</td>
+                                                    <td>${list.returnPeriod}</td>
 
                                                 </tr>
                                             </c:forEach>
