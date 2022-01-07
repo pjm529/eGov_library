@@ -1,5 +1,6 @@
 package library.admin.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,31 @@ public class LoanServiceImpl implements LoanService {
 	// 대출 중 도서 건 수
 	@Override
 	public int loanTotal(Criteria cri) {
-		// TODO Auto-generated method stub
 		return loanDAO.loanTotal(cri);
+	}
+
+	// 도서 반납
+	@Override
+	public void returnBook(int loanNo) {
+		loanDAO.returnBook(loanNo);
+	}
+
+	// 연체 일 확인
+	@Override
+	public int searchOverdue(int loanNo) {
+		return loanDAO.searchOverdue(loanNo);
+	}
+
+	// 반납 후 회원 정보 수정
+	@Override
+	public void modifyMemberInfo(String userId, int date) {
+
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("userId", userId);
+		map.put("date", date);
+
+		loanDAO.modifyMemberInfo(map);
 	}
 
 }

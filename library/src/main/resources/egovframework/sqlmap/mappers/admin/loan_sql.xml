@@ -49,7 +49,7 @@
 	<select id="loanList" parameterType="Criteria" resultMap="bookMap">
 		<![CDATA[
 			SELECT
-				user_id, book_title, book_isbn, loan_date, return_date, return_period 
+				loan_no, user_id, book_title, book_isbn, loan_date, return_date, return_period 
 		  	FROM 
 		  		loan_history
 		  	WHERE return_status = false 
@@ -72,6 +72,44 @@
 		]]>
 			<include refid="criteria"></include>
 	</select>
+	
+	<!-- 도서 반납 처리 -->
+	<update id="returnBook" parameterType="int">
+		<![CDATA[
+			UPDATE
+				loan_history
+			SET 
+				return_date = current_timestamp, 
+				return_status = true
+			WHERE 
+				loan_no = #{loanNo}
+		]]> 
+	</update>
+	
+	<!-- 연체일 조회 -->	
+	<select id="searchOverdue" parameterType="int" resultType="int">	
+		<![CDATA[
+			SELECT
+				DATEDIFF(return_period, current_timestamp) AS '연체일' 
+			FROM
+				loan_history 
+			WHERE
+				loan_no = #{loanNo}
+		]]> 
+	</select>
+	
+	<!-- 도서 반납 후 회원 정보 수정 -->
+	<update id="modifyMemberInfo" parameterType="hashMap">
+		<![CDATA[
+			UPDATE
+				member
+			SET
+				user_overdue_date = user_overdue_date + #{date},
+				user_book_count = user_book_count - 1
+			WHERE
+				user_id = #{userId}
+		]]>
+	</update>
 	
 	<sql id="criteria">
         <if test="type != null">

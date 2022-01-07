@@ -1,5 +1,6 @@
 package library.admin.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -34,6 +35,24 @@ public class LoanDAOImpl extends EgovAbstractMapper implements LoanDAO {
 	@Override
 	public int loanTotal(Criteria cri) {
 		return selectOne("Loan.loanTotal", cri);
+	}
+
+	// 도서 반납
+	@Override
+	public void returnBook(int loanNo) {
+		update("Loan.returnBook", loanNo);
+	}
+
+	// 연체 일 확인
+	@Override
+	public int searchOverdue(int loanNo) {
+		return selectOne("Loan.searchOverdue", loanNo);
+	}
+
+	// 반납 후 회원 정보 수정
+	@Override
+	public void modifyMemberInfo(HashMap<String, Object> map) {
+		update("Loan.modifyMemberInfo", map);
 	}
 
 }

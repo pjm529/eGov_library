@@ -18,4 +18,13 @@ public interface LoanService {
 
 	// 대출 중 도서 건 수
 	public int loanTotal(Criteria cri);
+
+	// 도서 반납
+	public void returnBook(int loanNo);
+
+	// 연체 일 확인
+	public int searchOverdue(int loanNo);
+
+	// 반납 후 회원 정보 수정
+	public void modifyMemberInfo(String userId, int date);
 }
