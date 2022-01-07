@@ -60,7 +60,7 @@
                             <br>
                             <!-- 테이블 -->
 							<c:if test="${not empty overdueList }">
-                            <form action="${pageContext.request.contextPath}/admin/sendMail.do" method="get" onsubmit="return false;">
+                            <form action="${pageContext.request.contextPath}/admin/overdueMail.do" method="get" onsubmit="return false;">
                                 <button class="btn2" style="">메일</button>
                                 <div class="table-wrap" style="overflow: auto; height: 500px;">
                                     <table>
@@ -120,7 +120,7 @@
             $(".sub2").addClass("active");
             $(".submenu3").addClass("active");
             $(".btn2").on("click", function () {
-                let cnt = $("input[name=user_email]:checkbox:checked").length;
+                let cnt = $("input[name=userEmail]:checkbox:checked").length;
 
                 if (cnt > 0) {
                     if (confirm("메일을 전송하시겠습니까?")) {

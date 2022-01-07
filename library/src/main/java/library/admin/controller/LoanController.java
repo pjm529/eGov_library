@@ -4,7 +4,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +30,9 @@ public class LoanController {
 
 	@Autowired
 	private LoanService loanService;
+
+	@Autowired
+	private JavaMailSender mailSender; // 이메일 전송 bean
 
 	// 총 대출 내역
 	@GetMapping("/loanHistory.do")
@@ -127,7 +137,7 @@ public class LoanController {
 	public ModelAndView overdueList() {
 
 		ModelAndView mav = new ModelAndView("admin/sub2/overdueList.jsp");
-		
+
 		List<BookVO> overdueList = loanService.overdueList();
 
 		for (BookVO book : overdueList) {
@@ -142,5 +152,39 @@ public class LoanController {
 		mav.addObject("total", total);
 
 		return mav;
+	}
+
+	// 연체 도서 메일 전송
+	@GetMapping("/overdueMail.do")
+	public String overdueMail(HttpServletRequest request) throws Exception {
+
+		String from = "library.raon@gmail.com";
+		String to[] = request.getParameterValues("userEmail");
+		String title = "라온 도서관 : 연체 도서 안내";
+		String content = "라온 도서관을 이용해주셔서 감사합니다." + "<br><br>" + "현재 연체된 도서가 있으니 반납 바랍니다." + "<br><br>";
+
+		final MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				final MimeMessageHelper mailHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+
+				mailHelper.setFrom(new InternetAddress(from, "라온도서관", "UTF-8"));
+				mailHelper.setTo(to);
+				mailHelper.setSubject(title);
+				mailHelper.setText(content, true);
+
+			}
+		};
+
+		try {
+			mailSender.send(preparator);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/admin/overdueList.do";
+
 	}
 }
