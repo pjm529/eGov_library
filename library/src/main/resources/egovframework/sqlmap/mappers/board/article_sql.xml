@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Article">
+
+	<resultMap id="articleMap" type="ArticleVO">
+		<id column="article_no"				property="articleNo" />
+		<result column="article_title"		property="articleTitle" />
+		<result column="article_content"	property="articleContent" />
+		<result column="writer_id"	 		property="writerId" />
+		<result column="writer_name"	 	property="writerName" />
+		<result column="article_reg_date" 	property="articleRegDate" />
+		<result column="article_views" 		property="articleViews" />
+	</resultMap> 
+
+</mapper>
