@@ -114,7 +114,7 @@ public class ArticleController {
 
 		String userId = principal.getName();
 		article.setWriterId(userId);
-		
+
 		String keyword;
 		int amount = cri.getAmount();
 		int page = cri.getPage();
@@ -129,7 +129,28 @@ public class ArticleController {
 
 		articleService.articleModify(article);
 
-		return "redirect:/board/articleContent.do?page=" + page + "&amount=" + amount + "&type=" + type
-				+ "&keyword=" + keyword + "&articleNo=" + articleNo; // 리다이렉트할때는 위에 매핑주소를 따라간다.
+		return "redirect:/board/articleContent.do?page=" + page + "&amount=" + amount + "&type=" + type + "&keyword="
+				+ keyword + "&articleNo=" + articleNo; // 리다이렉트할때는 위에 매핑주소를 따라간다.
+	}
+
+	// 게시글 삭제
+	@PostMapping("/articleDelete.do")
+	public String articleDelete(Criteria cri, @RequestParam int articleNo) {
+
+		articleService.deleteArticle(articleNo);
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/articleList.do";
+		}
+
+		return "redirect:/board/articleList.do?page=" + page + "&amount=" + amount + "&type=" + type + "&keyword="
+				+ keyword; // 리다이렉트할때는 위에 매핑주소를 따라간다.
 	}
 }

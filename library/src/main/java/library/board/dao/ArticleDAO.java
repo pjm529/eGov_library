@@ -30,4 +30,7 @@ public interface ArticleDAO {
 	
 	// 게시글 수정
 	public void articleModify(ArticleVO article);
+	
+	// 게시글 삭제
+	public void deleteArticle(int articleNo);
 }

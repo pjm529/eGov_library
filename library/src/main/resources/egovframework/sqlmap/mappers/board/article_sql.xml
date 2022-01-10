@@ -108,8 +108,19 @@
 			WHERE
 				article_no = #{articleNo}		
 		]]>
-		
 	</update>  
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteArticle" parameterType="int">
+		<![CDATA[
+			DELETE
+			FROM
+				article
+			WHERE
+				article_no = #{articleNo}
+		]]>
+	</delete>
+	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
            <if test="type != null">

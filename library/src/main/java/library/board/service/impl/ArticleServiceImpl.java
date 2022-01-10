@@ -64,4 +64,10 @@ public class ArticleServiceImpl implements ArticleService {
 		articleDAO.articleModify(article);
 	}
 
+	// 게시글 삭제
+	@Override
+	public void deleteArticle(int articleNo) {
+		articleDAO.deleteArticle(articleNo);
+	}
+
 }
