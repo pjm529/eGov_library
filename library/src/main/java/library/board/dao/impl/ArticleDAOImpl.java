@@ -66,4 +66,10 @@ public class ArticleDAOImpl extends EgovAbstractMapper implements ArticleDAO {
 		delete("Article.deleteArticle", articleNo);
 	}
 
+	// 게시글 번호 정렬
+	@Override
+	public void resetNo() {
+		selectOne("Article.resetNo");
+	}
+
 }

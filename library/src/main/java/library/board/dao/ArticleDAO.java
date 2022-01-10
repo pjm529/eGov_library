@@ -33,4 +33,7 @@ public interface ArticleDAO {
 	
 	// 게시글 삭제
 	public void deleteArticle(int articleNo);
+	
+	// 게시글 번호 정렬
+	public void resetNo();
 }

@@ -121,6 +121,12 @@
 		]]>
 	</delete>
 	
+	<select id="resetNo" statementType="CALLABLE">
+    	<![CDATA[
+    		CALL article_reset()
+    	]]>
+    </select>
+	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
            <if test="type != null">
