@@ -64,7 +64,7 @@ public class AdminCalendarController {
 
 	// 일정 추가
 	@PostMapping("/calInsert.do")
-	public String calendarInsert(CalendarVO cal, Principal principal) {
+	public String calendarInsert(@ModelAttribute CalendarVO cal, Principal principal) {
 
 		String userId = principal.getName();
 
@@ -77,5 +77,15 @@ public class AdminCalendarController {
 		calendarService.insertCalendar(cal);
 
 		return "redirect:/admin/calPopUp.do";
+	}
+
+	// 일정 삭제
+	@PostMapping("/calDelete.do")
+	public String calendarDel(@ModelAttribute CalendarVO cal, @ModelAttribute DateVO date) {
+
+		// 일정삭제
+		calendarService.deleteCalendar(cal.getCalNo());
+
+		return "redirect:/admin/calendarList.do?year=" + date.getYear() + "&month=" + date.getMonth();
 	}
 }

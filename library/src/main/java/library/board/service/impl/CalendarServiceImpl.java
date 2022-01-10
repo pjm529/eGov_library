@@ -28,9 +28,16 @@ public class CalendarServiceImpl implements CalendarService {
 		return calendarDAO.calendarListYM(date);
 	}
 
+	// 일정 추가
 	@Override
 	public void insertCalendar(CalendarVO cal) {
 		calendarDAO.insertCalendar(cal);
+	}
+
+	// 일정 삭제
+	@Override
+	public void deleteCalendar(int calNo) {
+		calendarDAO.deleteCalendar(calNo);
 	}
 
 }

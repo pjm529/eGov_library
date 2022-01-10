@@ -48,4 +48,15 @@
 			VALUES(null, 1, #{userId}, #{title}, #{start}, #{end}, 1, #{textColor}, "none", "none", current_timestamp);
 		]]> 
 	</insert>
+	
+	<!-- 일정 삭제 -->
+	<delete id="deleteCalendar" parameterType="int">
+		<![CDATA[
+			DELETE
+			FROM 
+				calendar
+			WHERE
+				cal_no = #{calNo};
+		]]>
+	</delete>
 </mapper>

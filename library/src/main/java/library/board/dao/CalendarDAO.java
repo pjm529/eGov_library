@@ -15,4 +15,7 @@ public interface CalendarDAO {
 	
 	// 일정 추가
 	public void insertCalendar(CalendarVO cal);
+	
+	// 일정 삭제
+	public void deleteCalendar(int calNo);
 }

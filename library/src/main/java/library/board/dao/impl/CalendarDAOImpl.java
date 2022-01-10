@@ -30,4 +30,10 @@ public class CalendarDAOImpl extends EgovAbstractMapper implements CalendarDAO {
 		insert("Calendar.insertCalendar", cal);
 	}
 
+	// 일정 삭제
+	@Override
+	public void deleteCalendar(int calNo) {
+		delete("Calendar.deleteCalendar", calNo);
+	}
+
 }
