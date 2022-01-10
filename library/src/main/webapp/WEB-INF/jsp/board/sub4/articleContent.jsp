@@ -60,7 +60,7 @@
                                         <!-- 제목 -->
                                         <tr>
                                             <td class="bbs-title" colspan="6">
-                                                <b>${article.articleTitle}</b>
+                                                <b><c:out value="${article.articleTitle}"/></b> 
                                             </td>
                                         </tr>
 
@@ -106,7 +106,7 @@
                                             <c:if test="${articlePre.articleNo != null}">
                                                 <td class="td2">
                                                     <input type="hidden" value="${articlePre.articleNo}">
-                                                    <a href="${articlePre.articleNo}">${articlePre.articleTitle}</a>
+                                                    <a href="${articlePre.articleNo}"><c:out value="${articlePre.articleTitle}"/></a>
                                                 </td>
                                             </c:if>
 
@@ -125,7 +125,7 @@
                                             <c:if test="${articleNext.articleNo != null}">
                                                 <td class="td2">
                                                     <input type="hidden" value="${articleNext.articleNo}">
-                                                    <a href="${articleNext.articleNo}">${articleNext.articleTitle}</a>
+                                                    <a href="${articleNext.articleNo}"><c:out value="${articleNext.articleTitle}"/></a>
                                                 </td>
                                             </c:if>
 

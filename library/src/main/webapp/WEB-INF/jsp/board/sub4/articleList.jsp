@@ -117,7 +117,7 @@
                                             <td class="left articleContent" style="padding-left: 15px;">
                                             	<div class="hide">
 	                                            	<a href="${articleList.articleNo}">
-	                                            		${articleList.articleTitle}
+	                                            		<c:out value="${articleList.articleTitle}"/>
 	                                            	</a>
                                             	</div>
                                             </td>
