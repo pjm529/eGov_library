@@ -36,8 +36,6 @@ public class CalendarController {
 
 		List<CalendarVO> calendarList = calendarService.calendarList();
 
-		System.out.println(calendarList);
-
 		mav.setViewName("jsonView");
 		mav.addObject(calendarList);
 

@@ -59,8 +59,6 @@ public class ArticleController {
 
 		article.setWriterId(userId);
 
-		System.out.println(article);
-
 		articleService.insertArticle(article);
 
 		return "redirect:/board/articleList.do";
