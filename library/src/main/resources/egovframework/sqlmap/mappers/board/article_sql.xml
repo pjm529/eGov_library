@@ -12,4 +12,51 @@
 		<result column="article_views" 		property="articleViews" />
 	</resultMap> 
 
+	<!-- 분실물 찾기 게시글 리스트 -->
+	<select id="articleList" parameterType="Criteria" resultMap="articleMap">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				article
+		]]>
+			<include refid="criteria" /> 
+		<![CDATA[
+			ORDER BY article_no DESC 
+			LIMIT #{skip}, #{amount}
+		]]>
+	</select>
+	
+	<!-- 게시글 수 -->
+	<select id="articleTotal" parameterType="Criteria" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM
+				article
+		]]>
+			<include refid="criteria" />			
+	</select>
+	
+	<!-- 페이징 및 검색 조건문 -->
+	<sql id="criteria">
+           <if test="type != null">
+              <if test="keyword != null">
+              
+                 <if test="type == 'title'">
+                    WHERE article_title LIKE CONCAT('%', #{keyword}, '%')
+                 </if>
+                 
+                 <if test="type == 'content'">
+                    WHERE article_content LIKE CONCAT('%', #{keyword}, '%')
+                 </if>
+                                 
+                 <if test="type == 'TC'">
+                 	WHERE article_title LIKE CONCAT('%', #{keyword}, '%') OR 
+                 	article_content LIKE CONCAT('%', #{keyword}, '%')          
+                 </if>
+                 
+            </if>
+         </if>
+     </sql>
 </mapper>
