@@ -54,7 +54,7 @@
 
                             <!-- 테이블 -->
                             <div class="table-wrap">
-                                <form action="/board/articleModify" method="post" role="form" onsubmit="return false;">
+                                <form action="${pageContext.request.contextPath}/board/articleModify.do" method="post" role="form" onsubmit="return false;">
                                     <input id="article_no" type="hidden" name="articleNo" value="${article.articleNo}">
                                     <input type="hidden" name="amount" value="${cri.amount}">
                                     <input type="hidden" name="page" value="${cri.page}">
@@ -67,7 +67,7 @@
                                                 <th class="first">제목</th>
                                                 <td colspan="3">
                                                     <input type="text" style="width: 80%; height: 27px;" id="article_title"
-                                                        name="article_title" value="${article.articleTitle}" autocomplete="off"
+                                                        name="articleTitle" value="${article.articleTitle}" autocomplete="off"
                                                          maxlength="50">
                                                 </td>
                                             </tr>

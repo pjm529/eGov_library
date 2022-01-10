@@ -58,4 +58,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDAO.articleNextContent(articleNo);
 	}
 
+	// 게시글 수정
+	@Override
+	public void articleModify(ArticleVO article) {
+		articleDAO.articleModify(article);
+	}
+
 }

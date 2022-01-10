@@ -1,5 +1,7 @@
 package library.board.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
 
@@ -104,5 +106,30 @@ public class ArticleController {
 
 		return mav;
 
+	}
+
+	// 게시글 수정
+	@PostMapping("/articleModify.do")
+	public String articleModify(@ModelAttribute ArticleVO article, @ModelAttribute Criteria cri, Principal principal) {
+
+		String userId = principal.getName();
+		article.setWriterId(userId);
+		
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+		long articleNo = article.getArticleNo();
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/articleList.do";
+		}
+
+		articleService.articleModify(article);
+
+		return "redirect:/board/articleContent.do?page=" + page + "&amount=" + amount + "&type=" + type
+				+ "&keyword=" + keyword + "&articleNo=" + articleNo; // 리다이렉트할때는 위에 매핑주소를 따라간다.
 	}
 }

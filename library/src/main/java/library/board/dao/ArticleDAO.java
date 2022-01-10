@@ -27,4 +27,7 @@ public interface ArticleDAO {
 
 	// 다음글 조회
 	public ArticleVO articleNextContent(int articleNo);
+	
+	// 게시글 수정
+	public void articleModify(ArticleVO article);
 }

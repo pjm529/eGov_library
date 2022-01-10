@@ -95,6 +95,21 @@
 		]]>
 	</select>
 	
+	<!-- 게시글 수정 -->
+	<update id="modifyArticle" parameterType="ArticleVO">
+		<![CDATA[
+			UPDATE
+				article 
+			SET 
+				article_title = #{articleTitle}, 
+				article_content = #{articleContent},
+				writer_id = #{writerId},
+				article_modify_date = current_timestamp()
+			WHERE
+				article_no = #{articleNo}		
+		]]>
+		
+	</update>  
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
            <if test="type != null">
