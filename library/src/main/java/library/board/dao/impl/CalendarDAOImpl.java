@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 import library.board.dao.CalendarDAO;
 import library.board.domain.CalendarVO;
+import library.common.domain.DateVO;
 
 @Repository
 public class CalendarDAOImpl extends EgovAbstractMapper implements CalendarDAO {
@@ -15,6 +16,12 @@ public class CalendarDAOImpl extends EgovAbstractMapper implements CalendarDAO {
 	@Override
 	public List<CalendarVO> calendarList() {
 		return selectList("Calendar.calendarList");
+	}
+
+	// Admin 메뉴 일정 리스트 출력
+	@Override
+	public List<CalendarVO> calendarListYM(DateVO date) {
+		return selectList("Calendar.calendarListYM", date);
 	}
 
 }

@@ -77,7 +77,7 @@
                             <!-- 테이블 -->
                             
                             <div class="table-wrap">
-                            	<c:if test="${not empty CalendarList }">
+                            	<c:if test="${not empty calendarList }">
                                 <table>
                                     <thead>
                                         <tr>
@@ -90,7 +90,7 @@
                                     </thead>
                                     <tbody>
 
-                                        <c:forEach var="list" items="${CalendarList}">
+                                        <c:forEach var="list" items="${calendarList}">
                                             <tr>
                                                 <td class="">${list.userId }</td>
                                                 <td>${list.start}</td>
@@ -113,7 +113,7 @@
                                 </table>
                                 </c:if>
                                 
-                                <c:if test="${empty CalendarList }">
+                                <c:if test="${empty calendarList }">
                                 <br>
                                 <h2>등록 된 일정이 없습니다.</h2>
                                 </c:if>

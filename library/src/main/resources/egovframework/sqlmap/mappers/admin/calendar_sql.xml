@@ -25,4 +25,18 @@
 				calendar
 		]]>
 	</select>
+	
+	<!-- 일정 조건 검색 -->
+	<select id="calendarListYM" parameterType="DateVO" resultMap="calendarMap">
+		<![CDATA[
+			SELECT 
+				* 
+			FROM
+				calendar
+			WHERE
+				start BETWEEN CONCAT(#{year}, '-', #{month}, '-01') AND CONCAT(#{year}, '-', #{month}, '-31' )
+		 	ORDER BY
+		 		START
+		]]>
+	</select>
 </mapper>
