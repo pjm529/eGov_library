@@ -74,7 +74,7 @@ public class HTMLTagFilter implements Filter {
 		String path = req.getContextPath();
 		String uri = req.getRequestURI().toString().trim();
 		
-		if (uri.startsWith(path + "/board/article")) {
+		if (uri.startsWith(path + "/board/")) {
 			return true;
 		} else {
 			return false;
