@@ -68,7 +68,6 @@
                                     		</option>
                                     	</c:forEach>
                                     </select>
-                                    <input type="hidden" name="page" value="1">
                                     <button class="btn">이동</button>
                                 </form>
 
