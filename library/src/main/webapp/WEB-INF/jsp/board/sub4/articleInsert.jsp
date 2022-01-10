@@ -116,8 +116,15 @@
 	<!-- footer -->
     <jsp:include page="../../layout/footer.jsp"></jsp:include>
     
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
+    
 <script>
     $(document).ready(function (e) {
+    	
+    	CKEDITOR.replace('popContent', {
+            filebrowserImageUploadUrl: "/upload.do?boardName=article",
+            height: 500
+        });
 
         $(".sub4").addClass("active");
         
