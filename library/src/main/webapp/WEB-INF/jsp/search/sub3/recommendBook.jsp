@@ -89,15 +89,15 @@
                                 <c:forEach var="list" items="${list}">
                                     <div class="row">
                                         <div class="thumb">
-                                        	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?year=${date.year}&month=${date.month}&page=${page.cri.page}&recNo=${list.recNo}"">
+                                        	<a href="${list.recNo}">
                                             <img src="${list.bookCover}" style="width: 118px;" title="${list.bookTitle}">
                                             </a>
                                         </div>
 
                                         <div class="book_info">
                                             <ul>
-                                                <li>
-                                                	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?&year=${date.year}&month=${date.month}&page=${page.cri.page}&recNo=${list.recNo}">
+                                                <li class="title">
+                                                	<a href="${list.recNo}">
                                                     <h3 class="hide" title="${list.bookTitle}">${list.bookTitle} </h3>
                                                     </a>
                                                 <li>
@@ -148,6 +148,13 @@
         <input type="hidden" name="month" value="${date.month }">
         <input type="hidden" name="page" value="${page.cri.page }">
     </form>
+    
+    <form action="${pageContext.request.contextPath}/search/recommendBookDetail.do" method="get" class="moveForm2">
+		<input type="hidden" name="year" value="${date.year }">
+		<input type="hidden" name="month" value="${date.month }">
+		<input type="hidden" name="page" value="${page.cri.page }">
+		<input type="hidden" name="recNo" value="">
+	</form>
 
 	<br><br><br>
     <!-- footer -->
@@ -157,6 +164,7 @@
             $(".sub3").addClass("active");
 
             let moveForm = $(".moveForm");
+            let moveForm2 = $(".moveForm2");
 
             $(".pageInfo a").on("click", function (e) {
                 e.preventDefault();
@@ -164,6 +172,13 @@
                 moveForm.submit();
 
             });
+            
+            $(".thumb a, .title a").on("click", function(e) {
+				e.preventDefault();
+				moveForm2.find("input[name = 'recNo']").val($(this).attr("href"));
+				moveForm2.submit();
+   	         
+   	      	}); 
             
 			$('.add_btn').on("click",function(e){
 				
