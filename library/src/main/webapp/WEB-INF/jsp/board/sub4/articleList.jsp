@@ -134,7 +134,7 @@
             
                              <!-- 글쓰기 btn --> 
                              <sec:authorize access="hasRole('ROLE_ADMIN')">
-                             <button class="write_btn" onclick="location.href='${pageContext.request.contextPath}/board/articleInsertForm.do'" 
+                             <button class="write_btn" onclick="location.href='${pageContext.request.contextPath}/board/articleInsertPage.do'" 
                              	style="cursor: pointer">글쓰기</button>
                              </sec:authorize>
                              

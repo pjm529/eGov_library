@@ -20,7 +20,8 @@ public class ArticleController {
 
 	@Autowired
 	private ArticleService articleService;
-	
+
+	// 분실물 찾기 게시글 목록
 	@GetMapping("/articleList")
 	public ModelAndView articleList(@ModelAttribute Criteria cri) {
 
@@ -30,12 +31,18 @@ public class ArticleController {
 
 		int total = articleService.articleTotal(cri);
 		mav.addObject("total", total);
-		
+
 		ViewPage vp = new ViewPage(cri, total);
 		mav.addObject("page", vp);
 
 		return mav;
 
+	}
+
+	// 게시글 등록 페이지
+	@GetMapping("/articleInsertPage.do")
+	public String goArticleInsert() {
+		return "board/sub4/articleInsert.jsp";
 	}
 
 }
