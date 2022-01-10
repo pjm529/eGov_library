@@ -67,8 +67,8 @@
                                                 <th class="first">제목</th>
                                                 <td colspan="3">
                                                     <input type="text" style="width: 80%; height: 27px;" id="article_title"
-                                                        name="articleTitle" value="${article.articleTitle}" autocomplete="off"
-                                                         maxlength="50">
+                                                        name="articleTitle" autocomplete="off" maxlength="50" 
+                                                        value="<c:out value='${article.articleTitle}'/>">
                                                 </td>
                                             </tr>
                                             <tr>
