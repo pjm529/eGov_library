@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.board.domain.ArticleVO;
@@ -47,6 +48,7 @@ public class ArticleController {
 		return "board/sub4/articleInsert.jsp";
 	}
 
+	// 게시글 등록
 	@PostMapping("/articleInsert.do")
 	public String articleInsert(@ModelAttribute ArticleVO article, Principal principal) {
 
@@ -58,5 +60,14 @@ public class ArticleController {
 		articleService.insertArticle(article);
 
 		return "redirect:/board/articleList.do";
+	}
+
+	// 게시글 본문
+	@GetMapping("/articleContent.do")
+	public String articleContent() {
+
+
+		return "board/sub4/articleContent.jsp";
+
 	}
 }
