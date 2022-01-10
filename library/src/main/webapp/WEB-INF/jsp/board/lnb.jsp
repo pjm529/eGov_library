@@ -8,7 +8,7 @@
             <a href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a>
         </li>
         <li class="sub2">
-            <a href="${pageContext.request.contextPath}/board/faq.do">자주묻는질문</a>
+            <a href="${pageContext.request.contextPath}/board/FAQ.do">자주묻는질문</a>
         </li>
         <li class="sub3">
             <a href="${pageContext.request.contextPath}/board/qnaBoardList.do">묻고답하기</a>

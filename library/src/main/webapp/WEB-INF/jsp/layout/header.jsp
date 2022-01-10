@@ -72,7 +72,7 @@
 	<div class="header_submenu header_sub3">
 	    <ul class="header_submenu3">
 	        <li><span><a href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a></span></li>
-	        <li><span><a href="${pageContext.request.contextPath}/board/faq.do">자주묻는질문</a></span></li>
+	        <li><span><a href="${pageContext.request.contextPath}/board/FAQ.do">자주묻는질문</a></span></li>
 	        <li><span><a href="${pageContext.request.contextPath}/board/qnaBoardList.do">묻고답하기</a></span></li>
 	        <li><span><a href="${pageContext.request.contextPath}/board/articleList.do">분실물찾기</a></span></li>
 	        <li><span><a href="${pageContext.request.contextPath}/board/calendar.do">도서관일정</a></span></li>

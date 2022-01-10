@@ -94,7 +94,7 @@
                             <ul class="sub-menu sm03">
                                 <li>
                                     <a class="" href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a>
-                                    <a class="" href="${pageContext.request.contextPath}/board/faq.do">자주묻는질문</a>
+                                    <a class="" href="${pageContext.request.contextPath}/board/FAQ.do">자주묻는질문</a>
                                     <a class="" href="${pageContext.request.contextPath}/board/qnaBoardList.do">묻고답하기</a>
                                     <a class="" href="${pageContext.request.contextPath}/board/articleList.do">분실물찾기</a>
                                     <a class="" href="${pageContext.request.contextPath}/board/calendar.do">도서관일정</a>
