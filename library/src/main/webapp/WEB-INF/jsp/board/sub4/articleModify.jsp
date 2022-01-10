@@ -88,7 +88,7 @@
                                             <tr>
                                                 <td colspan="4" style="padding: 8px 0px;">
                                                     <textarea id="popContent" name="articleContent">
-                                                    ${article.articleContent}</textarea>
+                                                    <c:out value='${article.articleContent}'/></textarea>
                                                 </td>
                                             </tr>
 
