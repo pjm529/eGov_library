@@ -71,6 +71,30 @@
 		]]>
 	</select>
 	
+	<!-- 게시물 상세보기 이전글 -->
+	<select id="articlePreContent" parameterType="int" resultMap="articleMap">
+		<![CDATA[
+			SELECT
+				* 
+			FROM
+				article 
+			WHERE 
+				article_no = (#{articleNo}-1)
+		]]>
+	</select>
+	
+	<!-- 게시물 상세보기 다음글 -->
+	<select id="articleNextContent" parameterType="int" resultMap="articleMap">
+		<![CDATA[
+			SELECT
+				* 
+			FROM
+				article 
+			WHERE 
+				article_no = (#{articleNo}+1)
+		]]>
+	</select>
+	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
            <if test="type != null">

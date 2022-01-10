@@ -21,4 +21,10 @@ public interface ArticleService {
 
 	// 게시글 조회
 	public ArticleVO articleContent(int articleNo);
+
+	// 이전글 조회
+	public ArticleVO articlePreContent(int articleNo);
+
+	// 다음글 조회
+	public ArticleVO articleNextContent(int articleNo);
 }

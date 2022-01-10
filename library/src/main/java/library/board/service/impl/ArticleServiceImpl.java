@@ -46,4 +46,16 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDAO.articleContent(articleNo);
 	}
 
+	// 이전 글 조회
+	@Override
+	public ArticleVO articlePreContent(int articleNo) {
+		return articleDAO.articlePreContent(articleNo);
+	}
+
+	// 다음 글 조회
+	@Override
+	public ArticleVO articleNextContent(int articleNo) {
+		return articleDAO.articleNextContent(articleNo);
+	}
+
 }
