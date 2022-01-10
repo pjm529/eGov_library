@@ -9,5 +9,6 @@
 		<typeAlias alias="DateVO" type="library.common.domain.DateVO" />
 		<typeAlias alias="Criteria" type="library.common.page.Criteria" />
 		<typeAlias alias="CalendarVO" type="library.board.domain.CalendarVO" />
+		<typeAlias alias="ArticleVO" type="library.board.domain.ArticleVO" />
     </typeAliases>
 </configuration>
