@@ -115,7 +115,12 @@
                                         <tr>
                                             <td class="num">${articleList.articleNo}</td>
                                             <td class="left articleContent" style="padding-left: 15px;">
-                                            	<a href="${articleList.articleNo}">${articleList.articleTitle}</a></td>
+                                            	<div class="hide">
+	                                            	<a href="${articleList.articleNo}">
+	                                            		${articleList.articleTitle}
+	                                            	</a>
+                                            	</div>
+                                            </td>
                                 			<td>관리자</td>
                                             <td>
                                                <fmt:formatDate var="articleRegDate" value="${articleList.articleRegDate}" pattern="yyyy-MM-dd"/>
