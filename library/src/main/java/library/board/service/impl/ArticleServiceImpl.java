@@ -28,4 +28,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDAO.articleTotal(cri);
 	}
 
+	// 게시글 등록
+	@Override
+	public void insertArticle(ArticleVO article) {
+		articleDAO.insertArticle(article);
+	}
+
 }

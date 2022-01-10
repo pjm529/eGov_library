@@ -13,4 +13,7 @@ public interface ArticleDAO {
 	// 게시글 수
 	public int articleTotal(Criteria cri);
 	
+	// 게시글 등록
+	public void insertArticle(ArticleVO article);
+	
 }

@@ -38,6 +38,16 @@
 			<include refid="criteria" />			
 	</select>
 	
+	<!-- 게시글 등록 -->
+	<insert id="insertArticle" parameterType="ArticleVO">
+		<![CDATA[
+			INSERT INTO
+				article(article_title, article_content, writer_id, writer_name)
+			VALUES
+				(#{articleTitle}, #{articleContent}, #{writerId}, #{writerName})
+		]]>
+	</insert>
+	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
            <if test="type != null">
