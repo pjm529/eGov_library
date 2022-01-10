@@ -89,4 +89,20 @@ public class ArticleController {
 		return mav;
 
 	}
+
+	// 게시글 수정 페이지
+	@GetMapping("/articleModifyPage.do")
+	public ModelAndView articleModifyPage(@ModelAttribute Criteria cri, @RequestParam int articleNo) {
+
+		ModelAndView mav = new ModelAndView("board/sub4/articleModify.jsp");
+
+		// 게시글 조회
+		ArticleVO article = articleService.articleContent(articleNo);
+		mav.addObject("article", article);
+
+		mav.addObject("cri", cri);
+
+		return mav;
+
+	}
 }
