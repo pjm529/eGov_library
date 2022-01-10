@@ -52,11 +52,14 @@ public class ArticleController {
 	@PostMapping("/articleInsert.do")
 	public String articleInsert(@ModelAttribute ArticleVO article, Principal principal) {
 
+		
 		// 로그인 된 user_id 받아오기
 		String userId = principal.getName();
 
 		article.setWriterId(userId);
 
+		System.out.println(article);
+		
 		articleService.insertArticle(article);
 
 		return "redirect:/board/articleList.do";
@@ -64,10 +67,17 @@ public class ArticleController {
 
 	// 게시글 본문
 	@GetMapping("/articleContent.do")
-	public String articleContent() {
+	public ModelAndView articleContent(@ModelAttribute Criteria cri, @RequestParam int articleNo) {
+		
+		ModelAndView mav = new ModelAndView("board/sub4/articleContent.jsp");
 
+		articleService.articleViewsCount(articleNo);
+		ArticleVO article = articleService.articleContent(articleNo);
 
-		return "board/sub4/articleContent.jsp";
+		mav.addObject("article", article);
+		mav.addObject("cri", cri);
+
+		return mav;
 
 	}
 }

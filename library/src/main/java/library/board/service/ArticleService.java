@@ -15,4 +15,10 @@ public interface ArticleService {
 
 	// 게시글 등록
 	public void insertArticle(ArticleVO article);
+
+	// 조회수 증가
+	public void articleViewsCount(int articleNo);
+
+	// 게시글 조회
+	public ArticleVO articleContent(int articleNo);
 }

@@ -48,6 +48,29 @@
 		]]>
 	</insert>
 	
+	<!-- 조회수 증가 -->
+	<update id="articleViewsCount" parameterType="int">
+		<![CDATA[
+			UPDATE 
+				article 
+			SET 
+				article_views = article_views + 1
+			WHERE
+				article_no = #{articleNo}
+		]]>
+	</update>
+	
+	<select id="articleContent" resultMap="articleMap">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				article
+			WHERE
+				article_no = #{articleNo}
+		]]>
+	</select>
+	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
            <if test="type != null">

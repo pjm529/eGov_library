@@ -30,4 +30,16 @@ public class ArticleDAOImpl extends EgovAbstractMapper implements ArticleDAO {
 		insert("Article.insertArticle", article);
 	}
 
+	// 조회수 증가
+	@Override
+	public void articleViewsCount(int articleNo) {
+		update("Article.articleViewsCount", articleNo);
+	}
+
+	// 게시글 조회
+	@Override
+	public ArticleVO articleContent(int articleNo) {
+		return selectOne("Article.articleContent", articleNo);
+	}
+
 }

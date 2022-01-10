@@ -34,4 +34,16 @@ public class ArticleServiceImpl implements ArticleService {
 		articleDAO.insertArticle(article);
 	}
 
+	// 조회수 증가
+	@Override
+	public void articleViewsCount(int articleNo) {
+		articleDAO.articleViewsCount(articleNo);
+	}
+
+	// 게시글 조회
+	@Override
+	public ArticleVO articleContent(int articleNo) {
+		return articleDAO.articleContent(articleNo);
+	}
+
 }

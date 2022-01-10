@@ -27,7 +27,7 @@
                     <ul>
                         <!-- 홈 btn img -->
                         <li style="background-image: none;">
-                            <a href="/board/articleList">
+                            <a href="${pageContext.request.contextPath}/board/articleList.do">
                                 <img src="${pageContext.request.contextPath}/images/common/navi_home_icon.gif">
                             </a>
                         </li>
@@ -127,7 +127,7 @@
                                                 <td class="td2">
                                                     <input type="hidden" value="${articleNext.articleNo}">
                                                     <a
-                                                        href="/board/articleContent?articleNo=${articleNext.articleNo}&amount=${cri.amount}&page=${cri.page}">${articleNext.articleTitle}</a>
+                                                        href="${pageContext.request.contextPath}/board/articleContent.do?articleNo=${articleNext.articleNo}&amount=${cri.amount}&page=${cri.page}">${articleNext.articleTitle}</a>
                                                 </td>
                                             </c:if>
 
@@ -164,7 +164,7 @@
                                     <div class="update_wrap">
 														
                                         <button class="update_btn" style="margin-right: 20px;"
-                                            onclick="location.href='${pageContext.request.contextPath}/board/articleModifyForm?articleNo=${article.articleNo}&amount=${cri.amount}&page=${cri.page}'">
+                                            onclick="location.href='${pageContext.request.contextPath}/board/articleModifyForm.do?articleNo=${article.articleNo}&amount=${cri.amount}&page=${cri.page}'">
                                             	수정하기</button>
                                     </div>
                                 </sec:authorize>
