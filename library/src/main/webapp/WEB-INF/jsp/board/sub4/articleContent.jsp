@@ -106,8 +106,7 @@
                                             <c:if test="${articlePre.articleNo != null}">
                                                 <td class="td2">
                                                     <input type="hidden" value="${articlePre.articleNo}">
-                                                    <a
-                                                        href="${pageContext.request.contextPath}/board/articleContent.do?articleNo=${articlePre.articleNo}&amount=${cri.amount}&page=${cri.page}">${articlePre.articleTitle}</a>
+                                                    <a href="${articlePre.articleNo}">${articlePre.articleTitle}</a>
                                                 </td>
                                             </c:if>
 
@@ -126,8 +125,7 @@
                                             <c:if test="${articleNext.articleNo != null}">
                                                 <td class="td2">
                                                     <input type="hidden" value="${articleNext.articleNo}">
-                                                    <a
-                                                        href="${pageContext.request.contextPath}/board/articleContent.do?articleNo=${articleNext.articleNo}&amount=${cri.amount}&page=${cri.page}">${articleNext.articleTitle}</a>
+                                                    <a href="${articleNext.articleNo}">${articleNext.articleTitle}</a>
                                                 </td>
                                             </c:if>
 
@@ -140,8 +138,8 @@
 
                                     <!-- '목록으로' 눌렀을 때 처음 봤던 게시물 해당목록 페이지로 가기 -->
                                     <form action="${pageContext.request.contextPath}/board/articleList.do" method="get">
-                                        <input type="hidden" name="amount" value="${cri.amount}">
                                         <input type="hidden" name="page" value="${cri.page}">
+                                        <input type="hidden" name="amount" value="${cri.amount}">
                                         <input type="hidden" name="type" value="${cri.type}">
                                         <input type="hidden" name="keyword" value="${cri.keyword}">
                                         <button class="list_btn">목록으로</button>
@@ -150,22 +148,26 @@
                                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                                     <div class="delete_wrap">
                                         <!-- '삭제하기' 눌렀을 때 처음 봤던 게시물 해당목록 페이지로 가기 -->
-                                        <form action="${pageContext.request.contextPath}/board/articleDelete.do" method="get"
+                                        <form action="${pageContext.request.contextPath}/board/articleDelete.do" method="post"
                                             onsubmit="return confirm('삭제하시겠습니까?');">
-                                            <input type="hidden" name="articleNo" value="${article.articleNo}">
-                                            <input type="hidden" name="amount" value="${cri.amount}">
                                             <input type="hidden" name="page" value="${cri.page}">
+                                            <input type="hidden" name="amount" value="${cri.amount}">
                                             <input type="hidden" name="type" value="${cri.type}">
                                             <input type="hidden" name="keyword" value="${cri.keyword}">
+                                            <input type="hidden" name="articleNo" value="${article.articleNo}">
                                             <button class="delete_btn">삭제하기</button>
                                         </form>
                                     </div>
 
                                     <div class="update_wrap">
-														
-                                        <button class="update_btn" style="margin-right: 20px;"
-                                            onclick="location.href='${pageContext.request.contextPath}/board/articleModifyForm.do?articleNo=${article.articleNo}&amount=${cri.amount}&page=${cri.page}'">
-                                            	수정하기</button>
+                                    	<form action="${pageContext.request.contextPath}/board/articleModifyPage.do" method="get">
+                                    		<input type="hidden" name="page" value="${cri.page}">
+                                            <input type="hidden" name="amount" value="${cri.amount}">
+                                            <input type="hidden" name="type" value="${cri.type}">
+                                            <input type="hidden" name="keyword" value="${cri.keyword}">
+                                            <input type="hidden" name="articleNo" value="${article.articleNo}">
+                                    		<button class="update_btn" style="margin-right: 20px; margin-top: 5px;">수정하기</button>
+                                    	</form>
                                     </div>
                                 </sec:authorize>
 
@@ -179,15 +181,32 @@
 
             </div>
         </div>
-    </div>
+    </div> 
     
+    <form action="" method="get" class="moveForm">
+      <input type="hidden" name="page" value="${cri.page}">
+      <input type="hidden" name="amount" value="${cri.amount}">
+      <input type="hidden" name="type" value="${cri.type}">
+      <input type="hidden" name="keyword" value="${cri.keyword}">
+      <input type="hidden" name="articleNo" value="">
+   </form>
+   
     <!-- footer -->
     <jsp:include page="../../layout/footer.jsp"></jsp:include>
 <script>
 
     $(document).ready(function () {
         $(".sub4").addClass("active");
-
+        
+        var moveForm = $(".moveForm");
+        
+        $(".td2 a").on("click", function(e) {
+	         e.preventDefault();
+	         moveForm.find("input[name = 'articleNo']").val($(this).attr("href"));
+	         moveForm.attr("action", "${pageContext.request.contextPath}/board/articleContent.do");
+	         moveForm.submit();
+	         
+	      }) 
     });
 
 </script>

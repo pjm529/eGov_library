@@ -217,18 +217,18 @@
         </div>
     </div>
 
-	<form action="/board/articleList" method="get" class="moveForm">
+	<form action="" method="get" class="moveForm">
       <input type="hidden" name="page" value="${page.cri.page}">
       <input type="hidden" name="amount" value="${page.cri.amount}">
       <input type="hidden" name="keyword" value="${page.cri.keyword}">
       <input type="hidden" name="type" value="${page.cri.type}">
    </form>
    
-   <form action="/board/articleContent" method="get" class="moveForm2">
+   <form action="" method="get" class="moveForm2">
       <input type="hidden" name="page" value="${page.cri.page}">
       <input type="hidden" name="amount" value="${page.cri.amount}">
-      <input type="hidden" name="keyword" value="${page.cri.keyword}">
       <input type="hidden" name="type" value="${page.cri.type}">
+      <input type="hidden" name="keyword" value="${page.cri.keyword}">
       <input type="hidden" name="articleNo" value="">
    </form>
    
