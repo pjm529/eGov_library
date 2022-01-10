@@ -159,7 +159,7 @@
             $('.add_btn').on("click", function (e) {
 
                 e.preventDefault();
-                let popUrl = "/admin/cal-add";
+                let popUrl = "${pageContext.request.contextPath}/admin/calPopUp.do";
                 let popOption = "width = 700px, height=250px, top=300px, scrollbars=no, resizeable=no";
                 window.open(popUrl, "일정 추가", popOption);
             });

@@ -1,0 +1,114 @@
+@charset "UTF-8";
+body{
+    width: 685px; 
+}
+
+div, li, ul{
+    margin: 0;
+    padding: 0;
+    line-height: 150%;
+    word-break: keep-all;
+    font-size: 15px;
+    font-weight: normal;
+    color: #464646;
+}
+ul{
+    text-decoration: none;
+    list-style: none;
+    padding: 0px;
+}
+
+
+/* 본문 부분 */
+.content{
+    box-sizing: border-box;
+    padding-top: 30px;
+    width: 685px;
+}
+
+
+/* 게시판 전체 wrapper */
+.wrapper-bbs {
+    font-size: 13px;
+    background: #fff;
+}
+
+
+* 회원 가입 영역 */
+
+#join_form{
+    margin: 0 auto;
+}
+
+table{
+    border-top: none;
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: inherit;
+    word-break: break-all;
+    
+}
+
+table tbody th, table tbody td{
+    padding: 6px 15px;
+}
+
+th{
+    background: #f8f8f8;
+}
+
+th, td{
+    border: 1px solid #e5e8eb;
+    vertical-align: middle;
+}
+
+.first{
+    width: 20%; 
+    text-align: left;
+    font-weight: normal;
+    border-left: none;
+}
+
+.last{
+    border-right: none;
+}
+
+input{
+    height: 31px !important;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #fafafa;
+    line-height: 27px;
+    height: 27px;
+    padding: 0 5px;
+    vertical-align: middle;
+}
+
+input:focus{
+    outline: none;
+}
+.join_button{
+	width: 50px; 
+    float: right;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: #266ac4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.join_button:focus, .join_button:active{
+    border: none; box-shadow: none;
+
+}
+.join_button:hover{
+    background-color: #215aa3;
+}
+
+

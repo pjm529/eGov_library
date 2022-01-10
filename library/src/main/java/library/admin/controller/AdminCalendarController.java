@@ -17,7 +17,7 @@ import library.common.util.DateUtil;
 @Controller
 @RequestMapping("/admin")
 public class AdminCalendarController {
-	
+
 	@Autowired
 	private CalendarService calendarService;
 
@@ -52,5 +52,11 @@ public class AdminCalendarController {
 		mav.addObject("date", date);
 
 		return mav;
+	}
+
+	// 일정 추가 팝업 (get)
+	@GetMapping("/calPopUp.do")
+	public String calendarPopUp() {
+		return "admin/sub4/calPopUp.jsp";
 	}
 }
