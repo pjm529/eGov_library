@@ -1,11 +1,13 @@
 package library.admin.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,5 +60,22 @@ public class AdminCalendarController {
 	@GetMapping("/calPopUp.do")
 	public String calendarPopUp() {
 		return "admin/sub4/calPopUp.jsp";
+	}
+
+	// 일정 추가
+	@PostMapping("/calInsert.do")
+	public String calendarInsert(CalendarVO cal, Principal principal) {
+
+		String userId = principal.getName();
+
+		cal.setUserId(userId);
+
+		// 종료일을 시작일과 같게
+		cal.setEnd(cal.getStart());
+
+		// 일정 추가
+		calendarService.insertCalendar(cal);
+
+		return "redirect:/admin/calPopUp.do";
 	}
 }

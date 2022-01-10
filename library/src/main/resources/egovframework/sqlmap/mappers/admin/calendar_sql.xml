@@ -39,4 +39,13 @@
 		 		START
 		]]>
 	</select>
+	
+	<!-- 일정 등록 -->
+	<insert id="insertCalendar" parameterType="CalendarVO">
+		<![CDATA[
+			INSERT INTO
+				calendar 
+			VALUES(null, 1, #{userId}, #{title}, #{start}, #{end}, 1, #{textColor}, "none", "none", current_timestamp);
+		]]> 
+	</insert>
 </mapper>

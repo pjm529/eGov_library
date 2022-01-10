@@ -28,4 +28,9 @@ public class CalendarServiceImpl implements CalendarService {
 		return calendarDAO.calendarListYM(date);
 	}
 
+	@Override
+	public void insertCalendar(CalendarVO cal) {
+		calendarDAO.insertCalendar(cal);
+	}
+
 }

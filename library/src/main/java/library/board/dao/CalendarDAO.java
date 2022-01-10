@@ -12,4 +12,7 @@ public interface CalendarDAO {
 	
 	// Admin 메뉴 일정 리스트 출력
 	public List<CalendarVO> calendarListYM(DateVO date);
+	
+	// 일정 추가
+	public void insertCalendar(CalendarVO cal);
 }

@@ -24,4 +24,10 @@ public class CalendarDAOImpl extends EgovAbstractMapper implements CalendarDAO {
 		return selectList("Calendar.calendarListYM", date);
 	}
 
+	// 일정 추가
+	@Override
+	public void insertCalendar(CalendarVO cal) {
+		insert("Calendar.insertCalendar", cal);
+	}
+
 }
