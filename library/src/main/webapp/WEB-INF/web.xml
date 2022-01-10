@@ -20,7 +20,7 @@
     
 	<filter>
 		<filter-name>HTMLTagFilter</filter-name>
-		<filter-class>egovframework.rte.ptl.mvc.filter.HTMLTagFilter</filter-class>
+		<filter-class>library.common.filter.HTMLTagFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>HTMLTagFilter</filter-name>
