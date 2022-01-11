@@ -1,11 +1,14 @@
 package library.board.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -71,5 +74,28 @@ public class AnswerController {
 		mav.addObject("cri", cri);
 
 		return mav;
+	}
+
+	// 답글 등록 
+	@PostMapping("/answerWrite.do")
+	public String answerWrite(@ModelAttribute AnswerVO answer, @ModelAttribute Criteria cri, Principal principal) {
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+
+		// 작성자 ID 설정
+		answer.setAWriterId(principal.getName());
+		answerService.insertAnswer(answer);
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/qnaBoardList.do";
+		}
+
+		return "redirect:/board/qnaBoardList.do?amount=" + amount + "&page=" + page + "&keyword=" + keyword + "&type="
+				+ type;
 	}
 }

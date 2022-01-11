@@ -21,4 +21,10 @@ public class AnswerDAOImpl extends EgovAbstractMapper implements AnswerDAO {
 		update("Answer.updateView", answerNo);
 	}
 
+	// 답변작성
+	@Override
+	public void insertAnswer(AnswerVO answer) {
+		insert("Answer.insertAnswer", answer);
+	}
+
 }

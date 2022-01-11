@@ -25,4 +25,10 @@ public class AnswerServiceImpl implements AnswerService {
 		answerDAO.updateView(answerNo);
 	}
 
+	// 답변 작성
+	@Override
+	public void insertAnswer(AnswerVO answer) {
+		answerDAO.insertAnswer(answer);
+	}
+
 }

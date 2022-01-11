@@ -38,5 +38,15 @@
 				answer_no = #{answerNo}
 		]]>
 	</update>	
+	
+	<!-- 답변 등록 -->
+	<insert id="insertAnswer" parameterType="AnswerVO">
+		<![CDATA[
+			INSERT INTO
+				answer(enquiry_no, answer_title, answer_content, a_writer_id, a_writer_name)
+			VALUES
+				(#{enquiryNo}, #{answerTitle}, #{answerContent}, #{aWriterId}, #{aWriterName})
+		]]>
+	</insert>
 
 </mapper>
