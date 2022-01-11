@@ -132,8 +132,9 @@
                                             <td>${eBod.enquiryHits}</td>
                                         </tr>
                                         
-                                        <c:if test="${eBod.answerList != null}">
+                                        
                                         <c:forEach var="answerList" items="${eBod.answerList}">
+                                        <c:if test="${answerList.answerTitle != null}">
                                         <tr>
                                             <td class="num"><input type="hidden" value="${answerList.answerNo}"></td>
                                             <td class="left answerContentGo" style="padding-left: 15px;">
@@ -153,8 +154,9 @@
                                             <td>${answerList.answerHits}</td>
                                             
                                         </tr>
-                                        </c:forEach>
                                         </c:if>
+                                        </c:forEach>
+                                        
                                     </c:forEach>   
                                     </tbody>
                                 </table>
