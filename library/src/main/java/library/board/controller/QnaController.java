@@ -1,6 +1,11 @@
 package library.board.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +28,7 @@ public class QnaController {
 
 	@Autowired
 	private QnaService qnaService;
-	
+
 	@Autowired
 	private AnswerService answerService;
 
@@ -49,12 +54,38 @@ public class QnaController {
 
 	// 게시물 본문
 	@GetMapping("/enquiryContent.do")
-	public ModelAndView enquiryContent(@RequestParam long enquiryNo, @ModelAttribute Criteria cri) {
+	public ModelAndView enquiryContent(@RequestParam long enquiryNo, @ModelAttribute Criteria cri, Principal principal,
+			HttpServletResponse response) {
 
 		ModelAndView mav = new ModelAndView("board/sub3/enquiryContent.jsp");
 
+		response.setContentType("text/html; charset=UTF-8");
+
 		// 문의사항 게시글 내용
 		EnquiryVO enquiry = qnaService.enquiryContent(enquiryNo);
+
+		// 문의사항 작성자 ID
+		String writerId = enquiry.getWriterId();
+
+		// 로그인 된 아이디
+		String loginId = principal.getName();
+
+		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우
+		if (!writerId.equals(loginId)) {
+
+			try {
+
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('게시글의 작성자만 확인할 수 있습니다.'); history.back();</script>");
+				out.flush();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+		
+		
 		mav.addObject("enquiry", enquiry);
 
 		// 조회수 증가
@@ -70,13 +101,13 @@ public class QnaController {
 	// 답글 게시물 본문
 	@GetMapping("/answerContent.do")
 	public ModelAndView answerContent(@RequestParam long answerNo, @ModelAttribute Criteria cri) {
-		
+
 		ModelAndView mav = new ModelAndView("board/sub3/answerContent.jsp");
 
 		// 답변 내용
 		AnswerVO answer = answerService.answerContent(answerNo);
 		mav.addObject("answer", answer);
-		
+
 		answerService.updateView(answerNo);
 		mav.addObject("cri", cri);
 
