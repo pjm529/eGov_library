@@ -64,7 +64,7 @@
                                         <tr>
                                             <td class="bbs-title" colspan="6">
                                             	<div style="width: 970px; height:auto; white-space: normal;">
-													<b>${answer.answerTitle}</b>
+													<b><c:out value="${answer.answerTitle}"/></b> 
                                             	</div> 
                                             </td>
                                         </tr>
