@@ -86,14 +86,10 @@ public class BookController {
 
 	// 도서 상세페이지
 	@GetMapping("/bookDetail.do")
-	public ModelAndView bookDetail(@ModelAttribute Criteria cri, @RequestParam String bookIsbn,
-			HttpServletResponse response) {
+	public ModelAndView bookDetail(@ModelAttribute Criteria cri, @RequestParam String bookIsbn) {
 
 		ModelAndView mav = new ModelAndView("search/sub1/bookDetail.jsp");
-		response.setContentType("text/html; charset=UTF-8");
 		try {
-
-			PrintWriter out = response.getWriter();
 
 			// isbn이 null이 아닐 때
 			if (bookIsbn != null && !bookIsbn.equals("")) {
@@ -110,13 +106,13 @@ public class BookController {
 					mav.addObject("book", book);
 
 				} else {
-					out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
-					out.flush();
+					mav = new ModelAndView("error/accessError.jsp");
+					return mav;
 				}
 
 			} else {
-				out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
-				out.flush();
+				mav = new ModelAndView("error/accessError.jsp");
+				return mav;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -230,8 +226,8 @@ public class BookController {
 
 		} else if (detail.equals("rec")) {
 
-			return "redirect:/search/recommendBookDetail.do?year=" + date.getYear()
-					+ "&month=" + date.getMonth() + "&page=" + cri.getPage() + "&recNo=" + book.getRecNo();
+			return "redirect:/search/recommendBookDetail.do?year=" + date.getYear() + "&month=" + date.getMonth()
+					+ "&page=" + cri.getPage() + "&recNo=" + book.getRecNo();
 
 		} else {
 			return "redirect:/search/bookDetail.do?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&type="
@@ -273,16 +269,11 @@ public class BookController {
 
 	// 대출베스트 책 상세내용
 	@GetMapping("/bestBookDetail.do")
-	public ModelAndView bestBookDetail(@ModelAttribute DateVO date, @RequestParam String bookIsbn,
-			HttpServletResponse response) {
+	public ModelAndView bestBookDetail(@ModelAttribute DateVO date, @RequestParam String bookIsbn) {
 
 		ModelAndView mav = new ModelAndView("search/sub2/bestBookDetail.jsp");
 
-		response.setContentType("text/html; charset=UTF-8");
-
 		try {
-
-			PrintWriter out = response.getWriter();
 
 			// isbn이 null이 아닐 때
 			if (bookIsbn != null && !bookIsbn.equals("")) {
@@ -311,13 +302,13 @@ public class BookController {
 					mav.addObject("date", date);
 
 				} else {
-					out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
-					out.flush();
+					mav = new ModelAndView("error/accessError.jsp");
+					return mav;
 				}
 
 			} else {
-				out.println("<script>alert('잘못된 접근입니다.'); history.back();</script>");
-				out.flush();
+				mav = new ModelAndView("error/accessError.jsp");
+				return mav;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
