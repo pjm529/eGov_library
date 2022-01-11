@@ -70,8 +70,11 @@ public class QnaController {
 		// 로그인 된 아이디
 		String loginId = principal.getName();
 
+		// 관리자 계정 확인
+		int check = qnaService.checkAdmin(loginId);
+
 		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우
-		if (!writerId.equals(loginId)) {
+		if (!writerId.equals(loginId) && check != 1) {
 
 			try {
 
@@ -103,9 +106,9 @@ public class QnaController {
 			HttpServletResponse response) {
 
 		ModelAndView mav = new ModelAndView("board/sub3/answerContent.jsp");
-		
+
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		// 답변 내용
 		AnswerVO answer = answerService.answerContent(answerNo);
 
@@ -115,8 +118,11 @@ public class QnaController {
 		// 로그인 된 아이디
 		String loginId = principal.getName();
 
+		// 관리자 계정 확인
+		int check = qnaService.checkAdmin(loginId);
+
 		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우
-		if (!writerId.equals(loginId)) {
+		if (!writerId.equals(loginId) && check != 1) {
 
 			try {
 

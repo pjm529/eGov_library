@@ -12,6 +12,12 @@ import library.common.page.Criteria;
 @Repository
 public class QnaDAOImpl extends EgovAbstractMapper implements QnaDAO {
 
+	// 관리자 권한 확인
+	@Override
+	public int checkAdmin(String userId) {
+		return selectOne("Enquiry.checkAdmin", userId);
+	}
+
 	// 문의 사항 리스트 출력
 	@Override
 	public List<EnquiryVO> qnaBoardList(Criteria cri) {

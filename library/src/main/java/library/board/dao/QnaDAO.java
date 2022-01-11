@@ -7,6 +7,9 @@ import library.common.page.Criteria;
 
 public interface QnaDAO {
 
+	// 관리자 권한 확인
+	public int checkAdmin(String userId);
+	
 	// 문의 사항 리스트 출력
 	public List<EnquiryVO> qnaBoardList(Criteria cri);
 	

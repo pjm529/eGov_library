@@ -27,7 +27,18 @@
 		<result property="answerRegDate" 	column="answer_reg_date"/>
 	</resultMap>
 	
-	
+	<!-- 관리자 계정 확인 -->
+	<select id="checkAdmin" parameterType="string" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM 
+				member_auth
+			WHERE
+				user_id = #{userId} AND
+				auth = 'ROLE_ADMIN'
+		]]>
+	</select>
 	<!-- 문의사항 조회 -->
 	<select id="qnaBoardList" parameterType="Criteria" resultMap="enquiryMap">
 		<![CDATA[
