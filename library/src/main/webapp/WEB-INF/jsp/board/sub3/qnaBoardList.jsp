@@ -136,10 +136,13 @@
                                         <tr>
                                             <td class="num"><input type="hidden" value="${eBod.answerList.answerNo}"></td>
                                             <td class="left answerContentGo" style="padding-left: 15px;">
- 												<a href="${eBod.answerList.answer_no}">
- 												<img src='${pageContext.request.contextPath}/images/common/icon_reply.gif' alt="답변 아이콘 이미지">
- 													${eBod.answerList.answerTitle}
- 												</a>
+                                            
+                                            	<div class="hide">
+	                                            	<a href="${eBod.answerList.answerNo}">
+	                                            		<img src='${pageContext.request.contextPath}/images/common/icon_reply.gif' alt="답변 아이콘 이미지">
+	                                            		<c:out value="${eBod.answerList.answerTitle}"/>
+	                                            	</a>
+                                            	</div>
                                             </td>
                                             <td>관리자</td>
                                             <td>

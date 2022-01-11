@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Enquiry">
+
+	<!-- 문의사항 -->
+	<resultMap id="enquiryMap" type="EnquiryVO">
+		<id property="enquiryNo" 			column="enquiry_no"/>
+		<result property="enquiryTitle"		column="enquiry_title"/>
+		<result property="enquiryContent"	column="enquiry_content"/>
+		<result property="writerId" 		column="writer_id"/>
+		<result property="writerName" 		column="writer_name"/>
+		<result property="enquiryHits" 		column="enquiry_hits"/>
+		<result property="enquiryRegDate" 	column="enquiry_reg_date"/>
+	
+		<collection property="answerList" resultMap="answerMap"></collection>
+	</resultMap>
+
+	<!-- 답변 -->
+	<resultMap type="AnswerVO" id="answerMap">
+		<id property="answerNo" 			column="answer_no"/>
+		<result property="enquiryNo" 		column="enquiry_no"/>
+		<result property="answerTitle" 		column="answer_title"/>
+		<result property="answerContent" 	column="answer_content"/>
+		<result property="aWriterId" 		column="a_writer_id"/>
+		<result property="aWriterName" 		column="a_writer_name"/>
+		<result property="answerHits" 		column="answer_hits"/>
+		<result property="answerRegDate" 	column="answer_reg_date"/>
+	</resultMap>
+	
+	
+	<!-- 문의사항 조회 -->
+	<select id="qnaBoardList" parameterType="Criteria" resultMap="enquiryMap">
+		<![CDATA[
+			select 
+				*
+		  	FROM 
+		  		enquiry AS e LEFT OUTER JOIN answer AS a ON e.enquiry_no = a.enquiry_no
+		]]>
+			<include refid="criteria" />
+		<![CDATA[
+			ORDER BY e.enquiry_no DESC, a.answer_no 
+			LIMIT #{skip}, #{amount}
+		]]>
+	</select>
+	
+	<!-- 게시글 수 -->
+	<select id="qnaTotal" parameterType="Criteria" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*) 
+			FROM 
+				enquiry
+		]]>
+		 <include refid="criteria" />
+	</select>	
+
+	<!-- 검색 조건 -->
+	<sql id="criteria">
+		<if test="type != null">
+			<if test="keyword != null">
+			
+				<if test="type == 'TC'">
+					WHERE enquiry_title LIKE CONCAT('%', #{keyword}, '%') OR enquiry_content LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+				
+				<if test="type == 'title'">
+					WHERE enquiry_title LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+                 
+				<if test="type == 'content'">
+					WHERE enquiry_content LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+                 
+			</if>
+		</if>
+	</sql>
+</mapper>
