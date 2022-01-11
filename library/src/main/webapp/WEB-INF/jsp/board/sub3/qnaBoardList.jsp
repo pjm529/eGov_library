@@ -169,7 +169,7 @@
 								
 								
                                 <!-- 글쓰기 btn -->
-                                <button class="write_btn" onclick="location.href='${pageContext.request.contextPath}/board/qnaBoardWrite.do'" style="cursor: pointer">글쓰기</button>
+                                <button class="write_btn" onclick="location.href='${pageContext.request.contextPath}/board/enquiryWrite.do'" style="cursor: pointer">글쓰기</button>
                                 
                                 <br>
                                 

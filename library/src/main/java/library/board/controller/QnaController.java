@@ -87,6 +87,12 @@ public class QnaController {
 
 	}
 
+	// 문의사항 작성 페이지
+	@GetMapping("/enquiryWrite.do")
+	public String enquiryWrite() {
+		return "board/sub3/enquiryWrite.jsp";
+	}
+
 	// ========================================= 답글
 	// 답글 게시물 본문
 	@GetMapping("/answerContent.do")
@@ -106,7 +112,7 @@ public class QnaController {
 		// 관리자 계정 확인
 		int check = qnaService.checkAdmin(loginId);
 
-		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우  && 관리자가 아닐경우
+		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우 && 관리자가 아닐경우
 		if (!writerId.equals(loginId) && check != 1) {
 
 			mav = new ModelAndView("error/accessError2.jsp");
