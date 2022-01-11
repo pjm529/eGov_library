@@ -75,7 +75,7 @@
                                             <th class="first">작성일</th>
                                             <td>${fn:substring(enquiry.enquiryRegDate, 0, 11)}</td>
                                             <th class="first">조회수</th>
-                                            <td>${enquiry.enquiryHits}</td>
+                                            <td>${enquiry.enquiryHits + 1}</td>
                                         </tr>
 
                                         <!-- 본문 내용 -->

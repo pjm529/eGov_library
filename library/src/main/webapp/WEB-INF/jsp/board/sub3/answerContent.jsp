@@ -76,7 +76,7 @@
                                             <th class="first">작성일</th>
                                             <td>${fn:substring(answer.answerRegDate, 0, 11)}</td>
                                             <th class="first">조회수</th>
-                                            <td>${answer.answerHits}</td>
+                                            <td>${answer.answerHits + 1}</td>
                                         </tr> 
 
                                         <!-- 본문 내용 -->
