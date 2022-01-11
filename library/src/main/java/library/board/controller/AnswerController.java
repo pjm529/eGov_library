@@ -76,7 +76,7 @@ public class AnswerController {
 		return mav;
 	}
 
-	// 답글 등록 
+	// 답글 등록
 	@PostMapping("/answerWrite.do")
 	public String answerWrite(@ModelAttribute AnswerVO answer, @ModelAttribute Criteria cri, Principal principal) {
 
@@ -97,5 +97,34 @@ public class AnswerController {
 
 		return "redirect:/board/qnaBoardList.do?amount=" + amount + "&page=" + page + "&keyword=" + keyword + "&type="
 				+ type;
+	}
+
+	// 답글 수정 페이지
+	@GetMapping("/answerModifyPage.do")
+	public ModelAndView answerModifyPage(@RequestParam long answerNo, @ModelAttribute Criteria cri,
+			Principal principal) {
+
+		ModelAndView mav = new ModelAndView("board/sub3/answerModify.jsp");
+
+		// 답변 내용
+		AnswerVO answer = answerService.answerContent(answerNo);
+
+		// 로그인 아이디
+		String loginId = principal.getName();
+		
+		// 관리자 계정 확인
+		int check = qnaService.checkAdmin(loginId);
+
+		// 관리자가 아닐경우
+		if (check != 1) {
+			mav = new ModelAndView("error/accessError.jsp");
+			return mav;
+		}
+
+		mav.addObject("answer", answer);
+
+		mav.addObject("cri", cri);
+
+		return mav;
 	}
 }
