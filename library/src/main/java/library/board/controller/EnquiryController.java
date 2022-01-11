@@ -21,7 +21,7 @@ import library.common.page.ViewPage;
 
 @Controller
 @RequestMapping("/board")
-public class QnaController {
+public class EnquiryController {
 
 	@Autowired
 	private QnaService qnaService;
