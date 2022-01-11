@@ -12,4 +12,7 @@ public interface AnswerService {
 
 	// 답변 작성
 	public void insertAnswer(AnswerVO answer);
+
+	// 답변 수정
+	public void modifyAnswer(AnswerVO answer);
 }

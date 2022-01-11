@@ -31,4 +31,10 @@ public class AnswerServiceImpl implements AnswerService {
 		answerDAO.insertAnswer(answer);
 	}
 
+	// 답변 수정
+	@Override
+	public void modifyAnswer(AnswerVO answer) {
+		answerDAO.modifyAnswer(answer);
+	}
+
 }

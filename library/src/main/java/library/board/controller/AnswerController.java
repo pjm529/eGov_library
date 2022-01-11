@@ -87,6 +87,14 @@ public class AnswerController {
 
 		// 작성자 ID 설정
 		answer.setAWriterId(principal.getName());
+
+		// 관리자 계정 확인
+		int check = qnaService.checkAdmin(principal.getName());
+
+		// 관리자가 아닐경우
+		if (check != 1) {
+			return "redirect:/accessError.do";
+		}
 		answerService.insertAnswer(answer);
 
 		try {
@@ -111,7 +119,7 @@ public class AnswerController {
 
 		// 로그인 아이디
 		String loginId = principal.getName();
-		
+
 		// 관리자 계정 확인
 		int check = qnaService.checkAdmin(loginId);
 
@@ -127,4 +135,40 @@ public class AnswerController {
 
 		return mav;
 	}
+
+	// 답글 수정
+	@PostMapping("/answerModify.do")
+	public String answerModify(@ModelAttribute AnswerVO answer, @ModelAttribute Criteria cri, Principal principal) {
+
+		// 로그인 된 user_id 받아오기
+		String loginId = principal.getName();
+
+		// 관리자 계정 확인
+		int check = qnaService.checkAdmin(loginId);
+
+		answer.setAWriterId(loginId);
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+
+		// 관리자가 아닐경우
+		if (check != 1) {
+			return "redirect:/accessError.do";
+		}
+
+		// 답글 수정
+		answerService.modifyAnswer(answer);
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/qnaBoardList.do";
+		}
+
+		return "redirect:/board/answerContent.do?amount=" + amount + "&page=" + page + "&keyword=" + keyword + "&type="
+				+ type + "&answerNo=" + answer.getAnswerNo();
+	}
+
 }

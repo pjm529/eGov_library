@@ -49,4 +49,19 @@
 		]]>
 	</insert>
 
+	<!-- 게시글 수정 -->
+ 	<update id="modifyAnswer" parameterType="AnswerVO">
+ 		<![CDATA[
+ 			UPDATE
+ 				answer 
+		   	SET
+		   		answer_title = #{answerTitle}, 
+		   		answer_content = #{answerContent},
+		   		a_writer_id = #{aWriterId},
+		   		a_writer_name = #{aWriterName},
+		   		answer_modify_date = current_timestamp()
+			WHERE
+				answer_no = #{answerNo}
+ 		]]>
+	</update> 
 </mapper>
