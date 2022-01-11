@@ -1,6 +1,7 @@
 package library.board.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
 
@@ -29,5 +30,5 @@ public class EnquiryVO {
 	private Timestamp enquiryRegDate;
 	
 	// 답변 목록
-	private AnswerVO answerList;
+	private List<AnswerVO> answerList;
 }

@@ -132,25 +132,28 @@
                                             <td>${eBod.enquiryHits}</td>
                                         </tr>
                                         
-                                        <c:if test="${eBod.answerList.answerTitle != null}">
+                                        <c:if test="${eBod.answerList != null}">
+                                        <c:forEach var="answerList" items="${eBod.answerList}">
                                         <tr>
-                                            <td class="num"><input type="hidden" value="${eBod.answerList.answerNo}"></td>
+                                            <td class="num"><input type="hidden" value="${answerList.answerNo}"></td>
                                             <td class="left answerContentGo" style="padding-left: 15px;">
                                             
                                             	<div class="hide">
-	                                            	<a href="${eBod.answerList.answerNo}">
+	                                            	<a href="${answerList.answerNo}">
 	                                            		<img src='${pageContext.request.contextPath}/images/common/icon_reply.gif' alt="답변 아이콘 이미지">
-	                                            		<c:out value="${eBod.answerList.answerTitle}"/>
+	                                            		<c:out value="${answerList.answerTitle}"/>
 	                                            	</a>
                                             	</div>
                                             </td>
                                             <td>관리자</td>
                                             <td>
-                                            	<fmt:formatDate var="answerRegDate" value="${eBod.answerList.answerRegDate}" pattern="yyyy-MM-dd"/>
+                                            	<fmt:formatDate var="answerRegDate" value="${answerList.answerRegDate}" pattern="yyyy-MM-dd"/>
 												${answerRegDate}
                                             </td>
-                                            <td>${eBod.answerList.answerHits}</td>
+                                            <td>${answerList.answerHits}</td>
+                                            
                                         </tr>
+                                        </c:forEach>
                                         </c:if>
                                     </c:forEach>   
                                     </tbody>
