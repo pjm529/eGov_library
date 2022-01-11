@@ -1,5 +1,7 @@
 package library.board.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
 
@@ -114,25 +116,58 @@ public class QnaController {
 			Principal principal) {
 
 		ModelAndView mav = new ModelAndView("board/sub3/enquiryModify.jsp");
-		
+
 		EnquiryVO enquiry = qnaService.enquiryContent(enquiryNo);
 
 		String writerId = enquiry.getWriterId(); // 작성자 ID
 		String loginId = principal.getName();// 로그인한 ID
 
 		// 작성자와 로그인한 user가 같을 때 수정 가능
-		
+
 		if (!writerId.equals(loginId)) {
-			
+
 			mav = new ModelAndView("error/accessError.jsp");
 			return mav;
-			
-		} 
-		
+
+		}
+
 		mav.addObject("enquiry", enquiry);
 		mav.addObject("cri", cri);
-		
+
 		return mav;
+
+	}
+
+	// 게시물 수정
+	@PostMapping("/enquiryModify.do")
+	public String enquiryModify(@ModelAttribute EnquiryVO enquiry, @ModelAttribute Criteria cri, Principal principal) {
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+		Long enquiryNo = enquiry.getEnquiryNo();
+
+		// 기존 게시글
+		EnquiryVO enquiry2 = qnaService.enquiryContent(enquiryNo);
+
+		String writerId = enquiry2.getWriterId(); // 작성자 ID
+		String loginId = principal.getName();// 로그인한 ID
+
+		if (!writerId.equals(loginId)) {
+			return "redirect:/accessError.do";
+		}
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/qnaBoardList.do";
+		}
+
+		qnaService.modifyEnquiry(enquiry);
+
+		return "redirect:/board/enquiryContent.do?amount=" + amount + "&page=" + page + "&keyword=" + keyword
+				+ "&type=" + type + "&enquiryNo=" + enquiryNo;
 
 	}
 

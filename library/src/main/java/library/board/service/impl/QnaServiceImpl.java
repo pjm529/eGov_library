@@ -52,4 +52,10 @@ public class QnaServiceImpl implements QnaService {
 		qnaDAO.enquiryInsert(enquiry);
 	}
 
+	// 문의 사항 수정
+	@Override
+	public void modifyEnquiry(EnquiryVO enquiry) {
+		qnaDAO.modifyEnquiry(enquiry);
+	}
+
 }

@@ -24,4 +24,7 @@ public interface QnaDAO {
 	
 	// 문의 사항 작성
 	public void enquiryInsert(EnquiryVO enquiry);
+	
+	// 문의 사항 수정
+	public void modifyEnquiry(EnquiryVO enquiry);
 }

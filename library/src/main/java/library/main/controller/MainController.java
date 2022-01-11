@@ -1,6 +1,7 @@
 package library.main.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -10,5 +11,10 @@ public class MainController {
 	@RequestMapping(value="/main.do", method = RequestMethod.GET)
 	public String mainPage() {
 		return "index.jsp";
+	}
+	
+	@GetMapping("/accessError.do")
+	public String accessError() {
+		return "error/accessError.jsp";
 	}
 }

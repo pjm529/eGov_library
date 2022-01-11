@@ -97,7 +97,21 @@
 			VALUES
 				(#{enquiryTitle}, #{enquiryContent}, #{writerId}, #{writerName})
 		]]>
-	</insert>	
+	</insert>
+	
+	<!-- 문의사항 수정 -->
+	<update id="modifyEnquiry" parameterType="EnquiryVO">
+		<![CDATA[
+			UPDATE
+				enquiry 
+		   	SET
+		   		enquiry_title = #{enquiryTitle}, 
+		   		enquiry_content = #{enquiryContent},
+		   		enquiry_modify_date = current_timestamp()
+		   	WHERE
+		 		enquiry_no = #{enquiryNo}
+		]]>
+	</update>		
 
 	<!-- 검색 조건 -->
 	<sql id="criteria">

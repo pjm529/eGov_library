@@ -55,7 +55,7 @@
 
                             <!-- 테이블 -->
                             <div class="table-wrap">
-                                <form action="${pageContext.request.contextPath}/board/qnaBoardModify.do" method="post" onsubmit="return false;">
+                                <form action="${pageContext.request.contextPath}/board/enquiryModify.do" method="post" onsubmit="return false;">
                                 	<input type="hidden" name="enquiryNo" value="${enquiry.enquiryNo}" >
                                 	<input type="hidden" name="writerId" value="writerId">
                                     <input type="hidden" name="writerName" value="writerName">
