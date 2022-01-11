@@ -107,7 +107,7 @@
                                         <tr>
                                             <th style="width: 12%;">번호</th>
                                             <th>제목</th>
-                                            <th style="width: 18%;">작성자</th>
+                                            <th style="width: 15%;">작성자</th>
                                             <th style="width: 12%;">작성일</th>
                                             <th style="width: 15%;">조회수</th>
                                         </tr>
