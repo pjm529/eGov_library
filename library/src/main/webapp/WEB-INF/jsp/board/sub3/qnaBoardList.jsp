@@ -196,25 +196,7 @@
                                 		<input type="hidden" name="amount" value="${page.cri.amount}">
                                 		
                                 		<select name="type">
-                                		<c:choose>
-                                			<c:when test="${page.cri.type eq 'title'}">
-                                				<option value="TC">제목+내용</option>
-		                                		<option value="title" selected="selected">제목</option>
-		                                		<option value="content">내용</option>
-                                			</c:when>
-                                			
-                                			<c:when test="${page.cri.type eq 'content'}">
-                                				<option value="TC">제목+내용</option>
-		                                		<option value="title">제목</option>
-		                                		<option value="content" selected="selected">내용</option>
-                                			</c:when>
-                                		
-                                			<c:otherwise>
-                                				<option value="TC" selected="selected">제목+내용</option>
-		                                		<option value="title">제목</option>
-		                                		<option value="content">내용</option>
-                                			</c:otherwise>
-                                		</c:choose>
+		                                	<option value="title" selected="selected">제목</option>
                                 		</select>
                                 		
                                 		<c:choose>

@@ -136,19 +136,9 @@
 	<sql id="criteria">
 		<if test="type != null">
 			<if test="keyword != null">
-			
-				<if test="type == 'TC'">
-					WHERE enquiry_title LIKE CONCAT('%', #{keyword}, '%') OR enquiry_content LIKE CONCAT('%', #{keyword}, '%')
-				</if>
-				
 				<if test="type == 'title'">
 					WHERE enquiry_title LIKE CONCAT('%', #{keyword}, '%')
 				</if>
-                 
-				<if test="type == 'content'">
-					WHERE enquiry_content LIKE CONCAT('%', #{keyword}, '%')
-				</if>
-                 
 			</if>
 		</if>
 	</sql>
