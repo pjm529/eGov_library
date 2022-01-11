@@ -72,8 +72,8 @@
                                                 <td colspan="3">
                                                     <input type="text" style="width: 80%; height: 27px;"
                                                         placeholder="제목을 작성해 주세요"
-                                                        name="answerTitle" id="title" maxlength="50"
-                                                        value="${answer.answerTitle}" autocomplete="off">
+                                                        name="answerTitle" id="title" maxlength="50"autocomplete="off"
+                                                        value="<c:out value='${answer.answerTitle}'/>">
                                                 </td>
                                             </tr>
                                             <tr>
