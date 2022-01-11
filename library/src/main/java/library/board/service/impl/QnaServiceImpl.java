@@ -28,4 +28,16 @@ public class QnaServiceImpl implements QnaService {
 		return qnaDAO.qnaTotal(cri);
 	}
 
+	// 게시글 본문
+	@Override
+	public EnquiryVO enquiryContent(long enquiryNo) {
+		return qnaDAO.enquiryContent(enquiryNo);
+	}
+
+	// 조회수 증가
+	@Override
+	public void updateView(long enquiryNo) {
+		qnaDAO.updateView(enquiryNo);
+	}
+
 }

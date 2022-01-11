@@ -12,4 +12,10 @@ public interface QnaService {
 
 	// 문의 사항 게시글 수
 	public int qnaTotal(Criteria cri);
+
+	// 게시글 본문
+	public EnquiryVO enquiryContent(long enquiryNo);
+
+	// 조회수 증가
+	public void updateView(long enquiryNo);
 }

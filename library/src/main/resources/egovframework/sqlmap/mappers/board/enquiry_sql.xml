@@ -52,7 +52,31 @@
 				enquiry
 		]]>
 		 <include refid="criteria" />
-	</select>	
+	</select>
+	
+	<!-- 게시글 본문 -->
+	<select id="enquiryContent" parameterType="long" resultMap="enquiryMap">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				enquiry
+			WHERE
+				enquiry_no = #{enquiryNo}
+		]]>
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateView" parameterType="long">
+		<![CDATA[
+			UPDATE
+				enquiry
+			SET
+				enquiry_hits = (enquiry_hits + 1)
+			WHERE
+				enquiry_no = #{enquiryNo}
+		]]>
+	</update>	
 
 	<!-- 검색 조건 -->
 	<sql id="criteria">

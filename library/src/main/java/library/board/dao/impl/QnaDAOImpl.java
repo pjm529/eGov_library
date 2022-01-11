@@ -18,10 +18,22 @@ public class QnaDAOImpl extends EgovAbstractMapper implements QnaDAO {
 		return selectList("Enquiry.qnaBoardList", cri);
 	}
 
-	// 문의 사항 게시글 수 
+	// 문의 사항 게시글 수
 	@Override
 	public int qnaTotal(Criteria cri) {
 		return selectOne("Enquiry.qnaTotal", cri);
+	}
+
+	// 게시글 본문
+	@Override
+	public EnquiryVO enquiryContent(long enquiryNo) {
+		return selectOne("Enquiry.enquiryContent", enquiryNo);
+	}
+
+	// 조회수 증가
+	@Override
+	public void updateView(long enquiryNo) {
+		update("Enquiry.updateView", enquiryNo);
 	}
 
 }

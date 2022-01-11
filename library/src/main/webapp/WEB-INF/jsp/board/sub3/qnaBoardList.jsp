@@ -167,7 +167,7 @@
 								
 								
                                 <!-- 글쓰기 btn -->
-                                <button class="write_btn" onclick="location.href='/board/qnaBoardWrite'" style="cursor: pointer">글쓰기</button>
+                                <button class="write_btn" onclick="location.href='${pageContext.request.contextPath}/board/qnaBoardWrite.do'" style="cursor: pointer">글쓰기</button>
                                 
                                 <br>
                                 
@@ -278,16 +278,16 @@
 		
 		$(".answerContentGo a").on("click", function(e) {
 			e.preventDefault();
-			moveForm2.find("input[name = 'answer_no']").val($(this).attr("href"));
-			moveForm2.attr("action", "${pageContext.request.contextPath}/board/answerBoardContent.do");
+			moveForm2.find("input[name = 'answerNo']").val($(this).attr("href"));
+			moveForm2.attr("action", "${pageContext.request.contextPath}/board/answerContent.do");
 			moveForm2.submit();
 			
 		}); 
 		
 		$(".contentGo a").on("click", function(e) {
 			e.preventDefault();
-			moveForm2.find("input[name = 'enquiry_no']").val($(this).attr("href"));
-			moveForm2.attr("action", "${pageContext.request.contextPath}/board/qnaBoardContent.do");
+			moveForm2.find("input[name = 'enquiryNo']").val($(this).attr("href"));
+			moveForm2.attr("action", "${pageContext.request.contextPath}/board/enquiryContent.do");
 			moveForm2.submit();
 			
 		}); 
