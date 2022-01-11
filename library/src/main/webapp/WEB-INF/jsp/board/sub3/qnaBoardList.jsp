@@ -189,7 +189,7 @@
                                 <br>
                                 
                                 <div class="searchBox">
-                                	<form action="/board/qnaBoardList" method="get">
+                                	<form action="" method="get">
                                 		<input type="hidden" name="page" value="1">
                                 		<input type="hidden" name="amount" value="${page.cri.amount}">
                                 		
