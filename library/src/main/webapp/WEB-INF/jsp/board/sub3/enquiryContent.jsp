@@ -114,7 +114,7 @@
 	                            </div>
                                 
 								<div class="update_wrap">
-									<form action="${pageContext.request.contextPath}/board/enquiryModify.do" method="post">
+									<form action="${pageContext.request.contextPath}/board/enquiryModifyPage.do" method="post">
 	                               		<input type="hidden" name="enquiryNo" value="${enquiry.enquiryNo}">
 	                               		<input type="hidden" name="amount" value="${cri.amount}">
 	                               		<input type="hidden" name="page" value="${cri.page}">

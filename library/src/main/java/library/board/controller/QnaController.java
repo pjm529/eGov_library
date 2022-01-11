@@ -93,7 +93,7 @@ public class QnaController {
 	public String enquiryWrite() {
 		return "board/sub3/enquiryWrite.jsp";
 	}
-	
+
 	// 문의사항 작성
 	@PostMapping("/enquiryInsert.do")
 	public String qnaBoardInsert(@ModelAttribute EnquiryVO enquiry, Principal principal) {
@@ -102,10 +102,38 @@ public class QnaController {
 		String loginId = principal.getName();
 
 		enquiry.setWriterId(loginId);
-		
+
 		qnaService.enquiryInsert(enquiry);
 
 		return "redirect:/board/qnaBoardList.do";
+	}
+
+	// 문읭사항 수정페이지
+	@PostMapping("/enquiryModifyPage.do")
+	public ModelAndView enquiryModifyPage(@RequestParam long enquiryNo, @ModelAttribute Criteria cri,
+			Principal principal) {
+
+		ModelAndView mav = new ModelAndView("board/sub3/enquiryModify.jsp");
+		
+		EnquiryVO enquiry = qnaService.enquiryContent(enquiryNo);
+
+		String writerId = enquiry.getWriterId(); // 작성자 ID
+		String loginId = principal.getName();// 로그인한 ID
+
+		// 작성자와 로그인한 user가 같을 때 수정 가능
+		
+		if (!writerId.equals(loginId)) {
+			
+			mav = new ModelAndView("error/accessError.jsp");
+			return mav;
+			
+		} 
+		
+		mav.addObject("enquiry", enquiry);
+		mav.addObject("cri", cri);
+		
+		return mav;
+
 	}
 
 	// ========================================= 답글
