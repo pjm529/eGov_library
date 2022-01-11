@@ -15,4 +15,7 @@ public interface AnswerService {
 
 	// 답변 수정
 	public void modifyAnswer(AnswerVO answer);
+
+	// 답글 삭제
+	public void deleteAnswer(long answerNo);
 }

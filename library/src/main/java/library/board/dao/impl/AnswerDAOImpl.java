@@ -33,4 +33,10 @@ public class AnswerDAOImpl extends EgovAbstractMapper implements AnswerDAO {
 		update("Answer.modifyAnswer", answer);
 	}
 
+	// 답글 삭제
+	@Override
+	public void deleteAnswer(long answerNo) {
+		delete("Answer.deleteAnswer", answerNo);
+	}
+
 }

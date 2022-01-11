@@ -171,4 +171,37 @@ public class AnswerController {
 				+ type + "&answerNo=" + answer.getAnswerNo();
 	}
 
+	// 답글 삭제
+	@GetMapping("/answerDelete.do")
+	public String answerDelete(@ModelAttribute Criteria cri, @RequestParam long answerNo, Principal principal) {
+
+		// 로그인 된 user_id 받아오기
+		String loginId = principal.getName();
+
+		// 관리자 계정 확인
+		int check = qnaService.checkAdmin(loginId);
+
+		// 관리자가 아닐경우
+		if (check != 1) {
+			return "redirect:/accessError.do";
+		}
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+
+		answerService.deleteAnswer(answerNo);
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/qnaBoardList.do";
+		}
+
+		return "redirect:/board/qnaBoardList.do?amount=" + amount + "&page=" + page + "&keyword=" + keyword + "&type="
+				+ type;
+
+	}
+
 }

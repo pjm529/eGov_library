@@ -49,7 +49,7 @@
 		]]>
 	</insert>
 
-	<!-- 게시글 수정 -->
+	<!-- 답변 수정 -->
  	<update id="modifyAnswer" parameterType="AnswerVO">
  		<![CDATA[
  			UPDATE
@@ -63,5 +63,16 @@
 			WHERE
 				answer_no = #{answerNo}
  		]]>
-	</update> 
+	</update>
+	
+	<!-- 답변 삭제 -->
+	<delete id="deleteAnswer" parameterType="long">
+		<![CDATA[
+			DELETE
+			FROM
+				answer
+			WHERE
+				answer_no = #{answerNo}			
+		]]>
+	</delete> 
 </mapper>

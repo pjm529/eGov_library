@@ -37,4 +37,10 @@ public class AnswerServiceImpl implements AnswerService {
 		answerDAO.modifyAnswer(answer);
 	}
 
+	// 답글 삭제
+	@Override
+	public void deleteAnswer(long answerNo) {
+		answerDAO.deleteAnswer(answerNo);
+	}
+
 }
