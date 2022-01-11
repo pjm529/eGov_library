@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.board.domain.AnswerVO;
+import library.board.domain.EnquiryVO;
 import library.board.service.AnswerService;
 import library.board.service.QnaService;
 import library.common.page.Criteria;
@@ -58,4 +59,17 @@ public class AnswerController {
 		return mav;
 	}
 
+	// 답글 등록 페이지
+	@GetMapping("/answerWritePage.do")
+	public ModelAndView answerWritePage(@RequestParam long enquiryNo, @ModelAttribute Criteria cri) {
+
+		ModelAndView mav = new ModelAndView("board/sub3/answerWrite.jsp");
+
+		EnquiryVO enquiry = qnaService.enquiryContent(enquiryNo);
+
+		mav.addObject("enquiry", enquiry);
+		mav.addObject("cri", cri);
+
+		return mav;
+	}
 }

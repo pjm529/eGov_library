@@ -126,7 +126,7 @@
 								
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 							    <div class="answer_wrap">
-									<form action="${pageContext.request.contextPath}/board/answerWrite.do" method="get">
+									<form action="${pageContext.request.contextPath}/board/answerWritePage.do" method="get">
 	                               		<input type="hidden" name="enquiryNo" value="${enquiry.enquiryNo}">
 	                               		<input type="hidden" name="amount" value="${cri.amount}">
 	                               		<input type="hidden" name="page" value="${cri.page}">
