@@ -12,15 +12,16 @@
 		<result property="aWriterName" 		column="a_writer_name"/>
 		<result property="answerHits" 		column="answer_hits"/>
 		<result property="answerRegDate" 	column="answer_reg_date"/>
+		<result property="writerId"			column="writer_id"/>
 	</resultMap>
 	
 	
 	<select id="answerContent" parameterType="long" resultMap="answerMap">
 		<![CDATA[
 			SELECT
-				*
+				a.*, e.writer_id
 			FROM
-				answer
+				answer a JOIN enquiry e on a.enquiry_no = a.enquiry_no
 			WHERE
 				answer_no = #{answerNo}
 		]]>
