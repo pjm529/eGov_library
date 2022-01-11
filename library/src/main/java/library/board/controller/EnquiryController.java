@@ -35,6 +35,26 @@ public class EnquiryController {
 		List<EnquiryVO> qnaBoardList = qnaService.qnaBoardList(cri);
 		mav.addObject("qnaBoardList", qnaBoardList);
 
+		for (EnquiryVO e : qnaBoardList) {
+
+			String writerName = e.getWriterName();
+
+			// 마스킹 할 부분
+			String mask = writerName.substring(1, writerName.length());
+
+			// 마스킹 갯수
+			String masking = "";
+
+			for (int i = 0; i < mask.length(); i++) {
+				masking += "*";
+			}
+			
+			// 마스킹 할 부분의 글자 수 만큼 *로 replace
+			writerName = writerName.replace(mask, masking);
+
+			e.setWriterName(writerName);
+		}
+
 		// 문의 사항 게시글 수
 		int total = qnaService.qnaTotal(cri);
 		mav.addObject("total", total);
