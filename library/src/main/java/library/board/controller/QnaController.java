@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import library.board.domain.AnswerVO;
 import library.board.domain.EnquiryVO;
+import library.board.service.AnswerService;
 import library.board.service.QnaService;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
@@ -21,6 +23,9 @@ public class QnaController {
 
 	@Autowired
 	private QnaService qnaService;
+	
+	@Autowired
+	private AnswerService answerService;
 
 	@GetMapping("/qnaBoardList.do")
 	public ModelAndView qnaBoardList(@ModelAttribute Criteria cri) {
@@ -55,6 +60,24 @@ public class QnaController {
 		// 조회수 증가
 		qnaService.updateView(enquiryNo);
 
+		mav.addObject("cri", cri);
+
+		return mav;
+
+	}
+
+	// ========================================= 답글
+	// 답글 게시물 본문
+	@GetMapping("/answerContent.do")
+	public ModelAndView answerContent(@RequestParam long answerNo, @ModelAttribute Criteria cri) {
+		
+		ModelAndView mav = new ModelAndView("board/sub3/answerContent.jsp");
+
+		// 답변 내용
+		AnswerVO answer = answerService.answerContent(answerNo);
+		mav.addObject("answer", answer);
+		
+		answerService.updateView(answerNo);
 		mav.addObject("cri", cri);
 
 		return mav;
