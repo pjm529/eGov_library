@@ -46,4 +46,10 @@ public class QnaServiceImpl implements QnaService {
 		qnaDAO.updateView(enquiryNo);
 	}
 
+	// 문의 사항 작성
+	@Override
+	public void enquiryInsert(EnquiryVO enquiry) {
+		qnaDAO.enquiryInsert(enquiry);
+	}
+
 }

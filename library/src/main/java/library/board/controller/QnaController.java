@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -91,6 +92,20 @@ public class QnaController {
 	@GetMapping("/enquiryWrite.do")
 	public String enquiryWrite() {
 		return "board/sub3/enquiryWrite.jsp";
+	}
+	
+	// 문의사항 작성
+	@PostMapping("/enquiryInsert.do")
+	public String qnaBoardInsert(@ModelAttribute EnquiryVO enquiry, Principal principal) {
+
+		// 로그인 된 user_id 받아오기
+		String loginId = principal.getName();
+
+		enquiry.setWriterId(loginId);
+		
+		qnaService.enquiryInsert(enquiry);
+
+		return "redirect:/board/qnaBoardList.do";
 	}
 
 	// ========================================= 답글

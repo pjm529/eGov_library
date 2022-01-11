@@ -87,7 +87,17 @@
 			WHERE
 				enquiry_no = #{enquiryNo}
 		]]>
-	</update>	
+	</update>
+	
+	<!-- 문의사항 작성 -->
+	<insert id="enquiryInsert" parameterType="EnquiryVO">
+		<![CDATA[
+			INSERT INTO
+				enquiry(enquiry_title, enquiry_content, writer_id, writer_name)
+			VALUES
+				(#{enquiryTitle}, #{enquiryContent}, #{writerId}, #{writerName})
+		]]>
+	</insert>	
 
 	<!-- 검색 조건 -->
 	<sql id="criteria">

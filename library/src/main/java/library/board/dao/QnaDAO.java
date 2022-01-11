@@ -21,4 +21,7 @@ public interface QnaDAO {
 
 	// 조회수 증가
 	public void updateView(long enquiryNo);
+	
+	// 문의 사항 작성
+	public void enquiryInsert(EnquiryVO enquiry);
 }
