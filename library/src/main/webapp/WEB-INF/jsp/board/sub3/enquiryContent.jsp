@@ -62,7 +62,9 @@
                                         <!-- 제목 -->
                                         <tr>
                                             <td class="bbs-title" colspan="6">
-                                                <b>${enquiry.enquiryTitle}</b>
+                                            	<div style="width: 970px; height:auto; white-space: normal;">
+                                            		<b>${enquiry.enquiryTitle}</b>
+                                            	</div> 
                                             </td>
                                         </tr>
 
