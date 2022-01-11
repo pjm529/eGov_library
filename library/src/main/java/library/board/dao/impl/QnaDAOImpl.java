@@ -54,4 +54,16 @@ public class QnaDAOImpl extends EgovAbstractMapper implements QnaDAO {
 		update("Enquiry.modifyEnquiry", enquiry);
 	}
 
+	// 문의 사항 삭제
+	@Override
+	public void deleteEnquiry(long enquiryNo) {
+		delete("Enquiry.deleteEnquiry", enquiryNo);
+	}
+
+	// 문의사항 게시글 번호 정렬
+	@Override
+	public void resetNo() {
+		selectOne("Enquiry.resetNo");
+	}
+
 }

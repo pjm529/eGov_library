@@ -27,4 +27,10 @@ public interface QnaDAO {
 	
 	// 문의 사항 수정
 	public void modifyEnquiry(EnquiryVO enquiry);
+	
+	// 문의 사항 삭제
+	public void deleteEnquiry(long enquiryNo);
+	
+	// 문의사항 게시글 번호 정렬
+	public void resetNo();
 }

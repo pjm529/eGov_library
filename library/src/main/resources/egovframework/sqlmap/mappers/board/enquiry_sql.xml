@@ -111,7 +111,26 @@
 		   	WHERE
 		 		enquiry_no = #{enquiryNo}
 		]]>
-	</update>		
+	</update>
+	
+	<!-- 문의사항 삭제 -->
+	<delete id="deleteEnquiry" parameterType="long">
+		<![CDATA[
+			DELETE
+			FROM
+				enquiry
+			WHERE
+				enquiry_no = #{enquiryNo}
+		]]>
+	</delete>		
+	
+	<!-- 문의사항 게시글 번호 정렬 -->
+	<select id="resetNo" statementType="CALLABLE">
+		<![CDATA[
+			CALL enquiry_reset()
+		]]>
+	</select>
+	
 
 	<!-- 검색 조건 -->
 	<sql id="criteria">

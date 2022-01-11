@@ -58,4 +58,15 @@ public class QnaServiceImpl implements QnaService {
 		qnaDAO.modifyEnquiry(enquiry);
 	}
 
+	// 문의 사항 삭제
+	@Override
+	public void deleteEnquiry(long enquiryNo) {
+		
+		// 문의 사항 삭제
+		qnaDAO.deleteEnquiry(enquiryNo);
+		
+		// 문의사항 게시글 번호 정렬
+		qnaDAO.resetNo();
+	}
+
 }

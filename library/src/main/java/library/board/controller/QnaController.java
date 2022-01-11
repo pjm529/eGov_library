@@ -122,8 +122,7 @@ public class QnaController {
 		String writerId = enquiry.getWriterId(); // 작성자 ID
 		String loginId = principal.getName();// 로그인한 ID
 
-		// 작성자와 로그인한 user가 같을 때 수정 가능
-
+		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우 && 관리자가 아닐경우
 		if (!writerId.equals(loginId)) {
 
 			mav = new ModelAndView("error/accessError.jsp");
@@ -166,8 +165,44 @@ public class QnaController {
 
 		qnaService.modifyEnquiry(enquiry);
 
-		return "redirect:/board/enquiryContent.do?amount=" + amount + "&page=" + page + "&keyword=" + keyword
-				+ "&type=" + type + "&enquiryNo=" + enquiryNo;
+		return "redirect:/board/enquiryContent.do?amount=" + amount + "&page=" + page + "&keyword=" + keyword + "&type="
+				+ type + "&enquiryNo=" + enquiryNo;
+
+	}
+
+	// 문의사항 삭제
+	@PostMapping("/enquiryDelete.do")
+	public String enquirydDelete(@ModelAttribute Criteria cri, @RequestParam long enquiryNo, Principal principal) {
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+
+		// 게시글 정보
+		EnquiryVO enquiry = qnaService.enquiryContent(enquiryNo);
+
+		String writerId = enquiry.getWriterId(); // 작성자 ID
+		String loginId = principal.getName();// 로그인한 ID
+		int check = qnaService.checkAdmin(loginId); // 관리자 계정 확인
+
+		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우 && 관리자가 아닐경우
+		if (!writerId.equals(loginId) && check != 1) {
+			return "redirect:/accessError.do";
+		}
+
+		// 문의사항 삭제
+		qnaService.deleteEnquiry(enquiryNo);
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/qnaBoardList.do";
+		}
+
+		return "redirect:/board/qnaBoardList.do?amount=" + amount + "&page=" + page + "&keyword=" + keyword
+				+ "&type=" + type;
 
 	}
 

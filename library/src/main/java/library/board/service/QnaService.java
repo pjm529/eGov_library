@@ -27,4 +27,7 @@ public interface QnaService {
 
 	// 문의 사항 수정
 	public void modifyEnquiry(EnquiryVO enquiry);
+
+	// 문의 사항 삭제
+	public void deleteEnquiry(long enquiryNo);
 }
