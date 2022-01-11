@@ -21,7 +21,7 @@
 			SELECT
 				a.*, e.writer_id
 			FROM
-				answer a JOIN enquiry e on a.enquiry_no = a.enquiry_no
+				answer a JOIN enquiry e on a.enquiry_no = e.enquiry_no
 			WHERE
 				answer_no = #{answerNo}
 		]]>
