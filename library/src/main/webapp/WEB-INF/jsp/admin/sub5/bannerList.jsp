@@ -54,7 +54,7 @@
                             <!-- 테이블 -->
                             
                             <div class="table-wrap">
-                            	<c:if test="${not empty banner_list }">
+                            	<c:if test="${not empty bannerList }">
                                 <table>
                                     <thead>
                                         <tr>
