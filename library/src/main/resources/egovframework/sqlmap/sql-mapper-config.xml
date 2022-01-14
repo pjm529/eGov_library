@@ -13,5 +13,6 @@
 		<typeAlias alias="EnquiryVO" type="library.board.domain.EnquiryVO" />
 		<typeAlias alias="AnswerVO" type="library.board.domain.AnswerVO" />
 		<typeAlias alias="HopeVO" type="library.mylib.domain.HopeVO" />
+		<typeAlias alias="BannerVO" type="library.admin.domain.BannerVO" />
     </typeAliases>
 </configuration>
