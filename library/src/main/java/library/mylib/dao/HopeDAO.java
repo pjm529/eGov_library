@@ -15,5 +15,8 @@ public interface HopeDAO {
 	
 	// 희망도서 신청 수
 	public int hopeTotal(HashMap<String, Object> map);
+	
+	// 희망도서 신청 정보
+	public HopeVO hopeInfo(HopeVO hope);
 
 }

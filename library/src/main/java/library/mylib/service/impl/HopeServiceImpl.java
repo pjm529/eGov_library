@@ -45,4 +45,10 @@ public class HopeServiceImpl implements HopeService {
 		return hopeDAO.hopeTotal(map);
 	}
 
+	// 희망도서 신청 정보
+	@Override
+	public HopeVO hopeInfo(HopeVO hope) {
+		return hopeDAO.hopeInfo(hope);
+	}
+
 }

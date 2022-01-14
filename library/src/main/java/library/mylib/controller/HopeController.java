@@ -71,12 +71,31 @@ public class HopeController {
 
 		return mav;
 	}
-	
+
 	@PostMapping("/hopeInfo.do")
-	public ModelAndView hopeInfo() {
-		
+	public ModelAndView hopeInfo(@ModelAttribute HopeVO hope, @ModelAttribute Criteria cri, Principal principal) {
+
 		ModelAndView mav = new ModelAndView("mylib/sub2/hopeInfo.jsp");
+
+		// 로그인 된 아이디 받아오기
+		String loginId = principal.getName();
+
+		// ID 설정
+		hope.setUserId(loginId);
+
+		// 희망 도서 정보 받아오기
+		HopeVO hopeInfo = hopeService.hopeInfo(hope);
+
+		if (hopeInfo == null) {
+			mav = new ModelAndView("error/accessError.jsp");
+			return mav;
+		}
 		
+		hopeInfo.setHopeRegDate(hopeInfo.getHopeRegDate().substring(0, 10));
+
+		mav.addObject("hope", hopeInfo);
+		mav.addObject("cri", cri);
+
 		return mav;
 	}
 }

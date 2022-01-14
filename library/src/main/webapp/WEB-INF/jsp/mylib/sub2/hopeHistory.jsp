@@ -182,7 +182,7 @@
 													<input type="hidden" name="amount" value="${page.cri.amount }">
 													<input type="hidden" name="page" value="${page.cri.page }">
 													<input type="hidden" name="type" value="${page.cri.type }">
-													<input type="hidden" name="hope_no" value="${hopeList.hopeNo }">
+													<input type="hidden" name="hopeNo" value="${hopeList.hopeNo }">
 													<button class="btn2">정보</button>
 												</form>
 											

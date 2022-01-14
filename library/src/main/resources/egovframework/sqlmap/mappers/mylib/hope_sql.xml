@@ -54,6 +54,18 @@
 				user_id = #{userId}
 		]]>
 		<include refid="criteria" />
+	</select>
+	
+	<!-- 희망 도서 신청 정보 -->
+	<select id="hopeInfo" parameterType="HopeVO" resultMap="hopeMap">
+		<![CDATA[
+			SELECT
+				* 
+			FROM
+				hope
+			WHERE
+				user_id = #{userId} and hope_no = #{hopeNo}
+		]]>
 	</select>	
 	
 	<!-- 검색 조건 -->

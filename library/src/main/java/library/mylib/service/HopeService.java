@@ -12,7 +12,10 @@ public interface HopeService {
 
 	// 희망도서 신청 내역
 	public List<HopeVO> hopeList(Criteria cri, String userId);
-	
+
 	// 희망도서 신청 수
 	public int hopeTotal(Criteria cri, String userId);
+
+	// 희망도서 신청 정보
+	public HopeVO hopeInfo(HopeVO hope);
 }
