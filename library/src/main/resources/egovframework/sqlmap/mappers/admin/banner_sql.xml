@@ -20,7 +20,7 @@
 	</select>
 	
 	<!-- 배너 등록 -->
-	<insert id="insertBanner">
+	<insert id="insertBanner" parameterType="BannerVO">
 		<![CDATA[
 			INSERT INTO
 				banner
@@ -28,4 +28,15 @@
 				(#{userId}, #{path}, current_timestamp)
 		]]>
 	</insert>
+	
+	<!-- 배너 삭제 -->
+	<delete id="deleteBanner" parameterType="BannerVO">
+		<![CDATA[
+			DELETE 
+		  	FROM
+		  		banner
+		 	WHERE
+		 		path = #{path}
+		]]>
+	</delete> 
 </mapper>

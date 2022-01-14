@@ -43,17 +43,26 @@ public class BannerController {
 	public String bannerPopUp() {
 		return "admin/sub5/bannerPopUp.jsp";
 	}
-	
+
 	// 배너 등록
 	@PostMapping("/bannerAdd.do")
 	public String bannerAdd(Principal principal, BannerVO banner) {
-		
+
 		String loginId = principal.getName();
-		
+
 		banner.setUserId(loginId);
-		
+
 		bannerService.insertBanner(banner);
-		
+
 		return "redirect:/admin/bannerPopUp.do";
+	}
+
+	// 배너 삭제
+	@PostMapping("/bannerDel.do")
+	public String bannerDel(BannerVO banner) {
+
+		bannerService.deleteBanner(banner);
+
+		return "redirect:/admin/bannerList.do";
 	}
 }

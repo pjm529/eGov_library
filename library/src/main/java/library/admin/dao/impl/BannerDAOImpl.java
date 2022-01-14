@@ -23,4 +23,10 @@ public class BannerDAOImpl extends EgovAbstractMapper implements BannerDAO {
 		insert("Banner.insertBanner", banner);
 	}
 
+	// 배너 삭제
+	@Override
+	public void deleteBanner(BannerVO banner) {
+		delete("Banner.deleteBanner", banner);
+	}
+
 }

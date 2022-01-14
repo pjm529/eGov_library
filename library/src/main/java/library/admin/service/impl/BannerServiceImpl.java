@@ -27,4 +27,10 @@ public class BannerServiceImpl implements BannerService {
 		bannerDAO.insertBanner(banner);
 	}
 
+	// 배너 삭제
+	@Override
+	public void deleteBanner(BannerVO banner) {
+		bannerDAO.deleteBanner(banner);
+	}
+
 }
