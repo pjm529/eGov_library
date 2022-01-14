@@ -8,4 +8,7 @@ public interface BannerDAO {
 
 	// 배너 목록
 	public List<BannerVO> bannerList();
+	
+	// 배너 등록
+	public void insertBanner(BannerVO banner);
 }

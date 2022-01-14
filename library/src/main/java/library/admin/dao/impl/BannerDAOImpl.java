@@ -16,5 +16,11 @@ public class BannerDAOImpl extends EgovAbstractMapper implements BannerDAO {
 	public List<BannerVO> bannerList() {
 		return selectList("Banner.bannerList");
 	}
+	
+	// 배너 등록
+	@Override
+	public void insertBanner(BannerVO banner) {
+		insert("Banner.insertBanner", banner);
+	}
 
 }

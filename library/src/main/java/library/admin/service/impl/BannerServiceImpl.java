@@ -21,4 +21,10 @@ public class BannerServiceImpl implements BannerService {
 		return bannerDAO.bannerList();
 	}
 
+	// 배너 등록
+	@Override
+	public void insertBanner(BannerVO banner) {
+		bannerDAO.insertBanner(banner);
+	}
+
 }

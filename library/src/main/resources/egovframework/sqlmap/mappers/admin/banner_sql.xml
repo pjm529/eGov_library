@@ -19,4 +19,13 @@
 		]]>
 	</select>
 	
+	<!-- 배너 등록 -->
+	<insert id="insertBanner">
+		<![CDATA[
+			INSERT INTO
+				banner
+			VALUES
+				(#{userId}, #{path}, current_timestamp)
+		]]>
+	</insert>
 </mapper>
