@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import library.mylib.domain.HopeVO;
 import library.mylib.service.HopeService;
@@ -38,4 +39,11 @@ public class HopeController {
 		return "redirect:/mylib/hope.do";
 	}
 
+	// 희망도서 신청내역
+	@GetMapping("hopeHistory.do")
+	public ModelAndView hopeHistory() {
+		ModelAndView mav = new ModelAndView("mylib/sub2/hopeHistory.jsp");
+		
+		return mav;
+	}
 }
