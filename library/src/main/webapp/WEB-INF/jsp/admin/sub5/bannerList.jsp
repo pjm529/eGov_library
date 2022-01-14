@@ -67,7 +67,7 @@
 									
                                         <c:forEach var="list" items="${bannerList}">
                                             <tr>
-                                                <td><img src="${list.path }"></td>
+                                                <td><img src="${list.path }" style="width: 300px;"></td>
                                                 <td>${list.regDate }</td>
                                                 <td>
                                                     <form action="${pageContext.request.contextPath}/admin/bannerDel.do" method="post"
