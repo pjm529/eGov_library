@@ -9,7 +9,10 @@ public interface AdminHopeService {
 
 	// 희망도서 신청내역
 	public List<HopeVO> hopeList(Criteria cri);
-	
+
 	// 희망도서 신청 수
-		public int hopeTotal(Criteria cri);
+	public int hopeTotal(Criteria cri);
+
+	// 희망도서 신청 내역
+	public HopeVO hopeInfo(int hopeNo);
 }

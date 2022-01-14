@@ -51,9 +51,17 @@ public class AdminHopeController {
 
 	// 희망 도서 정보
 	@PostMapping("/hopeInfo.do")
-	public ModelAndView hope_info(Criteria cri, @RequestParam String hopeNo) {
+	public ModelAndView hope_info(Criteria cri, @RequestParam int hopeNo) {
 
 		ModelAndView mav = new ModelAndView("admin/sub2/hopeInfo.jsp");
+		
+		// 희망 도서 정보 조회
+		HopeVO hope = hopeService.hopeInfo(hopeNo);
+
+		hope.setHopeRegDate(hope.getHopeRegDate().substring(0, 10));
+
+		mav.addObject("hope", hope);
+		mav.addObject("cri", cri);
 
 		return mav;
 	}

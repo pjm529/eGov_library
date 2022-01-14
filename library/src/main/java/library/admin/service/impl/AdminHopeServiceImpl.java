@@ -28,4 +28,10 @@ public class AdminHopeServiceImpl implements AdminHopeService {
 		return hopeDAO.hopeTotal(cri);
 	}
 
+	// 희망도서 신청 내역
+	@Override
+	public HopeVO hopeInfo(int hopeNo) {
+		return hopeDAO.hopeInfo(hopeNo);
+	}
+
 }

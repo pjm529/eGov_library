@@ -12,5 +12,8 @@ public interface AdminHopeDAO {
 	
 	// 희망도서 신청 수
 	public int hopeTotal(Criteria cri);
+	
+	// 희망도서 신청 내역
+	public HopeVO hopeInfo(int hopeNo);
 
 }

@@ -24,4 +24,10 @@ public class AdminHopeDAOImpl extends EgovAbstractMapper implements AdminHopeDAO
 		return selectOne("AdminHope.hopeTotal", cri);
 	}
 
+	// 희망도서 신청 내역
+	@Override
+	public HopeVO hopeInfo(int hopeNo) {
+		return selectOne("AdminHope.hopeInfo", hopeNo);
+	}
+
 }
