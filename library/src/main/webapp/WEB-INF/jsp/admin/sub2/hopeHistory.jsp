@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <div class="section">
+        <div class="section"> 
             <div class="doc">
 
                 <!-- 왼쪽 사이드바 -->
@@ -56,39 +56,39 @@
                             <!--검색-->
                             <div class="search">
                                 <form action="">
-                              		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+                              		<input type="hidden" name="amount" value="${page.cri.amount }">
                               		<input type="hidden" name="page" value="1">
                                     <select class="type" name="type" onchange="submit()">
                                     
-                                    	<c:if test="${empty pageMaker.cri.type}">
+                                    	<c:if test="${empty page.cri.type}">
                                     	<option value="all" selected="selected">전체</option>
                                         <option value="process">처리중</option>
                                         <option value="own">소장중</option>
                                         <option value="cancel">취소</option>
                                     	</c:if>
                                     	
-                                    	<c:if test="${pageMaker.cri.type == 'all'}">
+                                    	<c:if test="${page.cri.type == 'all'}">
                                     	<option value="all" selected="selected">전체</option>
                                         <option value="process">처리중</option>
                                         <option value="own">소장중</option>
                                         <option value="cancel">취소</option>
                                     	</c:if>
                                     	
-                                    	<c:if test="${pageMaker.cri.type == 'process' }">
+                                    	<c:if test="${page.cri.type == 'process' }">
                                     	<option value="all">전체</option>
                                         <option value="process" selected="selected">처리중</option>
                                         <option value="own">소장중</option>
                                         <option value="cancel">취소</option>
                                     	</c:if>
                                     	
-                                    	<c:if test="${pageMaker.cri.type == 'own' }">
+                                    	<c:if test="${page.cri.type == 'own' }">
                                     	<option value="all">전체</option>
                                         <option value="process">처리중</option>
                                         <option value="own" selected="selected">소장중</option>
                                         <option value="cancel">취소</option>
                                     	</c:if>
                                     	
-                                    	<c:if test="${pageMaker.cri.type == 'cancel' }">
+                                    	<c:if test="${page.cri.type == 'cancel' }">
                                     	<option value="all">전체</option>
                                         <option value="process">처리중</option>
                                         <option value="own">소장중</option>
@@ -106,28 +106,28 @@
                                     <span style="margin-right: 10px;"> 희망 도서 신청 수 : <b>${total }</b> 건</span>
                                     <select name="amount">
                                     	
-	                                    <c:if test="${pageMaker.cri.amount == 10 }">
+	                                    <c:if test="${page.cri.amount == 10 }">
 	                                    <option value="10" selected="selected">10건씩 보기</option>
 	                                    <option value="20">20건씩 보기</option>
 	                                    <option value="30">30건씩 보기</option>
 	                                    <option value="40">40건씩 보기</option>
 	                                    </c:if>
 	                                    
-	                                    <c:if test="${pageMaker.cri.amount == 20 }">
+	                                    <c:if test="${page.cri.amount == 20 }">
 	                                    <option value="10">10건씩 보기</option>
 	                                    <option value="20" selected="selected">20건씩 보기</option>
 	                                    <option value="30">30건씩 보기</option>
 	                                    <option value="40">40건씩 보기</option>
 	                                    </c:if>
 	                                    
-	                                    <c:if test="${pageMaker.cri.amount == 30 }">
+	                                    <c:if test="${page.cri.amount == 30 }">
 	                                    <option value="10">10건씩 보기</option>
 	                                    <option value="20">20건씩 보기</option>
 	                                    <option value="30" selected="selected">30건씩 보기</option>
 	                                    <option value="40">40건씩 보기</option>
 	                                    </c:if>
 	                                    
-	                                    <c:if test="${pageMaker.cri.amount == 40 }">
+	                                    <c:if test="${page.cri.amount == 40 }">
 	                                    <option value="10">10건씩 보기</option>
 	                                    <option value="20">20건씩 보기</option>
 	                                    <option value="30">30건씩 보기</option>
@@ -136,7 +136,7 @@
                                         
                                     </select>
                                     <input type="hidden" name="page" value="1">
-                                    <input type="hidden" name="type" value="${pageMaker.cri.type }">
+                                    <input type="hidden" name="type" value="${page.cri.type }">
                                     <button id="list_btn" class="btn">이동</button>
                                 </form>
 
@@ -181,9 +181,9 @@
 											
 											<td class="border">
 												<form action="${pageContext.request.contextPath}/admin/hopeInfo.do" method="post">
-													<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-													<input type="hidden" name="page" value="${pageMaker.cri.page }">
-													<input type="hidden" name="type" value="${pageMaker.cri.type }">
+													<input type="hidden" name="amount" value="${page.cri.amount }">
+													<input type="hidden" name="page" value="${page.cri.page }">
+													<input type="hidden" name="type" value="${page.cri.type }">
 													<input type="hidden" name="hopeNo" value="${hopeList.hopeNo }">
 													<button class="btn2">정보</button>
 												</form>
@@ -199,16 +199,16 @@
                                 
                                 <div class="pageInfo" style="">
 	
-									<c:if test="${pageMaker.prev }">
-										<a class="not" href="${pageMaker.startPage - 1}">이전</a>
+									<c:if test="${page.prev }">
+										<a class="not" href="${page.startPage - 1}">이전</a>
 									</c:if>
 									
-									<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-										<a class="${pageMaker.cri.page == num ? "current":"not" }" href="${num }"><span>${num }</span></a>
+									<c:forEach var="num" begin="${page.startPage }" end="${page.endPage }">
+										<a class="${page.cri.page == num ? "current":"not" }" href="${num }"><span>${num }</span></a>
 									</c:forEach>
 									
-									<c:if test="${pageMaker.next }">
-										<a class="not" href="${pageMaker.endPage + 1}">다음</a>
+									<c:if test="${page.next }">
+										<a class="not" href="${page.endPage + 1}">다음</a>
 									</c:if>
 								</div>
 								</c:if>
@@ -222,15 +222,14 @@
 						</c:if>
                     </div>
                 </div>
-
-            </div>
+            </div> 
         </div>
     </div>
     
     <form method="get" class="moveForm"> 
-		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-		<input type="hidden" name="page" value="${pageMaker.cri.page }">
-		<input type="hidden" name="type" value="${pageMaker.cri.type }">
+		<input type="hidden" name="amount" value="${page.cri.amount }">
+		<input type="hidden" name="page" value="${page.cri.page }">
+		<input type="hidden" name="type" value="${page.cri.type }">
 	</form>
     
     <!-- footer -->
