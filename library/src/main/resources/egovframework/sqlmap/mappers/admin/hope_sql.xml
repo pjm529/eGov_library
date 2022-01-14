@@ -67,6 +67,19 @@
 				hope_no = #{hopeNo}
 		]]>
 	</update>
+	
+	<!-- 희망 도서 소장 -->
+	<update id="hopeOwn" parameterType="hopeVO">
+		<![CDATA[
+			UPDATE
+				hope
+		   	SET
+		   		hope_status = 1, 
+		   		cancel_reason = null
+		 	WHERE
+		 		hope_no = #{hopeNo}
+		]]>
+	</update>
 		
 	
 	<!-- 검색 조건 -->

@@ -76,4 +76,13 @@ public class AdminHopeController {
 				+ cri.getType() + "&hopeNo=" + hope.getHopeNo();
 	}
 
+	// 희망 도서 소유 처리
+	@PostMapping("/hopeOwn.do")
+	public String hope_own(@ModelAttribute Criteria cri, @ModelAttribute HopeVO hope) {
+
+		hopeService.hopeOwn(hope.getHopeNo());
+
+		return "redirect:/admin/hopeInfo.do?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&type="
+		+ cri.getType() + "&hopeNo=" + hope.getHopeNo();
+	}
 }
