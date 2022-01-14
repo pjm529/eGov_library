@@ -55,6 +55,20 @@
 		]]>
 	</select>
 	
+	<!-- 희망 도서 취소 -->
+	<update id="hopeCancel" parameterType="hopeVO">
+		<![CDATA[
+			UPDATE
+				hope
+			SET
+				hope_status = -1, 
+				cancel_reason = #{cancelReason} 
+			WHERE
+				hope_no = #{hopeNo}
+		]]>
+	</update>
+		
+	
 	<!-- 검색 조건 -->
 	<sql id="criteria">
 	        <if test="type != null">

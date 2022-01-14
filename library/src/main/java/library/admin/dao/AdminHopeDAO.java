@@ -15,5 +15,8 @@ public interface AdminHopeDAO {
 	
 	// 희망도서 신청 내역
 	public HopeVO hopeInfo(int hopeNo);
+	
+	// 희망도서 취소
+	public void hopeCancel(HopeVO hope);
 
 }

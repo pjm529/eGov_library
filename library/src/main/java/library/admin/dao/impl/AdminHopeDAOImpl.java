@@ -30,4 +30,10 @@ public class AdminHopeDAOImpl extends EgovAbstractMapper implements AdminHopeDAO
 		return selectOne("AdminHope.hopeInfo", hopeNo);
 	}
 
+	// 희망도서 취소
+	@Override
+	public void hopeCancel(HopeVO hope) {
+		update("AdminHope.hopeCancel", hope);
+	}
+
 }

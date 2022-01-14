@@ -51,10 +51,10 @@ public class AdminHopeController {
 
 	// 희망 도서 정보
 	@PostMapping("/hopeInfo.do")
-	public ModelAndView hope_info(Criteria cri, @RequestParam int hopeNo) {
+	public ModelAndView hope_info(@ModelAttribute Criteria cri, @RequestParam int hopeNo) {
 
 		ModelAndView mav = new ModelAndView("admin/sub2/hopeInfo.jsp");
-		
+
 		// 희망 도서 정보 조회
 		HopeVO hope = hopeService.hopeInfo(hopeNo);
 
@@ -64,6 +64,16 @@ public class AdminHopeController {
 		mav.addObject("cri", cri);
 
 		return mav;
+	}
+
+	// 희망 도서 취소 처리
+	@PostMapping("/hopeCancel.do")
+	public String hope_cancel(@ModelAttribute Criteria cri, @ModelAttribute HopeVO hope) {
+
+		hopeService.hopeCancel(hope);
+
+		return "redirect:/admin/hopeInfo.do?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&type="
+				+ cri.getType() + "&hope_no=" + hope.getHopeNo();
 	}
 
 }

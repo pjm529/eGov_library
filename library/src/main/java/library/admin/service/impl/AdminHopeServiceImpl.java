@@ -34,4 +34,10 @@ public class AdminHopeServiceImpl implements AdminHopeService {
 		return hopeDAO.hopeInfo(hopeNo);
 	}
 
+	// 희망도서 취소
+	@Override
+	public void hopeCancel(HopeVO hope) {
+		hopeDAO.hopeCancel(hope);
+	}
+
 }
