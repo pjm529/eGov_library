@@ -21,4 +21,7 @@ public interface MasterService {
 
 	// 권한 부여
 	public void grant(String userId);
+
+	// 권한 해제
+	public void revoke(String userId);
 }

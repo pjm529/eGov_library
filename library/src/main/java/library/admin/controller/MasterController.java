@@ -1,5 +1,7 @@
 package library.admin.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +94,25 @@ public class MasterController {
 		masterService.grant(userId);
 
 		return "redirect:/master/adminPopUp.do";
+	}
+
+	@PostMapping("/revoke")
+	public String revoke(Criteria cri, @RequestParam String userId) {
+
+		masterService.revoke(userId);
+
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String	 type = cri.getType();
+		String keyword;
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/master/adminList.do";
+		}
+
+		return "redirect:/master/adminList.do?amount=" + amount + "&page=" + page + "&type=" + type + "&keyword="
+				+ keyword;
 	}
 }

@@ -42,4 +42,10 @@ public class MasterDAOImpl extends EgovAbstractMapper implements MasterDAO {
 		insert("Master.grant", userId);
 	}
 
+	// 권한 해제
+	@Override
+	public void revoke(String userId) {
+		delete("Master.revoke", userId);
+	}
+
 }

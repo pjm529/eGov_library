@@ -46,4 +46,10 @@ public class MasterServiceImpl implements MasterService {
 		masterDAO.grant(userId);
 	}
 
+	// 권한 해제
+	@Override
+	public void revoke(String userId) {
+		masterDAO.revoke(userId);
+	}
+
 }

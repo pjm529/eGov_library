@@ -80,6 +80,17 @@
 				(#{userId}, 'ROLE_ADMIN')
 		]]>
 	</insert>
+	
+	<!-- 관리자 권한 해제 -->
+	<delete id="revoke" parameterType="string">
+		<![CDATA[
+			DELETE
+			FROM
+				member_auth
+			WHERE
+				user_id = #{userId} AND auth = 'ROLE_ADMIN'
+		]]>
+	</delete>
 		
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
