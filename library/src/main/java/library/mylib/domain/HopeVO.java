@@ -1,4 +1,4 @@
-package library.mylib.dao;
+package library.mylib.domain;
 
 import lombok.Data;
 
