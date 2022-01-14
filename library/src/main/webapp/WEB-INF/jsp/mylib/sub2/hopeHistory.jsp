@@ -178,7 +178,7 @@
 											</c:if>
 											
 											<td class="border">
-												<form action="/mylib/hopeInfo.do" method="post">
+												<form action="${pageContext.request.contextPath}/mylib/hopeInfo.do" method="post">
 													<input type="hidden" name="amount" value="${page.cri.amount }">
 													<input type="hidden" name="page" value="${page.cri.page }">
 													<input type="hidden" name="type" value="${page.cri.type }">

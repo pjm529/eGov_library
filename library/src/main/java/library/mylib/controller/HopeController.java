@@ -43,7 +43,7 @@ public class HopeController {
 	}
 
 	// 희망도서 신청내역
-	@GetMapping("hopeHistory.do")
+	@GetMapping("/hopeHistory.do")
 	public ModelAndView hopeHistory(@ModelAttribute Criteria cri, Principal principal) {
 
 		ModelAndView mav = new ModelAndView("mylib/sub2/hopeHistory.jsp");
@@ -69,6 +69,14 @@ public class HopeController {
 		ViewPage vp = new ViewPage(cri, total);
 		mav.addObject("page", vp);
 
+		return mav;
+	}
+	
+	@PostMapping("/hopeInfo.do")
+	public ModelAndView hopeInfo() {
+		
+		ModelAndView mav = new ModelAndView("mylib/sub2/hopeInfo.jsp");
+		
 		return mav;
 	}
 }
