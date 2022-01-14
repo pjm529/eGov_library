@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Master">
+
+	<resultMap id="memberMap" type="MemberVO">
+		<id column="user_id" 					property="userId" />
+		<result column="user_name" 				property="userName" />
+		<result column="user_birth"	 			property="userBirth" />
+		<result column="user_tel" 				property="userTel" />
+		<result column="user_email" 			property="userEmail" />
+		<result column="user_zip" 				property="userZip" />
+		<result column="user_address" 			property="userAddress" />
+		<result column="user_address_detail"	property="userAddressDetail" />
+		<result column="user_able_loan" 		property="userAbleLoan" />
+		<result column="user_book_count" 		property="userBookCount" />
+		<result column="user_overdue_date" 		property="userOverdueDate" />
+		<result column="user_reg_date" 			property="userRegDate" />
+	</resultMap>
+
+	<!-- 회원 목록 출력 -->
+	<select id="adminList" resultMap="memberMap"> 
+		<![CDATA[
+			SELECT
+				m.*
+			FROM
+				member as m JOIN member_auth as ma ON m.user_id = ma.user_id
+			 WHERE 
+			 	ma.auth = 'ROLE_ADMIN' 
+		]]>	 
+			 <include refid="criteria" />
+		<![CDATA[ 
+			ORDER BY 
+				user_reg_date
+		]]>
+	</select>
+	
+	<!-- 총 회원 수 -->
+	<select id="adminTotal" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM 
+				member as m JOIN member_auth as ma ON m.user_id = ma.user_id
+			WHERE
+				ma.auth = 'ROLE_ADMIN'
+		]]>
+			<include refid="criteria" />			
+	</select>
+	
+	<!-- 페이징 및 검색 조건문 -->
+	<sql id="criteria">
+        <if test="type != null">
+		  	<if test="keyword != null">
+		  	
+		  		<if test="type == 'userId'">
+		  			where user_id like concat('%', #{keyword}, '%')
+		  		</if>
+		  		
+		  		<if test="type == 'userName'">
+		  			where user_name like concat('%', #{keyword}, '%')
+		  		</if>
+		  		
+		  		<if test="type == 'userTel'">
+		  			where user_tel like concat('%', #{keyword}, '%')
+		  		</if>
+		  		
+		  		<if test="type == 'userEmail'">
+		  			where user_email like concat('%', #{keyword}, '%')
+		  		</if>
+			</if>
+		</if>
+    </sql>
+</mapper>
