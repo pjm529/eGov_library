@@ -17,7 +17,7 @@ import library.member.domain.MemberVO;
 @Controller
 @RequestMapping("/master")
 public class MasterController {
-	
+
 	@Autowired
 	private MasterService masterService;
 
@@ -26,21 +26,28 @@ public class MasterController {
 	public ModelAndView adminList(@ModelAttribute Criteria cri) {
 
 		ModelAndView mav = new ModelAndView("admin/sub3/adminList.jsp");
-		
+
 		List<MemberVO> adminList = masterService.adminList(cri);
-		
+
 		for (MemberVO m : adminList) {
 			m.setUserRegDate(m.getUserRegDate().substring(0, 10));
 		}
-		
+
 		mav.addObject("adminList", adminList);
-		
+
 		int total = masterService.adminTotal(cri);
 		mav.addObject("total", total);
-		
+
 		ViewPage vp = new ViewPage(cri, total);
 		mav.addObject("page", vp);
-		
+
 		return mav;
+	}
+
+	// 관리자 등록 팝업
+	@GetMapping("/adminPopUp.do")
+	public String adminPopUp() {
+		return "admin/sub3/adminPopUp.jsp";
+
 	}
 }

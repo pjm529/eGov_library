@@ -1,0 +1,110 @@
+@charset "UTF-8";
+body{
+    width: 685px; 
+    height: 550px;
+}
+
+div, li, ul{
+    margin: 0;
+    padding: 0;
+    line-height: 150%;
+    word-break: keep-all;
+    font-size: 15px;
+    font-weight: normal;
+    color: #464646;
+}
+ul{
+    text-decoration: none;
+    list-style: none;
+    padding: 0px;
+}
+
+
+/* 본문 부분 */
+.content{
+    box-sizing: border-box;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    width: 685px;
+}
+
+
+/* 게시판 전체 wrapper */
+.wrapper-bbs {
+    font-size: 13px;
+    background: #fff;
+}
+
+
+
+/*  ======= 테이블 ====== */
+table{
+    width: 100%;
+    border-top: 1px solid #dee1e7;
+    border-bottom: 2px solid #ccc;
+    border-spacing: 0;
+    font-size: inherit;
+    margin-top: 15px;
+    border-collapse: separate;
+}
+
+table thead th{
+    border-top-color: #464747;
+    background: #f6f6f6;
+    border-top-width: 2px;
+}
+
+th, td{
+    border: 1px solid #e5e8eb;
+    vertical-align: middle;
+    padding: 7px 10px;
+    border-left: 0;
+    border-right: 0;
+    text-align: center;
+}
+
+
+
+/* 검색 */
+.search {
+    display: inline-block;
+    zoom: 1;
+    vertical-align: middle;
+    float: left;
+    padding-bottom: 20px;
+}
+
+.search select{
+    width: 100px;
+    height: 34px;
+    border: 1px solid #ccc;
+    font-size: inherit;
+}
+
+.search input{
+    width: 230px;
+    height: 30px;
+    border: 1px solid #ccc;
+    font-size: inherit;
+}
+
+
+/* 버튼속성 */
+.btn {
+    width: 60px;
+    height: 35px;
+    background-color: #266ac4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+.btn:focus, .btn:active{
+    border: none; box-shadow: none;
+}
+
+.btn:hover{
+    background-color: #215aa3;
+}
+
