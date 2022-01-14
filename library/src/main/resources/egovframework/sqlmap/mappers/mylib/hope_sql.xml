@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Hope">
+
+	<resultMap id="hopeMap" type="HopeVO">
+		<id column="hope_no" 			property="hopeNo" />
+		<result column="user_id" 		property="userId" />
+		<result column="book_title" 	property="bookTitle" />
+		<result column="book_author" 	property="bookAuthor" />
+		<result column="book_publisher"	property="bookPublisher" />
+		<result column="book_pubdate"	property="bookPubDate" />
+		<result column="book_isbn" 		property="bookIsbn" />
+		<result column="note" 			property="note" />
+		<result column="book_price" 	property="bookPrice" />
+		<result column="hope_status" 	property="hopeStatus" />
+		<result column="cancel_reason" 	property="cancelReason" />
+		<result column="hope_reg_date" 	property="hopeRegDate" />
+	</resultMap>
+
+	<!-- 희망 도서 신청 -->
+	<insert id="insertHope" parameterType="HopeVO">
+		<![CDATA[
+			INSERT INTO
+				hope(user_id, book_title, book_author, book_publisher, book_pubdate, book_isbn, note, book_price) 
+			VALUES(#{userId}, #{bookTitle}, #{bookAuthor}, #{bookPublisher}, #{bookPubDate}, #{bookIsbn}, #{note}, #{bookPrice});
+		]]>
+	</insert>	
+</mapper>

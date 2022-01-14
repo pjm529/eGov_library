@@ -185,6 +185,7 @@
 		   							$(".price_input").focus();
 		   						} else {
 		   							if(confirm("해당도서를 신청하시겠습니까?")) {
+		   								alert("신청이 완료되었습니다.");
 		   								$("#join_form").attr("onsubmit", "return true;");
 		   			                    $("#join_form").attr("action", "${pageContext.request.contextPath}/mylib/hopeBook.do");
 		   			                    $("#join_form").submit();
