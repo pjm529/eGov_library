@@ -17,4 +17,9 @@ public class IntroController {
 	public String history() {
 		return "intro/sub2/history.jsp";
 	}
+	
+	@GetMapping("/road.do")
+	public String road() {
+		return "intro/sub3/road.jsp";
+	}
 }
