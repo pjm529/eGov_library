@@ -12,5 +12,6 @@
 		<typeAlias alias="ArticleVO" type="library.board.domain.ArticleVO" />
 		<typeAlias alias="EnquiryVO" type="library.board.domain.EnquiryVO" />
 		<typeAlias alias="AnswerVO" type="library.board.domain.AnswerVO" />
+		<typeAlias alias="HopeVO" type="library.mylib.domain.HopeVO" />
     </typeAliases>
 </configuration>
