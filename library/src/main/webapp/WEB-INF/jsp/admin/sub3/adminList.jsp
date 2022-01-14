@@ -59,39 +59,39 @@
                                     <select name="type">
 
                                         <c:if test="${empty page.cri.type}">
-                                            <option value="user_id" selected="selected">아이디</option>
-                                            <option value="user_name">이름</option>
-                                            <option value="user_tel">전화번호</option>
-                                            <option value="user_email">이메일</option>
+                                            <option value="userId" selected="selected">아이디</option>
+                                            <option value="userName">이름</option>
+                                            <option value="userTel">전화번호</option>
+                                            <option value="userEmail">이메일</option>
                                         </c:if>
 
 
-                                        <c:if test="${page.cri.type == 'user_id'}">
-                                            <option value="user_id" selected="selected">아이디</option>
-                                            <option value="user_name">이름</option>
-                                            <option value="user_tel">전화번호</option>
-                                            <option value="user_email">이메일</option>
+                                        <c:if test="${page.cri.type == 'userId'}">
+                                            <option value="userId" selected="selected">아이디</option>
+                                            <option value="userName">이름</option>
+                                            <option value="userTel">전화번호</option>
+                                            <option value="userEmail">이메일</option>
                                         </c:if>
 
-                                        <c:if test="${page.cri.type == 'user_name' }">
-                                            <option value="user_id">아이디</option>
-                                            <option value="user_name" selected="selected">이름</option>
-                                            <option value="user_tel">전화번호</option>
-                                            <option value="user_email">이메일</option>
+                                        <c:if test="${page.cri.type == 'userName' }">
+                                            <option value="userId">아이디</option>
+                                            <option value="userName" selected="selected">이름</option>
+                                            <option value="userTel">전화번호</option>
+                                            <option value="userEmail">이메일</option>
                                         </c:if>
 
-                                        <c:if test="${page.cri.type == 'user_tel' }">
-                                            <option value="user_id">아이디</option>
-                                            <option value="user_name">이름</option>
-                                            <option value="user_tel" selected="selected">전화번호</option>
-                                            <option value="user_email">이메일</option>
+                                        <c:if test="${page.cri.type == 'userTel' }">
+                                            <option value="userId">아이디</option>
+                                            <option value="userName">이름</option>
+                                            <option value="userTel" selected="selected">전화번호</option>
+                                            <option value="userEmail">이메일</option>
                                         </c:if>
 
-                                        <c:if test="${page.cri.type == 'user_email' }">
-                                            <option value="user_id">아이디</option>
-                                            <option value="user_name">이름</option>
-                                            <option value="user_tel">전화번호</option>
-                                            <option value="user_email" selected="selected">이메일</option>
+                                        <c:if test="${page.cri.type == 'userEmail' }">
+                                            <option value="userId">아이디</option>
+                                            <option value="userName">이름</option>
+                                            <option value="userTel">전화번호</option>
+                                            <option value="userEmail" selected="selected">이메일</option>
                                         </c:if>
 
                                     </select>
@@ -102,7 +102,7 @@
                                 </form>
 
                             </div>
-                            <!-- 회원 수 -->
+                            <!-- 회원 수 --> 
                             <div class="inline">
                                 <form action="">
 

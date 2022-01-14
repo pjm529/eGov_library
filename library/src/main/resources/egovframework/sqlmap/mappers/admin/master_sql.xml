@@ -98,20 +98,21 @@
 		  	<if test="keyword != null">
 		  	
 		  		<if test="type == 'userId'">
-		  			where user_id like concat('%', #{keyword}, '%')
+		  			AND m.user_id LIKE CONCAT('%', #{keyword}, '%')
 		  		</if>
 		  		
 		  		<if test="type == 'userName'">
-		  			where user_name like concat('%', #{keyword}, '%')
+		  			AND m.user_name LIKE CONCAT('%', #{keyword}, '%')
 		  		</if>
 		  		
 		  		<if test="type == 'userTel'">
-		  			where user_tel like concat('%', #{keyword}, '%')
+		  			AND m.user_tel LIKE CONCAT('%', #{keyword}, '%')
 		  		</if>
 		  		
 		  		<if test="type == 'userEmail'">
-		  			where user_email like concat('%', #{keyword}, '%')
+		  			AND m.user_email LIKE CONCAT('%', #{keyword}, '%')
 		  		</if>
+		  		
 			</if>
 		</if>
     </sql>
