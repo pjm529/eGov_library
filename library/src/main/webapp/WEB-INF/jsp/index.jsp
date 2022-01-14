@@ -120,7 +120,7 @@
                             <ul class="sub-menu sm05">
                                 <li>
                                     <a class="" href="${pageContext.request.contextPath}/mylib/loanHistory.do">도서관련</a>
-                                    <a class="" href="${pageContext.request.contextPath}/mylib/hope.dp">희망도서신청/조회</a>
+                                    <a class="" href="${pageContext.request.contextPath}/mylib/hope.do">희망도서신청/조회</a>
                                     <a class="" href="${pageContext.request.contextPath}/mylib/reservationRoomPage.do">좌석예약/조회</a>
                                     <a class="" href="${pageContext.request.contextPath}/mylib/myPage.do">개인정보</a>
                                 </li>
