@@ -237,6 +237,12 @@
 			$("#cancel_btn").on("click", function(){
 				if(confirm("해당 도서를 취소처리 하시겠습니까?")) {
 					$(".reason").val(prompt("취소사유를 입력하세요"));
+					
+					if($(".reaseon").val() == null || $(".reaseon").val() == "" || $(".reaseon").val().length < 2){
+						alert("취소 사유를 입력해주세요.");
+						return false;
+					}
+					
 					alert("취소처리 되었습니다.");
 					$("form").attr("onsubmit", "return true;");
 					$("form").submit();
