@@ -10,8 +10,11 @@ public class IntroController {
 
 	@GetMapping("/greeting.do")
 	public String intro() {
-
 		return "intro/sub1/greeting.jsp";
 	}
 
+	@GetMapping("/history.do")
+	public String history() {
+		return "intro/sub2/history.jsp";
+	}
 }
