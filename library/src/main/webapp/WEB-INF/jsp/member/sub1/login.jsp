@@ -79,7 +79,7 @@
                                 </div>
 
                                 <div class="login_menu">
-                                    <span><a href="${pageContext.request.contextPath}/member/signUpCheck.do">회원가입 ▶</a>　</span>
+                                    <span><a href="${pageContext.request.contextPath}/member/signupCheck.do">회원가입 ▶</a>　</span>
                                     <span><a href="${pageContext.request.contextPath}/member/searchId.do">아이디 찾기 ▶</a>　</span>
                                     <span><a href="${pageContext.request.contextPath}/member/searchPw.do">비밀번호 찾기 ▶</a></span>
                                     <p style="font-size: 20px;"></p>
