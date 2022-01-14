@@ -47,6 +47,18 @@
 			<include refid="criteria" />			
 	</select>
 	
+	<!-- 회원 검색 -->
+	<select id="searchMember" parameterType="string" resultMap="memberMap">
+		<![CDATA[
+			SELECT 
+				*
+			FROM 
+				member
+			WHERE 
+				user_id = #{userId}
+		]]>
+	</select>
+	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
         <if test="type != null">

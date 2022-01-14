@@ -12,4 +12,7 @@ public interface MasterService {
 
 	// 관리자 수
 	public int adminTotal(Criteria cri);
+
+	// 회원 검색
+	public MemberVO searchMember(String userId);
 }

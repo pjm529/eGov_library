@@ -15,7 +15,7 @@ public class MasterServiceImpl implements MasterService {
 
 	@Autowired
 	private MasterDAO masterDAO;
-	
+
 	// 관리자 목록
 	@Override
 	public List<MemberVO> adminList(Criteria cri) {
@@ -26,6 +26,12 @@ public class MasterServiceImpl implements MasterService {
 	@Override
 	public int adminTotal(Criteria cri) {
 		return masterDAO.adminTotal(cri);
+	}
+
+	// 회원 검색
+	@Override
+	public MemberVO searchMember(String userId) {
+		return masterDAO.searchMember(userId);
 	}
 
 }

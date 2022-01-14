@@ -24,4 +24,10 @@ public class MasterDAOImpl extends EgovAbstractMapper implements MasterDAO {
 		return selectOne("Master.adminTotal", cri);
 	}
 
+	// 회원 검색
+	@Override
+	public MemberVO searchMember(String userId) {
+		return selectOne("Master.searchMember", userId);
+	}
+
 }

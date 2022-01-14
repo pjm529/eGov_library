@@ -46,8 +46,24 @@ public class MasterController {
 
 	// 관리자 등록 팝업
 	@GetMapping("/adminPopUp.do")
-	public String adminPopUp() {
-		return "admin/sub3/adminPopUp.jsp";
+	public ModelAndView adminPopUp(@ModelAttribute Criteria cri) {
+
+		ModelAndView mav = new ModelAndView("admin/sub3/adminPopUp.jsp");
+
+		if (cri.getKeyword() == null) {
+			return mav;
+		}
+		
+		// 회원 검색
+		MemberVO member = masterService.searchMember(cri.getKeyword());
+
+		if (member != null) {
+			member.setUserRegDate(member.getUserRegDate().substring(0, 10));
+		}
+
+		mav.addObject("member", member);
+
+		return mav;
 
 	}
 }

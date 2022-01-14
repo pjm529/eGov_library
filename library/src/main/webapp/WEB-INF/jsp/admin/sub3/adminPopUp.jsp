@@ -27,7 +27,7 @@
                                     <select name="type">
                                         <option value="userId" selected="selected">아이디</option>
                                     </select>
-                                    <input type="text" name="userId" autocomplete="off" value="${member.userId }">
+                                    <input type="text" name="keyword" autocomplete="off" value="${member.userId }">
                                     <button id="search_btn" class="btn">검색</button>
 
                                 </form>
@@ -84,7 +84,7 @@
 				let id = $('#userId').val(); 
 				
 				let data = {
-           				user_id: id
+           				userId: id
            		};
 				
 				$.ajax({
