@@ -190,6 +190,7 @@
 
                     </table>
 					<br>
+					<c:if test="${hope.hopeStatus == 0 }">
 					<div class="hope_cancel_wrap">
                     	<form action="${pageContext.request.contextPath}/admin/hopeCancel.do" method="post" onsubmit="return false;">
                     		<input type="hidden" name="amount" value="${cri.amount }">
@@ -210,7 +211,7 @@
 							<button id="own_btn" class="btn">소장</button>
                     	</form>
                     </div>
-                    
+                    </c:if>
                     
                     
                     <div class="hope_history_wrap">
