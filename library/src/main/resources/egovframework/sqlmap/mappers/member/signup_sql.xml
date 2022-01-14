@@ -62,7 +62,7 @@
 		<![CDATA[
 			INSERT INTO member VALUES
 			(#{userId}, #{userPw}, #{userName}, #{userBirth}, #{userTel}, #{userEmail},
-			#{userZip}, #{userAddress}, #{userAddressDetail}, 10, 0, 0, "1", current_timestamp )
+			#{userZip}, #{userAddress}, #{userAddressDetail}, 10, 0, 0, 1, current_timestamp )
 		]]>
 	</insert>
 	
