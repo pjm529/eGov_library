@@ -81,33 +81,32 @@
     <script>
 		$(function(){
 			$(".add_btn").on("click", function(){
-				let id = $('#userId').val(); 
-				
-				let data = {
-           				userId: id
-           		};
-				
-				$.ajax({
-					type: "post",
-           			url: "${pageContext.request.contextPath}/master/adminChk.do",
-           			data: data,
-					success: function(result) {
-           				
-           				if (result == "success") {
-           					alert("관리자 권한이 부여되었습니다.")
-							$("form").attr("onsubmit", "return true");
-           					$("form").submit();
-           					
-           				} else {
-           					alert("이미 관리자 권한을 가지고 있습니다.");
-           				}
-           			}
-				});
-				
+				if(confirm("관리자 권한을 부여하시겠습니까?")) {
+					let id = $('#userId').val(); 
+					
+					let data = {
+	           				userId: id
+	           		};
+					
+					$.ajax({
+						type: "post",
+	           			url: "${pageContext.request.contextPath}/master/adminChk.do",
+	           			data: data,
+						success: function(result) {
+	           				
+	           				if (result == "success") {
+	           					alert("관리자 권한이 부여되었습니다.")
+								$("form").attr("onsubmit", "return true");
+	           					$("form").submit();
+	           					
+	           				} else {
+	           					alert("이미 관리자 권한을 가지고 있습니다.");
+	           				}
+	           			}
+					});
+				}
 			});
-			
 		});
-
     </script>
 
 

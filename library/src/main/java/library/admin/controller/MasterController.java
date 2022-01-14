@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.admin.service.MasterService;
@@ -53,7 +56,7 @@ public class MasterController {
 		if (cri.getKeyword() == null) {
 			return mav;
 		}
-		
+
 		// 회원 검색
 		MemberVO member = masterService.searchMember(cri.getKeyword());
 
@@ -65,5 +68,29 @@ public class MasterController {
 
 		return mav;
 
+	}
+
+	// 관리자 권한가지고 있는지 검색
+	@ResponseBody
+	@PostMapping("/adminChk.do")
+	public String adminChk(@RequestParam String userId) {
+
+		int result = masterService.adminCheck(userId);
+
+		if (result == 1) {
+			return "fail";
+		} else {
+			return "success";
+		}
+
+	}
+
+	// 관리자 권한 부여
+	@PostMapping("/grant.do")
+	public String grant(@RequestParam String userId) {
+
+		masterService.grant(userId);
+
+		return "redirect:/master/adminPopUp.do";
 	}
 }

@@ -15,5 +15,11 @@ public interface MasterDAO {
 	
 	// 회원 검색
 	public MemberVO searchMember(String userId);
+	
+	// 관리자 권한 보유 중인지 검색
+	public int adminCheck(String userId);
+	
+	// 권한 부여
+	public void grant(String userId);
 
 }

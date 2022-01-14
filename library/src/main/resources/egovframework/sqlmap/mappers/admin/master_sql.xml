@@ -59,6 +59,28 @@
 		]]>
 	</select>
 	
+	<!-- 관리자 권한 검색 -->
+	<select id="adminCheck" parameterType="string" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM 
+				member_auth
+			WHERE 
+				user_id = #{userId} AND auth = 'ROLE_ADMIN'
+		]]>
+	</select>
+		
+	<!-- 관리자 권한 부여 -->
+	<insert id="grant" parameterType="string">
+		<![CDATA[
+			INSERT INTO
+				member_auth 
+			VALUES
+				(#{userId}, 'ROLE_ADMIN')
+		]]>
+	</insert>
+		
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
         <if test="type != null">

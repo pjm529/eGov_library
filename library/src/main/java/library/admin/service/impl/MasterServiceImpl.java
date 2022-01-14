@@ -34,4 +34,16 @@ public class MasterServiceImpl implements MasterService {
 		return masterDAO.searchMember(userId);
 	}
 
+	// 관리자 권한 보유 중인지 검색
+	@Override
+	public int adminCheck(String userId) {
+		return masterDAO.adminCheck(userId);
+	}
+
+	// 권한 부여
+	@Override
+	public void grant(String userId) {
+		masterDAO.grant(userId);
+	}
+
 }
