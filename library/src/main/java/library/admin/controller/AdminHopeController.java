@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.admin.service.AdminHopeService;
@@ -17,7 +19,7 @@ import library.mylib.domain.HopeVO;
 @Controller
 @RequestMapping("/admin")
 public class AdminHopeController {
-	
+
 	@Autowired
 	private AdminHopeService hopeService;
 
@@ -46,4 +48,14 @@ public class AdminHopeController {
 
 		return mav;
 	}
+
+	// 희망 도서 정보
+	@PostMapping("/hopeInfo.do")
+	public ModelAndView hope_info(Criteria cri, @RequestParam String hopeNo) {
+
+		ModelAndView mav = new ModelAndView("admin/sub2/hopeInfo.jsp");
+
+		return mav;
+	}
+
 }
