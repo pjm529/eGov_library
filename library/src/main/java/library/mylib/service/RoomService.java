@@ -12,6 +12,12 @@ public interface RoomService {
 	// 제 1열람실 출력
 	public List<RoomVO> readingRoom1List();
 
+	// 제 2열람실 출력
+	public List<RoomVO> readingRoom2List();
+
+	// 노트북실 출력
+	public List<RoomVO> nbRoomList();
+
 	// 열람실 좌석 상태 체크
 	public int seatCheck(int seatNo);
 
@@ -24,6 +30,4 @@ public interface RoomService {
 	// 열람실 좌석 연장
 	public void extendSeat(String userId);
 
-	// 제 2열람실 출력
-	public List<RoomVO> readingRoom2List();
 }

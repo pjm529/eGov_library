@@ -15,6 +15,9 @@ public interface RoomDAO {
 	// 제 2열람실 출력
 	public List<RoomVO> readingRoom2List();
 
+	// 노트북실 출력
+	public List<RoomVO> nbRoomList();
+
 	// 열람실 좌석 상태 체크
 	public int seatCheck(int seatNo);
 

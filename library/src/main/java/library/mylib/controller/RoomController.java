@@ -74,6 +74,31 @@ public class RoomController {
 		return mav;
 	}
 
+	// 노트북실
+	@GetMapping("/notebookRoom.do")
+	public ModelAndView notebookRoom(Principal principal) {
+
+		ModelAndView mav = new ModelAndView("mylib/sub3/notebookRoom.jsp");
+
+		String loginId = principal.getName();
+		mav.addObject("loginId", loginId);
+
+		List<RoomVO> seatsList = roomService.nbRoomList();
+		mav.addObject("seatsList", seatsList);
+
+		RoomVO mySeatInfo = roomService.mySeatInfo(loginId);
+
+		if (mySeatInfo == null) {
+			return mav;
+		} else {
+			Date now = new Date();
+			mySeatInfo.setDiffTime(mySeatInfo.getCheckoutTime().getTime() - now.getTime());
+			mav.addObject("mySeatInfo", mySeatInfo);
+		}
+
+		return mav;
+	}
+
 	// 열람실 좌석 상태 체크
 	@ResponseBody
 	@PostMapping("/seatCheck.do")

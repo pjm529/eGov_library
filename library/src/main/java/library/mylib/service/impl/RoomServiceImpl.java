@@ -33,6 +33,12 @@ public class RoomServiceImpl implements RoomService {
 		return roomDAO.readingRoom2List();
 	}
 
+	// 노트북실 출력
+	@Override
+	public List<RoomVO> nbRoomList() {
+		return roomDAO.nbRoomList();
+	}
+
 	// 열람실 좌석 상태 체크
 	@Override
 	public int seatCheck(int seatNo) {

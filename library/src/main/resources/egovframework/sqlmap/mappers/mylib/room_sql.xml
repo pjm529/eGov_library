@@ -49,6 +49,20 @@
 		]]>
 	</select>
 	
+	<!-- 노트북실 출력 -->
+	<select id="nbRoomList" resultMap="roomMap"> 
+		<![CDATA[
+			SELECT 
+				*
+			FROM 
+				reading_room  
+			WHERE 
+				seat_no > 96
+			ORDER BY
+				seat_no
+		]]>
+	</select>
+	
 	<!-- 좌석 상태 확인 -->
 	<select id="seatCheck" parameterType="int" resultType="int">
 		<![CDATA[
