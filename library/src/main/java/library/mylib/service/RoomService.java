@@ -17,4 +17,7 @@ public interface RoomService {
 
 	// 열람실 좌석 에약
 	public void bookingSeat(RoomVO room);
+
+	// 열람실 좌석 반납
+	public void returnSeat(String userId);
 }

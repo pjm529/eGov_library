@@ -76,7 +76,7 @@ public class RoomController {
 
 		// 현재 시간이 9~17시 일경우 예약
 		if (hours > 8 && hours < 18) {
-			
+
 			String loginId = principal.getName();
 			room.setUserId(loginId);
 
@@ -84,12 +84,22 @@ public class RoomController {
 		}
 
 		if (room.getSeatNo() < 55) {
-			return "redirect:mylib/readingRoom.do";
+			return "redirect:/mylib/readingRoom.do";
 		} else if (room.getSeatNo() > 96) {
-			return "redirect:mylib/notebookRoom.do";
+			return "redirect:/mylib/notebookRoom.do";
 		} else {
-			return "redirect:mylib/readingRoom2.do";
+			return "redirect:/mylib/readingRoom2.do";
 		}
 
+	}
+
+	// 열람실 퇴실
+	@PostMapping("/returnSeat.do")
+	public String returnSeat(Principal principal) {
+
+		String loginId = principal.getName();
+		roomService.returnSeat(loginId);
+
+		return "redirect:/mylib/reservationRoomPage.do";
 	}
 }

@@ -39,4 +39,10 @@ public class RoomServiceImpl implements RoomService {
 		roomDAO.bookingSeat(room);
 	}
 
+	// 열람실 좌석 반납
+	@Override
+	public void returnSeat(String userId) {
+		roomDAO.returnSeat(userId);
+	}
+
 }

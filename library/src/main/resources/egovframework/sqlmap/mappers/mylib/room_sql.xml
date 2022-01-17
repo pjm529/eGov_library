@@ -65,4 +65,18 @@
 		]]>
 	</update>
 	
+	<!-- 좌석 반납 -->
+	<update id="returnSeat" parameterType="string">
+		<![CDATA[
+			UPDATE 
+				reading_room
+			SET 
+				user_id = null, 
+				checkin_time = null, 
+				checkout_time = null
+			WHERE
+				user_id = #{userId}
+		]]>
+	</update>
+	
 </mapper>
