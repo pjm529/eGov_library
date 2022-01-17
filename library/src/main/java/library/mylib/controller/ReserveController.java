@@ -1,6 +1,7 @@
 package library.mylib.controller;
 
 import java.security.Principal;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import library.mylib.domain.RoomVO;
 import library.mylib.service.ReserveService;
+import library.mylib.service.RoomService;
 
 @Controller
 @RequestMapping("/mylib")
@@ -16,6 +19,9 @@ public class ReserveController {
 
 	@Autowired
 	private ReserveService reserveService;
+	
+	@Autowired
+	private RoomService roomService;
 
 	@GetMapping("/reservationRoomPage.do")
 	public ModelAndView reservationRoom() {
@@ -46,6 +52,24 @@ public class ReserveController {
 		int nbUsedSeat = reserveService.usedSeat("nbRoom");
 		mav.addObject("nbUsedSeat", nbUsedSeat);
 
+		return mav;
+	}
+	
+	@GetMapping("/myReservationInfo.do")
+	public ModelAndView myReservationInfo(Principal principal) {
+		
+		ModelAndView mav = new ModelAndView("mylib/sub3/myReservationInfo.jsp");
+		
+		RoomVO mySeatInfo = roomService.mySeatInfo(principal.getName());
+
+		if (mySeatInfo == null) {
+			return mav;
+		} else {
+			Date now = new Date();
+			mySeatInfo.setDiffTime(mySeatInfo.getCheckoutTime().getTime() - now.getTime());
+			mav.addObject("mySeatInfo", mySeatInfo);
+		}
+	
 		return mav;
 	}
 }
