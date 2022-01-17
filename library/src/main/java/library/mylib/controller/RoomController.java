@@ -112,4 +112,22 @@ public class RoomController {
 
 		return "redirect:/mylib/readingRoom.do";
 	}
+
+	// 좌석 이동
+	@PostMapping("/moveSeat.do")
+	public String moveSeat(RoomVO room, Principal principal) {
+
+		String loginId = principal.getName();
+		room.setUserId(loginId);
+		roomService.returnSeat(loginId);
+		roomService.bookingSeat(room);
+
+		if (room.getSeatNo() < 55) {
+			return "redirect:/mylib/readingRoom.do";
+		} else if (room.getSeatNo() > 96) {
+			return "redirect:/mylib/notebookRoom.do";
+		} else {
+			return "redirect:/mylib/readingRoom2.do";
+		}
+	}
 }
