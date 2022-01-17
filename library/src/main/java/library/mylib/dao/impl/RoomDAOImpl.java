@@ -23,4 +23,16 @@ public class RoomDAOImpl extends EgovAbstractMapper implements RoomDAO {
 		return selectList("Room.readingRoom1List");
 	}
 
+	// 열람실 좌석 상태 체크
+	@Override
+	public int seatCheck(int seatNo) {
+		return selectOne("Room.seatCheck", seatNo);
+	}
+
+	// 열람실 좌석 에약
+	@Override
+	public void bookingSeat(RoomVO room) {
+		update("Room.bookingSeat", room);
+	}
+
 }

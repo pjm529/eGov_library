@@ -35,4 +35,34 @@
 		]]>
 	</select>
 	
+	<!-- 좌석 상태 확인 -->
+	<select id="seatCheck" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT 
+				count(*)
+			FROM 
+				reading_room  
+			WHERE 
+				seat_no = #{seatNo} AND user_id IS NULL
+		]]>
+	</select>
+	
+	<!-- 좌석 예약 -->
+	<update id="bookingSeat" parameterType="RoomVO">
+		<![CDATA[
+			UPDATE 
+				reading_room
+		   	SET
+		   		user_id = #{userId}, 
+		   	   	checkin_time = current_timestamp, 
+		   	   	checkout_time = CASE 
+									WHEN substr(current_timestamp, 12, 2) >= 15 
+									THEN date_add(curdate(), interval 18 hour)
+									ELSE date_add(current_timestamp, interval 3 hour)
+								END
+		 	WHERE
+		 		seat_no = #{seatNo}		
+		]]>
+	</update>
+	
 </mapper>

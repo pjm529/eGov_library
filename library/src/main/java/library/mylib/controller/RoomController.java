@@ -1,13 +1,17 @@
 package library.mylib.controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import library.mylib.domain.RoomVO;
@@ -19,7 +23,7 @@ public class RoomController {
 
 	@Autowired
 	private RoomService roomService;
-	
+
 	// 제 1 열람실
 	@GetMapping("/readingRoom.do")
 	public ModelAndView readingRoom(Principal principal) {
@@ -28,12 +32,12 @@ public class RoomController {
 
 		String loginId = principal.getName();
 		mav.addObject("loginId", loginId);
-		
+
 		List<RoomVO> seatsList = roomService.readingRoom1List();
 		mav.addObject("seatsList", seatsList);
-		
+
 		RoomVO mySeatInfo = roomService.mySeatInfo(loginId);
-		
+
 		if (mySeatInfo == null) {
 			return mav;
 		} else {
@@ -41,7 +45,51 @@ public class RoomController {
 			mySeatInfo.setDiffTime(mySeatInfo.getCheckoutTime().getTime() - now.getTime());
 			mav.addObject("mySeatInfo", mySeatInfo);
 		}
-		
+
 		return mav;
+	}
+
+	// 열람실 좌석 상태 체크
+	@ResponseBody
+	@PostMapping("/seatCheck.do")
+	public String seatCheck(@RequestParam int seatNo) {
+
+		int result = roomService.seatCheck(seatNo);
+
+		if (result == 1) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
+	// 좌석 예약
+	@PostMapping("/bookingSeat.do")
+	public String bookingSeat(RoomVO room, Principal principal) {
+
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date now = new Date();
+		String nowTime = fmt.format(now);
+
+		// 현재 시간
+		int hours = Integer.parseInt(nowTime.substring(11, 13));
+
+		// 현재 시간이 9~17시 일경우 예약
+		if (hours > 8 && hours < 18) {
+			
+			String loginId = principal.getName();
+			room.setUserId(loginId);
+
+			roomService.bookingSeat(room);
+		}
+
+		if (room.getSeatNo() < 55) {
+			return "redirect:mylib/readingRoom.do";
+		} else if (room.getSeatNo() > 96) {
+			return "redirect:mylib/notebookRoom.do";
+		} else {
+			return "redirect:mylib/readingRoom2.do";
+		}
+
 	}
 }
