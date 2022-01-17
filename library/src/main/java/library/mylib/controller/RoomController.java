@@ -102,4 +102,14 @@ public class RoomController {
 
 		return "redirect:/mylib/reservationRoomPage.do";
 	}
+
+	// 좌석 연장
+	@PostMapping("/extendSeat.do")
+	public String extendSeat(Principal principal) {
+
+		String loginId = principal.getName();
+		roomService.extendSeat(loginId);
+
+		return "redirect:/mylib/readingRoom.do";
+	}
 }

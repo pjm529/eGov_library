@@ -45,4 +45,9 @@ public class RoomServiceImpl implements RoomService {
 		roomDAO.returnSeat(userId);
 	}
 
+	@Override
+	public void extendSeat(String userId) {
+		roomDAO.extendSeat(userId);
+	}
+
 }

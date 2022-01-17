@@ -79,4 +79,20 @@
 		]]>
 	</update>
 	
+	<!-- 좌석 연장 -->
+	<update id="extendSeat" parameterType="string">
+		<![CDATA[
+			UPDATE
+				reading_room
+			SET 
+				checkout_time = CASE 
+			   	   					WHEN substr(current_timestamp, 12, 2) >= 16 
+			   	   					THEN date_add(curdate(), interval 18 hour)
+			   	   					ELSE date_add(current_timestamp, interval 2 hour)
+			   	   				END
+			WHERE 
+				user_id = #{userId}
+		 ]]>
+	</update>
+	
 </mapper>

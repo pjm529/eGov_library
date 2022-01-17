@@ -41,4 +41,10 @@ public class RoomDAOImpl extends EgovAbstractMapper implements RoomDAO {
 		update("Room.returnSeat", userId);
 	}
 
+	// 열람실 좌석 연장
+	@Override
+	public void extendSeat(String userId) {
+		update("Room.extendSeat", userId);
+	}
+
 }

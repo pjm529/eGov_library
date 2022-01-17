@@ -20,5 +20,8 @@ public interface RoomDAO {
 	
 	// 열람실 좌석 반납
 	public void returnSeat(String userId);
+	
+	// 열람실 좌석 연장
+	public void extendSeat(String userId);
 
 }
