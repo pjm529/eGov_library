@@ -23,6 +23,12 @@ public class RoomDAOImpl extends EgovAbstractMapper implements RoomDAO {
 		return selectList("Room.readingRoom1List");
 	}
 
+	// 제 2열람실 출력
+	@Override
+	public List<RoomVO> readingRoom2List() {
+		return selectList("Room.readingRoom2List");
+	}
+
 	// 열람실 좌석 상태 체크
 	@Override
 	public int seatCheck(int seatNo) {

@@ -23,4 +23,7 @@ public interface RoomService {
 
 	// 열람실 좌석 연장
 	public void extendSeat(String userId);
+
+	// 제 2열람실 출력
+	public List<RoomVO> readingRoom2List();
 }

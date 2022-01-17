@@ -49,6 +49,31 @@ public class RoomController {
 		return mav;
 	}
 
+	// 제 2 열람실
+	@GetMapping("/readingRoom2.do")
+	public ModelAndView readingRoom2(Principal principal) {
+
+		ModelAndView mav = new ModelAndView("mylib/sub3/readingRoom2.jsp");
+
+		String loginId = principal.getName();
+		mav.addObject("loginId", loginId);
+
+		List<RoomVO> seatsList = roomService.readingRoom2List();
+		mav.addObject("seatsList", seatsList);
+
+		RoomVO mySeatInfo = roomService.mySeatInfo(loginId);
+
+		if (mySeatInfo == null) {
+			return mav;
+		} else {
+			Date now = new Date();
+			mySeatInfo.setDiffTime(mySeatInfo.getCheckoutTime().getTime() - now.getTime());
+			mav.addObject("mySeatInfo", mySeatInfo);
+		}
+
+		return mav;
+	}
+
 	// 열람실 좌석 상태 체크
 	@ResponseBody
 	@PostMapping("/seatCheck.do")
