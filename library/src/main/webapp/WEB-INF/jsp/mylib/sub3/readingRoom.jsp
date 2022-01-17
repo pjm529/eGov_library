@@ -239,9 +239,9 @@
                                 </c:if>
 
                                 <!-- 잔여 시간 -->
-                                <fmt:formatDate var="checkinTime" value="${mySeatInfo.checkinYime}"
+                                <fmt:formatDate var="checkinTime" value="${mySeatInfo.checkinTime}"
                                     pattern="HH:mm:ss" />
-                                <fmt:formatDate var="checkoutTime" value="${mySeatInfo.checkoutYime}"
+                                <fmt:formatDate var="checkoutTime" value="${mySeatInfo.checkoutTime}"
                                     pattern="HH:mm:ss" />
 
                                 <fmt:parseNumber var="diffHour" value="${mySeatInfo.diffTime/(1000*60*60)}"

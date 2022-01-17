@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Room">
+
+	<resultMap id="roomMap" type="RoomVO">
+		<id column="seat_no" 			property="seatNo" />
+		<result column="user_id"	 	property="userId" />
+		<result column="checkin_time"	property="checkinTime" />
+		<result column="checkout_time"	property="checkoutTime" />
+	</resultMap>
+	
+	<!-- 열람실 예약 좌석 정보 -->
+	<select id="mySeatInfo" parameterType="string" resultMap="roomMap">
+		<![CDATA[
+			SELECT 
+				* 
+			FROM
+				reading_room
+		 	WHERE
+		 		user_id = #{userId}
+		]]>
+	</select>
+	
+	<!-- 제 1 열람실 출력 -->
+	<select id="readingRoom1List" resultMap="roomMap"> 
+		<![CDATA[
+			SELECT 
+				*
+			FROM 
+				reading_room  
+			WHERE 
+				seat_no < 55
+			ORDER BY
+				seat_no
+		]]>
+	</select>
+	
+</mapper>
