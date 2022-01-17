@@ -21,6 +21,12 @@ public class RoomServiceImpl implements RoomService {
 		return roomDAO.mySeatInfo(userId);
 	}
 
+	// 이용 중 열람실 정보
+	@Override
+	public List<RoomVO> seatList() {
+		return roomDAO.seatList();
+	}
+
 	// 제 1열람실 출력
 	@Override
 	public List<RoomVO> readingRoom1List() {

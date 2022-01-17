@@ -21,6 +21,20 @@
 		]]>
 	</select>
 	
+	<!-- 이용 중 열람실 좌석 정보 -->
+	<select id="seatList" resultMap="roomMap">
+		<![CDATA[
+			SELECT
+				* 
+			FROM
+				reading_room 
+			WHERE
+				user_id IS NOT NULL
+		    ORDER BY 
+		    	seat_no
+		]]>
+	</select>
+	
 	<!-- 제 1 열람실 출력 -->
 	<select id="readingRoom1List" resultMap="roomMap"> 
 		<![CDATA[

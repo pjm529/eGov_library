@@ -9,6 +9,9 @@ public interface RoomService {
 	// 회원 예약 정보
 	public RoomVO mySeatInfo(String userId);
 
+	// 이용 중 열람실 정보
+	public List<RoomVO> seatList();
+
 	// 제 1열람실 출력
 	public List<RoomVO> readingRoom1List();
 
