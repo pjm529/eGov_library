@@ -21,9 +21,56 @@
       
       <s:http>
          <s:csrf disabled="true"/>
-         <!-- 접근 권한 설정 -->
          
+         <!-- 접근 권한 설정 -->
          <s:intercept-url pattern="/*" access="permitAll"/>
+         
+         <!-- 나의 도서관 -->
+         <s:intercept-url pattern="/mylib/*" access="hasRole('ROLE_MEMBER')"/>
+         
+         <!-- 도서 대출 -->
+         <s:intercept-url pattern="/search/loan.do" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/search/statusChk.do" access="hasRole('ROLE_MEMBER')"/>
+         
+         <!-- 추천 도서 -->
+         <s:intercept-url pattern="/search/registBook.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/search/regist.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/search/deleteBook.do" access="hasRole('ROLE_ADMIN')"/>
+         
+         <!-- 공지사항 -->
+         <s:intercept-url pattern="/board/noticeInsertPage.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/insertNotice.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/noticeModifyPage.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/noticeModify.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/noticeDelete.do" access="hasRole('ROLE_ADMIN')"/>
+         
+         <!-- 분실물 -->
+         <s:intercept-url pattern="/board/articleInsertPage.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/articleInsert.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/articleModifyPage.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/articleModify.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/articleDelete.do" access="hasRole('ROLE_ADMIN')"/>
+         
+         <!-- 묻고 답하기 질문 -->
+         <s:intercept-url pattern="/board/enquiryContent.do" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/enquiryWrite.do" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/enquiryInsert.do" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/enquiryModifyPage.do" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/enquiryModify.do" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/enquiryDelete.do" access="hasRole('ROLE_MEMBER')"/>
+         
+         <!-- 묻고 답하기 답변 -->
+         <s:intercept-url pattern="/board/answerContent.do" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/answerWritePage.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/answerWrite.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/answerModifyPage.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/answerModify.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/answerDelete.do" access="hasRole('ROLE_ADMIN')"/>
+         
+         
+         <!-- 관리자 -->
+         <s:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/master/*" access="hasRole('ROLE_MASTER')"/>
 
          
          <!-- custom 로그인 폼 -->
