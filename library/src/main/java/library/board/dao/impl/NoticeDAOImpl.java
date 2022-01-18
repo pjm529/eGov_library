@@ -24,4 +24,22 @@ public class NoticeDAOImpl extends EgovAbstractMapper implements NoticeDAO {
 		return selectOne("Notice.noticeTotal", cri);
 	}
 
+	// 공지사항 조회수 증가
+	@Override
+	public void noticeViewsCount(long noticeNo) {
+		update("Notice.noticeViewsCount", noticeNo);
+	}
+
+	// 공지사항 본문
+	@Override
+	public NoticeVO noticeContent(long noticeNo) {
+		return selectOne("Notice.noticeContent", noticeNo);
+	}
+
+	// 공지사항 이전글, 다음글
+	@Override
+	public List<NoticeVO> getPrevAndNextPost(long noticeNo) {
+		return selectList("Notice.getPrevAndNextPost", noticeNo);
+	}
+
 }

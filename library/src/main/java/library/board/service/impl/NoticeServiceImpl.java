@@ -28,4 +28,21 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.noticeTotal(cri);
 	}
 
+	// 공지사항 조회수 증가
+	@Override
+	public void noticeViewsCount(long noticeNo) {
+		noticeDAO.noticeViewsCount(noticeNo);
+	}
+
+	// 공지사항 본문
+	@Override
+	public NoticeVO noticeContent(long noticeNo) {
+		return noticeDAO.noticeContent(noticeNo);
+	}
+
+	@Override
+	public List<NoticeVO> getPrevAndNextPost(long noticeNo) {
+		return noticeDAO.getPrevAndNextPost(noticeNo);
+	}
+
 }

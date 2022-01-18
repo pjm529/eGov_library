@@ -38,6 +38,42 @@
 			<include refid="criteria" />			
 	</select>
 	
+	<!-- 공지사항 본문 -->
+	<select id="noticeContent" parameterType="long" resultMap="noticeMap">
+		<![CDATA[
+			SELECT 
+				* 
+			FROM 
+				notice 
+			WHERE 
+				notice_no = #{noticeNo}
+		]]>
+	</select>
+	
+	<!-- 이전글, 다음글 -->
+	<select id="getPrevAndNextPost" parameterType="long" resultMap="noticeMap">
+		<![CDATA[
+			SELECT 
+				* 
+			FROM
+				notice 
+			WHERE 
+				notice_no IN (#{noticeNo}-1, #{noticeNo}+1)
+		]]>	
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="noticeViewsCount" parameterType="long">
+		<![CDATA[
+			UPDATE
+				notice
+		   	SET
+		   		notice_views = notice_views + 1
+		 	WHERE
+		 		notice_no = #{noticeNo}
+		]]>
+	</update>
+	
 	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
@@ -56,7 +92,6 @@
                  	WHERE notice_title LIKE CONCAT('%', #{keyword}, '%') OR 
                  	notice_content LIKE CONCAT('%', #{keyword}, '%')          
                  </if>
-                 
             </if>
          </if>
      </sql>

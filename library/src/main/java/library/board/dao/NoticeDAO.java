@@ -12,4 +12,13 @@ public interface NoticeDAO {
 	
 	// 공지사항 게시글 수
 	public int noticeTotal(Criteria cri);
+	
+	// 공지사항 조회수 증가
+	public void noticeViewsCount(long noticeNo);
+	
+	// 공지사항 본문
+	public NoticeVO noticeContent(long noticeNo);
+	
+	// 공지사항 이전글, 다음글
+	public List<NoticeVO> getPrevAndNextPost(long noticeNo);
 }
