@@ -84,6 +84,21 @@
 		]]>
 	</insert>
 	
+	<!-- 게시글 수정 -->
+	<update id="modifyNotice" parameterType="NoticeVO">
+		<![CDATA[
+			UPDATE
+				notice 
+			SET 
+				notice_title = #{noticeTitle}, 
+				notice_content = #{noticeContent},
+				writer_id = #{writerId},
+				notice_modify_date = current_timestamp()
+			WHERE
+				notice_no = #{noticeNo}		
+		]]>
+	</update>  
+	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">
            <if test="type != null">

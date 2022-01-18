@@ -51,4 +51,10 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDAO.insertNotice(notice);
 	}
 
+	// 공지사항 수정
+	@Override
+	public void noticeModify(NoticeVO notice) {
+		noticeDAO.noticeModify(notice);
+	}
+
 }

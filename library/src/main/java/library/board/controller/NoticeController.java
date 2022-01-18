@@ -1,5 +1,7 @@
 package library.board.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
 
@@ -97,6 +99,31 @@ public class NoticeController {
 
 		return mav;
 
+	}
+
+	// 게시글 수정
+	@PostMapping("/noticeModify.do")
+	public String noticeModify(@ModelAttribute NoticeVO notice, @ModelAttribute Criteria cri, Principal principal) {
+
+		String userId = principal.getName();
+		notice.setWriterId(userId);
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+		long noticeNo = notice.getNoticeNo();
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/noticeList.do";
+		}
+
+		noticeService.noticeModify(notice);
+
+		return "redirect:/board/noticeContent.do?page=" + page + "&amount=" + amount + "&type=" + type + "&keyword="
+				+ keyword + "&noticeNo=" + noticeNo;
 	}
 
 }

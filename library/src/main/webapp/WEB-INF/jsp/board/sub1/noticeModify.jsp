@@ -58,7 +58,7 @@
                                 pattern="yyyy-MM-dd HH:ss" />
 
                             <div class="table-wrap">
-                                <form action="/board/updateNotice" method="post" onsubmit="return false" role="form">
+                                <form action="${pageContext.request.contextPath}/board/noticeModify.do" method="post" onsubmit="return false" role="form">
                                     <input type="hidden" name="writerId" value="writerId">
                                     <input type="hidden" name="noticeNo" id="noticeNo"
                                         value="${noticeContent.noticeNo}">

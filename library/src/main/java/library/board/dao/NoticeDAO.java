@@ -24,4 +24,7 @@ public interface NoticeDAO {
 	
 	// 공지사항 등록
 	public void insertNotice(NoticeVO notice);
+	
+	// 공지사항 수정
+	public void noticeModify(NoticeVO notice);
 }

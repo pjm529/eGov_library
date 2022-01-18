@@ -48,4 +48,10 @@ public class NoticeDAOImpl extends EgovAbstractMapper implements NoticeDAO {
 		insert("Notice.insertNotice", notice);
 	}
 
+	// 공지사항 수정
+	@Override
+	public void noticeModify(NoticeVO notice) {
+		update("Notice.modifyNotice", notice);
+	}
+
 }
