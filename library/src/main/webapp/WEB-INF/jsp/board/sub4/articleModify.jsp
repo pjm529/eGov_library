@@ -124,9 +124,9 @@
 	$(function () {
 		
 		CKEDITOR.replace('popContent', {
-	        filebrowserImageUploadUrl: "/upload?boardName=article",
-	        height: 500
-	    });
+            filebrowserImageUploadUrl: "${pageContext.request.contextPath}/imageUpload.do?boardName=article",
+            height: 500
+        });
 		
 		 $(".sub4").addClass("active");
 		 

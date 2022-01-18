@@ -129,10 +129,10 @@
 <script>
 	$(function() {
 		
-		CKEDITOR.replace('popContent' , {
-			 filebrowserImageUploadUrl: "/upload?boardName=qna",
-			 height: 500                                                  
-	     });
+		CKEDITOR.replace('popContent', {
+            filebrowserImageUploadUrl: "${pageContext.request.contextPath}/imageUpload.do?boardName=enquiry",
+            height: 500
+        });
 
 		
 		$(".sub3").addClass("active");
