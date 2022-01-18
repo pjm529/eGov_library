@@ -44,10 +44,10 @@ public class NoticeController {
 
 	// 공지사항 본문
 	@GetMapping("/noticeContent.do")
-	public ModelAndView noticeContent(Criteria cri,  @RequestParam long noticeNo) {
+	public ModelAndView noticeContent(Criteria cri, @RequestParam long noticeNo) {
 
 		ModelAndView mav = new ModelAndView("board/sub1/noticeContent.jsp");
-		
+
 		// 조회수 증가
 		noticeService.noticeViewsCount(noticeNo);
 
@@ -59,6 +59,12 @@ public class NoticeController {
 		mav.addObject("posts", posts);
 
 		return mav;
+	}
+
+	// 공지사항 등록 페이지
+	@GetMapping("/noticeInsertPage.do")
+	public String noticeInsertPage() {
+		return "board/sub1/noticeInsert.jsp";
 	}
 
 }
