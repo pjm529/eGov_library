@@ -97,7 +97,24 @@
 			WHERE
 				notice_no = #{noticeNo}		
 		]]>
-	</update>  
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteNotice" parameterType="long">
+		<![CDATA[
+			DELETE
+			FROM
+				notice
+			WHERE
+				notice_no = #{noticeNo}
+		]]>
+	</delete>  
+	
+	<select id="resetNo" statementType="CALLABLE">
+    	<![CDATA[
+    		CALL notice_reset()
+    	]]>
+    </select>
 	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">

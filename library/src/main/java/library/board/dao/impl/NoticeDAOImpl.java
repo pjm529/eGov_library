@@ -54,4 +54,16 @@ public class NoticeDAOImpl extends EgovAbstractMapper implements NoticeDAO {
 		update("Notice.modifyNotice", notice);
 	}
 
+	// 공지사항 삭제
+	@Override
+	public void deleteNotice(long noticeNo) {
+		delete("Notice.deleteNotice", noticeNo);
+	}
+
+	// 게시글 번호 정렬
+	@Override
+	public void resetNo() {
+		selectOne("Notice.resetNo");
+	}
+
 }

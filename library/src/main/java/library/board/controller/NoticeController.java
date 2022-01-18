@@ -126,4 +126,24 @@ public class NoticeController {
 				+ keyword + "&noticeNo=" + noticeNo;
 	}
 
+	// 게시글 삭제
+	@PostMapping("/noticeDelete.do")
+	public String noticeDelete(Criteria cri, @RequestParam long noticeNo) {
+
+		noticeService.deleteNotice(noticeNo);
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/noticeList.do";
+		}
+
+		return "redirect:/board/noticeList.do?page=" + page + "&amount=" + amount + "&type=" + type + "&keyword="
+				+ keyword; 
+	}
 }

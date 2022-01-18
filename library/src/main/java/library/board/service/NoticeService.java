@@ -27,4 +27,7 @@ public interface NoticeService {
 
 	// 공지사항 수정
 	public void noticeModify(NoticeVO notice);
+
+	// 공지사항 삭제
+	public void deleteNotice(long noticeNo);
 }

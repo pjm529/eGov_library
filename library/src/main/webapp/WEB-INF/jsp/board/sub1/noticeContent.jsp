@@ -164,7 +164,7 @@
                                 </div>
                                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                                     <div class="delete_wrap">
-                                        <form action="${pageContext.request.contextPath}/board/noticeDelete.do" method="get" onsubmit="return false"
+                                        <form action="${pageContext.request.contextPath}/board/noticeDelete.do" method="post" onsubmit="return false"
                                             class="delete_form">
                                             <input type="hidden" name="noticeNo" id="noticeNo"
                                                 value="${noticeContent.noticeNo}">
@@ -172,9 +172,6 @@
                                             <input type="hidden" name="page" value="${cri.page}">
                                             <input type="hidden" name="type" value="${cri.type}">
                                             <input type="hidden" name="keyword" value="${cri.keyword}">
-
-                                            <input type="hidden" name="uuid" id="uuid">
-                                            <input type="hidden" name="fileType" id="fileType">
                                             <button class="delete_btn"
                                                 style="background-color: #518d7d; border: 1px solid #3e6b5f;">삭제하기</button>
                                         </form>

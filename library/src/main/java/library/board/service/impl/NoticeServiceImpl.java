@@ -57,4 +57,14 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDAO.noticeModify(notice);
 	}
 
+	// 공지사항 삭제
+	@Override
+	public void deleteNotice(long noticeNo) {
+		// 공지사항 삭제
+		noticeDAO.deleteNotice(noticeNo);
+
+		// 게시글 번호 정렬
+		noticeDAO.resetNo();
+	}
+
 }
