@@ -40,4 +40,10 @@ public class CalendarServiceImpl implements CalendarService {
 		calendarDAO.deleteCalendar(calNo);
 	}
 
+	// 휴관일 검색
+	@Override
+	public List<CalendarVO> searchClosed(DateVO date) {
+		return calendarDAO.searchClosed(date);
+	}
+
 }

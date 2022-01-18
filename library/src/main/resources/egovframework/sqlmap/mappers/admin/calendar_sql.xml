@@ -59,4 +59,19 @@
 				cal_no = #{calNo};
 		]]>
 	</delete>
+	
+	<!-- 휴관일 검색 -->
+	<select id="searchClosed" resultMap="calendarMap">
+		<![CDATA[
+			SELECT 
+				*
+		  	FROM
+		  		calendar
+		 	WHERE 
+		 		start BETWEEN CONCAT(#{year}, '-', #{month}, '-01') AND CONCAT(#{year}, '-', #{month}, '-31' ) 
+		 		AND (title = "휴관일" or textColor = "red" or textColor = "#FF0000")
+		 	ORDER BY
+		 		start		
+		]]>
+	</select>
 </mapper>

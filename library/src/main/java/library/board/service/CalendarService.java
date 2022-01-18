@@ -18,4 +18,7 @@ public interface CalendarService {
 
 	// 일정 삭제
 	public void deleteCalendar(int calNo);
+	
+	// 휴관일 검색
+	public List<CalendarVO> searchClosed(DateVO date);
 }

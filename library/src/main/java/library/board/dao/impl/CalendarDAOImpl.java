@@ -36,4 +36,10 @@ public class CalendarDAOImpl extends EgovAbstractMapper implements CalendarDAO {
 		delete("Calendar.deleteCalendar", calNo);
 	}
 
+	// 휴관일 검색
+	@Override
+	public List<CalendarVO> searchClosed(DateVO date) {
+		return selectList("Calendar.searchClosed", date);
+	}
+
 }
