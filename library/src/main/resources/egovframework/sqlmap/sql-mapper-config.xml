@@ -15,5 +15,6 @@
 		<typeAlias alias="HopeVO" type="library.mylib.domain.HopeVO" />
 		<typeAlias alias="BannerVO" type="library.admin.domain.BannerVO" />
 		<typeAlias alias="RoomVO" type="library.mylib.domain.RoomVO" />
+		<typeAlias alias="NoticeVO" type="library.board.domain.NoticeVO" />
     </typeAliases>
 </configuration>
