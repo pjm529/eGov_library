@@ -24,6 +24,9 @@ public class ArticleVO {
 	
 	// 게시글 작성일
 	private Timestamp articleRegDate;
+
+	// 게시글 수정일
+	private Timestamp articleModifyDate;
 	
 	// 게시글 조회수
 	private int articleViews;

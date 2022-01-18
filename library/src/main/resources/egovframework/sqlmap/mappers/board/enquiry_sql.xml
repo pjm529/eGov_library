@@ -11,6 +11,7 @@
 		<result property="writerName" 		column="writer_name"/>
 		<result property="enquiryHits" 		column="enquiry_hits"/>
 		<result property="enquiryRegDate" 	column="enquiry_reg_date"/>
+		<result property="enquiryModifyDate" column="enquiry_modify_date"/>
 	
 		<collection property="answerList" resultMap="answerMap"></collection>
 	</resultMap>
@@ -25,6 +26,7 @@
 		<result property="aWriterName" 		column="a_writer_name"/>
 		<result property="answerHits" 		column="answer_hits"/>
 		<result property="answerRegDate" 	column="answer_reg_date"/>
+		<result property="answerModifyDate" column="answer_modify_date"/>
 	</resultMap>
 	
 	<!-- 관리자 계정 확인 -->

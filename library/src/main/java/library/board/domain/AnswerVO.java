@@ -31,6 +31,9 @@ public class AnswerVO {
 	// 답변 작성일
 	private Timestamp answerRegDate;
 
+	// 답변 수정일
+	private Timestamp answerModifyDate;
+
 	// 문읭사항 게시글 작성자 ID
 	private String writerId;
 

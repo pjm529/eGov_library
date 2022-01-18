@@ -9,6 +9,7 @@
 		<result column="writer_id"	 		property="writerId" />
 		<result column="writer_name"	 	property="writerName" />
 		<result column="notice_reg_date" 	property="noticeRegDate" />
+		<result column="notice_modify_date" 	property="noticeModifyDate" />
 		<result column="notice_views" 		property="noticeViews" />
 	</resultMap> 
 

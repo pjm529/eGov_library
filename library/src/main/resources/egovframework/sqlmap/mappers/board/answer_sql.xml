@@ -12,6 +12,7 @@
 		<result property="aWriterName" 		column="a_writer_name"/>
 		<result property="answerHits" 		column="answer_hits"/>
 		<result property="answerRegDate" 	column="answer_reg_date"/>
+		<result property="answerModifyDate" column="answer_modify_date"/>
 		<result property="writerId"			column="writer_id"/>
 	</resultMap>
 	

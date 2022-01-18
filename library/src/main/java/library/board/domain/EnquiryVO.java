@@ -29,6 +29,9 @@ public class EnquiryVO {
 	// 문의사항 작성일
 	private Timestamp enquiryRegDate;
 	
+	// 문의사항 수정일
+	private Timestamp enquiryModifyDate;
+
 	// 답변 목록
 	private List<AnswerVO> answerList;
 }
