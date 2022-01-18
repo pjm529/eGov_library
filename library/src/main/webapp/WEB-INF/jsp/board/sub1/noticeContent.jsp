@@ -61,7 +61,7 @@
                                         <!-- 제목 -->
                                         <tr>
                                             <td class="bbs-title" colspan="6">
-                                                <b>${noticeContent.noticeTitle}</b>
+                                                <b><c:out value="${noticeContent.noticeTitle}"/></b>
                                             </td>
                                         </tr>
 

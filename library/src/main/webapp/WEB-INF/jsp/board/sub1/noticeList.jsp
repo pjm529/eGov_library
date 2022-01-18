@@ -118,7 +118,7 @@
                                         <tr>
                                             <td class="num">${noticeList.noticeNo}</td>
                                             <td class="left contentGo" style="padding-left: 15px;">
- 												<a href="${noticeList.noticeNo}">${noticeList.noticeTitle}</a>
+ 												<a href="${noticeList.noticeNo}"><c:out value="${noticeList.noticeTitle}"/></a>
                                             </td>
                                             <td>관리자</td>
                                             <td>
