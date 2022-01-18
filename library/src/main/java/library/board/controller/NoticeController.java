@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import library.board.domain.ArticleVO;
 import library.board.domain.NoticeVO;
 import library.board.service.NoticeService;
 import library.common.page.Criteria;
@@ -82,6 +81,22 @@ public class NoticeController {
 		noticeService.insertNotice(notice);
 
 		return "redirect:/board/noticeList.do";
+	}
+
+	// 게시글 수정 페이지
+	@GetMapping("/noticeModifyPage.do")
+	public ModelAndView noticeModifyPage(@ModelAttribute Criteria cri, @RequestParam long noticeNo) {
+
+		ModelAndView mav = new ModelAndView("board/sub1/noticeModify.jsp");
+
+		// 게시글 조회
+		NoticeVO notice = noticeService.noticeContent(noticeNo);
+		mav.addObject("noticeContent", notice);
+
+		mav.addObject("cri", cri);
+
+		return mav;
+
 	}
 
 }
