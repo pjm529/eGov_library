@@ -122,7 +122,7 @@
     $(document).ready(function (e) {
     	
     	CKEDITOR.replace('popContent', {
-            filebrowserImageUploadUrl: "/upload.do?boardName=article",
+            filebrowserImageUploadUrl: "${pageContext.request.contextPath}/imageUpload.do?boardName=article",
             height: 500
         });
 
