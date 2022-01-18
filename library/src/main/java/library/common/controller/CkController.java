@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import library.common.util.PathUtil;
+
 @Controller
 public class CkController {
 
@@ -31,7 +33,7 @@ public class CkController {
 		HttpServletRequest req = (HttpServletRequest) request;
 		String contextPath = req.getContextPath();
 
-		String UPLOAD_BASE_PATH = "C:/Temp"; // 이미지 업로드 베이스 경로
+		String UPLOAD_BASE_PATH = PathUtil.path(contextPath); // 이미지 업로드 베이스 경로
 
 		UPLOAD_BASE_PATH = UPLOAD_BASE_PATH.replace("\\", "/");
 		System.out.println(UPLOAD_BASE_PATH);
