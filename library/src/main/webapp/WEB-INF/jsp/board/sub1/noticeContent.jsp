@@ -72,10 +72,15 @@
                                             <th class="first">작성일</th>
                                             <td>
                                                 <fmt:formatDate var="noticeRegDate"
-                                                    value="${noticeContent.noticeRegDate}" pattern="yyyy-MM-dd" />
-                                                ${noticeRegDate}
+                                                    value="${noticeContent.noticeRegDate}" pattern="yy-MM-dd HH:ss" />
+                                                ${noticeRegDate} 
+                                                <c:if test="${not empty noticeContent.noticeModifyDate}">
+                                                	 <fmt:formatDate var="noticeModifyDate"
+                                                    value="${noticeContent.noticeModifyDate}" pattern="yy-MM-dd HH:ss" />
+                                                	<span style="font-size:12px;">(${noticeModifyDate} 수정)</span>
+                                                </c:if>
                                             </td>
-                                            <th class="first">조회수</th>
+                                            <th class="first" style="width: 100px;">조회수</th>
                                             <td>${noticeContent.noticeViews}</td>
                                         </tr>
 

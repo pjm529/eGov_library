@@ -71,10 +71,16 @@
                                                 <th class="first">작성일</th>
                                                 <td>
                                                     <fmt:formatDate var="articleRegDate"
-                                                        value="${article.articleRegDate}" pattern="yyyy-MM-dd" />
+                                                        value="${article.articleRegDate}" pattern="yy-MM-dd HH:ss" />
                                                     ${articleRegDate}
+                                                    
+                                                    <c:if test="${not empty article.articleModifyDate}">
+	                                                	 <fmt:formatDate var="articleModifyDate"
+	                                                    value="${article.articleModifyDate}" pattern="yy-MM-dd HH:ss" />
+	                                                	<span style="font-size:12px;">(${articleModifyDate} 수정)</span>
+                                               	 	</c:if>
                                                 </td>
-                                                <th class="first">조회수</th>
+                                                <th class="first" style="width: 100px;">조회수</th>
                                                 <td>${article.articleViews}</td>
                                         </tr>
 

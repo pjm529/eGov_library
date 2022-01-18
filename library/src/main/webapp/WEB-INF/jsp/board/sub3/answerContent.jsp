@@ -74,8 +74,13 @@
                                             <th class="first">작성자</th>
                                             <td style="width: 15%;">관리자</td>
                                             <th class="first">작성일</th>
-                                            <td>${fn:substring(answer.answerRegDate, 0, 11)}</td>
-                                            <th class="first">조회수</th>
+                                            <td>
+                                            	${fn:substring(answer.answerRegDate, 2, 16)}
+	                                            <c:if test="${not empty answer.answerModifyDate}">
+	                                            	<span style="font-size:12px;">(${fn:substring(answer.answerModifyDate, 2, 16)} 수정)</span>
+	                                            </c:if>
+	                                        </td>
+                                            <th class="first" style="width: 100px;">조회수</th>
                                             <td>${answer.answerHits + 1}</td>
                                         </tr> 
 
