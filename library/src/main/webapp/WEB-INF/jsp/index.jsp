@@ -212,14 +212,14 @@
                             
                        	<c:forEach var="noticeList" items="${noticeList}" begin="0" end="4">
                        		<li class="w-label">
-                        		<a href="${pageContext.request.contextPath}/board/noticeContent.do?notice_no=${noticeList.notice_no }">
+                        		<a href="${pageContext.request.contextPath}/board/noticeContent.do?noticeNo=${noticeList.noticeNo }">
 	                                 <span class="tit" style="width: 230px;">
 	                                     <span class="label">공지</span>
-	                                     ${noticeList.notice_title}
+	                                     <c:out value="${noticeList.noticeTitle}"/>
 	                                 </span>
 	                                 <span class="date">
-	                                 	<fmt:formatDate var="notice_reg_date" value="${noticeList.notice_reg_date}" pattern="yyyy-MM-dd"/>
-										${notice_reg_date}
+	                                 	<fmt:formatDate var="noticeRegDate" value="${noticeList.noticeRegDate}" pattern="yyyy-MM-dd"/>
+										${noticeRegDate}
 	                                 </span>
 								</a>
                             </li>
@@ -232,10 +232,10 @@
                         <div class="month-wrap">
                             <div class="month-slide-wrap">
                                 <div class="month-slide">
-                                    <p id="calendarYear">${year }</p>
+                                    <p id="calendarYear">${date.year}</p>
                                     <span>년</span>
                                     <div>
-                                        <span><em>${month }</em><i>월</i></span>
+                                        <span><em>${date.month}</em><i>월</i></span>
                                     </div>
                                     <script>
                                         $('.month-slide > div').slick();
@@ -247,8 +247,8 @@
                             <div class="month-info">
                                 <p class="tit">휴관일</p>
                                 <p class="con">
-                                	<c:forEach var="cal_list" items="${cal_list}">
-                                		<span>${cal_list.start }</span>
+                                	<c:forEach var="calList" items="${calList}">
+                                		<span>${calList.start }</span>
                                 	</c:forEach>
                                 </p>
                             </div>
@@ -262,21 +262,21 @@
                                 <h1>제 1열람실</h1>
                                 <div>
                                     <div>잔여석</div>
-                                    <div><strong id="mainCnt">${rd1Room_usingSeat}</strong>석</div>
+                                    <div><strong id="mainCnt">${rd1UsingSeat}</strong>석</div>
                                 </div>
                             </div>
                             <div>
                                 <h1>제 2열람실</h1>
                                 <div>
                                     <div>잔여석</div>
-                                    <div><strong id="subCnt">${rd2Room_usingSeat}</strong>석</div>
+                                    <div><strong id="subCnt">${rd2UsingSeat}</strong>석</div>
                                 </div>
                             </div>
                             <div>
                                 <h1>노트북실</h1>
                                 <div>
                                     <div>잔여석</div>
-                                    <div><strong id="subCnt">${nbRoom_usingSeat}</strong>석</div>
+                                    <div><strong id="subCnt">${nbUsingSeat}</strong>석</div>
                                 </div>
                             </div>
                         </div>
@@ -285,8 +285,8 @@
                     <!-- <main01-03 : main-banner-box -->
                     <div class="main-banner-box">
                         <div class="slidewrap">
-                        	<c:forEach var="banner_list" items="${banner_list}">
-                              	<div style="display:flex; justify-content: center; align-items: center;"><img src="${banner_list.path }"
+                        	<c:forEach var="bannerList" items="${bannerList}">
+                              	<div style="display:flex; justify-content: center; align-items: center;"><img src="${bannerList.path }"
                                     style="height: 240px;"></div>
                             </c:forEach>
                         </div>
@@ -317,19 +317,19 @@
                         </ul>
                         <h1 class="hide">추천도서</h1>
                         <ul id="recomended" class="book-slide">
-                            <c:forEach var="rec_list" items="${rec_list}">
+                            <c:forEach var="recList" items="${recList}">
                             	<div>
-                            	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?book_isbn=${rec_list.book_isbn }&year=${year}&month=${month}">
-                            	<img src="${rec_list.book_cover }" style="width:155px; height: 220px;"></a></div>
+                            	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?bookIsbn=${recList.bookIsbn}&year=${date.year}&month=${date.month}">
+                            	<img src="${recList.bookCover}" style="width:155px; height: 220px;"></a></div>
                             </c:forEach>            
                             
                         </ul>
                         <h1 class="hide">대출BEST</h1>
                         <ul id="bestBook" class="book-slide" style="display: none;">
-                           <c:forEach var="best_list" items="${best_list}">
+                           <c:forEach var="bestList" items="${bestList}">
                             	<div>
-                            	<a href="${pageContext.request.contextPath}/search/bestBookDetail.do?book_isbn=${best_list.book_isbn }&year=${year}&month=${month}">
-                            	<img src="${best_list.book_cover }" style="width:155px; height: 220px;"></a></div>
+                            	<a href="${pageContext.request.contextPath}/search/bestBookDetail.do?bookIsbn=${bestList.bookIsbn }&year=${date.year}&month=${date.month}">
+                            	<img src="${bestList.bookCover}" style="width:155px; height: 220px;"></a></div>
                             </c:forEach>
                         </ul>
                         
