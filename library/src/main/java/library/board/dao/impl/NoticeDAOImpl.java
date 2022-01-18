@@ -42,4 +42,10 @@ public class NoticeDAOImpl extends EgovAbstractMapper implements NoticeDAO {
 		return selectList("Notice.getPrevAndNextPost", noticeNo);
 	}
 
+	// 공지사항 등록
+	@Override
+	public void insertNotice(NoticeVO notice) {
+		insert("Notice.insertNotice", notice);
+	}
+
 }

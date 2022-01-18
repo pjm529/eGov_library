@@ -74,6 +74,15 @@
 		]]>
 	</update>
 	
+	<!-- 게시글 등록 -->
+	<insert id="insertNotice" parameterType="NoticeVO">
+		<![CDATA[
+			INSERT INTO
+				notice(notice_title, notice_content, writer_id, writer_name)
+			VALUES
+				(#{noticeTitle}, #{noticeContent}, #{writerId}, #{writerName})
+		]]>
+	</insert>
 	
 	<!-- 페이징 및 검색 조건문 -->
 	<sql id="criteria">

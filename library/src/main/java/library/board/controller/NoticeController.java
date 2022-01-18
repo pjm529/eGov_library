@@ -1,15 +1,18 @@
 package library.board.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import library.board.domain.ArticleVO;
 import library.board.domain.NoticeVO;
 import library.board.service.NoticeService;
 import library.common.page.Criteria;
@@ -65,6 +68,20 @@ public class NoticeController {
 	@GetMapping("/noticeInsertPage.do")
 	public String noticeInsertPage() {
 		return "board/sub1/noticeInsert.jsp";
+	}
+
+	// 게시글 등록
+	@PostMapping("/insertNotice.do")
+	public String insertNotice(@ModelAttribute NoticeVO notice, Principal principal) {
+
+		// 로그인 된 user_id 받아오기
+		String userId = principal.getName();
+
+		notice.setWriterId(userId);
+
+		noticeService.insertNotice(notice);
+
+		return "redirect:/board/noticeList.do";
 	}
 
 }

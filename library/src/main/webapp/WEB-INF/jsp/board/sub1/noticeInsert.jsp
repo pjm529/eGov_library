@@ -73,7 +73,7 @@
                                                         autocomplete="off" required="required" maxlength="50">
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr> 
                                                 <th class="first">작성자</th>
                                                 <td>관리자</td>
                                                 <th class="first">작성일</th>
@@ -81,7 +81,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="4" style="padding: 8px 0px;">
-                                                    <textarea id="popContent" name="notice_content"></textarea>
+                                                    <textarea id="popContent" name="noticeContent"></textarea>
                                                 </td>
                                             </tr>
 

@@ -45,4 +45,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.getPrevAndNextPost(noticeNo);
 	}
 
+	// 공지사항 등록
+	@Override
+	public void insertNotice(NoticeVO notice) {
+		noticeDAO.insertNotice(notice);
+	}
+
 }

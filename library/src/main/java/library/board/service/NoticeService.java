@@ -21,4 +21,7 @@ public interface NoticeService {
 
 	// 공지사항 이전글, 다음글
 	public List<NoticeVO> getPrevAndNextPost(long noticeNo);
+
+	// 공지사항 등록
+	public void insertNotice(NoticeVO notice);
 }
