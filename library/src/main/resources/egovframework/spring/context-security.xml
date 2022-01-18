@@ -39,7 +39,7 @@
          
          <!-- 공지사항 -->
          <s:intercept-url pattern="/board/noticeInsertPage.do" access="hasRole('ROLE_ADMIN')"/>
-         <s:intercept-url pattern="/board/insertNotice.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/noticeInsert.do" access="hasRole('ROLE_ADMIN')"/>
          <s:intercept-url pattern="/board/noticeModifyPage.do" access="hasRole('ROLE_ADMIN')"/>
          <s:intercept-url pattern="/board/noticeModify.do" access="hasRole('ROLE_ADMIN')"/>
          <s:intercept-url pattern="/board/noticeDelete.do" access="hasRole('ROLE_ADMIN')"/>

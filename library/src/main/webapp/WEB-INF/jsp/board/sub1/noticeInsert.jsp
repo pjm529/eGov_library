@@ -59,7 +59,7 @@
                             <fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
 
                             <div class="table-wrap">
-                                <form action="${pageContext.request.contextPath}/board/insertNotice.do" method="post" onsubmit="return false" role="form">
+                                <form action="${pageContext.request.contextPath}/board/noticeInsert.do" method="post" onsubmit="return false" role="form">
                                     <input type="hidden" name="writerName" 
                                     value="<sec:authentication property="principal.member.userName"/>">
 

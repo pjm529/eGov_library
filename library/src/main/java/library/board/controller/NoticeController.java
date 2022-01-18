@@ -72,8 +72,8 @@ public class NoticeController {
 	}
 
 	// 게시글 등록
-	@PostMapping("/insertNotice.do")
-	public String insertNotice(@ModelAttribute NoticeVO notice, Principal principal) {
+	@PostMapping("/noticeInsert.do")
+	public String noticeInsert(@ModelAttribute NoticeVO notice, Principal principal) {
 
 		// 로그인 된 user_id 받아오기
 		String userId = principal.getName();
