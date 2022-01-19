@@ -2,7 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="NoticeAttach">
 
-	<!-- 게시글 등록 -->
+	<resultMap id="attachMap" type="NoticeAttachVO">
+		<id column="uuid"				property="uuid" />
+		<result column="upload_path"	property="uploadPath" />
+		<result column="file_name"		property="fileName" />
+		<result column="file_type"	 	property="fileType" />
+		<result column="notice_no"	 	property="noticeNo" />
+	</resultMap> 
+
+	<!-- 첨부파일 등록 -->
 	<insert id="insertAttach" parameterType="NoticeAttachVO">
 		<![CDATA[
 			INSERT INTO
@@ -11,5 +19,17 @@
 				(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{noticeNo})
 		]]>
 	</insert>
+	
+	<!-- 첨부파일 목록 -->
+	<select id="attachList" parameterType="long" resultMap="attachMap">
+		<![CDATA[
+			SELECT 
+				* 
+			FROM
+				notice_attach_file 
+			WHERE
+				notice_no = #{noticeNo}
+		]]>
+	</select>
 	
 </mapper>

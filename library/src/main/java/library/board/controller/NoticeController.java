@@ -6,15 +6,19 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import library.board.domain.NoticeAttachVO;
 import library.board.domain.NoticeVO;
+import library.board.service.NoticeAttachService;
 import library.board.service.NoticeService;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
@@ -25,6 +29,9 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private NoticeAttachService attachService;
 
 	// 공지사항 목록
 	@GetMapping("/noticeList.do")
@@ -150,5 +157,20 @@ public class NoticeController {
 
 		return "redirect:/board/noticeList.do?page=" + page + "&amount=" + amount + "&type=" + type + "&keyword="
 				+ keyword;
+	}
+
+	// 첨부파일 조회
+	@GetMapping(value = "/getNoticeAttachList.do", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ModelAndView getNoticeAttachList(Long noticeNo) {
+
+		ModelAndView mav = new ModelAndView("jsonView");
+		
+		List<NoticeAttachVO> noticeAttachList = attachService.noticeAttachList(noticeNo);
+		
+		mav.setViewName("jsonView");
+		mav.addObject(noticeAttachList);
+		
+		return mav;
 	}
 }

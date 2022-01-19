@@ -89,8 +89,25 @@
                                             <td colspan="6">
                                                 <div class="bbs-content" style="width:950px; overflow: auto;">
                                                     <p>${noticeContent.noticeContent}</p>
+                                                    
+                                                    <!-- 첨부 파일 -->
+                                                    <div class="panel-body">
+                                                        <div class='uploadResult'>
+                                                            <ul>
 
+                                                            </ul>
+                                                        </div>
 
+                                                        <div class="downloadAreaWrap">
+                                                            <div class="downloadAreaTitle">첨부파일</div>
+                                                            <div class="downloadArea">
+                                                                <ul>
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
                                                 </div>
                                             </td>
                                         </tr>
@@ -241,7 +258,49 @@
             } else {
             	alert("취소 되었습니다.");
             }
-        })
+        });
+        
+        /* 첨부 파일 다운로드 */
+        (function () {
+
+            $(".downloadAreaWrap").hide();
+
+            var noticeNo = $("#noticeNo").val();
+
+            $.getJSON("${pageContext.request.contextPath}/board/getNoticeAttachList.do", { noticeNo: noticeNo }, function (arr) {
+
+                var str2 = "";
+
+                $(arr.noticeAttachVOList).each(function (i, attach) {
+                    str2 += "<li data-path='" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "' data-type='" + attach.fileType + "' ><div>";
+
+                    str2 += "<span><a href='#' class='attached_file_name'><img src='${pageContext.request.contextPath}/images/board/sub1/file_icon.png' class='attached_file_icon'> " + attach.fileName + "</a></span><br/>";
+
+                    str2 += "</div>";
+                    str2 + "</li>";
+
+                });
+                
+                $(".downloadArea ul").html(str2);
+
+                if ($(".downloadArea li").length) {
+                    $(".downloadAreaWrap").show();
+                }
+
+            });//end getjson
+
+        })();//end function
+
+        $(".downloadArea").on("click", "li a", function (e) {
+            e.preventDefault();
+
+            var liObj = $(this).closest("li");
+
+            var path = encodeURIComponent(liObj.data("path") + "/" + liObj.data("uuid") + "_" + liObj.data("filename"));
+
+            self.location = "${pageContext.request.contextPath}/baord/downloadNoticeFile.do?fileName=" + path;
+
+        });
 
     });
 
