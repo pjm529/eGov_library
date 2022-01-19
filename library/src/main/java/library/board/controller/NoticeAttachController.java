@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import library.board.domain.NoticeAttachForAjaxVO;
 import library.common.util.PathUtil;
 import lombok.extern.log4j.Log4j;
+import library.common.DownloadView;
 
 @Controller
 @Log4j
@@ -134,5 +137,17 @@ public class NoticeAttachController {
 			deleteFileName.delete();
 		}
 
+	}
+
+	// 첨부 파일 다운로드
+	@GetMapping(value = "/downloadNoticeFile.do")
+	public View downloadNoticeFile(String path, Model model, String fileName) {
+
+		File file = new File(path);
+
+		model.addAttribute("downloadFile", file);
+		model.addAttribute("downloadFilename", fileName);
+
+		return new DownloadView();
 	}
 }

@@ -276,7 +276,7 @@
 
             var path = encodeURIComponent(liObj.data("path") + "/" + liObj.data("uuid") + "_" + liObj.data("filename"));
 
-            self.location = "${pageContext.request.contextPath}/baord/downloadNoticeFile.do?fileName=" + path;
+            self.location = "${pageContext.request.contextPath}/board/downloadNoticeFile.do?path=" + path + "&fileName=" + liObj.data("filename");
 
         });
 
