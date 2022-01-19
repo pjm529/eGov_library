@@ -39,7 +39,7 @@ CREATE TABLE `secession_member` (
 
 -- 대출 내역 테이블 
 CREATE TABLE `loan_history` (
-	`loan_no`        INT(11)       NOT NULL COMMENT '대출번호', -- 대출번호
+	`loan_no`        INT(11)       NOT NULL AUTO_INCREMENT COMMENT '대출번호', -- 대출번호
 	`user_id`        VARCHAR(20)   NOT NULL COMMENT '대출자아이디', -- 대출자아이디
 	`user_email`     VARCHAR(40)   NOT NULL COMMENT '대출자이메일', -- 대출자이메일
 	`book_title`     VARCHAR(100)  NOT NULL COMMENT '대출도서명', -- 대출도서명
@@ -59,7 +59,7 @@ CREATE TABLE `loan_history` (
 
 -- 희망 도서 테이블
 CREATE TABLE `hope` (
-	`hope_no`        INT(11)       NOT NULL COMMENT '희망도서번호', -- 희망도서번호
+	`hope_no`        INT(11)       NOT NULL AUTO_INCREMENT COMMENT '희망도서번호', -- 희망도서번호
 	`user_id`        VARCHAR(20)   NOT NULL COMMENT '신청자아이디', -- 신청자아이디
 	`book_title`     VARCHAR(100)  NOT NULL COMMENT '희망도서명', -- 희망도서명
 	`book_author`    VARCHAR(200)  NOT NULL COMMENT '희망도서저자', -- 희망도서저자
@@ -75,7 +75,7 @@ CREATE TABLE `hope` (
 
 -- 추천 도서 테이블
 CREATE TABLE `recommend_book` (
-	`rec_no`         INT(11)       NOT NULL COMMENT '추천도서번호', -- 추천도서번호
+	`rec_no`         INT(11)       NOT NULL AUTO_INCREMENT COMMENT '추천도서번호', -- 추천도서번호
 	`user_id`        VARCHAR(20)   NOT NULL COMMENT '등록자아이디', -- 등록자아이디
 	`book_title`     VARCHAR(100)  NOT NULL COMMENT '추천도서명', -- 추천도서명
 	`book_author`    VARCHAR(200)  NOT NULL COMMENT '추천도서저자', -- 추천도서저자
@@ -102,7 +102,7 @@ CREATE TABLE `reading_room` (
 
 -- 도서관 일정 테이블
 CREATE TABLE `calendar` (
-	`cal_no`          INT(11)       NOT NULL COMMENT '일정번호', -- 일정번호
+	`cal_no`          INT(11)       NOT NULL AUTO_INCREMENT COMMENT '일정번호', -- 일정번호
 	`groupId`         INT(11)       NOT NULL COMMENT '그룹ID', -- 그룹ID
 	`user_id`         VARCHAR(20)   NOT NULL COMMENT '등록자ID', -- 등록자ID
 	`title`           VARCHAR(1024) NOT NULL COMMENT '일정명', -- 일정명
@@ -120,7 +120,7 @@ CREATE TABLE `calendar` (
 
 -- 공지사항 테이블
 CREATE TABLE `notice` (
-	`notice_no`          INT(11)       NOT NULL COMMENT '공지사항번호', -- 공지사항번호
+	`notice_no`          INT(11)       NOT NULL AUTO_INCREMENT COMMENT '공지사항번호', -- 공지사항번호
 	`notice_title`       VARCHAR(1024) NOT NULL COMMENT '공지사항제목', -- 공지사항제목
 	`notice_content`     VARCHAR(8196) NOT NULL COMMENT '공지사항내용', -- 공지사항내용
 	`writer_id`          VARCHAR(20)   NOT NULL COMMENT '작성자아이디', -- 작성자아이디
@@ -147,7 +147,7 @@ CREATE TABLE `notice_attach_file` (
 
 -- 분실물 테이블
 CREATE TABLE `article` (
-	`article_no`          INT(11)       NOT NULL COMMENT '분실물번호', -- 분실물번호
+	`article_no`          INT(11)       NOT NULL AUTO_INCREMENT COMMENT '분실물번호', -- 분실물번호
 	`article_title`       VARCHAR(1024) NOT NULL COMMENT '분실물제목', -- 분실물제목
 	`article_content`     VARCHAR(8196) NOT NULL COMMENT '분실물내용', -- 분실물내용
 	`writer_id`           VARCHAR(20)   NOT NULL COMMENT '작성자아이디', -- 작성자아이디
@@ -162,7 +162,7 @@ CREATE TABLE `article` (
 
 -- 문의사항 테이블
 CREATE TABLE `enquiry` (
-	`enquiry_no`          INT(11)       NOT NULL COMMENT '질문번호', -- 질문번호
+	`enquiry_no`          INT(11)       NOT NULL AUTO_INCREMENT COMMENT '질문번호', -- 질문번호
 	`enquiry_title`       VARCHAR(1024) NOT NULL COMMENT '질문제목', -- 질문제목
 	`enquiry_content`     VARCHAR(8196) NOT NULL COMMENT '질문내용', -- 질문내용
 	`writer_id`           VARCHAR(20)   NOT NULL COMMENT '작성자아이디', -- 작성자아이디
@@ -177,7 +177,7 @@ CREATE TABLE `enquiry` (
 
 -- 답변 테이블
 CREATE TABLE `answer` (
-	`answer_no`          INT(11)       NOT NULL COMMENT '답변번호', -- 답변번호
+	`answer_no`          INT(11)       NOT NULL AUTO_INCREMENT COMMENT '답변번호', -- 답변번호
 	`enquiry_no`         INT(11)       NOT NULL COMMENT '질문번호', -- 질문번호
 	`answer_title`       VARCHAR(1024) NOT NULL COMMENT '답변제목', -- 답변제목
 	`answer_content`     VARCHAR(8196) NOT NULL COMMENT '단변내용', -- 단변내용
