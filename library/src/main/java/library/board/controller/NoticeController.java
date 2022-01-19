@@ -113,6 +113,10 @@ public class NoticeController {
 		NoticeVO notice = noticeService.noticeContent(noticeNo);
 		mav.addObject("noticeContent", notice);
 
+		// 첨부파일 조회
+		List<NoticeAttachVO> attachList = attachService.noticeAttachList(noticeNo);
+		mav.addObject("attachList", attachList);
+		
 		mav.addObject("cri", cri);
 
 		return mav;

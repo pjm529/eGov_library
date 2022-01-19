@@ -101,7 +101,19 @@
 
                                                     <div class="uploadResult">
                                                         <ul>
-
+                                                        	<c:forEach var="attach" items="${attachList}">
+															<li data-path="${attach.uploadPath}" 
+																data-uuid="${attach.uuid}" data-filename="${attach.fileName}" 
+																data-type="${attach.fileType}">
+                        										<div style='margin-top: 5px;'>
+                        											<img src='${pageContext.request.contextPath}/images/board/sub1/file_icon.png' 
+                        												width='20px' height='20px' style='vertical-align: middle;'>
+                      												<span><c:out value="${attach.fileName}"/></span>
+                        											<button type='button'class="${attach.uuid}_${attach.fileName}">x
+                        											</button><br>
+                       											</div>
+                      										 </li>
+                      										 </c:forEach>
                                                         </ul>
                                                     </div>
                                                 </td>
