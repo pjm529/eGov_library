@@ -84,6 +84,22 @@
                                                     <textarea id="popContent" name="noticeContent"></textarea>
                                                 </td>
                                             </tr>
+                                            
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class="uploadDiv">
+                                                        <input type="file" name="uploadNoticeFile" id="uploadNoticeFile"
+                                                            multiple>
+                                                        <input type="hidden" name="uuid" id="uuid">
+                                                    </div>
+
+                                                    <div class="uploadResult">
+                                                        <ul>
+
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
                                         </tbody>
 
@@ -140,6 +156,137 @@
             }
         });
 
+        /* 파일 업로드 */
+        /* input 태그에 업로드할 파일 정보 담아서 form submit */
+        var formObj = $("form[role='form']");
+
+        $("button[type='submit']").on("click", function (e) {
+
+            e.preventDefault();
+
+            var str = "";
+
+            $(".uploadResult ul li").each(function (i, obj) {
+
+                var jobj = $(obj);
+
+                str += "<input type='hidden' name='noticeAttachList[" + i + "].fileName' value='" + jobj.data("filename") + "'>";
+                str += "<input type='hidden' name='noticeAttachList[" + i + "].uuid' value='" + jobj.data("uuid") + "'>";
+                str += "<input type='hidden' name='noticeAttachList[" + i + "].uploadPath' value='" + jobj.data("path") + "'>";
+                str += "<input type='hidden' name='noticeAttachList[" + i + "].fileType' value='" + jobj.data("type") + "'>";
+
+            });
+
+            formObj.append(str).submit();
+
+        });
+
+
+        /* 용량, 파일 형식 지정 */
+        var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+        var maxSize = 5242880; //5MB
+
+        function checkExtension(fileName, fileSize) {
+
+            if (fileSize >= maxSize) {
+                alert("파일 사이즈 초과");
+                return false;
+            }
+
+            if (regex.test(fileName)) {
+                alert("해당 종류의 파일은 업로드할 수 없습니다.");
+                return false;
+            }
+            return true;
+        }
+
+
+        /* 선택한 파일을 지정된 폴더에 저장 */
+        $("input[type='file']").change(function (e) {
+
+            var formData = new FormData();
+            var inputFile = $("input[name='uploadNoticeFile']");
+            var files = inputFile[0].files;
+
+            for (var i = 0; i < files.length; i++) {
+
+                if (!checkExtension(files[i].name, files[i].size)) {
+                    return false;
+                }
+                formData.append("uploadNoticeFile", files[i]);
+            }
+
+            $.ajax({
+                url: '${pageContext.request.contextPath}/board/uploadNoticeFileAjaxAction.do',
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                dataType: 'json',
+                success: function (result) {
+                	console.log(result);
+                    showUploadResult(result.noticeAttachForAjaxVOList); //업로드 결과 처리 함수 
+
+                }
+            }); //$.ajax
+
+        });
+
+        /* 첨부 파일 선택했을 때 */
+        function showUploadResult(uploadResultArr) {
+
+            /* 아무것도 선택 안했으면 리스트에 아무것도 안담김 -> 그냥 리턴 */
+            if (!uploadResultArr || uploadResultArr.length == 0) {
+                return;
+            }
+
+            var uploadUL = $(".uploadResult ul");
+
+            var str = "";
+            $(uploadResultArr).each(function (i, obj) {
+
+                var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+                var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+                var uuidName = obj.uuid + "_" + obj.fileName;
+
+                $("input[name='uuid']").attr('value', uuidName);
+
+                str += "<li "
+                str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "' data-type='" + obj.image + "' >";
+                str += "<div style='margin-top: 5px;'>";
+                str += "<img src='${pageContext.request.contextPath}/images/board/sub1/file_icon.png' width='20px' height='20px' style='vertical-align: middle;'>";
+                str += "<span> " + obj.fileName + " </span>";
+                str += "<button type='button' data-file=\'" + fileCallPath + "\' data-type='file'  class=" + obj.uuid + "_" + obj.fileName + ">x</button><br>";
+                str += "</div>";
+                str += "</li>";
+
+            });
+
+            uploadUL.append(str);
+        }
+
+
+        /* x버튼 눌렀을 때 첨부 파일 목록에서 사라짐 */
+        $(".uploadResult").on("click", "button", function (e) {
+
+            var uuid = $(this).attr("class");
+
+            var targetFile = $(this).data("file");
+            var type = $(this).data("type");
+
+            var targetLi = $(this).closest("li");
+
+            $.ajax({
+                url: '${pageContext.request.contextPath}/board/deleteNoticeFile.do',
+                data: { fileName: targetFile, type: type, uuid: uuid },
+                dataType: 'text',
+                type: 'POST',
+                success: function (result) {
+                    targetLi.remove();
+                    $("#uploadNoticeFile").val("");
+                }
+            }); //$.ajax
+        });
     })
 
 </script>
