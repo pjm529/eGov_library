@@ -52,12 +52,15 @@ public class NoticeServiceImpl implements NoticeService {
 	// 공지사항 등록
 	@Override
 	public void insertNotice(NoticeVO notice) {
+		
+		// 공지사항 등록
 		noticeDAO.insertNotice(notice);
 
 		if (notice.getNoticeAttachList() == null || notice.getNoticeAttachList().size() <= 0) {
 			return;
 		}
 
+		// 첨부파일입력
 		notice.getNoticeAttachList().forEach(attach -> {
 			attach.setNoticeNo(notice.getNoticeNo());
 

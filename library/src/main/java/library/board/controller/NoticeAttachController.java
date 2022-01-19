@@ -1,21 +1,17 @@
 package library.board.controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import library.board.domain.NoticeAttachForAjaxVO;
+import library.common.DownloadView;
 import library.common.util.PathUtil;
 import lombok.extern.log4j.Log4j;
-import library.common.DownloadView;
 
 @Controller
 @Log4j
@@ -67,6 +63,7 @@ public class NoticeAttachController {
 			log.info("only file name: " + uploadFileName);
 			attachForAjaxVO.setFileName(uploadFileName);
 
+			// uuid 생성
 			UUID uuid = UUID.randomUUID();
 
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
@@ -90,27 +87,6 @@ public class NoticeAttachController {
 
 		}
 		return mav;
-	}
-
-	// 첨부할 파일 썸네일 출력
-	@GetMapping("/displayFiles.do")
-	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String file_name) {
-
-		File file = new File(file_name);
-
-		ResponseEntity<byte[]> result = null;
-
-		try {
-			HttpHeaders header = new HttpHeaders();
-
-			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return result;
 	}
 
 	// 첨부할 파일 선택 취소 시 폴더에 저장된 파일 삭제

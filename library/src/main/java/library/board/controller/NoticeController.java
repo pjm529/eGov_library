@@ -92,9 +92,9 @@ public class NoticeController {
 		String userId = principal.getName();
 
 		// 첨부 파일이 있는 경우
-		if (notice.getNoticeAttachList() != null) {
-			notice.getNoticeAttachList().forEach(attach -> System.out.println(attach));
-		}
+//		if (notice.getNoticeAttachList() != null) {
+//			notice.getNoticeAttachList().forEach(attach -> System.out.println(attach));
+//		}
 
 		notice.setWriterId(userId);
 
@@ -127,6 +127,7 @@ public class NoticeController {
 	@PostMapping("/noticeModify.do")
 	public String noticeModify(@ModelAttribute NoticeVO notice, @ModelAttribute Criteria cri, Principal principal) {
 
+		// 작성자 ID 
 		String userId = principal.getName();
 		notice.setWriterId(userId);
 
