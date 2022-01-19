@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,14 +35,16 @@ import library.common.DownloadView;
 @RequestMapping("/board")
 public class NoticeAttachController {
 
-	public String UPLOAD_PATH = PathUtil.path("/library") + File.separator + "notice"; // 업로드 경로
-
 	// 첨부할 파일 선택 시
 	@PostMapping(value = "/uploadNoticeFileAjaxAction.do", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ModelAndView uploadNoticeFileAjaxPost(MultipartFile[] uploadNoticeFile) {
+	public ModelAndView uploadNoticeFileAjaxPost(MultipartFile[] uploadNoticeFile, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("jsonView");
+
+		// 경로
+		String contextPath = request.getContextPath();
+		String UPLOAD_PATH = PathUtil.path(contextPath) + File.separator + "notice"; // 업로드 경로
 
 		List<NoticeAttachForAjaxVO> list = new ArrayList<>();
 		String uploadFolder = UPLOAD_PATH;
@@ -112,37 +116,25 @@ public class NoticeAttachController {
 	// 첨부할 파일 선택 취소 시 폴더에 저장된 파일 삭제
 	@PostMapping("/deleteNoticeFile.do")
 	@ResponseBody
-	public ResponseEntity<String> deleteNoticeFile(String fileName, String type, @RequestParam("uuid") String uuid) {
+	public ResponseEntity<String> deleteNoticeFile(String fileName, @RequestParam("uuid") String uuid,
+			HttpServletRequest request) {
+
+		// 경로
+		String contextPath = request.getContextPath();
+		String UPLOAD_PATH = PathUtil.path(contextPath) + File.separator + "notice"; // 업로드 경로
+		String filePath = UPLOAD_PATH + File.separator;
 
 		log.info("deleteFile: " + fileName);
 
-		System.out.println(uuid);
-		System.out.println(type);
-		fileDelete(uuid, type);
+		// 첨부파일 삭제
+		File attachFile = new File(filePath + uuid);
+		attachFile.delete();
 
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 
-	// 폴더 내 파일 삭제 함수(이미지일 경우 썸네일까지 삭제)
-	public void fileDelete(String uuid, String type) {
-
-		String filePath = UPLOAD_PATH + File.separator;
-
-		File deleteFileName = new File(filePath + uuid);
-
-		if (type.equals("image")) {
-			String thumb = "s_" + uuid;
-			File deleteThumbFileName = new File(filePath + thumb);
-			deleteFileName.delete();
-			deleteThumbFileName.delete();
-		} else {
-			deleteFileName.delete();
-		}
-
-	}
-
 	// 첨부 파일 다운로드
-	@GetMapping(value = "/downloadNoticeFile.do")
+	@GetMapping("/downloadNoticeFile.do")
 	public View downloadNoticeFile(String path, Model model, String fileName) {
 
 		File file = new File(path);

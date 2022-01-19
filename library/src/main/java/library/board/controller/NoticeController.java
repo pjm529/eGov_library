@@ -6,6 +6,8 @@ import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,6 @@ import library.common.util.PathUtil;
 @Controller
 @RequestMapping("/board")
 public class NoticeController {
-	public String UPLOAD_PATH = PathUtil.path("/library") + File.separator + "notice"; // 업로드 경로
 
 	@Autowired
 	private NoticeService noticeService;
@@ -145,12 +146,17 @@ public class NoticeController {
 
 	// 게시글 삭제
 	@PostMapping("/noticeDelete.do")
-	public String noticeDelete(Criteria cri, @RequestParam long noticeNo, RedirectAttributes rttr) {
+	public String noticeDelete(Criteria cri, @RequestParam long noticeNo, RedirectAttributes rttr,
+			HttpServletRequest request) {
 
+		// 첨부파일 리스트
 		List<NoticeAttachVO> attachList = attachService.noticeAttachList(noticeNo);
 
+		// 공지사항 삭제
 		noticeService.deleteNotice(noticeNo);
-		deleteNoticeFiles(attachList);
+
+		// 첨부파일 삭제
+		deleteAttachFiles(attachList, request);
 		rttr.addFlashAttribute("result", "success");
 
 		String keyword;
@@ -168,8 +174,12 @@ public class NoticeController {
 				+ keyword;
 	}
 
-	/* 폴더 내 첨부 파일 삭제 */
-	private void deleteNoticeFiles(List<NoticeAttachVO> attachList) {
+	// 폴더 내 첨부 파일 삭제
+	private void deleteAttachFiles(List<NoticeAttachVO> attachList, HttpServletRequest request) {
+
+		// 경로
+		String contextPath = request.getContextPath();
+		String UPLOAD_PATH = PathUtil.path(contextPath) + File.separator + "notice"; // 업로드 경로
 		String filePath = UPLOAD_PATH + File.separator;
 
 		if (attachList == null || attachList.size() == 0) {
@@ -179,8 +189,9 @@ public class NoticeController {
 		attachList.forEach(attach -> {
 
 			try {
-				File file = new File(filePath + attach.getUuid() + "_" + attach.getFileName());
-				file.delete();
+				// 파일 삭제
+				File attachFile = new File(filePath + attach.getUuid() + "_" + attach.getFileName());
+				attachFile.delete();
 			} catch (Exception e) {
 				System.out.println("파일 삭제 실패 ============= " + e.getMessage());
 			}
