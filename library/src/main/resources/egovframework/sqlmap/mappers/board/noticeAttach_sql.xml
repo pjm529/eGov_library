@@ -32,4 +32,15 @@
 		]]>
 	</select>
 	
+	<!-- 첨부파일 삭제 -->
+	<delete id="deleteAll" parameterType="long">
+		<![CDATA[
+			DELETE 
+			FROM 
+				notice_attach_file 
+			WHERE 
+				notice_no = #{noticeNo}
+		]]>
+	</delete>
+	
 </mapper>

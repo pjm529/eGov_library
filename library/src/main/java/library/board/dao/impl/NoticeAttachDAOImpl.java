@@ -23,4 +23,10 @@ public class NoticeAttachDAOImpl extends EgovAbstractMapper implements NoticeAtt
 		return selectList("NoticeAttach.attachList", noticeNo);
 	}
 
+	// 첨부파일 전부 삭제
+	@Override
+	public void deleteAll(long noticeNo) {
+		delete("NoticeAttach.deleteAll", noticeNo);
+	}
+
 }

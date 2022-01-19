@@ -16,7 +16,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
-	
+
 	@Autowired
 	private NoticeAttachDAO attachDAO;
 
@@ -69,7 +69,24 @@ public class NoticeServiceImpl implements NoticeService {
 	// 공지사항 수정
 	@Override
 	public void noticeModify(NoticeVO notice) {
+
+		// 기존 첨부파일 삭제
+		attachDAO.deleteAll(notice.getNoticeNo());
+
+		// 공지사항 수정
 		noticeDAO.noticeModify(notice);
+
+		if (notice.getNoticeAttachList() == null || notice.getNoticeAttachList().size() <= 0) {
+			return;
+		}
+
+		// 첨부파일 입력
+		notice.getNoticeAttachList().forEach(attach -> {
+			attach.setNoticeNo(notice.getNoticeNo());
+
+			// db입력
+			attachDAO.insertAttach(attach);
+		});
 	}
 
 	// 공지사항 삭제
