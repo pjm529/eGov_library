@@ -319,7 +319,7 @@
                         <ul id="recomended" class="book-slide">
                             <c:forEach var="recList" items="${recList}">
                             	<div>
-                            	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?bookIsbn=${recList.bookIsbn}&year=${date.year}&month=${date.month}">
+                            	<a href="${pageContext.request.contextPath}/search/recommendBookDetail.do?recNo=${recList.recNo}&year=${date.year}&month=${date.month}">
                             	<img src="${recList.bookCover}" style="width:155px; height: 220px;"></a></div>
                             </c:forEach>            
                             
