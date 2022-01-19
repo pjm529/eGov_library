@@ -245,8 +245,6 @@
             var str = "";
             $(uploadResultArr).each(function (i, obj) {
 
-                var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
-                var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
                 var uuidName = obj.uuid + "_" + obj.fileName;
 
                 $("input[name='uuid']").attr('value', uuidName);
@@ -256,7 +254,7 @@
                 str += "<div style='margin-top: 5px;'>";
                 str += "<img src='${pageContext.request.contextPath}/images/board/sub1/file_icon.png' width='20px' height='20px' style='vertical-align: middle;'>";
                 str += "<span> " + obj.fileName + " </span>";
-                str += "<button type='button' data-file=\'" + fileCallPath + "\' data-type='file'  class=" + obj.uuid + "_" + obj.fileName + ">x</button><br>";
+                str += "<button type='button' data-file=\'" + obj.fileName + "\' class=" + obj.uuid + "_" + obj.fileName + ">x</button><br>";
                 str += "</div>";
                 str += "</li>";
 
@@ -271,14 +269,13 @@
 
             var uuid = $(this).attr("class");
 
-            var targetFile = $(this).data("file");
-            var type = $(this).data("type");
+            var fileName = $(this).data("file");
 
             var targetLi = $(this).closest("li");
 
             $.ajax({
                 url: '${pageContext.request.contextPath}/board/deleteNoticeFile.do',
-                data: { fileName: targetFile, type: type, uuid: uuid },
+                data: { fileName: fileName, uuid: uuid },
                 dataType: 'text',
                 type: 'POST',
                 success: function (result) {
