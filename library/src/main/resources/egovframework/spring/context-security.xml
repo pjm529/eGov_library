@@ -44,6 +44,10 @@
          <s:intercept-url pattern="/board/noticeModify.do" access="hasRole('ROLE_ADMIN')"/>
          <s:intercept-url pattern="/board/noticeDelete.do" access="hasRole('ROLE_ADMIN')"/>
          
+         <!-- 첨부파일 -->
+         <s:intercept-url pattern="/board/uploadNoticeFileAjaxAction.do" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/deleteNoticeFile.do" access="hasRole('ROLE_ADMIN')"/>
+         
          <!-- 분실물 -->
          <s:intercept-url pattern="/board/articleInsertPage.do" access="hasRole('ROLE_ADMIN')"/>
          <s:intercept-url pattern="/board/articleInsert.do" access="hasRole('ROLE_ADMIN')"/>
