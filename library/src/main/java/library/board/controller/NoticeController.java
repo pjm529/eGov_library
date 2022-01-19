@@ -1,5 +1,6 @@
 package library.board.controller;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.Principal;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import library.board.domain.NoticeAttachVO;
 import library.board.domain.NoticeVO;
@@ -20,10 +22,12 @@ import library.board.service.NoticeAttachService;
 import library.board.service.NoticeService;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
+import library.common.util.PathUtil;
 
 @Controller
 @RequestMapping("/board")
 public class NoticeController {
+	public String UPLOAD_PATH = PathUtil.path("/library") + File.separator + "notice"; // 업로드 경로
 
 	@Autowired
 	private NoticeService noticeService;
@@ -141,9 +145,13 @@ public class NoticeController {
 
 	// 게시글 삭제
 	@PostMapping("/noticeDelete.do")
-	public String noticeDelete(Criteria cri, @RequestParam long noticeNo) {
+	public String noticeDelete(Criteria cri, @RequestParam long noticeNo, RedirectAttributes rttr) {
+
+		List<NoticeAttachVO> attachList = attachService.noticeAttachList(noticeNo);
 
 		noticeService.deleteNotice(noticeNo);
+		deleteNoticeFiles(attachList);
+		rttr.addFlashAttribute("result", "success");
 
 		String keyword;
 		int amount = cri.getAmount();
@@ -159,4 +167,26 @@ public class NoticeController {
 		return "redirect:/board/noticeList.do?page=" + page + "&amount=" + amount + "&type=" + type + "&keyword="
 				+ keyword;
 	}
+
+	/* 폴더 내 첨부 파일 삭제 */
+	private void deleteNoticeFiles(List<NoticeAttachVO> attachList) {
+		String filePath = UPLOAD_PATH + File.separator;
+
+		if (attachList == null || attachList.size() == 0) {
+			return;
+		}
+
+		attachList.forEach(attach -> {
+
+			try {
+				File file = new File(filePath + attach.getUuid() + "_" + attach.getFileName());
+				file.delete();
+			} catch (Exception e) {
+				System.out.println("파일 삭제 실패 ============= " + e.getMessage());
+			}
+
+		});
+
+	}
+
 }

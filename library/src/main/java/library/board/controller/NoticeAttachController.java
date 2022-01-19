@@ -116,6 +116,8 @@ public class NoticeAttachController {
 
 		log.info("deleteFile: " + fileName);
 
+		System.out.println(uuid);
+		System.out.println(type);
 		fileDelete(uuid, type);
 
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
