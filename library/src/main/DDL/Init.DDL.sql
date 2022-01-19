@@ -317,10 +317,6 @@ insert into member_auth values("admin", "ROLE_MEMBER");
 insert into member_auth values("admin", "ROLE_ADMIN");
 insert into member_auth values("admin", "ROLE_MASTER");
 
--- 기본 배너 추가
-insert into banner values("admin", "/resources/banner/banner1.png", current_timestamp);
-insert into banner values("admin", "/resources/banner/banner2.png", current_timestamp);
-
 -- 열람실 좌석 insert
 DELIMITER //
 CREATE PROCEDURE insert_seat()
