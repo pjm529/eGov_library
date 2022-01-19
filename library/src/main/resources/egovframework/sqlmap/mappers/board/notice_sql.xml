@@ -83,6 +83,12 @@
 			VALUES
 				(#{noticeTitle}, #{noticeContent}, #{writerId}, #{writerName})
 		]]>
+		<!-- insert 후 noticeNo return   -->
+		<selectKey keyProperty="noticeNo" order="AFTER" resultType="_long">
+			<![CDATA[
+				SELECT LAST_INSERT_ID();
+			]]>
+		</selectKey>		
 	</insert>
 	
 	<!-- 게시글 수정 -->

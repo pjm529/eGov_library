@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="NoticeAttach">
+
+	<!-- 게시글 등록 -->
+	<insert id="insertAttach" parameterType="NoticeAttachVO">
+		<![CDATA[
+			INSERT INTO
+				notice_attach_file(uuid, upload_path, file_name, file_type, notice_no)
+			VALUES
+				(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{noticeNo})
+		]]>
+	</insert>
+	
+</mapper>

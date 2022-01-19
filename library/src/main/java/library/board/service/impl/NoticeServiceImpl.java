@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import library.board.dao.NoticeAttachDAO;
 import library.board.dao.NoticeDAO;
 import library.board.domain.NoticeVO;
 import library.board.service.NoticeService;
@@ -15,6 +16,9 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
+	
+	@Autowired
+	private NoticeAttachDAO attachDAO;
 
 	// 공지사항 목록
 	@Override
@@ -49,6 +53,17 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void insertNotice(NoticeVO notice) {
 		noticeDAO.insertNotice(notice);
+
+		if (notice.getNoticeAttachList() == null || notice.getNoticeAttachList().size() <= 0) {
+			return;
+		}
+
+		notice.getNoticeAttachList().forEach(attach -> {
+			attach.setNoticeNo(notice.getNoticeNo());
+
+			// db입력
+			attachDAO.insertAttach(attach);
+		});
 	}
 
 	// 공지사항 수정
