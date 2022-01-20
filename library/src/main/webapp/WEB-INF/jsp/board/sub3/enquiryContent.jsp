@@ -71,7 +71,13 @@
                                         <!-- 작성자 | 작성일 | 조회수 -->
                                         <tr>
                                             <th class="first">작성자</th>
-                                            <td style="width: 15%;">${enquiry.writerName}</td>
+                                            <td style="width: 15%;">
+                                            	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${enquiry.writerId}">
+	                                			</sec:authorize>
+                                            	${enquiry.writerName}
+                                            	</a>
+                                            </td>
                                             <th class="first">작성일</th>
                                             <td>
                                             	${fn:substring(enquiry.enquiryRegDate, 2, 16)}
