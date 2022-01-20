@@ -161,7 +161,7 @@
 	                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
 	                                			</sec:authorize>
 	                                			<b>${list.writerName}</b></a> 
-	                                			<span class="reply_date">${replyRegDate}</span>
+	                                			<span class="reply_date">${replyRegDate}</span> <a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
 	                                			<div class="reply_content">
 	                                				<span><c:out value="${list.replyContent}"/></span> 
 	                                			</div>
@@ -287,6 +287,8 @@
       <input type="hidden" name="keyword" value="${cri.keyword}">
       <input type="hidden" name="noticeNo" value="">
    </form>
+   
+  
     
     <!-- footer -->
     <jsp:include page="../../layout/footer.jsp"></jsp:include>
@@ -296,7 +298,8 @@
 <!-- 미 로그인 시  -->
 <script>
 	$(function(){
-        $("#reply_form button").on("click", function(){
+        $("#reply_form button, .deleteA").on("click", function(e){
+        	e.preventDefault();
         	alert("로그인 후 이용해주세요"); 
         	location.href="${pageContext.request.contextPath}/member/login.do";
         });
@@ -307,9 +310,20 @@
 
 <sec:authorize access="isAuthenticated()">
 <!-- 로그인 시 -->
+
+	<form action="" method="post" class="moveForm2">
+		<input type="hidden" name="page" value="${cri.page}">
+		<input type="hidden" name="amount" value="${cri.amount}">
+      	<input type="hidden" name="type" value="${cri.type}">
+      	<input type="hidden" name="keyword" value="${cri.keyword}">
+      	<input type="hidden" name="noticeNo" value="${noticeContent.noticeNo}"> 
+      	<input type="hidden" name="replyNo" value="">
+	</form>
+   
 <script>
 	$(function(){
 		
+		var moveForm2 = $(".moveForm2");
 		
         $("#reply_form button").on("click", function(){
         	let reply = $(".reply_textarea").val();
@@ -324,6 +338,16 @@
         	$("form").attr("onsubmit", "return true;");
         	$("form").submit();
         });
+        
+        $(".deleteA").on("click", function(e) {
+	         e.preventDefault();
+	         
+	         if(confirm("댓글을 삭제하시겠습니까?")){
+	        	 moveForm2.find("input[name = 'replyNo']").val($(this).attr("href"));
+		         moveForm2.attr("action", "${pageContext.request.contextPath}/board/replyDelete.do");
+		         moveForm2.submit();
+	         }
+	    }); 
 	});
 </script>
 </sec:authorize>

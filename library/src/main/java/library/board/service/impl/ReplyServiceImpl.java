@@ -27,4 +27,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDAO.replyList(noticeNo);
 	}
 
+	// 댓글 삭제
+	@Override
+	public void deleteReply(int replyNo) {
+		replyDAO.deleteReply(replyNo);
+	}
+
 }

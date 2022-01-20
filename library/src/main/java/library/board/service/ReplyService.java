@@ -12,4 +12,6 @@ public interface ReplyService {
 	// 댓글 목록
 	public List<ReplyVO> replyList(long noticeNo);
 
+	// 댓글 삭제
+	public void deleteReply(int replyNo);
 }

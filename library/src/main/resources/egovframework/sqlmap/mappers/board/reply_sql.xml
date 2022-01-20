@@ -3,7 +3,7 @@
 <mapper namespace="Reply">
 
 	<resultMap id="replyMap" type="ReplyVO">
-		<id column="reply_no"				property="noticeNo" />
+		<id column="reply_no"				property="replyNo" />
 		<result column="notice_no"			property="noticeNo" />
 		<result column="reply_content"		property="replyContent" />
 		<result column="writer_id"	 		property="writerId" />
@@ -34,4 +34,15 @@
 				reply_reg_date				
 		]]>
 	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply"  parameterType="int">
+		<![CDATA[
+			DELETE
+			FROM
+				reply
+			WHERE
+				reply_no = #{replyNo}
+		]]>
+	</delete>
 </mapper>

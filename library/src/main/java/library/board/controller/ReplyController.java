@@ -48,4 +48,29 @@ public class ReplyController {
 				+ keyword + "&noticeNo=" + noticeNo;
 	}
 
+	// 댓글 삭제
+	@PostMapping("replyDelete.do")
+	public String replyDelete(@ModelAttribute Criteria cri, @ModelAttribute ReplyVO reply, Principal principal) {
+
+		
+		// 댓글 삭제
+		replyService.deleteReply(reply.getReplyNo());
+		
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+		int noticeNo = reply.getNoticeNo();
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/noticeList.do";
+		}
+
+		return "redirect:/board/noticeContent.do?page=" + page + "&amount=" + amount + "&type=" + type + "&keyword="
+				+ keyword + "&noticeNo=" + noticeNo;
+
+	}
+
 }
