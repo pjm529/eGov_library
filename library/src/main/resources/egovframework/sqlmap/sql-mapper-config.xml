@@ -17,5 +17,6 @@
 		<typeAlias alias="RoomVO" type="library.mylib.domain.RoomVO" />
 		<typeAlias alias="NoticeVO" type="library.board.domain.NoticeVO" />
 		<typeAlias alias="NoticeAttachVO" type="library.board.domain.NoticeAttachVO" />
+		<typeAlias alias="ReplyVO" type="library.board.domain.ReplyVO" />
     </typeAliases>
 </configuration>
