@@ -157,7 +157,11 @@
                                 		
                                 			<fmt:formatDate var="replyRegDate" value="${list.replyRegDate}" pattern="yyyy.MM.dd HH:mm"/>
 	                                		<div>
-	                                			<b>${list.writerName}</b> <span class="reply_date">${replyRegDate}</span>
+	                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
+	                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
+	                                			</sec:authorize>
+	                                			<b>${list.writerName}</b></a> 
+	                                			<span class="reply_date">${replyRegDate}</span>
 	                                			<div class="reply_content">
 	                                				<span><c:out value="${list.replyContent}"/></span> 
 	                                			</div>
