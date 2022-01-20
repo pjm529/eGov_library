@@ -14,5 +14,8 @@ public interface ReplyDAO {
 	
 	// 댓글 삭제
 	public void deleteReply(int replyNo);
+	
+	// 댓글 작성자 검색
+	public String searchWriter(int replyNo);
 
 }

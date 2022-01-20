@@ -53,9 +53,20 @@ public class ReplyController {
 	public String replyDelete(@ModelAttribute Criteria cri, @ModelAttribute ReplyVO reply, Principal principal) {
 
 		
-		// 댓글 삭제
-		replyService.deleteReply(reply.getReplyNo());
+		// 댓글 작성자 검색
+		String writerId = replyService.searchWriter(reply.getReplyNo());
 		
+		// 로그인 정보
+		String loginId = principal.getName();
+
+		// 작성자 일치 확인
+		if (loginId.equals(writerId)) {
+			// 댓글 삭제
+			replyService.deleteReply(reply.getReplyNo());
+		} else {
+			return "redirect:/accessError3.do";
+		}
+
 		String keyword;
 		int amount = cri.getAmount();
 		int page = cri.getPage();

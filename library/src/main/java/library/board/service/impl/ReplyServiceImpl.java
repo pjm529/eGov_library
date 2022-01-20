@@ -33,4 +33,10 @@ public class ReplyServiceImpl implements ReplyService {
 		replyDAO.deleteReply(replyNo);
 	}
 
+	// 댓글 작성자 검색
+	@Override
+	public String searchWriter(int replyNo) {
+		return replyDAO.searchWriter(replyNo);
+	}
+
 }

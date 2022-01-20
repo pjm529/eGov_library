@@ -29,4 +29,10 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 		delete("Reply.deleteReply", replyNo);
 	}
 
+	// 댓글 작성자 검색
+	@Override
+	public String searchWriter(int replyNo) {
+		return selectOne("Reply.searchWriter", replyNo);
+	}
+
 }

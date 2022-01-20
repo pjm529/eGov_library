@@ -36,7 +36,7 @@
 	</select>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="deleteReply"  parameterType="int">
+	<delete id="deleteReply" parameterType="int">
 		<![CDATA[
 			DELETE
 			FROM
@@ -45,4 +45,16 @@
 				reply_no = #{replyNo}
 		]]>
 	</delete>
+	
+	<!-- 댓글 작성자 검색 -->
+	<select id="searchWriter" parameterType="int" resultType="string">
+		<![CDATA[
+			SELECT
+				writer_id
+			FROM
+				reply
+			WHERE
+				reply_no = #{replyNo}
+		]]>
+	</select>
 </mapper>
