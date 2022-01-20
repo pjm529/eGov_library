@@ -125,8 +125,8 @@
                                 </table>
                                 
                                 <!-- ============================================= 댓글 div============================================= -->
-                                <div style="border: 1px solid black; padding: 10px;">
-                                	<div style="border: 1px solid red;">
+                                <div style=" padding: 10px;">
+                                	<div style="">
                                 		<b>댓글</b>
                                 		<form>
                                 			<textarea style="width: 860px; height: 70px; vertical-align: middle; color: #464646;
@@ -134,6 +134,21 @@
                                 		 	<button type="submit" style="width: 80px; height: 70px; 
                                 		 	background:#959ca4; color: #fff; cursor: pointer; border: 0; padding: 0;margin: 0;">댓글 작성</button>
                                 		</form>
+                                	</div>
+                                	<div style=" background: #f7f7f8; padding: 10px 0px 5px 5px;"> 
+                                		<div>
+                                			<b>관리자</b> <span style="font-size: 12px;">2022.01.20 10:00</span>
+                                			<div style=" margin:5px 0px 10px 0px;">
+                                				<span style="padding: 0px;">댓글 내용입니다.</span> 
+                                			</div>
+                                		</div>
+                                		
+                                		<div>
+                                			<b>관리자</b> <span style="font-size: 12px;">2022.01.20 10:00</span>
+                                			<div style=" margin:5px 0px 10px 0px;">
+                                				<span style="padding: 0px;">댓글 내용입니다.</span> 
+                                			</div>
+                                		</div>
                                 	</div>
                                 </div>
                                 <!-- ============================================= 댓글 div============================================= -->
