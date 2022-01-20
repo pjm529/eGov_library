@@ -186,7 +186,6 @@ table.bbs-edit th{
 table{
     width: 100%;
     border-top: 2px solid #5e6062;
-    border-bottom: 2px solid #ccc;
     border-spacing: 0;
     font-size: 14px;
 }
@@ -298,7 +297,7 @@ table input{
 /* 이전글, 다음글 */
 .bbs-posts{
 	border-top: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 1px solid #ccc;
     /* padding: 8px 10px; */
     line-height: 35px;
 }
