@@ -84,7 +84,7 @@
                                             <th class="first" style="width: 100px;">조회수</th>
                                             <td>${noticeContent.noticeViews}</td>
                                         </tr>
-
+                                        
                                         <!-- 본문 내용 -->
                                         <tr>
                                             <td colspan="6">
@@ -129,7 +129,13 @@
                                 <div class="reply">
                                 	<div class="reply_input">
                                 		<b>댓글</b>
-                                		<form id="reply_form">
+                                		<form id="reply_form" method="POST" onsubmit="return false">
+                                			<input type="hidden" name="amount" value="${cri.amount}"> 
+	                                        <input type="hidden" name="page" value="${cri.page}">
+	                                        <input type="hidden" name="type" value="${cri.type}">
+	                                        <input type="hidden" name="keyword" value="${cri.keyword}">
+                                			<input type="hidden" name="noticeNo" value="${noticeContent.noticeNo}"> 
+                                			<input type="hidden" name="writerName" value="<sec:authentication property="principal.member.userName"/>"> 
                                 			<!-- 미 로그인 시 -->
 											<sec:authorize access="isAnonymous()">
 											<textarea placeholder="로그인 후 사용가능합니다." disabled="disabled"></textarea>
@@ -137,7 +143,7 @@
 											
 											<!-- 로그인 시 -->
 											<sec:authorize access="isAuthenticated()">
-											<textarea placeholder="내용을 입력해주세요."></textarea>
+											<textarea placeholder="내용을 입력해주세요." name="replyContent" class="reply_textarea"></textarea>
 											</sec:authorize>
                                 			
                                 		 	<button type="submit">댓글 작성</button>
@@ -281,6 +287,44 @@
     <!-- footer -->
     <jsp:include page="../../layout/footer.jsp"></jsp:include>
 
+
+<sec:authorize access="isAnonymous()">
+<!-- 미 로그인 시  -->
+<script>
+	$(function(){
+        $("#reply_form button").on("click", function(){
+        	alert("로그인 후 이용해주세요"); 
+        	location.href="${pageContext.request.contextPath}/member/login.do";
+        });
+	});
+</script>
+</sec:authorize>
+
+
+<sec:authorize access="isAuthenticated()">
+<!-- 로그인 시 -->
+<script>
+	$(function(){
+		
+		
+        $("#reply_form button").on("click", function(){
+        	let reply = $(".reply_textarea").val();
+        	
+        	if (reply == "") {
+        		
+        		alert(" 댓글을 입력해주세요");
+        		return;
+        	}
+        	
+        	$("form").attr("action", "${pageContext.request.contextPath}/board/replyInsert.do");
+        	$("form").attr("onsubmit", "return true;");
+        	$("form").submit();
+        });
+	});
+</script>
+</sec:authorize>
+
+<!-- 공용 -->
 <script>
     $(function () {
 
@@ -315,9 +359,8 @@
             var path = encodeURIComponent(liObj.data("path") + "/" + liObj.data("uuid") + "_" + liObj.data("filename"));
 
             self.location = "${pageContext.request.contextPath}/board/downloadNoticeFile.do?path=" + path + "&fileName=" + liObj.data("filename");
-
         });
-
+        
     });
 
 </script>
