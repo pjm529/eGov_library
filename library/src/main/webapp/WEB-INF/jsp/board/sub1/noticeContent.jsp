@@ -8,6 +8,7 @@
 <head>
 	<title>라온도서관 > 열린공간 > 공지사항</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/sub1/notice_content_page.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/sub1/reply.css">
 </head>
 <script
   src="https://code.jquery.com/jquery-3.6.0.js"
@@ -125,28 +126,36 @@
                                 </table>
                                 
                                 <!-- ============================================= 댓글 div============================================= -->
-                                <div style=" padding: 10px;">
-                                	<div style="">
+                                <div class="reply">
+                                	<div class="reply_input">
                                 		<b>댓글</b>
-                                		<form>
-                                			<textarea style="width: 860px; height: 70px; vertical-align: middle; color: #464646;
-                                				resize: none; font-size: 13px; padding:10px; border: 2px solid #e5e5e5" placeholder="로그인 후 사용가능합니다."></textarea>
-                                		 	<button type="submit" style="width: 80px; height: 70px; 
-                                		 	background:#959ca4; color: #fff; cursor: pointer; border: 0; padding: 0;margin: 0;">댓글 작성</button>
+                                		<form id="reply_form">
+                                			<!-- 미 로그인 시 -->
+											<sec:authorize access="isAnonymous()">
+											<textarea placeholder="로그인 후 사용가능합니다." disabled="disabled"></textarea>
+											</sec:authorize>
+											
+											<!-- 로그인 시 -->
+											<sec:authorize access="isAuthenticated()">
+											<textarea placeholder="내용을 입력해주세요."></textarea>
+											</sec:authorize>
+                                			
+                                		 	<button type="submit">댓글 작성</button>
                                 		</form>
                                 	</div>
-                                	<div style=" background: #f7f7f8; padding: 10px 0px 5px 5px;"> 
+                                	
+                                	<div class="reply_list"> 
                                 		<div>
-                                			<b>관리자</b> <span style="font-size: 12px;">2022.01.20 10:00</span>
-                                			<div style=" margin:5px 0px 10px 0px;">
-                                				<span style="padding: 0px;">댓글 내용입니다.</span> 
+                                			<b>관리자</b> <span class="reply_date">2022.01.20 10:00</span>
+                                			<div class="reply_content">
+                                				<span>댓글 내용입니다.</span> 
                                 			</div>
                                 		</div>
                                 		
                                 		<div>
-                                			<b>관리자</b> <span style="font-size: 12px;">2022.01.20 10:00</span>
-                                			<div style=" margin:5px 0px 10px 0px;">
-                                				<span style="padding: 0px;">댓글 내용입니다.</span> 
+                                			<b>관리자</b> <span class="reply_date">2022.01.20 10:00</span>
+                                			<div class="reply_content">
+                                				<span>댓글 내용입니다.</span> 
                                 			</div>
                                 		</div>
                                 	</div>

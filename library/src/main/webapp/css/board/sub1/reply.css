@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.reply {
+	padding: 10px;
+}
+
+.reply_input textarea {
+	width: 860px; 
+	height: 70px; 
+	vertical-align: middle; 
+	color: #464646;
+   	resize: none; 
+   	font-size: 13px; 
+   	padding:10px; 
+   	border: 2px solid #e5e5e5;
+   	background: white;
+}
+
+.reply_input button {
+	width: 80px; 
+	height: 70px; 
+    background:#959ca4; 
+    color: #fff; 
+    cursor: pointer;
+    border: 0; 
+    padding: 0;
+    margin: 0;
+}
+
+.reply_list {
+	background: #f7f7f8; 
+	padding: 10px 0px 5px 5px;
+}
+
+.reply_date {
+	font-size: 12px;
+}
+
+.reply_content {
+	 margin:5px 0px 10px 0px;
+}
+
+.reply_content span {
+	padding: 0px;
+}
