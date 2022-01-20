@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Reply">
 
+	<resultMap id="replyMap" type="ReplyVO">
+		<id column="reply_no"				property="noticeNo" />
+		<result column="notice_no"			property="noticeNo" />
+		<result column="reply_content"		property="replyContent" />
+		<result column="writer_id"	 		property="writerId" />
+		<result column="writer_name"	 	property="writerName" />
+		<result column="reply_reg_date" 	property="replyRegDate" />
+	</resultMap> 
+
+	<!-- 댓글 입력 -->
 	<insert id="insertReply" parameterType="ReplyVO">
 		<![CDATA[
 			INSERT INTO
@@ -10,4 +20,18 @@
 				(#{noticeNo}, #{replyContent}, #{writerId}, #{writerName})				
 		]]>
 	</insert>
+	
+	<!-- 댓글 목록 -->
+	<select id="replyList" parameterType="long" resultMap="replyMap">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				reply
+			WHERE
+				notice_no = #{noticeNo}
+			ORDER BY
+				reply_reg_date				
+		]]>
+	</select>
 </mapper>

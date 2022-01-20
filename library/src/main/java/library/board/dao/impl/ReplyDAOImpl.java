@@ -1,5 +1,7 @@
 package library.board.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
@@ -15,4 +17,10 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 		insert("Reply.insertReply", reply);
 	}
 
+	// 댓글 목록
+	@Override
+	public List<ReplyVO> replyList(long noticeNo) {
+		return selectList("Reply.replyList", noticeNo);
+	}
+	
 }

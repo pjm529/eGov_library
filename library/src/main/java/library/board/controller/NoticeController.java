@@ -20,8 +20,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import library.board.domain.NoticeAttachVO;
 import library.board.domain.NoticeVO;
+import library.board.domain.ReplyVO;
 import library.board.service.NoticeAttachService;
 import library.board.service.NoticeService;
+import library.board.service.ReplyService;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
 import library.common.util.PathUtil;
@@ -35,6 +37,9 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeAttachService attachService;
+
+	@Autowired
+	private ReplyService replyService;
 
 	// 공지사항 목록
 	@GetMapping("/noticeList.do")
@@ -65,15 +70,43 @@ public class NoticeController {
 		// 조회수 증가
 		noticeService.noticeViewsCount(noticeNo);
 
+		// 공지사항 본문
 		NoticeVO noticeContent = noticeService.noticeContent(noticeNo);
-		List<NoticeVO> posts = noticeService.getPrevAndNextPost(noticeNo);
-
-		List<NoticeAttachVO> attachList = attachService.noticeAttachList(noticeNo);
-
 		mav.addObject("noticeContent", noticeContent);
-		mav.addObject("cri", cri);
+
+		// 이전글, 다음글
+		List<NoticeVO> posts = noticeService.getPrevAndNextPost(noticeNo);
 		mav.addObject("posts", posts);
+
+		// 첨부파일 목록
+		List<NoticeAttachVO> attachList = attachService.noticeAttachList(noticeNo);
 		mav.addObject("attachList", attachList);
+
+		// 댓글 목록
+		List<ReplyVO> replyList = replyService.replyList(noticeNo);
+
+		for (ReplyVO r : replyList) {
+			String writerName = r.getWriterName();
+
+			// 마스킹 할 부분
+			String mask = writerName.substring(1, writerName.length());
+
+			// 마스킹 갯수
+			String masking = "";
+
+			for (int i = 0; i < mask.length(); i++) {
+				masking += "*";
+			}
+
+			// 마스킹 할 부분의 글자 수 만큼 *로 replace
+			writerName = writerName.replace(mask, masking);
+
+			r.setWriterName(writerName);
+		}
+		mav.addObject("replyList", replyList);
+
+		// 검색 조건
+		mav.addObject("cri", cri);
 
 		return mav;
 	}
@@ -116,7 +149,7 @@ public class NoticeController {
 		// 첨부파일 조회
 		List<NoticeAttachVO> attachList = attachService.noticeAttachList(noticeNo);
 		mav.addObject("attachList", attachList);
-		
+
 		mav.addObject("cri", cri);
 
 		return mav;
@@ -127,7 +160,7 @@ public class NoticeController {
 	@PostMapping("/noticeModify.do")
 	public String noticeModify(@ModelAttribute NoticeVO notice, @ModelAttribute Criteria cri, Principal principal) {
 
-		// 작성자 ID 
+		// 작성자 ID
 		String userId = principal.getName();
 		notice.setWriterId(userId);
 

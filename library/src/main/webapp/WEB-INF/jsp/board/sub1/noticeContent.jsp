@@ -135,7 +135,7 @@
 	                                        <input type="hidden" name="type" value="${cri.type}">
 	                                        <input type="hidden" name="keyword" value="${cri.keyword}">
                                 			<input type="hidden" name="noticeNo" value="${noticeContent.noticeNo}"> 
-                                			<input type="hidden" name="writerName" value="<sec:authentication property="principal.member.userName"/>"> 
+                                			 
                                 			<!-- 미 로그인 시 -->
 											<sec:authorize access="isAnonymous()">
 											<textarea placeholder="로그인 후 사용가능합니다." disabled="disabled"></textarea>
@@ -143,6 +143,7 @@
 											
 											<!-- 로그인 시 -->
 											<sec:authorize access="isAuthenticated()">
+											<input type="hidden" name="writerName" value="<sec:authentication property="principal.member.userName"/>">
 											<textarea placeholder="내용을 입력해주세요." name="replyContent" class="reply_textarea"></textarea>
 											</sec:authorize>
                                 			
@@ -150,21 +151,20 @@
                                 		</form>
                                 	</div>
                                 	
+                                	<c:if test="${not empty replyList}">
                                 	<div class="reply_list"> 
-                                		<div>
-                                			<b>관리자</b> <span class="reply_date">2022.01.20 10:00</span>
-                                			<div class="reply_content">
-                                				<span>댓글 내용입니다.</span> 
-                                			</div>
-                                		</div>
+                                		<c:forEach var="list" items="${replyList}">
                                 		
-                                		<div>
-                                			<b>관리자</b> <span class="reply_date">2022.01.20 10:00</span>
-                                			<div class="reply_content">
-                                				<span>댓글 내용입니다.</span> 
-                                			</div>
-                                		</div>
+                                			<fmt:formatDate var="replyRegDate" value="${list.replyRegDate}" pattern="yyyy.MM.dd HH:mm"/>
+	                                		<div>
+	                                			<b>${list.writerName}</b> <span class="reply_date">${replyRegDate}</span>
+	                                			<div class="reply_content">
+	                                				<span><c:out value="${list.replyContent}"/></span> 
+	                                			</div>
+	                                		</div>
+                                		</c:forEach>
                                 	</div>
+                                	</c:if>
                                 </div>
                                 <!-- ============================================= 댓글 div============================================= -->
 
