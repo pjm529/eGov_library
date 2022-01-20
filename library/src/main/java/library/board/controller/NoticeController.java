@@ -23,6 +23,7 @@ import library.board.domain.NoticeVO;
 import library.board.domain.ReplyVO;
 import library.board.service.NoticeAttachService;
 import library.board.service.NoticeService;
+import library.board.service.QnaService;
 import library.board.service.ReplyService;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
@@ -40,6 +41,9 @@ public class NoticeController {
 
 	@Autowired
 	private ReplyService replyService;
+
+	@Autowired
+	private QnaService qnaService;
 
 	// 공지사항 목록
 	@GetMapping("/noticeList.do")
@@ -86,22 +90,33 @@ public class NoticeController {
 		List<ReplyVO> replyList = replyService.replyList(noticeNo);
 
 		for (ReplyVO r : replyList) {
+
 			String writerName = r.getWriterName();
+			String writerId = r.getWriterId();
 
-			// 마스킹 할 부분
-			String mask = writerName.substring(1, writerName.length());
+			// 관리자 계정 확인
+			int check = qnaService.checkAdmin(writerId);
 
-			// 마스킹 갯수
-			String masking = "";
+			// 관리자일 경우
+			if (check == 1) {
+				r.setWriterName("관리자");
+			} else {
+				// 마스킹 할 부분
+				String mask = writerName.substring(1, writerName.length());
 
-			for (int i = 0; i < mask.length(); i++) {
-				masking += "*";
+				// 마스킹 갯수
+				String masking = "";
+
+				for (int i = 0; i < mask.length(); i++) {
+					masking += "*";
+				}
+
+				// 마스킹 할 부분의 글자 수 만큼 *로 replace
+				writerName = writerName.replace(mask, masking);
+
+				r.setWriterName(writerName);
 			}
 
-			// 마스킹 할 부분의 글자 수 만큼 *로 replace
-			writerName = writerName.replace(mask, masking);
-
-			r.setWriterName(writerName);
 		}
 		mav.addObject("replyList", replyList);
 
