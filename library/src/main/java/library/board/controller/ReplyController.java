@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import library.board.domain.ReplyVO;
+import library.board.service.QnaService;
 import library.board.service.ReplyService;
 import library.common.page.Criteria;
 
@@ -20,6 +21,9 @@ public class ReplyController {
 
 	@Autowired
 	private ReplyService replyService;
+
+	@Autowired
+	private QnaService qnaService;
 
 	// 댓글 입력
 	@PostMapping("/replyInsert.do")
@@ -52,20 +56,22 @@ public class ReplyController {
 	@PostMapping("replyDelete.do")
 	public String replyDelete(@ModelAttribute Criteria cri, @ModelAttribute ReplyVO reply, Principal principal) {
 
-		
 		// 댓글 작성자 검색
 		String writerId = replyService.searchWriter(reply.getReplyNo());
-		
+
 		// 로그인 정보
 		String loginId = principal.getName();
 
-		// 작성자 일치 확인
-		if (loginId.equals(writerId)) {
-			// 댓글 삭제
-			replyService.deleteReply(reply.getReplyNo());
-		} else {
+		// 관리자 계정 확인
+		int check = qnaService.checkAdmin(loginId);
+
+		// 댓글의 작성자와 일치하지 않고 관리자가 아닐 경우
+		if (!writerId.equals(loginId) && check != 1) {
 			return "redirect:/accessError3.do";
 		}
+
+		// 댓글 삭제
+		replyService.deleteReply(reply.getReplyNo());
 
 		String keyword;
 		int amount = cri.getAmount();
