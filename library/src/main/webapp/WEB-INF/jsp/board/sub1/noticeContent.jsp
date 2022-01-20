@@ -95,7 +95,7 @@
                                                     <div class="panel-body">
                                                         <div class="downloadAreaWrap">
                                                             <div class="downloadAreaTitle">첨부파일</div>
-                                                            <div class="downloadArea">
+                                                            <div class="downloadArea" style="margin-bottom: 0px;">
                                                                 <ul>
 																	<c:forEach var="attach" items="${attachList}">
 																	<li data-path="${attach.uploadPath}" 
@@ -123,6 +123,20 @@
                                     </tbody>
 
                                 </table>
+                                
+                                <!-- ============================================= 댓글 div============================================= -->
+                                <div style="border: 1px solid black; padding: 10px;">
+                                	<div style="border: 1px solid red;">
+                                		<b>댓글</b>
+                                		<form>
+                                			<textarea style="width: 860px; height: 70px; vertical-align: middle; color: #464646;
+                                				resize: none; font-size: 13px; padding:10px; border: 2px solid #e5e5e5" placeholder="로그인 후 사용가능합니다."></textarea>
+                                		 	<button type="submit" style="width: 80px; height: 70px; 
+                                		 	background:#959ca4; color: #fff; cursor: pointer; border: 0; padding: 0;margin: 0;">댓글 작성</button>
+                                		</form>
+                                	</div>
+                                </div>
+                                <!-- ============================================= 댓글 div============================================= -->
 
                                 <table class="bbs-posts">
                                     <tr class="board-prev">
