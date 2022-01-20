@@ -92,12 +92,17 @@ public class MainController {
 		// 배너 목록
 		List<BannerVO> bannerList = bannerService.bannerList();
 		mav.addObject("bannerList", bannerList);
-		
+
 		return mav;
 	}
 
 	@GetMapping("/accessError.do")
 	public String accessError() {
 		return "error/accessError.jsp";
+	}
+
+	@GetMapping("/accessError3.do")
+	public String accessError3() {
+		return "error/accessError3.jsp";
 	}
 }
