@@ -156,12 +156,22 @@
                                 		<c:forEach var="list" items="${replyList}">
                                 		
                                 			<fmt:formatDate var="replyRegDate" value="${list.replyRegDate}" pattern="yyyy.MM.dd HH:mm"/>
+                                			
+                                			<c:if test="${not empty list.replyModifyDate }">
+                                				<fmt:formatDate var="replyModifyDate" value="${list.replyModifyDate}" pattern="yyyy.MM.dd HH:mm"/>
+                                			</c:if>
+                                			
 	                                		<div>
 	                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
 	                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
 	                                			</sec:authorize>
 	                                			<b>${list.writerName}</b></a> 
-	                                			<span class="reply_date">${replyRegDate}</span> 
+	                                			<span class="reply_date">${replyRegDate}</span>
+	                                			
+	                                			<c:if test="${not empty list.replyModifyDate }">
+	                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
+	                                			</c:if>
+	                                			
 	                                			<a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
 	                                			<a class="modifyA" href="${list.replyNo}" style="font-size:12px;">수정</a>
 	                                			<div class="reply_content">

@@ -9,6 +9,7 @@
 		<result column="writer_id"	 		property="writerId" />
 		<result column="writer_name"	 	property="writerName" />
 		<result column="reply_reg_date" 	property="replyRegDate" />
+		<result column="reply_modify_date" 	property="replyModifyDate" />
 	</resultMap> 
 
 	<!-- 댓글 입력 -->
