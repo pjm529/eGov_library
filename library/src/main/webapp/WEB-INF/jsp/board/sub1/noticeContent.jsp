@@ -358,6 +358,9 @@
 	        	 return;
 	         }
 	         
+	         $(this).html("");
+	         $(this).prev().html("");
+	         
 	         // 내용 div 선택
 	         var contentDiv = $(this).next();
 	         
@@ -374,6 +377,8 @@
 	         str += '</form>';
 	         
 	         contentDiv.html(str);
+	         
+	         
 	    });
         
 	});
