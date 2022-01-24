@@ -57,4 +57,17 @@
 				reply_no = #{replyNo}
 		]]>
 	</select>
+	
+	<update id="modifyReply" parameterType="ReplyVO">
+		<![CDATA[
+			UPDATE
+				reply
+			SET
+				reply_content = #{replyContent},
+				reply_modify_date = current_timestamp()
+			WHERE
+				reply_no = #{replyNo} AND
+				writer_id = #{writerId}
+		]]>
+	</update>
 </mapper>

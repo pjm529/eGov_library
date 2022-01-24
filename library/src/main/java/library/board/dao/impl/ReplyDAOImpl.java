@@ -35,4 +35,10 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 		return selectOne("Reply.searchWriter", replyNo);
 	}
 
+	// 댓글 수정
+	@Override
+	public void modifyReply(ReplyVO reply) {
+		update("Reply.modifyReply", reply);
+	}
+
 }

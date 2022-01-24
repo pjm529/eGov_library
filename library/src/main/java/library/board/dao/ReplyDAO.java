@@ -17,5 +17,8 @@ public interface ReplyDAO {
 	
 	// 댓글 작성자 검색
 	public String searchWriter(int replyNo);
+	
+	// 댓글 수정
+	public void modifyReply(ReplyVO reply);
 
 }

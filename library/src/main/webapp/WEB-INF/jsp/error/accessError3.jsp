@@ -8,7 +8,7 @@
 <body>
 <script>
 
-	alert("댓글의 작성자만 삭제할 수 있습니다.");
+	alert("댓글의 작성자만 접근할 수 있습니다.");
 	history.back();
 	
 </script>

@@ -39,4 +39,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDAO.searchWriter(replyNo);
 	}
 
+	// 댓글 수정
+	@Override
+	public void modifyReply(ReplyVO reply) {
+		replyDAO.modifyReply(reply);
+	}
+
 }

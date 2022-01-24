@@ -354,30 +354,55 @@
         $(".modifyA").on("click", function(e) {
 	         e.preventDefault();
 	         
+	         var modify = $(this);
+	         
 	         if(!confirm("댓글을 수정하시겠습니까?")){
 	        	 return;
 	         }
 	         
-	         $(this).html("");
-	         $(this).prev().html("");
-	         
-	         // 내용 div 선택
-	         var contentDiv = $(this).next();
-	         
-	         // 댓글 내용
-	         var content = contentDiv.children().html();
-	         
-	         // 댓글 번호
+	      	 // 댓글 번호
 	         var replyNo = $(this).attr("href");
-	         
-	         var str = '<form method="post" action="${pageContext.request.contextPath}/board/replyModify.do">'
-	         str += '<input type="hidden" name="replyNo" value="' + replyNo +'">';
-	         str += '<textarea name="replyContent" class="modify_textarea">' + content + '</textarea> '
-	         str += '<button type="submit" class="modify_btn">댓글 수정</button>';
-	         str += '</form>';
-	         
-	         contentDiv.html(str);
-	         
+	      	 
+	         var data = {
+	        		 replyNo: replyNo
+                 };
+
+             $.ajax({
+                 type: "post",
+                 url: "${pageContext.request.contextPath}/board/replyCheck.do",
+                 data: data,
+                 success: function (result) {
+
+                	 // 댓글 작성자와 일치 시
+                     if (result == "success") {
+                    	 
+                    	 modify.html("");
+                    	 modify.prev().html("");
+            	         
+            	         // 내용 div 선택
+            	         var contentDiv = modify.next();
+            	         
+            	         // 댓글 내용
+            	         var content = contentDiv.children().html();
+            	         
+            	         var str = '<form method="post" action="${pageContext.request.contextPath}/board/replyModify.do">'
+            	         str += '<input type="hidden" name="replyNo" value="' + replyNo +'">';
+            	         str += '<input type="hidden" name="page" value="${cri.page}">';
+            	         str += '<input type="hidden" name="amount" value="${cri.amount}">';
+            	         str += '<input type="hidden" name="type" value="${cri.type}">';
+            	         str += '<input type="hidden" name="keyword" value="${cri.keyword}">';
+            	         str += '<input type="hidden" name="noticeNo" value="${noticeContent.noticeNo}"> ';
+            	         str += '<textarea name="replyContent" class="modify_textarea">' + content + '</textarea> '
+            	         str += '<button type="submit" class="modify_btn">댓글 수정</button>';
+            	         str += '</form>';
+            	         
+            	         contentDiv.html(str);
+
+                     } else {
+                         alert("댓글의 작성자만 수정할 수 있습니다.");
+                     }
+                 }
+             });
 	         
 	    });
         
