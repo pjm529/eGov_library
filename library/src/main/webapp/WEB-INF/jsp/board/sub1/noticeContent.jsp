@@ -161,7 +161,9 @@
 	                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
 	                                			</sec:authorize>
 	                                			<b>${list.writerName}</b></a> 
-	                                			<span class="reply_date">${replyRegDate}</span> <a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
+	                                			<span class="reply_date">${replyRegDate}</span> 
+	                                			<a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
+	                                			<a class="modifyA" href="${list.replyNo}" style="font-size:12px;">수정</a>
 	                                			<div class="reply_content">
 	                                				<span><c:out value="${list.replyContent}"/></span> 
 	                                			</div>
@@ -298,7 +300,7 @@
 <!-- 미 로그인 시  -->
 <script>
 	$(function(){
-        $("#reply_form button, .deleteA").on("click", function(e){
+        $("#reply_form button, .deleteA, .modifyA").on("click", function(e){
         	e.preventDefault();
         	alert("로그인 후 이용해주세요"); 
         	location.href="${pageContext.request.contextPath}/member/login.do";
@@ -347,7 +349,33 @@
 		         moveForm2.attr("action", "${pageContext.request.contextPath}/board/replyDelete.do");
 		         moveForm2.submit();
 	         }
-	    }); 
+	    });
+        
+        $(".modifyA").on("click", function(e) {
+	         e.preventDefault();
+	         
+	         if(!confirm("댓글을 수정하시겠습니까?")){
+	        	 return;
+	         }
+	         
+	         // 내용 div 선택
+	         var contentDiv = $(this).next();
+	         
+	         // 댓글 내용
+	         var content = contentDiv.children().html();
+	         
+	         // 댓글 번호
+	         var replyNo = $(this).attr("href");
+	         
+	         var str = '<form method="post" action="${pageContext.request.contextPath}/board/replyModify.do">'
+	         str += '<input type="hidden" name="replyNo" value="' + replyNo +'">';
+	         str += '<textarea name="replyContent" class="modify_textarea">' + content + '</textarea> '
+	         str += '<button type="submit" class="modify_btn">댓글 수정</button>';
+	         str += '</form>';
+	         
+	         contentDiv.html(str);
+	    });
+        
 	});
 </script>
 </sec:authorize>

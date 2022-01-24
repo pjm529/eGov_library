@@ -43,3 +43,26 @@
 .reply_content span {
 	padding: 0px;
 }
+
+.modify_textarea {
+	width: 855px; 
+	height: 70px; 
+	vertical-align: middle; 
+	color: #464646;
+   	resize: none; 
+   	font-size: 13px; 
+   	padding:10px; 
+   	border: 2px solid #e5e5e5;
+   	background: white;
+}
+
+.modify_btn {
+	width: 80px; 
+	height: 70px; 
+    background:#959ca4; 
+    color: #fff; 
+    cursor: pointer; 
+    border: 0; 
+    padding: 0;
+    margin: 0;
+}
