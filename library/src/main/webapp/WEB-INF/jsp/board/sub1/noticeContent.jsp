@@ -171,7 +171,7 @@
 	                                			<c:if test="${not empty list.replyModifyDate }">
 	                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
 	                                			</c:if>
-	                                			
+	                                			<a class="replyA" href="${list.replyNo}" style="font-size:12px;">답글</a>
 	                                			<a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
 	                                			<a class="modifyA" href="${list.replyNo}" style="font-size:12px;">수정</a>
 	                                			<div class="reply_content">
@@ -413,6 +413,33 @@
                      }
                  }
              });
+	         
+	    });
+        
+        $(".replyA").on("click", function(e) {
+	         e.preventDefault();
+	         
+	         // 댓글 번호
+	         var replyNo = $(this).attr("href");
+	         
+	         var reply = $(this);
+	         
+	         // 내용 div 선택
+	         var contentDiv = reply.next().next().next();
+	         
+	         var str = '<div><form method="post" action="${pageContext.request.contextPath}/board/reply2Insert.do">'
+    	         str += '<input type="hidden" name="parentNo" value="' + replyNo +'">';
+    	         str += '<input type="hidden" name="page" value="${cri.page}">';
+    	         str += '<input type="hidden" name="amount" value="${cri.amount}">';
+    	         str += '<input type="hidden" name="type" value="${cri.type}">';
+    	         str += '<input type="hidden" name="keyword" value="${cri.keyword}">';
+    	         str += '<input type="hidden" name="noticeNo" value="${noticeContent.noticeNo}"> ';
+    	         str += '<input type="hidden" name="writerName" value="<sec:authentication property="principal.member.userName"/>">'; 
+    	         str += '<textarea name="replyContent" class="modify_textarea" required="required"></textarea> '
+    	         str += '<button type="submit" class="modify_btn">답글 작성</button>';
+    	         str += '</form></div>';
+	         
+	         contentDiv.after(str);
 	         
 	    });
         

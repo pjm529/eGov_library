@@ -59,6 +59,7 @@
 		]]>
 	</select>
 	
+	<!-- 댓글 수정 -->
 	<update id="modifyReply" parameterType="ReplyVO">
 		<![CDATA[
 			UPDATE
@@ -71,4 +72,14 @@
 				writer_id = #{writerId}
 		]]>
 	</update>
+	
+	<!-- 대댓글 입력 -->
+	<insert id="insertReply2" parameterType="ReplyVO">
+		<![CDATA[
+			INSERT INTO
+				reply (notice_no, reply_content, writer_id, writer_name, parent_no)
+			VALUES
+				(#{noticeNo}, #{replyContent}, #{writerId}, #{writerName}, #{parentNo})				
+		]]>
+	</insert>
 </mapper>

@@ -41,4 +41,10 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 		update("Reply.modifyReply", reply);
 	}
 
+	// 대댓글 입력
+	@Override
+	public void insertReply2(ReplyVO reply) {
+		insert("Reply.insertReply2", reply);
+	}
+
 }

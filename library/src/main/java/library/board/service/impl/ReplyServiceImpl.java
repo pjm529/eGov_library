@@ -44,5 +44,10 @@ public class ReplyServiceImpl implements ReplyService {
 	public void modifyReply(ReplyVO reply) {
 		replyDAO.modifyReply(reply);
 	}
+	// 대댓글 입력
+	@Override
+	public void insertReply2(ReplyVO reply) {
+		replyDAO.insertReply2(reply);
+	}
 
 }

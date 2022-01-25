@@ -27,5 +27,8 @@ public class ReplyVO {
 
 	// 댓글 수정 시간
 	private Timestamp replyModifyDate;
+	
+	// 부모 댓글
+	private int parentNo;
 
 }

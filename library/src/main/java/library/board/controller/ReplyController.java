@@ -125,7 +125,7 @@ public class ReplyController {
 		}
 
 		reply.setWriterId(loginId);
-		
+
 		// 댓글수정
 		replyService.modifyReply(reply);
 
@@ -145,4 +145,30 @@ public class ReplyController {
 				+ keyword + "&noticeNo=" + noticeNo;
 	}
 
+	// 대댓글 입력
+	@PostMapping("/reply2Insert.do")
+	public String reply2Insert(@ModelAttribute Criteria cri, @ModelAttribute ReplyVO reply, Principal principal) {
+
+		String keyword;
+		int amount = cri.getAmount();
+		int page = cri.getPage();
+		String type = cri.getType();
+		int noticeNo = reply.getNoticeNo();
+
+		reply.setWriterId(principal.getName());
+
+		// 로그인 시 댓글 입력
+		if (reply.getWriterId() != null) {
+			replyService.insertReply2(reply);
+		}
+
+		try {
+			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "redirect:/board/noticeList.do";
+		}
+
+		return "redirect:/board/noticeContent.do?page=" + page + "&amount=" + amount + "&type=" + type + "&keyword="
+				+ keyword + "&noticeNo=" + noticeNo;
+	}
 }

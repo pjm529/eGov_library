@@ -20,4 +20,7 @@ public interface ReplyService {
 
 	// 댓글 수정
 	public void modifyReply(ReplyVO reply);
+
+	// 대댓글 입력
+	public void insertReply2(ReplyVO reply);
 }
