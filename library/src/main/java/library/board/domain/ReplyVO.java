@@ -1,6 +1,7 @@
 package library.board.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
 
@@ -30,5 +31,8 @@ public class ReplyVO {
 	
 	// 부모 댓글
 	private int parentNo;
+	
+	// 대댓글 목록
+	private List<ReplyVO> replyList;
 
 }

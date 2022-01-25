@@ -45,7 +45,7 @@
 }
 
 .modify_textarea {
-	width: 855px; 
+	width: 825px; 
 	height: 70px; 
 	vertical-align: middle; 
 	color: #464646;
@@ -67,6 +67,18 @@
     margin: 0;
 }
 
-.deleteA, .modifyA{
+.deleteA, .modifyA, .replyA{
 	font-weight: bold;
+}
+
+.reply2_textarea {
+	width: 855px; 
+	height: 70px; 
+	vertical-align: middle; 
+	color: #464646;
+   	resize: none; 
+   	font-size: 13px; 
+   	padding:10px; 
+   	border: 2px solid #e5e5e5;
+   	background: white;
 }

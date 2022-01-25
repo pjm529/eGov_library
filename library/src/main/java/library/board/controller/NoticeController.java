@@ -89,6 +89,8 @@ public class NoticeController {
 		// 댓글 목록
 		List<ReplyVO> replyList = replyService.replyList(noticeNo);
 
+		
+		
 		for (ReplyVO r : replyList) {
 
 			String writerName = r.getWriterName();
@@ -116,8 +118,10 @@ public class NoticeController {
 
 				r.setWriterName(writerName);
 			}
-
+			
 		}
+		
+		System.out.println(replyList);
 		mav.addObject("replyList", replyList);
 
 		// 검색 조건

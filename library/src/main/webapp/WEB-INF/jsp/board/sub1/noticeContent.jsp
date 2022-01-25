@@ -178,6 +178,36 @@
 	                                				<span><c:out value="${list.replyContent}"/></span> 
 	                                			</div>
 	                                		</div>
+	                                		
+	                                		<!-- ============================================ 대댓글  ===================================-->
+	                                		<c:forEach var="reply2List" items="${list.replyList}">
+	                                			<c:if test="${reply2List.replyContent != null}">
+	                                				<fmt:formatDate var="replyRegDate" value="${reply2List.replyRegDate}" pattern="yyyy.MM.dd HH:mm"/>
+                                			
+	                                			<c:if test="${not empty list.replyModifyDate }">
+	                                				<fmt:formatDate var="replyModifyDate" value="${reply2List.replyModifyDate}" pattern="yyyy.MM.dd HH:mm"/>
+	                                			</c:if>
+	                                			
+		                                		<div style="margin-left: 30px;">
+		                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
+		                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${reply2List.writerId}">
+		                                			</sec:authorize>
+		                                			<b>${reply2List.writerName}</b></a> 
+		                                			<span class="reply_date">${replyRegDate}</span>
+		                                			
+		                                			<c:if test="${not empty reply2List.replyModifyDate }">
+		                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
+		                                			</c:if>
+		                                			<a class="deleteA" href="${reply2List.replyNo}" style="font-size:12px;">삭제</a>
+		                                			<a class="modifyA" href="${reply2List.replyNo}" style="font-size:12px;">수정</a>
+		                                			<div class="reply_content">
+		                                				<span><c:out value="${reply2List.replyContent}"/></span> 
+		                                			</div>
+		                                		</div>
+	                                			</c:if>
+	                                		</c:forEach>
+	                                		<!-- ============================================ 대댓글  ===================================-->
+	                                		
                                 		</c:forEach>
                                 	</div>
                                 	</c:if>
@@ -402,7 +432,7 @@
             	         str += '<input type="hidden" name="type" value="${cri.type}">';
             	         str += '<input type="hidden" name="keyword" value="${cri.keyword}">';
             	         str += '<input type="hidden" name="noticeNo" value="${noticeContent.noticeNo}"> ';
-            	         str += '<textarea name="replyContent" class="modify_textarea">' + content + '</textarea> '
+            	         str += '<textarea name="replyContent" class="modify_textarea" required="required" placeholder="내용을 입력해주세요.">' + content + '</textarea> '
             	         str += '<button type="submit" class="modify_btn">댓글 수정</button>';
             	         str += '</form>';
             	         
@@ -424,6 +454,10 @@
 	         
 	         var reply = $(this);
 	         
+	         reply.next().next().html("");
+	         reply.next().html("");
+	         reply.html("");
+	         
 	         // 내용 div 선택
 	         var contentDiv = reply.next().next().next();
 	         
@@ -435,7 +469,7 @@
     	         str += '<input type="hidden" name="keyword" value="${cri.keyword}">';
     	         str += '<input type="hidden" name="noticeNo" value="${noticeContent.noticeNo}"> ';
     	         str += '<input type="hidden" name="writerName" value="<sec:authentication property="principal.member.userName"/>">'; 
-    	         str += '<textarea name="replyContent" class="modify_textarea" required="required"></textarea> '
+    	         str += '<textarea name="replyContent" class="reply2_textarea" required="required" placeholder="내용을 입력해주세요."></textarea> '
     	         str += '<button type="submit" class="modify_btn">답글 작성</button>';
     	         str += '</form></div>';
 	         
