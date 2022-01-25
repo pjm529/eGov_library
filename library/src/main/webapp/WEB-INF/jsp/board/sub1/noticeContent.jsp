@@ -190,7 +190,7 @@
 	                                			 
 	                                			<div style="display: flex; align-items: center;">
 	                                			<span>　</span>
-	                                				<img src='${pageContext.request.contextPath}/images/common/icon_reply.gif' alt="답변 아이콘 이미지">
+	                                				<img src='${pageContext.request.contextPath}/images/common/icon_reply2.png' alt="답변 아이콘 이미지">
 	                                				<span>　</span>
 			                                		<div>
 			                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
