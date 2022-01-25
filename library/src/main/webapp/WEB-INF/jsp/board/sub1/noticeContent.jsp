@@ -187,23 +187,28 @@
 	                                			<c:if test="${not empty list.replyModifyDate }">
 	                                				<fmt:formatDate var="replyModifyDate" value="${reply2List.replyModifyDate}" pattern="yyyy.MM.dd HH:mm"/>
 	                                			</c:if>
-	                                			
-		                                		<div style="margin-left: 30px;">
-		                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
-		                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${reply2List.writerId}">
-		                                			</sec:authorize>
-		                                			<b>${reply2List.writerName}</b></a> 
-		                                			<span class="reply_date">${replyRegDate}</span>
-		                                			
-		                                			<c:if test="${not empty reply2List.replyModifyDate }">
-		                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
-		                                			</c:if>
-		                                			<a class="deleteA" href="${reply2List.replyNo}" style="font-size:12px;">삭제</a>
-		                                			<a class="modifyA" href="${reply2List.replyNo}" style="font-size:12px;">수정</a>
-		                                			<div class="reply_content">
-		                                				<span><c:out value="${reply2List.replyContent}"/></span> 
-		                                			</div>
-		                                		</div>
+	                                			 
+	                                			<div style="display: flex; align-items: center;">
+	                                			<span>　</span>
+	                                				<img src='${pageContext.request.contextPath}/images/common/icon_reply.gif' alt="답변 아이콘 이미지">
+	                                				<span>　</span>
+			                                		<div>
+			                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
+			                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${reply2List.writerId}">
+			                                			</sec:authorize>
+			                                			<b>${reply2List.writerName}</b></a> 
+			                                			<span class="reply_date">${replyRegDate}</span>
+			                                			
+			                                			<c:if test="${not empty reply2List.replyModifyDate }">
+			                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
+			                                			</c:if>
+			                                			<a class="deleteA" href="${reply2List.replyNo}" style="font-size:12px;">삭제</a>
+			                                			<a class="modifyA" href="${reply2List.replyNo}" style="font-size:12px;">수정</a>
+			                                			<div class="reply_content">
+			                                				<span><c:out value="${reply2List.replyContent}"/></span> 
+			                                			</div>
+			                                		</div>
+	                                			</div>
 	                                			</c:if>
 	                                		</c:forEach>
 	                                		<!-- ============================================ 대댓글  ===================================-->
@@ -340,7 +345,7 @@
 <!-- 미 로그인 시  -->
 <script>
 	$(function(){
-        $("#reply_form button, .deleteA, .modifyA").on("click", function(e){
+        $("#reply_form button, .deleteA, .modifyA, .replyA").on("click", function(e){
         	e.preventDefault();
         	alert("로그인 후 이용해주세요"); 
         	location.href="${pageContext.request.contextPath}/member/login.do";
