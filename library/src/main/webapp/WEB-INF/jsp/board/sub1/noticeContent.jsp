@@ -161,58 +161,34 @@
                                 				<fmt:formatDate var="replyModifyDate" value="${list.replyModifyDate}" pattern="yyyy.MM.dd HH:mm"/>
                                 			</c:if>
                                 			
-	                                		<div>
-	                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
-	                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
-	                                			</sec:authorize>
-	                                			<b>${list.writerName}</b></a> 
-	                                			<span class="reply_date">${replyRegDate}</span>
-	                                			
-	                                			<c:if test="${not empty list.replyModifyDate }">
-	                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
-	                                			</c:if>
-	                                			<a class="replyA" href="${list.replyNo}" style="font-size:12px;">답글</a>
-	                                			<a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
-	                                			<a class="modifyA" href="${list.replyNo}" style="font-size:12px;">수정</a>
-	                                			<div class="reply_content">
-	                                				<span><c:out value="${list.replyContent}"/></span> 
+                                			<c:if test="${list.depth == 0 }">
+                                			<div>
+                                			</c:if>
+                                			
+                                			<c:if test="${list.depth != 0 }">
+                                			<div style="margin-left: ${(list.depth - 1) * 50}px; display: flex; align-items: center;">
+                               				<span>　</span>
+                               				<img src='${pageContext.request.contextPath}/images/common/icon_reply2.png' alt="답변 아이콘 이미지">
+                               				<span>　</span>
+                                			</c:if>
+												<div>	                                		
+		                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
+		                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
+		                                			</sec:authorize>
+		                                			<b>${list.writerName}</b></a> 
+		                                			<span class="reply_date">${replyRegDate}</span>
+		                                			
+		                                			<c:if test="${not empty list.replyModifyDate }">
+		                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
+		                                			</c:if>
+		                                			<a class="replyA" href="${list.replyNo}" style="font-size:12px;">답글</a>
+		                                			<a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
+		                                			<a class="modifyA" href="${list.replyNo}" style="font-size:12px;">수정</a>
+		                                			<div class="reply_content">
+		                                				<span><c:out value="${list.replyContent}"/></span> 
+		                                			</div>
 	                                			</div>
 	                                		</div>
-	                                		
-	                                		<!-- ============================================ 대댓글  ===================================-->
-	                                		<c:forEach var="reply2List" items="${list.replyList}">
-	                                			<c:if test="${reply2List.replyContent != null}">
-	                                				<fmt:formatDate var="replyRegDate" value="${reply2List.replyRegDate}" pattern="yyyy.MM.dd HH:mm"/>
-                                			
-	                                			<c:if test="${not empty list.replyModifyDate }">
-	                                				<fmt:formatDate var="replyModifyDate" value="${reply2List.replyModifyDate}" pattern="yyyy.MM.dd HH:mm"/>
-	                                			</c:if>
-	                                			 
-	                                			<div style="display: flex; align-items: center;">
-	                                			<span>　</span>
-	                                				<img src='${pageContext.request.contextPath}/images/common/icon_reply2.png' alt="답변 아이콘 이미지">
-	                                				<span>　</span>
-			                                		<div>
-			                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
-			                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${reply2List.writerId}">
-			                                			</sec:authorize>
-			                                			<b>${reply2List.writerName}</b></a> 
-			                                			<span class="reply_date">${replyRegDate}</span>
-			                                			
-			                                			<c:if test="${not empty reply2List.replyModifyDate }">
-			                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
-			                                			</c:if>
-			                                			<a class="deleteA" href="${reply2List.replyNo}" style="font-size:12px;">삭제</a>
-			                                			<a class="modifyA" href="${reply2List.replyNo}" style="font-size:12px;">수정</a>
-			                                			<div class="reply_content">
-			                                				<span><c:out value="${reply2List.replyContent}"/></span> 
-			                                			</div>
-			                                		</div>
-	                                			</div>
-	                                			</c:if>
-	                                		</c:forEach>
-	                                		<!-- ============================================ 대댓글  ===================================-->
-	                                		
                                 		</c:forEach>
                                 	</div>
                                 	</c:if>

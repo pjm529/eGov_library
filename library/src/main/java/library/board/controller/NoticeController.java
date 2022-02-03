@@ -117,42 +117,7 @@ public class NoticeController {
 				// 마스킹 할 부분의 글자 수 만큼 *로 replace
 				writerName = writerName.replace(mask, masking);
 				r.setWriterName(writerName);
-				
-				// 대댓글 마스킹
-				if (r.getReplyList() != null) {
 
-					for (ReplyVO r2 : r.getReplyList()) {
-
-						String writerName2 = r2.getWriterName();
-						String writerId2 = r2.getWriterId();
-
-						// 관리자 계정 확인
-						int check2 = qnaService.checkAdmin(writerId2);
-
-						// 관리자일 경우
-						if (check2 == 1) {
-
-							r2.setWriterName("관리자");
-
-						} else {
-
-							// 마스킹 할 부분
-							String mask2 = writerName2.substring(1, writerName2.length());
-
-							// 마스킹 갯수
-							String masking2 = "";
-
-							for (int i = 0; i < mask2.length(); i++) {
-								masking2 += "*";
-							}
-							
-							// 마스킹 할 부분의 글자 수 만큼 *로 replace
-							writerName2 = writerName2.replace(mask2, masking2);
-							r2.setWriterName(writerName2);
-						}
-					}
-				}
-				
 			}
 		}
 
