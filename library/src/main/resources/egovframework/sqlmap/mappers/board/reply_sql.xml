@@ -11,18 +11,12 @@
 		<result column="reply_reg_date" 	property="replyRegDate" />
 		<result column="reply_modify_date" 	property="replyModifyDate" />
 		<result column="parent_no"	 		property="parentNo" />
-		
-		<collection property="replyList" resultMap="replyMap2"></collection>
+		<result column="parent_no"	 		property="parentNo" />
+		<result column="depth"	 			property="depth" />
+		<result column="order_id"	 		property="orderId" />
+		<result column="group_id"	 		property="groupId" />
 	</resultMap>
 	
-	<resultMap id="replyMap2" type="ReplyVO">
-		<id column="reply2No"				property="replyNo" />
-		<result column="reply2Content"		property="replyContent" />
-		<result column="writerId"	 	property="writerId" />
-		<result column="writerName"	 	property="writerName" />
-		<result column="reply2RegDate" 	property="replyRegDate" />
-		<result column="reply2ModifyDate" 	property="replyModifyDate" />
-	</resultMap>  
 
 	<!-- 댓글 입력 -->
 	<insert id="insertReply" parameterType="ReplyVO">
@@ -37,21 +31,14 @@
 	<!-- 댓글 목록 -->
 	<select id="replyList" parameterType="long" resultMap="replyMap">
 		<![CDATA[
-			SELECT
-				r.*, 
-				r2.reply_no AS reply2No, 
-				r2.reply_content AS reply2Content,
-				r2.writer_id AS writerId, 
-				r2.writer_name AS writerName, 
-				r2.reply_reg_date AS reply2RegDate, 
-				r2.reply_modify_date AS reply2ModifyDate
+			SELECT 
+				*
 			FROM
-				reply r LEFT OUTER JOIN reply r2
-				ON r.reply_no = r2.parent_no
-			WHERE
-				r.parent_no IS NULL AND r.notice_no = 1
-			ORDER BY
-				r.reply_reg_date, r2.reply_reg_date					
+				reply
+			WHERE 
+				notice_no = #{noticeNo}
+			ORDER BY 
+				group_id ASC, order_id ASC;			
 		]]>
 	</select>
 	
