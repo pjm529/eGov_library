@@ -28,11 +28,17 @@ public class ReplyVO {
 
 	// 댓글 수정 시간
 	private Timestamp replyModifyDate;
-	
+
 	// 부모 댓글
 	private int parentNo;
-	
-	// 대댓글 목록
-	private List<ReplyVO> replyList;
+
+	// 깊이
+	private int depth;
+
+	// 순서
+	private int orderId;
+
+	// 그룹
+	private int groupId;
 
 }
