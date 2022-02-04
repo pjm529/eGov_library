@@ -94,31 +94,36 @@ public class NoticeController {
 			String writerName = r.getWriterName();
 			String writerId = r.getWriterId();
 
-			// 관리자 계정 확인
-			int check = qnaService.checkAdmin(writerId);
+			if (writerId != null) {
+				// 관리자 계정 확인
+				int check = qnaService.checkAdmin(writerId);
 
-			// 관리자일 경우
-			if (check == 1) {
+				// 관리자일 경우
+				if (check == 1) {
 
-				r.setWriterName("관리자");
+					r.setWriterName("관리자");
 
-			} else {
+				} else {
 
-				// 마스킹 할 부분
-				String mask = writerName.substring(1, writerName.length());
+					// 마스킹 할 부분
+					String mask = writerName.substring(1, writerName.length());
 
-				// 마스킹 갯수
-				String masking = "";
+					// 마스킹 갯수
+					String masking = "";
 
-				for (int i = 0; i < mask.length(); i++) {
-					masking += "*";
+					for (int i = 0; i < mask.length(); i++) {
+						masking += "*";
+					}
+
+					// 마스킹 할 부분의 글자 수 만큼 *로 replace
+					writerName = writerName.replace(mask, masking);
+					r.setWriterName(writerName);
+
 				}
-
-				// 마스킹 할 부분의 글자 수 만큼 *로 replace
-				writerName = writerName.replace(mask, masking);
-				r.setWriterName(writerName);
-
+			} else {
+				r.setWriterName("(탈퇴 회원)");
 			}
+
 		}
 
 		mav.addObject("replyList", replyList);
