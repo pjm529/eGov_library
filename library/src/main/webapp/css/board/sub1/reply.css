@@ -45,7 +45,7 @@
 }
 
 .modify_textarea {
-	width: 825px; 
+	width: 70%; 
 	height: 70px; 
 	vertical-align: middle; 
 	color: #464646;
@@ -72,7 +72,7 @@
 }
 
 .reply2_textarea {
-	width: 500px; 
+	width: 70%; 
 	height: 70px; 
 	vertical-align: middle; 
 	color: #464646;

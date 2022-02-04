@@ -166,7 +166,7 @@
                                 			</c:if>
                                 			
                                 			<c:if test="${list.depth != 0}">
-                                			<div style="margin-left: ${(list.depth - 1) * 50}px; display: flex; align-items: center;">
+                                			<div style="padding-left: ${(list.depth - 1) * 50}px; display: flex; align-items: center;">
                                				<span>　</span>
                                				<img src='${pageContext.request.contextPath}/images/common/icon_reply2.png' alt="답변 아이콘 이미지">
                                				<span>　</span>
@@ -180,7 +180,7 @@
                                 				 
                                 				 
                                 				 <c:if test="${list.flag == 0}">
-	                                				<div>	                                		
+	                                				<div style="width: 100%;">	                                		
 			                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
 			                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
 			                                			</sec:authorize>
@@ -409,6 +409,7 @@
                     	 
                     	 modify.html("");
                     	 modify.prev().html("");
+                    	 modify.prev().prev().html("");
             	         
             	         // 내용 div 선택
             	         var contentDiv = modify.next();
