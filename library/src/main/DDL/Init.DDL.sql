@@ -17,7 +17,7 @@ CREATE TABLE `member` (
 	`user_book_count`     INT(11)       NOT NULL DEFAULT 0 COMMENT '대출중도서수', -- 대출중도서수
 	`user_overdue_date`   INT(11)       NOT NULL DEFAULT 0 COMMENT '대출정지일수', -- 대출정지일수
 	`enabled`             TINYINT(1)    NOT NULL DEFAULT 1 COMMENT '권한', -- 권한
-	`user_reg_date`       TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '회원가입일' -- 회원가입일
+	`user_reg_date`       TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '회원가입일' -- 회원가입일
   	PRIMARY KEY (`user_id`)
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE `member_auth` (
 CREATE TABLE `secession_member` (
   	`user_id`    VARCHAR(20) NOT NULL COMMENT '회원아이디', -- 회원아이디
 	`user_email` VARCHAR(40) NOT NULL COMMENT '회원이메일', -- 회원이메일
-	`reg_date`   TIMESTAMP   NOT NULL DEFAULT 'current_timestamp()' COMMENT '탈퇴일' -- 탈퇴일
+	`reg_date`   TIMESTAMP   NOT NULL DEFAULT current_timestamp() COMMENT '탈퇴일' -- 탈퇴일
 	PRIMARY KEY (`user_id`)
 );
 
@@ -45,12 +45,12 @@ CREATE TABLE `loan_history` (
 	`book_title`     VARCHAR(100)  NOT NULL COMMENT '대출도서명', -- 대출도서명
 	`book_author`    VARCHAR(200)  NOT NULL COMMENT '대출도서저자', -- 대출도서저자
 	`book_isbn`      VARCHAR(20)   NOT NULL COMMENT '대출도서ISBN', -- 대출도서ISBN
-	`book_cover`     VARCHAR(2000) NULL     DEFAULT 'NULL' COMMENT '대출도서표지', -- 대출도서표지
+	`book_cover`     VARCHAR(2000) NULL     DEFAULT NULL COMMENT '대출도서표지', -- 대출도서표지
 	`book_pubdate`   VARCHAR(20)   NOT NULL COMMENT '대출도서출간일', -- 대출도서출간일
 	`book_publisher` VARCHAR(50)   NOT NULL COMMENT '대출도서출판사', -- 대출도서출판사
-	`loan_date`      TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '도서대출일', -- 도서대출일
-	`return_date`    TIMESTAMP     NULL     DEFAULT 'NULL' COMMENT '도서반납일', -- 도서반납일
-	`return_period`  TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '반납예정일', -- 반납예정일
+	`loan_date`      TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '도서대출일', -- 도서대출일
+	`return_date`    TIMESTAMP     NULL     DEFAULT NULL COMMENT '도서반납일', -- 도서반납일
+	`return_period`  TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '반납예정일', -- 반납예정일
 	`return_status`  TINYINT(1)    NOT NULL DEFAULT 0 COMMENT '반납상태' -- 반납상태
   	PRIMARY KEY (`loan_no`),
  	KEY `loan_history_FK` (`user_id`),
@@ -65,12 +65,12 @@ CREATE TABLE `hope` (
 	`book_author`    VARCHAR(200)  NOT NULL COMMENT '희망도서저자', -- 희망도서저자
 	`book_publisher` VARCHAR(50)   NOT NULL COMMENT '희망도서출판사', -- 희망도서출판사
 	`book_pubdate`   VARCHAR(20)   NOT NULL COMMENT '희망도서출간일', -- 희망도서출간일
-	`book_isbn`      VARCHAR(20)   NULL     DEFAULT 'NULL' COMMENT '희망도서ISBN', -- 희망도서ISBN
-	`note`           VARCHAR(1024) NULL     DEFAULT 'NULL' COMMENT '비고', -- 비고
-	`book_price`     VARCHAR(20)   NULL     DEFAULT 'NULL' COMMENT '희망도서가격', -- 희망도서가격
+	`book_isbn`      VARCHAR(20)   NULL     DEFAULT NULL COMMENT '희망도서ISBN', -- 희망도서ISBN
+	`note`           VARCHAR(1024) NULL     DEFAULT NULL COMMENT '비고', -- 비고
+	`book_price`     VARCHAR(20)   NULL     DEFAULT NULL COMMENT '희망도서가격', -- 희망도서가격
 	`hope_status`    TINYINT(1)    NOT NULL DEFAULT 0 COMMENT '처리상태', -- 처리상태
-	`cancel_reason`  VARCHAR(100)  NULL     DEFAULT 'NULL' COMMENT '취소사유', -- 취소사유
-	`hope_reg_date`  TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '희망도서신청일' -- 희망도서신청일
+	`cancel_reason`  VARCHAR(100)  NULL     DEFAULT NULL COMMENT '취소사유', -- 취소사유
+	`hope_reg_date`  TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '희망도서신청일' -- 희망도서신청일
 );
 
 -- 추천 도서 테이블
@@ -83,7 +83,7 @@ CREATE TABLE `recommend_book` (
 	`book_cover`     VARCHAR(2000) NOT NULL COMMENT '추천도서표지', -- 추천도서표지
 	`book_pubdate`   VARCHAR(20)   NOT NULL COMMENT '추천도서출간일', -- 추천도서출간일
 	`book_publisher` VARCHAR(50)   NOT NULL COMMENT '추천도서출판사', -- 추천도서출판사
-	`recommend_date` TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '추천도서등록일' -- 추천도서등록일
+	`recommend_date` TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '추천도서등록일' -- 추천도서등록일
 	PRIMARY KEY (`rec_no`),
 	KEY `recommend_book_FK` (`user_id`),
 	CONSTRAINT `recommend_book_FK` FOREIGN KEY (`user_id`) REFERENCES `member` (`user_id`)
@@ -92,9 +92,9 @@ CREATE TABLE `recommend_book` (
 -- 열람실 테이블
 CREATE TABLE `reading_room` (
 	`seat_no`       INT(11)     NOT NULL COMMENT '좌석번호', -- 좌석번호
-	`user_id`       VARCHAR(20) NULL     DEFAULT 'NULL' COMMENT '이용자아이디', -- 이용자아이디
-	`checkin_time`  TIMESTAMP   NULL     DEFAULT 'NULL' COMMENT '입실시간', -- 입실시간
-	`checkout_time` TIMESTAMP   NULL     DEFAULT 'NULL' COMMENT '퇴실예정시간' -- 퇴실예정시간
+	`user_id`       VARCHAR(20) NULL     DEFAULT NULL COMMENT '이용자아이디', -- 이용자아이디
+	`checkin_time`  TIMESTAMP   NULL     DEFAULT NULL COMMENT '입실시간', -- 입실시간
+	`checkout_time` TIMESTAMP   NULL     DEFAULT NULL COMMENT '퇴실예정시간' -- 퇴실예정시간
 	PRIMARY KEY (`seat_no`),
 	KEY `reading_room_FK` (`user_id`),
 	CONSTRAINT `reading_room_FK` FOREIGN KEY (`user_id`) REFERENCES `member` (`user_id`) ON DELETE SET NULL
@@ -125,12 +125,33 @@ CREATE TABLE `notice` (
 	`notice_content`     VARCHAR(8196) NOT NULL COMMENT '공지사항내용', -- 공지사항내용
 	`writer_id`          VARCHAR(20)   NOT NULL COMMENT '작성자아이디', -- 작성자아이디
 	`writer_name`        VARCHAR(50)   NOT NULL COMMENT '작성자명', -- 작성자명
-	`notice_reg_date`    TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '공지사항작성일', -- 공지사항작성일
-	`notice_modify_date` TIMESTAMP     NULL     DEFAULT 'NULL' COMMENT '공지사항수정일', -- 공지사항수정일
+	`notice_reg_date`    TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '공지사항작성일', -- 공지사항작성일
+	`notice_modify_date` TIMESTAMP     NULL     DEFAULT NULL COMMENT '공지사항수정일', -- 공지사항수정일
 	`notice_views`       INT(11)       NOT NULL DEFAULT 0 COMMENT '공지사항조회수' -- 공지사항조회수
   	PRIMARY KEY (`notice_no`),
   	KEY `notice_FK` (`writer_id`),
   	CONSTRAINT `notice_FK` FOREIGN KEY (`writer_id`) REFERENCES `member` (`user_id`)
+);
+
+-- 댓글 테이블
+CREATE TABLE `reply` (
+	`reply_no` INT(11) 		NOT NULL AUTO_INCREMENT COMMENT '댓글번호', -- 댓글번호
+	`notice_no` INT(11) 		NOT NULL COMMENT '공지사항번호', -- 공지사항번호
+	`reply_content` VARCHAR(8196) 	NOT NULL COMMENT '댓글내용', -- 댓글내용
+	`writer_id` VARCHAR(20) 	NULL	 DEFAULT NULL COMMENT '작성자아이디', -- 작성자아이디
+	`writer_name` VARCHAR(50) 	NOT NULL COMMENT '작성자명', -- 작성자명
+	`reply_reg_date` TIMESTAMP	NOT NULL DEFAULT current_timestamp() COMMENT '댓글작성일', -- 댓글작성일
+	`reply_modify_date` TIMESTAMP 	NULL     DEFAULT NULL COMMENT '댓글수정일', -- 댓글수정일
+	`parent_no` INT(11) 		NOT NULL DEFAULT 0 COMMENT '부모댓글번호', -- 부모댓글번호
+	`depth` INT(11) 		NOT NULL DEFAULT 0 COMMENT '깊이', -- 깊이
+	`order_id` INT(11) 		NOT NULL COMMENT '순서', -- 순서
+	`group_id` INT(11) 		NOT NULL COMMENT '그룹', -- 그룹
+	`delete_flag` TINYINT(1) 	NOT NULL DEFAULT 0 COMMENT '삭제상태', -- 삭제상태
+	PRIMARY KEY (`reply_no`), 
+	KEY `FK_reply_member` (`writer_id`),
+  	CONSTRAINT `FK_reply_member` FOREIGN KEY (`writer_id`) REFERENCES `member` (`user_id`) ON UPDATE CASCADE ON DELETE SET NULL,
+	KEY `FK_reply_notice` (`notice_no`),
+  	CONSTRAINT `FK_reply_notice` FOREIGN KEY (`notice_no`) REFERENCES `notice` (`notice_no`) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- 공지사항 첨부파일 테이블
@@ -138,7 +159,7 @@ CREATE TABLE `notice_attach_file` (
 	`uuid`        VARCHAR(500)  NOT NULL COMMENT 'uuid', -- uuid
 	`upload_path` VARCHAR(4096) NOT NULL COMMENT '업로드경로', -- 업로드경로
 	`file_name`   VARCHAR(100)  NOT NULL COMMENT '파일명', -- 파일명
-	`file_type`   CHAR(1)       NULL     DEFAULT ''1'' COMMENT '파일타입', -- 파일타입
+	`file_type`   CHAR(1)       NULL     DEFAULT '1' COMMENT '파일타입', -- 파일타입
 	`notice_no`   INT(11)       NOT NULL COMMENT '공지사항번호' -- 공지사항번호
   	PRIMARY KEY (`uuid`),
   	KEY `notice_no` (`notice_no`),
@@ -152,8 +173,8 @@ CREATE TABLE `article` (
 	`article_content`     VARCHAR(8196) NOT NULL COMMENT '분실물내용', -- 분실물내용
 	`writer_id`           VARCHAR(20)   NOT NULL COMMENT '작성자아이디', -- 작성자아이디
 	`writer_name`         VARCHAR(50)   NOT NULL COMMENT '작성자명', -- 작성자명
-	`article_reg_date`    TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '분실물등록일', -- 분실물등록일
-	`article_modify_date` TIMESTAMP     NULL     DEFAULT 'NULL' COMMENT '분실물수정일', -- 분실물수정일
+	`article_reg_date`    TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '분실물등록일', -- 분실물등록일
+	`article_modify_date` TIMESTAMP     NULL     DEFAULT NULL COMMENT '분실물수정일', -- 분실물수정일
 	`article_views`       INT(11)       NOT NULL DEFAULT 0 COMMENT '분실물조회수' -- 분실물조회수
   	PRIMARY KEY (`article_no`),
   	KEY `article_FK` (`writer_id`),
@@ -168,8 +189,8 @@ CREATE TABLE `enquiry` (
 	`writer_id`           VARCHAR(20)   NOT NULL COMMENT '작성자아이디', -- 작성자아이디
 	`writer_name`         VARCHAR(50)   NOT NULL COMMENT '작성자명', -- 작성자명
 	`enquiry_hits`        INT(11)       NOT NULL DEFAULT 0 COMMENT '질문조회수', -- 질문조회수
-	`enquiry_reg_date`    TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '질문등록일', -- 질문등록일
-	`enquiry_modify_date` TIMESTAMP     NULL     DEFAULT 'NULL' COMMENT '질문수정일' -- 질문수정일
+	`enquiry_reg_date`    TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '질문등록일', -- 질문등록일
+	`enquiry_modify_date` TIMESTAMP     NULL     DEFAULT NULL COMMENT '질문수정일' -- 질문수정일
   	PRIMARY KEY (`enquiry_no`),
   	KEY `enquiry_FK` (`writer_id`),
   	CONSTRAINT `enquiry_FK` FOREIGN KEY (`writer_id`) REFERENCES `member` (`user_id`)
@@ -184,8 +205,8 @@ CREATE TABLE `answer` (
 	`a_writer_id`        VARCHAR(20)   NOT NULL COMMENT '답변작성자아이디', -- 답변작성자아이디
 	`a_writer_name`      VARCHAR(50)   NOT NULL COMMENT '답변작성자명', -- 답변작성자명
 	`answer_hits`        INT(11)       NOT NULL DEFAULT 0 COMMENT '답변조회수', -- 답변조회수
-	`answer_reg_date`    TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '답변등록일', -- 답변등록일
-	`answer_modify_date` TIMESTAMP     NULL     DEFAULT 'NULL' COMMENT '답변수정일' -- 답변수정일
+	`answer_reg_date`    TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '답변등록일', -- 답변등록일
+	`answer_modify_date` TIMESTAMP     NULL     DEFAULT NULL COMMENT '답변수정일' -- 답변수정일
   	PRIMARY KEY (`answer_no`),
   	KEY `fk_answer_enquiry_no` (`enquiry_no`),
   	KEY `answer_FK` (`a_writer_id`),
@@ -197,7 +218,7 @@ CREATE TABLE `answer` (
 CREATE TABLE `banner` (
 	`user_id`  VARCHAR(20)   NOT NULL COMMENT '등록자ID', -- 등록자ID
 	`path`     VARCHAR(4096) NOT NULL COMMENT '배너경로', -- 배너경로
-	`reg_date` TIMESTAMP     NOT NULL DEFAULT 'current_timestamp()' COMMENT '배너등록일' -- 배너등록일
+	`reg_date` TIMESTAMP     NOT NULL DEFAULT current_timestamp() COMMENT '배너등록일' -- 배너등록일
   	KEY `banner_FK` (`user_id`),
   	CONSTRAINT `banner_FK` FOREIGN KEY (`user_id`) REFERENCES `member` (`user_id`)
 );
@@ -230,9 +251,6 @@ comment '대출 불가 일 수'
 do
 call overdue_decrease(); 
 
-
-
-
 -- 열람실 퇴실 프로시저
 DELIMITER //
 CREATE PROCEDURE seat_check()
@@ -248,8 +266,6 @@ on schedule every 1 second
 comment '열람실 실시간 검사'
 do
 call seat_check(); 
-
-
 
 -- 공지사항 삭제 시 공지사항 번호 정렬
 DELIMITER //
@@ -278,7 +294,6 @@ begin
    EXECUTE qry;
    DEALLOCATE PREPARE qry;
 END //
-
 
 -- 답변 삭제 시 답변 번호 정렬
 DELIMITER //
@@ -329,7 +344,6 @@ begin
 END //
 
 call insert_seat();
-
 
 -- 기준일 기점으로 일주일 씩 휴관일 지정 (2021-11-29 기준)
 DELIMITER //
