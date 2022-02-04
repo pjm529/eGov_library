@@ -182,7 +182,9 @@
                                 				 <c:if test="${list.flag == 0}">
 	                                				<div style="width: 100%;">	                                		
 			                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
+			                                			<c:if test="${list.writerId != null }">
 			                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
+			                                			</c:if>
 			                                			</sec:authorize>
 			                                			<b>${list.writerName}</b></a> 
 			                                			<span class="reply_date">${replyRegDate}</span>
