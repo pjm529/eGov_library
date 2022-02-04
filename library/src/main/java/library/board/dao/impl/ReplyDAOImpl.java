@@ -47,4 +47,10 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 		insert("Reply.insertReply2", reply);
 	}
 
+	// 그룹 설정
+	@Override
+	public void updateGroup(ReplyVO reply) {
+		update("Reply.updateGroup", reply);
+	}
+
 }

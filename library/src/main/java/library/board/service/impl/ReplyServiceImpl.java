@@ -18,7 +18,23 @@ public class ReplyServiceImpl implements ReplyService {
 	// 댓글 입력
 	@Override
 	public void insertReply(ReplyVO reply) {
-		replyDAO.insertReply(reply);
+
+		// 부모 댓글일 경우
+		if (reply.getParentNo() == 0) {
+			reply.setDepth(0);
+			reply.setOrderId(1);
+
+			// 댓글 입력
+			replyDAO.insertReply(reply);
+			reply.setGroupId(reply.getReplyNo());
+
+			// 댓글 그룹 설정
+			replyDAO.updateGroup(reply);
+
+		} else {
+			replyDAO.insertReply(reply);
+		}
+
 	}
 
 	// 댓글 목록
@@ -44,6 +60,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public void modifyReply(ReplyVO reply) {
 		replyDAO.modifyReply(reply);
 	}
+
 	// 대댓글 입력
 	@Override
 	public void insertReply2(ReplyVO reply) {

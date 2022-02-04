@@ -22,11 +22,30 @@
 	<insert id="insertReply" parameterType="ReplyVO">
 		<![CDATA[
 			INSERT INTO
-				reply (notice_no, reply_content, writer_id, writer_name)
+				reply (notice_no, reply_content, writer_id, writer_name, parent_no, depth, order_id, group_id)
 			VALUES
-				(#{noticeNo}, #{replyContent}, #{writerId}, #{writerName})				
+				(#{noticeNo}, #{replyContent}, #{writerId}, #{writerName}, #{parentNo}, #{depth}, #{orderId}, #{groupId})				
 		]]>
+		<!-- insert 후 댓글 번호 return -->
+		<selectKey keyProperty="replyNo" order="AFTER" resultType="_int">
+			<![CDATA[ 
+				SELECT LAST_INSERT_ID(); 
+			]]>
+		</selectKey>	
 	</insert>
+	
+	<!-- 댓글 그룹 ID 설정 -->
+	<update id="updateGroup" parameterType="ReplyVO">
+		<![CDATA[
+			UPDATE
+				reply
+			SET
+				group_id = #{groupId}
+			WHERE 
+				reply_no = #{replyNo}
+		]]>
+	</update>
+	
 	
 	<!-- 댓글 목록 -->
 	<select id="replyList" parameterType="long" resultMap="replyMap">

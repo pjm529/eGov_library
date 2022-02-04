@@ -23,5 +23,8 @@ public interface ReplyDAO {
 
 	// 대댓글 입력
 	public void insertReply2(ReplyVO reply);
+	
+	// 그룹 설정
+	public void updateGroup(ReplyVO reply);
 
 }
