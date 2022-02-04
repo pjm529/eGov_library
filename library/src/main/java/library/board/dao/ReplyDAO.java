@@ -1,5 +1,6 @@
 package library.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import library.board.domain.ReplyVO;
@@ -26,5 +27,17 @@ public interface ReplyDAO {
 	
 	// 그룹 설정
 	public void updateGroup(ReplyVO reply);
+	
+	// 부모 댓글 정보 확인
+	public ReplyVO searchParent(int parentNo);
+	
+	// 부모 댓글 자식 순서 확인
+	public int searchOrder(int parentNo);
+	
+	// 순서 정렬
+	public void updateOrder(HashMap<String, Object> map);
+	
+	public int searchChild(ReplyVO reply);
+	
 
 }

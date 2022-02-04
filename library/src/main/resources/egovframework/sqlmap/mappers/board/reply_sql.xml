@@ -46,6 +46,58 @@
 		]]>
 	</update>
 	
+	<!-- 부모 댓글 정보 확인 -->
+	<select id="searchParent" parameterType="int" resultMap="replyMap">
+		<![CDATA[
+			SELECT
+				depth, group_id, order_id
+			FROM
+				reply
+			WHERE
+				reply_no = #{parentNo}
+		]]>
+	</select>
+	
+	<!-- 부모 댓글 자식 번호 확인 -->
+	<select id="searchOrder" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT
+				IFNULL(MAX(order_id), 1)
+			FROM
+				reply
+			WHERE
+				parent_no = #{parentNo}
+		]]>
+	</select>
+	
+	<!-- 순서 정렬 -->
+	<update id="updateOrder" parameterType="hashMap">
+		<![CDATA[
+			UPDATE
+				reply
+			SET
+				order_id = order_id + 1
+			WHERE 
+				order_id > #{orderId} AND group_id = #{groupId}
+		]]>
+	</update>
+	
+	<!-- 같은 depth의 자식댓글 등록 시 윗 댓글의 최종 자식 댓글 확인 -->
+	<select id="searchChild" parameterType="ReplyVO" resultType="int">
+		<![CDATA[
+			SELECT
+				IFNULL(MAX(order_id), 0)
+			FROM
+				reply
+			WHERE
+				parent_no = (SELECT
+								reply_no
+							FROM 
+								reply
+							WHERE
+								order_id = #{orderId} AND group_id = #{groupId})
+		]]>
+	</select>
 	
 	<!-- 댓글 목록 -->
 	<select id="replyList" parameterType="long" resultMap="replyMap">
@@ -57,7 +109,7 @@
 			WHERE 
 				notice_no = #{noticeNo}
 			ORDER BY 
-				group_id ASC, order_id ASC;			
+				group_id ASC, order_id ASC, reply_reg_date ASC			
 		]]>
 	</select>
 	

@@ -429,7 +429,7 @@
         
         $(".replyA").on("click", function(e) {
 	         e.preventDefault();
-	         
+	          
 	         // 댓글 번호
 	         var replyNo = $(this).attr("href");
 	         
@@ -442,7 +442,7 @@
 	         // 내용 div 선택
 	         var contentDiv = reply.next().next().next();
 	         
-	         var str = '<div><form method="post" action="${pageContext.request.contextPath}/board/reply2Insert.do">'
+	         var str = '<div><form method="post" action="${pageContext.request.contextPath}/board/replyInsert.do">'
     	         str += '<input type="hidden" name="parentNo" value="' + replyNo +'">';
     	         str += '<input type="hidden" name="page" value="${cri.page}">';
     	         str += '<input type="hidden" name="amount" value="${cri.amount}">';
