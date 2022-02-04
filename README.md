@@ -55,7 +55,7 @@
 
 ## 추가기능
 
-### 댓글
+### 계층형 댓글
 댓글 이미지|
 |---|
-![reply_img.png](github_img/reply_img.png)
+![reply.png](github_img/reply.png)
