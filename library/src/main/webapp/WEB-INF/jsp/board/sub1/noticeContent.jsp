@@ -165,29 +165,39 @@
                                 			<div>
                                 			</c:if>
                                 			
-                                			<c:if test="${list.depth != 0 }">
+                                			<c:if test="${list.depth != 0}">
                                 			<div style="margin-left: ${(list.depth - 1) * 50}px; display: flex; align-items: center;">
                                				<span>　</span>
                                				<img src='${pageContext.request.contextPath}/images/common/icon_reply2.png' alt="답변 아이콘 이미지">
                                				<span>　</span>
                                 			</c:if>
-												<div>	                                		
-		                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
-		                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
-		                                			</sec:authorize>
-		                                			<b>${list.writerName}</b></a> 
-		                                			<span class="reply_date">${replyRegDate}</span>
-		                                			
-		                                			<c:if test="${not empty list.replyModifyDate }">
-		                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
-		                                			</c:if>
-		                                			<a class="replyA" href="${list.replyNo}" style="font-size:12px;">답글</a>
-		                                			<a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
-		                                			<a class="modifyA" href="${list.replyNo}" style="font-size:12px;">수정</a>
-		                                			<div class="reply_content">
-		                                				<span><c:out value="${list.replyContent}"/></span> 
+                                			
+                                 				<c:if test="${list.flag == 1 }">
+                                					<div style="height: 61px; display: flex; align-items: center;">
+	                                					<b>(삭제 된 댓글입니다.)</b>
+	                                				</div> 
+                                				</c:if>
+                                				 
+                                				 
+                                				 <c:if test="${list.flag == 0}">
+	                                				<div>	                                		
+			                                			<sec:authorize access="hasRole('ROLE_ADMIN')">
+			                                			<a href="${pageContext.request.contextPath}/admin/memberInfo.do?userId=${list.writerId}">
+			                                			</sec:authorize>
+			                                			<b>${list.writerName}</b></a> 
+			                                			<span class="reply_date">${replyRegDate}</span>
+			                                			
+			                                			<c:if test="${not empty list.replyModifyDate }">
+			                                				<span class="reply_date">(${replyModifyDate} 수정)</span>
+			                                			</c:if>
+			                                			<a class="replyA" href="${list.replyNo}" style="font-size:12px;">답글</a>
+			                                			<a class="deleteA" href="${list.replyNo}" style="font-size:12px;">삭제</a>
+			                                			<a class="modifyA" href="${list.replyNo}" style="font-size:12px;">수정</a>
+			                                			<div class="reply_content">
+			                                				<span><c:out value="${list.replyContent}"/></span> 
+			                                			</div>
 		                                			</div>
-	                                			</div>
+                                				</c:if>
 	                                		</div>
                                 		</c:forEach>
                                 	</div>

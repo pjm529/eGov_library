@@ -27,7 +27,7 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 	// 댓글 삭제
 	@Override
 	public void deleteReply(int replyNo) {
-		delete("Reply.deleteReply", replyNo);
+		update("Reply.deleteReply", replyNo);
 	}
 
 	// 댓글 작성자 검색

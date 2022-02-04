@@ -15,6 +15,7 @@
 		<result column="depth"	 			property="depth" />
 		<result column="order_id"	 		property="orderId" />
 		<result column="group_id"	 		property="groupId" />
+		<result column="delete_flag"		property="flag" />
 	</resultMap>
 	
 
@@ -114,15 +115,16 @@
 	</select>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="deleteReply" parameterType="int">
+	<update id="deleteReply" parameterType="int">
 		<![CDATA[
-			DELETE
-			FROM
+			UPDATE
 				reply
+			SET
+				delete_flag = 1
 			WHERE
 				reply_no = #{replyNo}
 		]]>
-	</delete>
+	</update>
 	
 	<!-- 댓글 작성자 검색 -->
 	<select id="searchWriter" parameterType="int" resultType="string">

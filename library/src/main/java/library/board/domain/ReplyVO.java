@@ -1,7 +1,6 @@
 package library.board.domain;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import lombok.Data;
 
@@ -40,5 +39,8 @@ public class ReplyVO {
 
 	// 그룹
 	private int groupId;
+	
+	// 삭제 상태
+	private int flag;
 
 }
