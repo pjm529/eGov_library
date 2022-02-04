@@ -17,7 +17,6 @@
 		<result column="group_id"	 		property="groupId" />
 		<result column="delete_flag"		property="flag" />
 	</resultMap>
-	
 
 	<!-- 댓글 입력 -->
 	<insert id="insertReply" parameterType="ReplyVO">
@@ -35,19 +34,19 @@
 		</selectKey>	
 	</insert>
 	
-	<!-- 댓글 그룹 ID 설정 -->
-	<update id="updateGroup" parameterType="ReplyVO">
+	<!-- 부모 댓글 그룹 설정 -->
+	<update id="updateGroup" parameterType="int">
 		<![CDATA[
 			UPDATE
 				reply
 			SET
-				group_id = #{groupId}
+				group_id = #{replyNo}
 			WHERE 
 				reply_no = #{replyNo}
 		]]>
 	</update>
 	
-	<!-- 부모 댓글 정보 확인 -->
+	<!-- 부모 댓글 정보 확인 --> 
 	<select id="searchParent" parameterType="int" resultMap="replyMap">
 		<![CDATA[
 			SELECT
@@ -56,18 +55,6 @@
 				reply
 			WHERE
 				reply_no = #{parentNo}
-		]]>
-	</select>
-	
-	<!-- 부모 댓글 자식 번호 확인 -->
-	<select id="searchOrder" parameterType="int" resultType="int">
-		<![CDATA[
-			SELECT
-				IFNULL(MAX(order_id), 1)
-			FROM
-				reply
-			WHERE
-				parent_no = #{parentNo}
 		]]>
 	</select>
 	
@@ -110,7 +97,7 @@
 			WHERE 
 				notice_no = #{noticeNo}
 			ORDER BY 
-				group_id ASC, order_id ASC, reply_reg_date ASC			
+				group_id ASC, order_id ASC		
 		]]>
 	</select>
 	
@@ -152,13 +139,4 @@
 		]]>
 	</update>
 	
-	<!-- 대댓글 입력 -->
-	<insert id="insertReply2" parameterType="ReplyVO">
-		<![CDATA[
-			INSERT INTO
-				reply (notice_no, reply_content, writer_id, writer_name, parent_no)
-			VALUES
-				(#{noticeNo}, #{replyContent}, #{writerId}, #{writerName}, #{parentNo})				
-		]]>
-	</insert>
 </mapper>

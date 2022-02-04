@@ -42,16 +42,10 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 		update("Reply.modifyReply", reply);
 	}
 
-	// 대댓글 입력
+	// 부모 댓글 그룹 설정
 	@Override
-	public void insertReply2(ReplyVO reply) {
-		insert("Reply.insertReply2", reply);
-	}
-
-	// 그룹 설정
-	@Override
-	public void updateGroup(ReplyVO reply) {
-		update("Reply.updateGroup", reply);
+	public void updateGroup(int replyNo) {
+		update("Reply.updateGroup", replyNo);
 	}
 
 	// 부모 댓글 정보 확인
@@ -60,18 +54,13 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 		return selectOne("Reply.searchParent", parentNo);
 	}
 
-	// 부모 댓글 자식 순서 확인
-	@Override
-	public int searchOrder(int parentNo) {
-		return selectOne("Reply.searchOrder", parentNo);
-	}
-
 	// 순서 정렬
 	@Override
 	public void updateOrder(HashMap<String, Object> map) {
 		update("Reply.updateOrder", map);
 	}
 
+	// 부모 댓글 자식 확인
 	@Override
 	public int searchChild(ReplyVO reply) {
 		return selectOne("Reply.searchChild", reply);
