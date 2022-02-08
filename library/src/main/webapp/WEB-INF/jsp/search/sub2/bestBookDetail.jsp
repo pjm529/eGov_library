@@ -181,6 +181,8 @@
 		       						
 		           				} else if (result == "loan"){
 		           					alert("이미 대출 중인 도서입니다.");
+		           				} else if (result == "overdue"){
+		           					alert("연체 중인 도서가 있습니다.");
 		           				} else {
 		           					alert("대출이 불가능한 상태입니다.");
 		           					location.reload();

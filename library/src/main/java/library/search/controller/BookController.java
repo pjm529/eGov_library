@@ -26,6 +26,7 @@ import library.common.domain.DateVO;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
 import library.common.util.DateUtil;
+import library.mylib.service.MyLoanService;
 import library.search.domain.BookVO;
 import library.search.service.BookService;
 
@@ -36,6 +37,9 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
+	@Autowired
+	private MyLoanService myLoanService;
+	
 	@Autowired
 	private AladinApi api;
 
@@ -148,6 +152,11 @@ public class BookController {
 				return "loan";
 
 			} else {
+				
+				// 연체 도서가 있을 경우
+				if(myLoanService.overdueCount(userId) != 0) {
+					return "overdue";
+				}
 
 				// 대출 중인 도서 상태 체크
 				int count = bookService.count(bookIsbn);
