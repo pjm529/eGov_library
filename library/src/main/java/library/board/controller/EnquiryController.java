@@ -5,6 +5,8 @@ import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +50,7 @@ public class EnquiryController {
 			for (int i = 0; i < mask.length(); i++) {
 				masking += "*";
 			}
-			
+
 			// 마스킹 할 부분의 글자 수 만큼 *로 replace
 			writerName = writerName.replace(mask, masking);
 
@@ -68,8 +70,8 @@ public class EnquiryController {
 
 	// 게시물 본문
 	@GetMapping("/enquiryContent.do")
-	public ModelAndView enquiryContent(@RequestParam long enquiryNo, @ModelAttribute Criteria cri,
-			Principal principal) {
+	public ModelAndView enquiryContent(@RequestParam long enquiryNo, @ModelAttribute Criteria cri, Principal principal,
+			HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("board/sub3/enquiryContent.jsp");
 
@@ -82,11 +84,8 @@ public class EnquiryController {
 		// 로그인 된 아이디
 		String loginId = principal.getName();
 
-		// 관리자 계정 확인
-		int check = qnaService.checkAdmin(loginId);
-
 		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우 && 관리자가 아닐경우
-		if (!writerId.equals(loginId) && check != 1) {
+		if (!writerId.equals(loginId) && !request.isUserInRole("ROLE_ADMIN")) {
 
 			mav = new ModelAndView("error/accessError2.jsp");
 
@@ -125,7 +124,7 @@ public class EnquiryController {
 		return "redirect:/board/qnaBoardList.do";
 	}
 
-	// 문읭사항 수정페이지
+	// 문의사항 수정페이지
 	@PostMapping("/enquiryModifyPage.do")
 	public ModelAndView enquiryModifyPage(@RequestParam long enquiryNo, @ModelAttribute Criteria cri,
 			Principal principal) {
@@ -187,7 +186,8 @@ public class EnquiryController {
 
 	// 문의사항 삭제
 	@PostMapping("/enquiryDelete.do")
-	public String enquirydDelete(@ModelAttribute Criteria cri, @RequestParam long enquiryNo, Principal principal) {
+	public String enquirydDelete(@ModelAttribute Criteria cri, @RequestParam long enquiryNo, Principal principal,
+			HttpServletRequest request) {
 
 		String keyword;
 		int amount = cri.getAmount();
@@ -199,10 +199,9 @@ public class EnquiryController {
 
 		String writerId = enquiry.getWriterId(); // 작성자 ID
 		String loginId = principal.getName();// 로그인한 ID
-		int check = qnaService.checkAdmin(loginId); // 관리자 계정 확인
 
 		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우 && 관리자가 아닐경우
-		if (!writerId.equals(loginId) && check != 1) {
+		if (!writerId.equals(loginId) && !request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/accessError.do";
 		}
 

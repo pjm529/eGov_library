@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,8 @@ public class AnswerController {
 
 	// 답글 게시물 본문
 	@GetMapping("/answerContent.do")
-	public ModelAndView answerContent(@RequestParam long answerNo, @ModelAttribute Criteria cri, Principal principal) {
+	public ModelAndView answerContent(@RequestParam long answerNo, @ModelAttribute Criteria cri, Principal principal,
+			HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("board/sub3/answerContent.jsp");
 
@@ -44,11 +47,8 @@ public class AnswerController {
 		// 로그인 된 아이디
 		String loginId = principal.getName();
 
-		// 관리자 계정 확인
-		int check = qnaService.checkAdmin(loginId);
-
 		// 로그인 한 아이디와 문의사항 작성자 ID가 일치하지 않을 경우 && 관리자가 아닐경우
-		if (!writerId.equals(loginId) && check != 1) {
+		if (!writerId.equals(loginId) && !request.isUserInRole("ROLE_ADMIN")) {
 			mav = new ModelAndView("error/accessError2.jsp");
 			return mav;
 		}
@@ -78,7 +78,8 @@ public class AnswerController {
 
 	// 답글 등록
 	@PostMapping("/answerWrite.do")
-	public String answerWrite(@ModelAttribute AnswerVO answer, @ModelAttribute Criteria cri, Principal principal) {
+	public String answerWrite(@ModelAttribute AnswerVO answer, @ModelAttribute Criteria cri, Principal principal,
+			HttpServletRequest request) {
 
 		String keyword;
 		int amount = cri.getAmount();
@@ -88,11 +89,8 @@ public class AnswerController {
 		// 작성자 ID 설정
 		answer.setAWriterId(principal.getName());
 
-		// 관리자 계정 확인
-		int check = qnaService.checkAdmin(principal.getName());
-
 		// 관리자가 아닐경우
-		if (check != 1) {
+		if (!request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/accessError.do";
 		}
 		answerService.insertAnswer(answer);
@@ -110,21 +108,15 @@ public class AnswerController {
 	// 답글 수정 페이지
 	@GetMapping("/answerModifyPage.do")
 	public ModelAndView answerModifyPage(@RequestParam long answerNo, @ModelAttribute Criteria cri,
-			Principal principal) {
+			HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("board/sub3/answerModify.jsp");
 
 		// 답변 내용
 		AnswerVO answer = answerService.answerContent(answerNo);
 
-		// 로그인 아이디
-		String loginId = principal.getName();
-
-		// 관리자 계정 확인
-		int check = qnaService.checkAdmin(loginId);
-
 		// 관리자가 아닐경우
-		if (check != 1) {
+		if (!request.isUserInRole("ROLE_ADMIN")) {
 			mav = new ModelAndView("error/accessError.jsp");
 			return mav;
 		}
@@ -138,13 +130,11 @@ public class AnswerController {
 
 	// 답글 수정
 	@PostMapping("/answerModify.do")
-	public String answerModify(@ModelAttribute AnswerVO answer, @ModelAttribute Criteria cri, Principal principal) {
+	public String answerModify(@ModelAttribute AnswerVO answer, @ModelAttribute Criteria cri, Principal principal,
+			HttpServletRequest request) {
 
 		// 로그인 된 user_id 받아오기
 		String loginId = principal.getName();
-
-		// 관리자 계정 확인
-		int check = qnaService.checkAdmin(loginId);
 
 		answer.setAWriterId(loginId);
 
@@ -154,7 +144,7 @@ public class AnswerController {
 		String type = cri.getType();
 
 		// 관리자가 아닐경우
-		if (check != 1) {
+		if (!request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/accessError.do";
 		}
 
@@ -173,16 +163,10 @@ public class AnswerController {
 
 	// 답글 삭제
 	@GetMapping("/answerDelete.do")
-	public String answerDelete(@ModelAttribute Criteria cri, @RequestParam long answerNo, Principal principal) {
-
-		// 로그인 된 user_id 받아오기
-		String loginId = principal.getName();
-
-		// 관리자 계정 확인
-		int check = qnaService.checkAdmin(loginId);
+	public String answerDelete(@ModelAttribute Criteria cri, @RequestParam long answerNo, HttpServletRequest request) {
 
 		// 관리자가 아닐경우
-		if (check != 1) {
+		if (!request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/accessError.do";
 		}
 

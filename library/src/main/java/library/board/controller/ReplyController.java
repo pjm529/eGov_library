@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import library.board.domain.ReplyVO;
-import library.board.service.QnaService;
 import library.board.service.ReplyService;
 import library.common.page.Criteria;
 
@@ -24,12 +25,10 @@ public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
 
-	@Autowired
-	private QnaService qnaService;
-
 	// 댓글 입력
 	@PostMapping("/replyInsert.do")
-	public String replyInsert(@ModelAttribute Criteria cri, @ModelAttribute ReplyVO reply, Principal principal) {
+	public String replyInsert(@ModelAttribute Criteria cri, @ModelAttribute ReplyVO reply, Principal principal,
+			HttpServletRequest request) {
 
 		String keyword;
 		int amount = cri.getAmount();
@@ -41,6 +40,11 @@ public class ReplyController {
 
 		// 로그인 시 댓글 입력
 		if (reply.getWriterId() != null) {
+			
+			// 관리자 일 경우 이름 관리자로 set
+			if (request.isUserInRole("ROLE_ADMIN")) {
+				reply.setWriterName("관리자");
+			}
 			replyService.insertReply(reply);
 		}
 
@@ -56,7 +60,8 @@ public class ReplyController {
 
 	// 댓글 삭제
 	@PostMapping("replyDelete.do")
-	public String replyDelete(@ModelAttribute Criteria cri, @ModelAttribute ReplyVO reply, Principal principal) {
+	public String replyDelete(@ModelAttribute Criteria cri, @ModelAttribute ReplyVO reply, Principal principal,
+			HttpServletRequest request) {
 
 		// 댓글 작성자 검색
 		String writerId = replyService.searchWriter(reply.getReplyNo());
@@ -64,11 +69,8 @@ public class ReplyController {
 		// 로그인 정보
 		String loginId = principal.getName();
 
-		// 관리자 계정 확인
-		int check = qnaService.checkAdmin(loginId);
-
 		// 댓글의 작성자와 일치하지 않고 관리자가 아닐 경우
-		if (!writerId.equals(loginId) && check != 1) {
+		if (!writerId.equals(loginId) && !request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/accessError3.do";
 		}
 

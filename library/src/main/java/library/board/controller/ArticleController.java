@@ -27,7 +27,7 @@ public class ArticleController {
 	private ArticleService articleService;
 
 	// 분실물 찾기 게시글 목록
-	@GetMapping("/articleList")
+	@GetMapping("/articleList.do")
 	public ModelAndView articleList(@ModelAttribute Criteria cri) {
 
 		ModelAndView mav = new ModelAndView("/board/sub4/articleList.jsp");

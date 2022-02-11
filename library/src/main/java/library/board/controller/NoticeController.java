@@ -23,7 +23,6 @@ import library.board.domain.NoticeVO;
 import library.board.domain.ReplyVO;
 import library.board.service.NoticeAttachService;
 import library.board.service.NoticeService;
-import library.board.service.QnaService;
 import library.board.service.ReplyService;
 import library.common.page.Criteria;
 import library.common.page.ViewPage;
@@ -41,9 +40,6 @@ public class NoticeController {
 
 	@Autowired
 	private ReplyService replyService;
-
-	@Autowired
-	private QnaService qnaService;
 
 	// 공지사항 목록
 	@GetMapping("/noticeList.do")
@@ -67,7 +63,7 @@ public class NoticeController {
 
 	// 공지사항 본문
 	@GetMapping("/noticeContent.do")
-	public ModelAndView noticeContent(Criteria cri, @RequestParam long noticeNo) {
+	public ModelAndView noticeContent(Criteria cri, @RequestParam long noticeNo, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("board/sub1/noticeContent.jsp");
 
@@ -95,15 +91,9 @@ public class NoticeController {
 			String writerId = r.getWriterId();
 
 			if (writerId != null) {
-				// 관리자 계정 확인
-				int check = qnaService.checkAdmin(writerId);
 
 				// 관리자일 경우
-				if (check == 1) {
-
-					r.setWriterName("관리자");
-
-				} else {
+				if (!r.getWriterName().equals("관리자")) {
 
 					// 마스킹 할 부분
 					String mask = writerName.substring(1, writerName.length());
@@ -120,6 +110,7 @@ public class NoticeController {
 					r.setWriterName(writerName);
 
 				}
+
 			} else {
 				r.setWriterName("(탈퇴 회원)");
 			}
@@ -146,11 +137,6 @@ public class NoticeController {
 
 		// 로그인 된 user_id 받아오기
 		String userId = principal.getName();
-
-		// 첨부 파일이 있는 경우
-//		if (notice.getNoticeAttachList() != null) {
-//			notice.getNoticeAttachList().forEach(attach -> System.out.println(attach));
-//		}
 
 		notice.setWriterId(userId);
 
