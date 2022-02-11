@@ -16,12 +16,6 @@ public class QnaServiceImpl implements QnaService {
 	@Autowired
 	private QnaDAO qnaDAO;
 
-	// 관리자 권한 확인
-	@Override
-	public int checkAdmin(String userId) {
-		return qnaDAO.checkAdmin(userId);
-	}
-
 	// 문의 사항 리스트 출력
 	@Override
 	public List<EnquiryVO> qnaBoardList(Criteria cri) {
@@ -61,10 +55,10 @@ public class QnaServiceImpl implements QnaService {
 	// 문의 사항 삭제
 	@Override
 	public void deleteEnquiry(long enquiryNo) {
-		
+
 		// 문의 사항 삭제
 		qnaDAO.deleteEnquiry(enquiryNo);
-		
+
 		// 문의사항 게시글 번호 정렬
 		qnaDAO.resetNo();
 	}
