@@ -3,9 +3,11 @@ package library.board.domain;
 import java.sql.Timestamp;
 import java.util.List;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class EnquiryVO {
 
 	// 문의사항 번호

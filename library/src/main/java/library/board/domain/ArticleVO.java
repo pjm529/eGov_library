@@ -2,9 +2,11 @@ package library.board.domain;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ArticleVO {
 
 	// 분실물 찾기 게시글 번호

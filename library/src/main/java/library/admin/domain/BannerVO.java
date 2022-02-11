@@ -1,8 +1,10 @@
 package library.admin.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class BannerVO {
 	
 	// 등록자 아이디

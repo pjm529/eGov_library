@@ -2,9 +2,11 @@ package library.mylib.domain;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class RoomVO {
 
 	// 좌석 번호

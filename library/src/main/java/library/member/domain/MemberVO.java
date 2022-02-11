@@ -2,6 +2,11 @@ package library.member.domain;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class MemberVO {
 
 	// 회원 id
@@ -51,133 +56,5 @@ public class MemberVO {
 
 	// 회원 대출 총 도서수를 위한 count
 	private int count;
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserPw() {
-		return userPw;
-	}
-
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getUserBirth() {
-		return userBirth;
-	}
-
-	public void setUserBirth(String userBirth) {
-		this.userBirth = userBirth;
-	}
-
-	public String getUserTel() {
-		return userTel;
-	}
-
-	public void setUserTel(String userTel) {
-		this.userTel = userTel;
-	}
-
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
-
-	public String getUserZip() {
-		return userZip;
-	}
-
-	public void setUserZip(String userZip) {
-		this.userZip = userZip;
-	}
-
-	public String getUserAddress() {
-		return userAddress;
-	}
-
-	public void setUserAddress(String userAddress) {
-		this.userAddress = userAddress;
-	}
-
-	public String getUserAddressDetail() {
-		return userAddressDetail;
-	}
-
-	public void setUserAddressDetail(String userAddressDetail) {
-		this.userAddressDetail = userAddressDetail;
-	}
-
-	public int getUserAbleLoan() {
-		return userAbleLoan;
-	}
-
-	public void setUserAbleLoan(int userAbleLoan) {
-		this.userAbleLoan = userAbleLoan;
-	}
-
-	public int getUserBookCount() {
-		return userBookCount;
-	}
-
-	public void setUserBookCount(int userBookCount) {
-		this.userBookCount = userBookCount;
-	}
-
-	public String getUserOverdueDate() {
-		return userOverdueDate;
-	}
-
-	public void setUserOverdueDate(String userOverdueDate) {
-		this.userOverdueDate = userOverdueDate;
-	}
-
-	public String getUserRegDate() {
-		return userRegDate;
-	}
-
-	public void setUserRegDate(String userRegDate) {
-		this.userRegDate = userRegDate;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public List<MemberAuthVO> getAuthList() {
-		return authList;
-	}
-
-	public void setAuthList(List<MemberAuthVO> authList) {
-		this.authList = authList;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
 
 }

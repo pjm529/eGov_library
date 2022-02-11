@@ -2,9 +2,11 @@ package library.board.domain;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class AnswerVO {
 
 	// 답변 번호

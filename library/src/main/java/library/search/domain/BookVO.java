@@ -1,5 +1,10 @@
 package library.search.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class BookVO {
 
 	// 검색된 도서 수
@@ -58,157 +63,5 @@ public class BookVO {
 
 	// 추천 도서 번호
 	private int recNo;
-
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
-	public int getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
-
-	public int getLoanNo() {
-		return loanNo;
-	}
-
-	public void setLoanNo(int loanNo) {
-		this.loanNo = loanNo;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
-
-	public String getBookTitle() {
-		return bookTitle;
-	}
-
-	public void setBookTitle(String bookTitle) {
-		this.bookTitle = bookTitle;
-	}
-
-	public String getBookAuthor() {
-		return bookAuthor;
-	}
-
-	public void setBookAuthor(String bookAuthor) {
-		this.bookAuthor = bookAuthor;
-	}
-
-	public String getBookIsbn() {
-		return bookIsbn;
-	}
-
-	public void setBookIsbn(String bookIsbn) {
-		this.bookIsbn = bookIsbn;
-	}
-
-	public String getBookCover() {
-		return bookCover;
-	}
-
-	public void setBookCover(String bookCover) {
-		this.bookCover = bookCover;
-	}
-
-	public String getBookPubDate() {
-		return bookPubDate;
-	}
-
-	public void setBookPubDate(String bookPubDate) {
-		this.bookPubDate = bookPubDate;
-	}
-
-	public String getBookPublisher() {
-		return bookPublisher;
-	}
-
-	public void setBookPublisher(String bookPublisher) {
-		this.bookPublisher = bookPublisher;
-	}
-
-	public String getLoanDate() {
-		return loanDate;
-	}
-
-	public void setLoanDate(String loanDate) {
-		this.loanDate = loanDate;
-	}
-
-	public String getReturnDate() {
-		return returnDate;
-	}
-
-	public void setReturnDate(String returnDate) {
-		this.returnDate = returnDate;
-	}
-
-	public String getReturnPeriod() {
-		return returnPeriod;
-	}
-
-	public void setReturnPeriod(String returnPeriod) {
-		this.returnPeriod = returnPeriod;
-	}
-
-	public int getPriceStandard() {
-		return priceStandard;
-	}
-
-	public void setPriceStandard(int priceStandard) {
-		this.priceStandard = priceStandard;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public int getOverdueDate() {
-		return overdueDate;
-	}
-
-	public void setOverdueDate(int overdueDate) {
-		this.overdueDate = overdueDate;
-	}
-
-	public int getRecNo() {
-		return recNo;
-	}
-
-	public void setRecNo(int recNo) {
-		this.recNo = recNo;
-	}
 
 }
