@@ -54,6 +54,8 @@
 - 상태관련 칼럼 tinyint(1)로 변경
 - 각종 URL 및 명칭 버그 수정
 - ContextPath 추가
+- 관리자 계정 확인 방식 SQL 검색 -> request 이용으로 변경
+- Lombok @Data에서 @Getter, @Setter 로 변경
 
 ## 추가기능
 
