@@ -135,8 +135,6 @@ public class BookController {
 		// 로그인 된 user_id 받아오기
 		String userId = principal.getName();
 
-		System.out.println(userId + " 상태 체크");
-
 		// 대출하려는 회원의 대출 상태를 체크
 		int result = bookService.statusCheck(userId);
 
@@ -163,19 +161,14 @@ public class BookController {
 
 				// 대출 중인 도서 수가 2권 미만일 경우
 				if (count < 2) {
-
 					return "success";
-
 				} else {
 					return "fail";
 				}
-
 			}
 
 		} else {
-
 			return "fail";
-
 		}
 	}
 
@@ -248,8 +241,6 @@ public class BookController {
 	// 대출베스트 출력
 	@GetMapping("/bestBook.do")
 	public ModelAndView bestBook(@ModelAttribute Criteria cri, @ModelAttribute DateVO date) {
-
-		System.out.println("bestBook 진입");
 
 		ModelAndView mav = new ModelAndView("search/sub2/bestBook.jsp");
 

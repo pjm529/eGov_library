@@ -36,7 +36,7 @@ public class CkController {
 		String UPLOAD_BASE_PATH = PathUtil.path(contextPath); // 이미지 업로드 베이스 경로
 
 		UPLOAD_BASE_PATH = UPLOAD_BASE_PATH.replace("\\", "/");
-		System.out.println(UPLOAD_BASE_PATH);
+		// System.out.println(UPLOAD_BASE_PATH);
 
 		// 랜덤 문자 생성
 		UUID uid = UUID.randomUUID();

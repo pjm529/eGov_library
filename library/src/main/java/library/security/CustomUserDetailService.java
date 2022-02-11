@@ -17,7 +17,7 @@ public class CustomUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		System.out.println("CustomUserDetailService 진입, 아이디 확인 : " + username);
+//		System.out.println("CustomUserDetailService 진입, 아이디 확인 : " + username);
 		
 		MemberVO member = loginDAO.login(username);
 		

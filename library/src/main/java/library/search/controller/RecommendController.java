@@ -43,8 +43,6 @@ public class RecommendController {
 	@GetMapping("/recommendBook.do")
 	public ModelAndView recommendBook(@ModelAttribute Criteria cri, @ModelAttribute DateVO date) {
 
-		System.out.println("recommendBook 진입");
-
 		ModelAndView mav = new ModelAndView("search/sub3/recommendBook.jsp");
 
 		// year이 null 이면 현재 날짜 기준 year
@@ -131,8 +129,6 @@ public class RecommendController {
 	@GetMapping("/registBook.do")
 	public ModelAndView registBook(@ModelAttribute Criteria cri) {
 
-		System.out.println("/registBook 진입");
-
 		ModelAndView mav = new ModelAndView("search/sub3/registBook.jsp");
 
 		// BookVO 리스트 선언
@@ -173,7 +169,6 @@ public class RecommendController {
 	// 추천도서 등록
 	@PostMapping("/regist.do")
 	public String regist(@ModelAttribute BookVO book, Principal principal) {
-		System.out.println("regist 진입");
 
 		// 로그인 된 user_id 받아오기
 		String userId = principal.getName();

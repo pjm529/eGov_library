@@ -31,8 +31,6 @@ public class MyLoanController {
 	@GetMapping("/loanHistory.do")
 	public ModelAndView myLoanHistory(@ModelAttribute Criteria cri, @ModelAttribute DateVO date, Principal principal) {
 
-		System.out.println("my_loan_history 진입");
-
 		ModelAndView mav = new ModelAndView("mylib/sub1/loanHistory.jsp");
 
 		// 로그인 된 user_id 받아오기
@@ -84,8 +82,6 @@ public class MyLoanController {
 	@GetMapping("/loanList.do")
 	public ModelAndView myLoanList(Principal principal) {
 
-		System.out.println("myLoanList 진입");
-
 		ModelAndView mav = new ModelAndView("mylib/sub1/loanList.jsp");
 
 		// 로그인 된 user_id 받아오기
@@ -96,13 +92,10 @@ public class MyLoanController {
 
 		for (BookVO book : loanList) {
 
+			// 반납 일자
 			book.setLoanDate(book.getLoanDate().substring(0, 10));
 
-			if (book.getReturnDate() != null) {
-
-				book.setReturnDate(book.getReturnDate().substring(0, 10));
-			}
-
+			// 반납예정일
 			book.setReturnPeriod(book.getReturnPeriod().substring(0, 10));
 		}
 

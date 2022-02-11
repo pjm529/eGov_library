@@ -15,8 +15,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-		System.out.println("CustomAccessDeniedHandler 동작");
-		
 		response.sendRedirect("/accessError");
 	}
 

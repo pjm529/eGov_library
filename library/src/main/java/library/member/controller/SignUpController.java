@@ -29,7 +29,7 @@ public class SignUpController {
 
 	@Autowired
 	private JavaMailSender mailSender; // 이메일 전송 bean
-	
+
 	@Autowired
 	private PasswordEncoder pwencoder; // 암호화 Encoder
 
@@ -50,18 +50,12 @@ public class SignUpController {
 	@PostMapping("/memberIdChk.do")
 	public String memberIdChk(String userId) throws Exception {
 
-		System.out.println("memberIdChk() 진입");
-
 		String id = signUpService.idCheck(userId);
-
-		System.out.println(id);
 
 		if (id == null) {
 			return "success";
 		} else {
-
 			return "fail";
-
 		}
 	}
 
@@ -69,8 +63,6 @@ public class SignUpController {
 	@ResponseBody
 	@PostMapping("/mailCheck.do")
 	public String mailCheckPOST(String userEmail) throws Exception {
-
-		System.out.println("mailcheckPost 진입");
 
 		String email = signUpService.mailCheck(userEmail);
 
@@ -84,7 +76,7 @@ public class SignUpController {
 	// 회원가입 성공
 	@PostMapping("/signUpSuccess.do")
 	public String signUpSuccess(@ModelAttribute MemberVO member) {
-		
+
 		// 비밀번호 암호화
 		String encodePw = pwencoder.encode(member.getUserPw());
 		member.setUserPw(encodePw);
@@ -98,13 +90,13 @@ public class SignUpController {
 	public String sendCode(String email) throws Exception {
 
 		// view로부터 넘어온 데이터 확인
-		System.out.println("이메일 데이터 전송 확인");
-		System.out.println("이메일 : " + email);
+//		System.out.println("이메일 데이터 전송 확인");
+//		System.out.println("이메일 : " + email);
 
 		// 인증번호 난수 생성
 		Random random = new Random();
 		int checkNum = random.nextInt(899999) + 100000; // 100000 ~ 999999 범위의 난수 생성
-		System.out.println("인증번호 : " + checkNum);
+//		System.out.println("인증번호 : " + checkNum);
 
 		String from = "library.raon@gmail.com";
 		String to = email;

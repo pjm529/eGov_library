@@ -38,11 +38,7 @@ public class SearchController {
 	// 아이디 찾기 페이지 진입
 	@GetMapping("/searchId.do")
 	public String searchIdPage() {
-
-		System.out.println("아이디 찾기 페이지 진입");
-
 		return "member/sub3/searchId.jsp";
-
 	}
 
 	// 아이디 찾기 정보확인
@@ -50,26 +46,18 @@ public class SearchController {
 	@PostMapping("/searchIdCheck.do")
 	public String searchIdCheck(@ModelAttribute MemberVO member) throws Exception {
 
-		System.out.println("searchIdCheck() 진입");
-
 		String id = searchService.searchId(member);
 
 		if (id == null) {
-
 			return "fail";
-
 		} else {
-
 			return "success";
-
 		}
 	}
 
 	// 아이디 찾기 성공
 	@PostMapping("/searchId.do")
 	public String searchIdPOST(@ModelAttribute MemberVO member, Model model) throws Exception {
-
-		System.out.println("searchId() 진입");
 
 		String result = searchService.searchId(member);
 
@@ -93,11 +81,7 @@ public class SearchController {
 	// 비밀번호 찾기 페이지 진입
 	@GetMapping("/searchPw.do")
 	public String searchPwGET() {
-
-		System.out.println("비밀번호 찾기 페이지 진입");
-
 		return "member/sub4/searchPw.jsp";
-
 	}
 
 	// 비밀번호 찾기 정보확인
@@ -105,18 +89,12 @@ public class SearchController {
 	@PostMapping("/searchPwCheck.do")
 	public String searchPwCheck(@ModelAttribute MemberVO member) throws Exception {
 
-		System.out.println("searchPwdCheck() 진입");
-
 		int result = searchService.searchPw(member);
 
 		if (result == 0) {
-
 			return "fail";
-
 		} else {
-
 			return "success";
-
 		}
 	}
 
